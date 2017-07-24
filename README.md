@@ -1,0 +1,2 @@
+# suse-doc
+SUSE Documentation

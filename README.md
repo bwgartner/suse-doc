@@ -1,5 +1,11 @@
 # suse-doc
 SUSE Documentation
 
-Example solution briefs, whitepaper, reference implementations and reference architectures relating to SUSE (and often openSUSE) material
+Examples of:
+- best practices (BP),
+- whitepapers (WP),
+- reference configurations (RC),
+- reference implementations (RI) and
+- reference architectures (RA)
+relating to SUSE (and sometimes openSUSE) plus partner collaboration materials
 

@@ -1,0 +1,426 @@
+*­[[Frame2]] *
+
+www.suse.com
+
+[[Frame1]]
+
+Title (e.g., White Paper)
+
+image:SUSE_Reference_Architecture_12_16_html_76f3eee6740436ca.gif[image]
+image:SUSE_Reference_Architecture_12_16_html_8f9dfc182504547b.gif[image]
+­
+
+ +
+
+ +
+
+ +
+ +
+
+ +
+ +
+
+[[Frame3]]
+
+Solution or Product Name +
+Reference Architecture
+
+ +
+Subtitle Style
+
+ +
+ +
+
+ +
+
+ +
+
+ +
+
+ +
+
+ +
+
+ +
+ +
+
+ +
+
+ +
+
+ +
+
+ +
+
+ +
+
+ +
+
+ +
+
+ +
+
+ +
+
+ +
+
+ +
+
+ +
+
+ +
+
+ +
+
+ +
+
+ +
+
+ +
+
+ +
+
+ +
+
+ +
+
+ +
+
+ +
+
+ +
+
+Written by:
+
+Name, Company
+
+Name, Company
+
+ +
+
+ +
+
+ +
+
+ +
+
+ +
+
+ +
+
+ +
+
+[[formatting-notes]]
+Formatting Notes
+----------------
+
+Please use styles preceded by a bullet (●). Styles available for use in
+this document include:
+
+[[heading]]
+Heading
+-------
+
+*Subhead*
+
+Body Copy body copy body copy body copy body copy body copy body copy
+body copy body copy body copy body copy body copy body copy body copy
+body copy body copy body copy body copy body copy body copy body copy
+body copy body copy body copy body copy body copy.
+
+* 
+* 
+* 
+* 
+
+[[heading-1]]
+Heading
+-------
+
+*Subhead*
+
+Body Copy body copy body copy body copy body copy body copy body copy
+body copy body copy body copy body copy body copy body copy body copy
+body copy body copy body copy body copy body copy body copy body copy
+body copy body copy body copy body copy body copy.
+
+If you need to import an image do so through the Insert > Picture > From
+file menu. Be sure to import images that are appropriately sized for the
+column width of this template. And, be sure that the image is placed
+appropriately in the flow of the copy.
+
+_*Second Subhead*_
+
+Body Copy body copy body copy body copy body copy body copy body copy
+body copy body copy body copy body copy body copy body copy body copy
+body copy body copy body copy body copy body copy body copy body copy
+body copy body copy body copy body copy body copy.
+
+[[table-of-contents-creation]]
+Table of Contents Creation
+--------------------------
+
+In order to insert a table of contents (using Microsoft Word 2010):
+
+1.  
+2.  
+3.  
+4.  
+5.  
+6.  
+
+ +
+ +
+
+[[introduction]]
+Introduction
+------------
+
+[Introductory paragraph]
+
+*Heading 2*
+
+Description of the reference architecture/Solution Name and the partners
+included in the design and validation. Provided as a proof point for
+designing similar production ready solutions with design considerations,
+implementation suggestion, and best practices. May include statement
+regarding consulting, technical support and the intended audiences.
+
+_*Heading 3*_
+
+ +
+
+[[business-problem-and-business-value]]
+Business problem and business value
+-----------------------------------
+
+[Introductory paragraph]
+
+*Business problem*
+
+The business problem description should highlight the challenges with
+traditional, legacy, proprietary solutions from a customer point of
+view. Keep the problem description at a high level.
+
+ +
+
+*Business value*
+
+The business value proposition should address the challenges called out
+above, with forward looking considerations for ongoing growth and
+innovation.
+
+ +
+
+[[requirements]]
+Requirements
+------------
+
+[Introductory paragraph]
+
+*Functional requirements*
+
+Function requirements should outline the high level feature(s) and
+benefits of the solution,
+
+* 
+* 
+
+Diagrams or tables may be included in the description to demonstrate the
+customer behavior or interaction with surrounding solutions.
+
+[[architectural-overview]]
+Architectural overview
+----------------------
+
+[Introductory paragraph]
+
+*Solution architecture*
+
+An outline should be provided of the solution and the components
+required to successfully architect the solution
+
+* 
+* 
+
+_*High level diagram / table*_
+
+[Introductory paragraph]
+
+image:SUSE_Reference_Architecture_12_16_html_d4fad6e929fc44a2.png[image,width=249,height=404] +
+ +
+ +
+
+_*High level diagram / table*_
+
+[Introductory paragraph]
+
+[cols=",,,",]
+|========================================
+|_*Column*_ |*Column* |*Column* |*Column*
+|_Row_ | + | + | +
+|_Row_ | + | + | +
+|_Row_ | + | + | +
+|========================================
+
+ +
+ +
+
+*Networking architecture*
+
+Any special network segmentation, vlan, or performance requirements
+should be outlined and justified here.
+
+_*High level diagram / table*_
+
+[
+image:SUSE_Reference_Architecture_12_16_html_eb3133083ab020a3.png[image,width=651,height=466] +
+Introductory paragraph]
+
+_*High level diagram / table*_
+
+[Introductory paragraph]
+
+[cols=",,,",]
+|========================================
+|_*Column*_ |*Column* |*Column* |*Column*
+|_Row_ | + | + | +
+|_Row_ | + | + | +
+|_Row_ | + | + | +
+|========================================
+
+ +
+ +
+
+ +
+
+ +
+
+[[component-model]]
+Component model
+---------------
+
+[Introductory paragraph]
+
+*Component overview*
+
+Provide brief descriptions of the components that make up a solution and
+this could include the individual components of a solution such as a
+product breakdown
+
+* 
+* 
+* 
+
+Or functional components that make up the solution such as Nova,
+Keystone, Swift, etc in an OpenStack solution
+
+*SW Component Description 1*
+
+Depending on the number and complexity of the components this proceeding
+section might better be represented as a table with brief descriptions.
+Fewer components can be expressed in short paragraph form.
+
+[cols=",",]
+|============================
+|_*Component*_ |*Description*
+|_Row_ | +
+|_Row_ | +
+|_Row_ | +
+|============================
+
+ +
+ +
+
+_*Component Relationship diagram*_
+
+If necessary
+
+*SW Component Description 2*
+
+If necessary
+
+*HW Component Description 1*
+
+Provide a description of the Systems used and their position in the
+solution. Each system should explain why the characteristics of that
+system is a good fit for the SW Component or architecture.
+
+_*Component Relationship diagram*_
+
+If necessary
+
+*HW Component Description 2*
+
+If necessary
+
+[[deployment]]
+Deployment
+----------
+
+[Introductory paragraph] hyper link to online documentation:
+http://www.suse.com/documentation[www.suse.com/documentation]
+
+The following typographical conventions are used in this manual:
+
+* 
+* 
+* 
+* 
+* 
+* 
+
+*Deployment overview/outline*
+
+[Introductory paragraph]
+
+*HW Deployment configuration*
+
+[Introductory paragraph]
+
+*SW Deployment configuration*
+
+[Introductory paragraph]
+
+ +
+
+ +
+
+[[deployment-considerations]]
+Deployment considerations
+-------------------------
+
+[Introductory paragraph]
+
+*Deployment Considerations*
+
+Provide guidance for optional server, network configurations based on
+Cost, Scale and Performance.
+
+ +
+
+[[appendix-bill-of-materials]]
+Appendix: Bill of Materials
+---------------------------
+
+*Component / System*
+
+ +
+ +
+
+[cols=",,,",]
+|========================================
+|_*Column*_ |*Column* |*Column* |*Column*
+|_Row_ | + | + | +
+|_Row_ | + | + | +
+|_Row_ | + | + | +
+|========================================
+
+[[resources]]
+Resources
+---------
+
+ +
+ +
+
+\p. 2

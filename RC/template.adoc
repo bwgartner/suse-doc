@@ -1,0 +1,41 @@
+= Title SUSE(R) *** Reference Configuration with *** Partner(R) Hardware
+Author, Company < email >
+
+== Executive Summary
+Describe why this effort satisfies current/future needs
+
+=== Target Audience
+Likely targeting technical folks, as the basis for other, complimentary GTM materials
+
+== Solution Overview
+Convey why this is more than the some of its parts
+
+== Solution Components
+First order pass of what is needed
+
+=== Network
+Brief description of product/equipment used
+* include simple BOM table
+
+=== Computing
+Brief description of product/equipment used
+* include simple BOM table
+
+=== Software
+Brief description of product/offering used
+* include simple BOM table
+
+== Solution Details
+Include specific focus/intent of final configuration, aka primary use case
+
+=== Best Practices
+Denote assumptions, exclusions, preparatory steps and boundary conditions
+
+=== Deployment Flow
+Refer to existing product/component documentation, only callout differences 
+
+== Conclusion
+Close loop of why it was needed to what was provided
+
+== Resources
+Collection of links/references

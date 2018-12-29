@@ -1,5 +1,5 @@
 # suse-doc
-SUSE Documentation
+SUSE Documentation Templates and Utilities
 
 Examples of:
 - best practices (BP),
@@ -7,5 +7,9 @@ Examples of:
 - reference configurations (RC),
 - reference implementations (RI) and
 - reference architectures (RA)
-relating to SUSE (and sometimes openSUSE) plus partner collaboration materials
+
+relating to SUSE (sometimes openSUSE) plus partner collaboration artifacts.
+
+Also provide a few, simple CLI wrappers to transform from AsciiDoc <-> DAPS
+( https://github.com/openSUSE/daps ) to create selected output formats.
 

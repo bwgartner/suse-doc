@@ -1,1 +1,31 @@
-FixMe
+= Title SUSE(R) *** HowTo / Best Practice with *** Partner(R) Integration
+Author, Company < email >
+
+== Use Case Overview
+Describe why this effort satisfies current/future needs
+
+=== Target Audience
+Likely targeting technical folks, as the basis for other, complimentary GTM materials
+
+== Integration
+Convey why this is more than the some of its parts
+
+=== Solution
+First-order summary of what is needed
+
+==== Pre-requisites
+Note assumptions and other requisites to be in place
+* Network, Computing, Software
+* Accounts, Access
+* include simple BOM table, if needed
+
+==== Integration Steps
+Description of how/flow to combine multiple products/offerings into a more complete or specific solution 
+* only document exceptions/additional steps beyond standard installation
+* configuration specifics
+* note exclusions, boundary conditions
+* highlight, best practices and scaling aspects beyond one-off instance
+
+== Resources
+* Collection of links/references
+* Appendices

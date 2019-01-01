@@ -2,7 +2,7 @@
 
 # prep for daps compatible 
 
-[ -x asciidoc ] || {
+type asciidoc || {
 	echo "missing 'asciidoc' binary, please install it"
 	exit 1
 }

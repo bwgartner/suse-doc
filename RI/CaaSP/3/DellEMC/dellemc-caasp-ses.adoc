@@ -1,4 +1,4 @@
-= SUSE(R) CaaS Platform Reference Implementation on DellEMC(R) Hardware
+= SUSE(R) CaaS Platform Reference Implementation on Dell EMC(R) Hardware
 Bryan Gartner, SUSE < bryan.gartner@suse.com>
 
 == Introduction
@@ -7,7 +7,7 @@ This white paper is intended to help an organization create and deploy an on-pre
 === Description
 As with any software-defined infrastructure, all the classic IT disciplines around networking, computing and storage are involved and need to be effectively planned and integrated.
 This document provides a reference implementation from proof-of-concept to production ready deployments with design considerations, implementation suggestions, and best practices.
-The combination of DellEMC(R) Network S-Series Network Switches and PowerEdge R640 Rack Servers computing hardware plus the SUSE(R) CaaS Platform software solution yields a fully functional, container-as-a-service infrastructure.
+The combination of Dell EMC(R) Network S-Series Network Switches and PowerEdge R640 Rack Servers computing hardware plus the SUSE(R) CaaS Platform software solution yields a fully functional, container-as-a-service infrastructure.
 
 * To ease the adoption curve and provide multiple proof points, the infrastructure can be quickly deployed as a proof-of-concept utilizing only virtual machines for evaluation of the solution.
 * To address increases in workload capacity, physical systems with more resources can be iteratively added to the existing cluster and even replace some of the initial roles on virtual machines.
@@ -18,16 +18,16 @@ For the final production mode, one has an operationally complete solution that c
 In addition, core functions are deploying in a highly available fashion to help prevent downtime and multiple user interfaces are made available.
 To compliment the solution, an integration with a Ceph-based storage backend is provided the persistent data storage needed to allow stateful components for the containerized workloads.
 
-The deployment process for each of these modes was implemented, tested and validated in the DellEMC Partner lab.
+The deployment process for each of these modes was implemented, tested and validated in the Dell EMC Partner lab.
 
 === Target Audience
 The target audience for this document is IT professionals responsible for setting up, configuring, administering and operating a container-ready infrastructure.
-It is suggested that this document be reviewed in its entirety, along with the referenced supplemental documentation before attempting the deployment.
+It is suggested that this document is reviewed in its entirety, along with the referenced supplemental documentation before attempting the deployment.
 
 == Business problem and business value
 In the rapidly evolving era of DevOps, containerized workloads are becoming increasingly popular.
 Both developers and users need an API-centric platform to continuously integrate with, rapidly deploy to, and utilize applications that can scale as required.
-Operational teams need the ability to setup and manage such a software-defined infrastructure quickly and easily, yet with the ability to maintain it over time.
+Operational teams need the ability to set up and manage such a software-defined infrastructure quickly and easily, yet with the ability to maintain it over time.
 By providing an easy to deploy and scale container-as-a-service platform, organizations can begin migrating their business applications from legacy monolithic applications to micro-service cloud-native solutions in a low-risk fashion.
 
 === Business problem
@@ -39,15 +39,22 @@ Since it is a combination of all the classic disciplines, IT administrators appr
 
 Each of these three components, networking, compute and software provide individual value-add to address the overall requirements of the solution :
 
-DellEMC Network Switches::
-For the physical switching layer, use one or more DellEMC S4048T-ON top-of-rack (ToR) 10GigE switches with 40GigE up links connected together with Virtual Link Trunking (VLT).
-These DellEMC Networking switches offer an ultra-low-latency switch fabric providing non-blocking performance.
-To complete the fabric, a DellEMC Networking S3048-ON switch is used to handle the 1GigE connections from the dedicated BMC/iDRAC ports for the management network and is up-linked to both of the S4048T-ON switches for redundancy.
+Dell EMC Network Switches::
+Dell EMC data center switching solutions are cost-effective and easy to deploy at any scale, from 1G to multi-rate 100G for optimum connectivity both within the rack or blade chassis and across the data center.
+The switching solutions also feature a choice of innovative Dell EMC and third-party software options to address virtually any enterprise or service provider use-case or environment.
+For the physical switching layer, Dell EMC S-Series top-of-rack (ToR) open networking switches like the 10GbE S4048-ON are cost-effective and easy to deploy at any scale for optimum connectivity both within the rack or chassis and across the data center fabric.
+The switches also feature a choice of innovative Dell EMC or third-party software options.
+To complete the networking solution, a Dell EMC Networking 1GbE S3048-ON open networking switch is used to handle management functions.
 
-DellEMC PowerEdge Servers::
-The DellEMC PowerEdge R640 Rack Server are known for their powerful and balanced performance, advanced I/O capabilities and flexible and scalable networking options.
-These systems are ideally suited for the various node roles in this reference configuration.
-The appendices contain the recommended configurations for these system platforms in each of the various deployment modes.
+Dell EMC PowerEdge Servers::
+The Dell EMC PowerEdge R640 and R740xd deliver a perfect balance between storage scalability and performance.
+Both two-socket platforms are ideal for software defined storage (like ScaleIO, VSAN or the PowerEdge XC), service providers or Big Data servers.
+The platform versatility is highlighted with the ability to mix any drive type to create the optimum configuration of NVMe, SSD and HDD for either performance, capacity or both.
+The R740xd drives fast response times for business-critical workloads with up to 24 NVMe drives for storage intensive roles with optimum performance.
+Both platforms support the Dell EMC OpenManage™ portfolio, delivering intelligent, automated management of routine tasks.
+Combined with unique agent-free management capabilities, the R640/R740xd are simply managed, freeing up time for high profile projects.
+The R640/R740xd leverage new security features built-into every new PowerEdge server strengthening protection so you can reliably and securely deliver accurate data to your customers no matter where they are.
+By considering each aspect of system security, from design to retirement, Dell EMC ensures trust and delivers a worry-free, secure infrastructure without compromise.
 
 Software Defined Infrastructure::
 * SUSE CaaS Platform is an enterprise class container management solution that enables IT and DevOps professionals to more easily deploy, manage, and scale container-based applications and services.
@@ -66,7 +73,7 @@ These requirements span the multiple layers of such a solution, from the contain
 Such demands are inherited from previous generations of IT infrastructure expectations and carry forward, even though the containerized workloads themselves have vastly different approaches through agility and resiliency.
 
 With SUSE CaaS Platform you can::
-* Achieve faster time to value with an enterprise-ready container management platform, built from industry leading technologies, and delivered as a complete package, with everything you need to quickly offer container services.
+* Achieve faster time to value with an enterprise-ready container management platform, built from industry-leading technologies, and delivered as a complete package, with everything you need to quickly offer container services.
 * Simplify management and control of your container platform with efficient installation, easy scaling, and update automation.
 * Maximize return on your investment, with a flexible container services solution for today and tomorrow
 
@@ -76,14 +83,14 @@ image::CaaSPOrbit.png[SUSE CaaS Platform Orbits, 640, 480]
 
 == Architectural overview
 
-As noted in the <<_description>> section, this document provides the deployment steps to create a container-as-a-service instance, starting off in a proof-of-concept mode and transitioning through to a full, production mode setup.
+As noted in <<_description>> section, this document provides the deployment steps to create a container-as-a-service instance, starting off in a proof-of-concept mode and transitioning through to a full, production mode setup.
 
 Underlying each of these deployment modes, however is a core set of functionality and architectural components:
 
 * Container-as-a-Service Platform
 Host Operating System::
 Typically a small footprint operating system installation, having just enough functionality to support the container runtime engine, leaving as many CPU, memory and I/O resources available for the containerized workloads.
-** SUSE currently delivers this as MicroOS, a read-mostly, minimal operating system based upon SUSE Linux Enterprise Server.  This is complimented by a distributed key-value store provided by etcd to retain persistent configuration data. In addition, MicroOS provides a snapshot-driven, transactional-update methodology to perform atomic upgrades.
+** SUSE currently delivers this as MicroOS, a read-mostly, minimal operating system based upon SUSE Linux Enterprise Server.  This is complemented by a distributed key-value store provided by etcd to retain persistent configuration data. In addition, MicroOS provides a snapshot-driven, transactional-update methodology to perform atomic upgrades.
 Container Runtime Engine(s)::
 Comprised of both a format for and service to run containerized applications on top of the host operating system.
 ** SUSE provides support for Docker(R) Community Edition Engine, the current, defacto standard open source format for application containers.
@@ -97,8 +104,8 @@ A service to manage deployments of containerized workload, known as Kubernetes, 
 
 * Miscellaneous Infrastructure Components and Services
 Core Infrastructure Components / Services::
-** Domain Name Service (DNS) - a network accessible service to map IP Addresses to hostnames
-** Network Time Protocol (NTP) - a network accessible service to obtain and synchronize system times to aid in timestamp consistency
+** Domain Name Service (DNS) - an external network-accessible service to map IP Addresses to hostnames
+** Network Time Protocol (NTP) - an external network-accessible service to obtain and synchronize system times to aid in timestamp consistency
 ** Software Update Service - access to a network-based repository for software update packages. This can be accessed directly from each node via registration to the http://scc.suse.com[SUSE Customer Center] or from local servers running a SUSE https://www.suse.com/documentation/sles-12/singlehtml/book_smt/book_smt.htm[Subscription Management Tool] (SMT) instance. As each node is deployed, it can be pointed to the respective update service and update notification and applicate will be managed by the configuration management web interface. 
 ** Client System - one or more existing system, with your choice of operating system, used to access the cluster and various services provided from a command line, via `kubectl` and `helm`, and web browser.
 
@@ -126,13 +133,13 @@ Cluster network::
 ** Higher speed network interface cards (minimum of 10GigE and above) and switching are preferred, since the number of containerized workloads can be high and they share this infrastructure capacity, both from an external and intra-cluster perspective.
 
 Internal networks::
-** Known as the Overlay and Service networks, these are used by Kubernetes and the underlying Flannel network plug-in to manage internal cluster and container connections. These are implemented with bridges to the main cluster network.
+** Known as the Overlay and Service networks, these are used by Kubernetes and the underlying Flannel network plug-in to manage the internal cluster and container connections. These are implemented with bridges to the main cluster network.
 
 IMPORTANT: These internal network ranges should be planned prior to deployment, are usually non-routable network ranges and cannot be changed without redploying the entire cluster.
 
 Network services::
-** Ensure that a DNS service is accessible, and configured for each cluster node to resolve all node names, uniquely. At least the Administration Node and Kubernetes API Master must resolve in a Fully Qualified Domain Name (FQDN) fashion for external clients to connect to these respective cluster nodes.
-** Ensure the Administration Node is pointed to a reliable NTP service and the remaining nodes will, by default, point to the Administration Node.
+** Ensure that an external DNS service is accessible, and configured for each cluster node to resolve all node names, uniquely. At least the Administration Node and Kubernetes API Master must resolve in a Fully Qualified Domain Name (FQDN) fashion for external clients to connect to these respective cluster nodes.
+** Ensure the Administration Node is pointed to a reliable, external NTP service and the remaining nodes will, by default, point to the Administration Node.
 ** Ensure all cluster nodes have access to a software update repository to facilitate upgrades over time.
 
 == Deployment
@@ -143,7 +150,8 @@ This section is meant as a companion guide to the official network, system and s
 
 The following considerations for the network switching configuration should be attended to:
 
-* Configure 802.3ad for system port bonding, if used, and for IRF between the top-of-rack switches, if possible to get the maximum performance of bonded network interfaces
+* Configure 802.3ad for system port bonding, if used, and for VLT between the top-of-rack switches, if possible to get the maximum performance of bonded network interfaces
+* Connect the Dell EMC PowerEdge server’s iDRAC to a management network, which can be co-reside with the cluster network or entirely distinct, depending upon your local administration policies
 
 IMPORTANT: Ensure that all similar switching devices are consistent and up-to-date with regard to firmware versions to reduce potential troubleshooting issues later.
 
@@ -155,11 +163,11 @@ image::OverviewNW.png[Network, 640, 480]
 
 The following considerations for various network service configurations should be attended to:
 
-* Setup DNS A records for all nodes. Decide on subnet ranges and configure the switch ports accordingly to match those nodes in use.
-* Ensure that you have access to a valid, reliable NTP service, as this is a critical requirement for all nodes.
+* Setup external DNS A records for all nodes. Decide on subnet ranges and configure the switch ports accordingly to match those nodes in use.
+* Ensure that you have access to a valid, reliable external NTP service, as this is a critical requirement for all nodes.
 * Ensure access to software security updates and fixes by registering nodes to the http://scc.suse.com[SUSE Customer Center], or creating a local https://www.suse.com/documentation/sles-12/singlehtml/book_smt/book_smt.html[Subscription Management Tool] service.
 
-For this reference implementation, the following IP / Hostname settings were utilized and configured in the accessible DNS service:
+For this reference implementation, the following IP / Hostname settings were utilized and configured in the accessible external DNS service:
 
 * Network IP addressing and IP ranges need proper planning to address current as well as future growth.
 
@@ -167,7 +175,7 @@ For this reference implementation, the following IP / Hostname settings were uti
 .Network Address Configuration
 |===
 |*_Function_* | *_Role_* | *_Mode_* |*_Hostname_* |*_IP Address_*
-| core |*SAH* | PoC, V2P, Production | sah.suse-dell.net | 10.204.92.86 
+| core |*Solution Admin Host (SAH)* | PoC, V2P, Production | sah.suse-dell.net | 10.204.92.86 
 | |*K8s Master LB* | PoC, V2P, Production | mstr-lb.suse-dell.net | 10.204.92.245
 | cluster |*CaaSP-Admin (VM)* | PoC, V2P, Production | caasp-admin.suse-dell.net | 10.204.92.244
 | |*Overlay Network* | PoC, V2P, Production | n/a | 172.16.0.0/13
@@ -186,7 +194,7 @@ For this reference implementation, the following IP / Hostname settings were uti
 
 The following considerations for the system platforms should be attended to:
 
-NOTE: Any https://www.suse.com/yessearch/[SUSE YES] certified DellEMC platform, like the PowerEdge R640, can be used for the physical nodes of this deployment, as long as the certification refers to the version of the underlying SUSE operating system used by SUSE CaaS Platform.
+NOTE: Any https://www.suse.com/yessearch/[SUSE YES] certified Dell EMC platform, like the PowerEdge R640, can be used for the physical nodes of this deployment, as long as the certification refers to the version of the underlying SUSE operating system used by SUSE CaaS Platform.
 
 * Reset the BIOS setup configuration to the default setting to have a known baseline configuration to provide consistency.
 * If possible, setup RAID1 mirroring on the storage controller across a pair of drives for the operating system installation
@@ -218,12 +226,12 @@ NOTE: The default partitioning scheme can be used, but remember to store any vir
 ** Configure the desired networking including:
 *** An external network interface for access beyond the cluster environment (using one of the 1GigE NICs, e.g., em3)
 *** A bond, mode 802.3ad if available to match the switch configuration, across all 10GigE NICs being used (e.g., em1, em2)
-*** A bridge for virtualization on top of the previous bonded network interfaces, configured with an IP address in the cluster network
+*** A bridge for virtualization on top of the previously bonded network interfaces, configured with an IP address in the cluster network
 *** For convenience, install an Administrative VNC server to remotely access this system from other systems, which provides a graphical user interface
 
 === HAProxy
 
-Utilizing HAProxy for load balancing is an approach to make the cluster, and more specifically some of core Kubernetes Master Node API functions, accessible to client systems. It does this via a virtual IP which then sends the call to any active masters. While not required for a single master cluster, setting this up in advance allows later expansion and substitutions to happen.
+Utilizing HAProxy for load balancing is an approach to make the cluster, and more specifically some of the core Kubernetes Master Node API functions, accessible to client systems. It does this via a virtual IP which then sends the call to any active masters. While not required for a single master cluster, setting this up in advance allows later expansion and substitutions to happen.
 
 This process can be run on any host or virtual machine with access to the Admin network. The steps to deploy this service are:
 
@@ -260,7 +268,7 @@ listen kubeconfiglb
   mode tcp
   option tcplog
   balance roundrobin
-  server k8s-master-0 10.204.92.246:6443 check
+  server k8s-master-0 10.204.92.246:32000 check
   server mstr-a 10.204.92.50:32000 check
   server mstr-b 10.204.92.60:32000 check
   server mstr-c 10.204.92.70:32000 check
@@ -269,6 +277,19 @@ listen kubeconfiglb
 NOTE: You will notice that all Kubernetes Master Nodes are included in the example, which allows it to be used throughout the mode transitions. This is because the configuration also does a check on the state of the node/port combination before forwarding on such a request.
 
 TIP: You should also adjust the "stats" stanza to utilize another, available port, e.g. 12345, to allow any services setup later that need to access port 80.
+
+[source, ini]
+----
+# haproxy stats
+listen stats
+  bind 0.0.0.0:12345
+  mode http
+  stats enable
+  stats hide-version
+  stats realm HAProxy\ Statistics
+  stats uri /haproxy_stats
+  stats refresh 8s
+----
 
 * Then enable and start the HAProxy service, via:
 
@@ -285,7 +306,7 @@ The goal of this mode, as shown in the following figure, is to create a prelimin
 .Proof-of-Concept Deployment
 image::OverviewPoC.png[Proof-of-Concept, 640, 480]
 
-NOTE: The installation process used, across all modes and all nodes, whether virtual or physical, were done from ISO images just for consistency in this document. Other options are available as noted in the https://www.suse.com/documentation/suse-caasp-3/[SUSE CaaS Platform Deployment Guide].
+NOTE: The installation process used, across all modes and all nodes, whether virtual or physical, were done from ISO images just for consistency in this document. Other options are available as noted in the https://www.suse.com/documentation/suse-caasp-3/[SUSE CaaS Platform Deployment Guide]. Also included in this Deployment Guide are  minimum node requirements for (v)CPU, Memory and Storage RAM to be used to setup the virtual machines or even later for the physical nodes being deployed.
 
 Administration Node::
 Install the SUSE CaaS Platform Administration Node as a virtual machine on the SAH
@@ -308,22 +329,22 @@ Install the SUSE CaaS Platform Administration Node as a virtual machine on the S
 ** On the "Bootstrap your CaaS Platform" page:
 *** Note the location of the 'AutoYast' file, in case you'd like to automate other node installations
 
-At this point you are ready to install the remaining cluster nodes.
+At this point, you are ready to install the remaining cluster nodes.
 
 Kubernetes Master (1) and Kubernetes Worker Nodes (2)::
 Install the three remaining nodes of a minimal cluster. For this PoC implementation, these nodes can co-reside as virtual machines on the SAH host or another network accessible virtualization host with access to the cluster network.
 
-* Using `virt-manager` (GUI) or `virsh` (CLI), create a virtual machine that meets or exceeds the minimum requirements for this node's role from the deployment document
+* Using `virt-manager` (GUI) or `virsh` (CLI), create a virtual machine that meets or exceeds the minimum requirements for this node's role as noted in the deployment document
 
-* Allocate a virtual NIC for the cluster network, tied to the virtualization bridge
+* Allocate a virtual NIC for the cluster network, tied to the virtualization bridge residing on the cluster network
 
-* Configure the following virtual CD drives
+* Configure the following virtual CD drive
 ** SUSE CaaS Platform ISO image (bootable)
 
-* Complete the installation steps as described in the "Installing Master and Worker Nodes" section of the  https://www.suse.com/documentation/suse-caasp-3/[SUSE CaaS Platform Deployment Guide]
+* Complete the installation steps as described in the "Installing Master and Worker Nodes" section of the https://www.suse.com/documentation/suse-caasp-3/[SUSE CaaS Platform Deployment Guide]
 
 Bootstrap the Cluster::
-When the nodes have completed their installation and rebooted, use the client system again to login and access the Velum Dashboard web-interface to continue the cluster formation.
+When the nodes have completed their installation and rebooted, use the client system again to login and access the Velum Dashboard web-interface at the FQDN of the Administration Node to continue the cluster formation.
 
 * There should be three items listed in the "Pending Nodes" section, so "Accept All Nodes"
 * Designate the "Master" and "Worker" to the respective nodes, then "Next"
@@ -341,7 +362,7 @@ root@caasp-admin# kubectl get pods -n kube-system
 ----
 
 * By logging into the client system:
-** Using a web browser, login to the Velum Dashboard web-interface with the admin credentials
+** Using a web browser, login to the Velum Dashboard web-interface with the admin credentials at the FQDN of the Administration Node
 ** Download the 'kubeconfig' file, and put a copy in the default location of '\~/.kube/config'
 ** Ensure the client system has `kubectl` installed, then run the same set of `kubectl` commands from the previous section
 
@@ -350,6 +371,7 @@ TIP: If using a SUSE Linux Enterprise 12 or newer release host as the client, bo
 * Review the following information to:
 ** Understand the administration aspects of the cluster by reviewing https://www.suse.com/documentation/suse-caasp-3/[SUSE CaaS Platform Administration Guide]
 ** Become familiar with the usage of `kubectl` by reviewing https://kubernetes.io/docs/reference/kubectl/overview/[Overview of kubectl]
+
 
 === Virtual to Physical System Migration Mode (V2P)
 
@@ -382,7 +404,7 @@ tux@client > kubectl top pods
 .Worker Node Resource Utilization via cAdvisor
 image::cAdvisor.png[cAdvisor, 640, 480]
 
-Additional Kubernetes Worker Nodes::
+Installing Additional Kubernetes Worker Nodes::
 * In an available system, use the SUSE CaaS Platform ISO image as a physical boot media or via the iDRAC virtual media function
 ** Ensure the suggested storage configuration of a pair of RAID1 mirrored drives for the operation system are used to protect against device failures.
 ** Repeat the installation steps as described in the "Installing Master and Worker Nodes" section of the  https://www.suse.com/documentation/suse-caasp-3/[SUSE CaaS Platform Deployment Guide]
@@ -424,14 +446,14 @@ TIP: Many curated https://github.com/helm/charts[Helm charts] are available for 
 Kubernetes Dashboard::
 
 * Log into the client system's command line or to the Administration Node, referencing the cluster's admin 'kubeconfig', then
-** Follow the Helm chart instructions for "https://github.com/helm/charts/tree/master/stable/kubernetes-dashboard[kubernetes-dashboard]" to deploy this functionality. The resulting output of the respective `helm install` command also provides guidance on how to make this port/service publicly visbily to users. Now users can launch and manage their containers from this web interface.
+** Follow the Helm chart instructions for "https://github.com/helm/charts/tree/master/stable/kubernetes-dashboard[kubernetes-dashboard]" to deploy this functionality. The resulting output of the respective `helm install` command also provides guidance on how to make this port/service publicly visible to users. Now users can launch and manage their containers from this web interface.
 
 [[img-KubeDash]]
 .Kubernetes Dashboard
 image::KubeDash.png[KubeDash, 640, 480]
 
 Ceph-based Persistent Storage::
-A companion document, refer to <<_appendices>>, outlines using similar DellEMC network switches, DellEMC PowerEdge Servers and SUSE Enterprise Storage, powered by Ceph. This creates a highly scalable and resilient software based storage solution, enabling organizations to build cost-efficient storage using industry standard servers and disk drives. It is self-managing and delivers storage functionality comparable to mid- and high-end storage products at a fraction of the cost.
+A companion document, refer to <<_appendices>>, outlines using similar Dell EMC network switches, Dell EMC PowerEdge Servers and SUSE Enterprise Storage, powered by Ceph. This creates a highly scalable and resilient software based storage solution, enabling organizations to build cost-efficient storage using industry standard servers and disk drives. It is self-managing and delivers storage functionality comparable to mid- and high-end storage products at a fraction of the cost.
 
 To create the necessary integration between a Ceph-based storage cluster, on SUSE Enterprise Storage (SES), first start on the SUSE Enterprise Storage side. Login to the respective Admin Node and
 
@@ -552,7 +574,7 @@ root@caasp-admin # kubectl get pvc <-n default>
 Then to validate a working integration, create a simple container using the persistent volume claim. Refer to the "Creating Pods with Persistent Volumes" section of the https://www.suse.com/documentation/suse-caasp-3/[SUSE CaaS Platform Administration Guide].
 
 Kubernetes Conformance Tests::
-A representative set of the upstream Kubernetes conformance test suite can be seen at https://github.com/heptio/sonobuoy[Heptio / Sonobuoy]. This can be easily run via a browser from the client system that has access to the admin 'kubeconfig' file as noted in the "Getting Started" section of this site. An example run can be seen in the following screenshot:
+A representative set of the upstream Kubernetes conformance test suite can be seen at https://github.com/heptio/sonobuoy[Heptio / Sonobuoy]. This can be easily run via a browser on the client system that has access to the admin 'kubeconfig' file as noted in the "Getting Started" section of this site. An example run can be seen in the following screenshot:
 
 [[img-Sonobuoy]]
 .Kubernetes validation with Sonobuoy
@@ -565,13 +587,13 @@ TIP: The Ceph-based RBD storage and persistent volume claims should be utilized 
 
 === Additional Deployment Considerations
 
-Beyond the three distinct operational modes described in this document, some very convenient and technology advanced features are included or can be extended:
+Beyond the three distinct operational modes described in this document, some very convenient and technologically advanced features are included or can be extended:
 
-* Fine grained, role-based access control, relying upon a local source can be easily augmented for users with specific roles. In addition, federating to external, like LDAP/AD, authentication/authorization sources can also be accomplished. Refer to the "Managing Users and Groups" and "Role Management" sections in the https://www.suse.com/documentation/suse-caasp-3/[SUSE CaaS Platform Administration Guide] to add other users. Then these configured users can login to the web interface, download their respective 'kubeconfig' files and launch containers into their created or designated namespaces with their roles and access to the specified resources.
+* Fine-grained, role-based access control, relying upon a local source can be easily augmented for users with specific roles. In addition, federating to external, like LDAP/AD, authentication/authorization sources can also be accomplished. Refer to the "Managing Users and Groups" and "Role Management" section in the https://www.suse.com/documentation/suse-caasp-3/[SUSE CaaS Platform Administration Guide] to add other users. Then these configured users can login to the web interface, download their respective 'kubeconfig' files and launch containers into their created or designated namespaces with their roles and access to the specified resources.
 
 * By combining the resiliency of containerized workloads and the orchestration provided by Kubernetes, SUSE CaaS Platform can be continually updated and upgraded. Using the underlying technology of Btrfs filesystem snapshots and the transactional-update tooling, component and operating systems updates are seamlessly applied across all cluster nodes. More details can be found in the "Software Management" section of the https://www.suse.com/documentation/suse-caasp-3/[SUSE CaaS Platform Administration Guide].
 
-* An additional service to consider is a repository site for container images to pull workloads from. This can be a publicly-accessible site or can be a private collection of workload images.  Other registry sites, either public or private, can be used to provide files, like Helm Charts, to deploy complete services.  An option, to provide more fine grained user authorization and access to the container images is SUSE http://port.us.org/[Portus].
+* An additional service to consider is a repository site for container images to pull workloads from. This can be a publicly-accessible site or can be a private collection of workload images.  Other registry sites, either public or private, can be used to provide files, like Helm Charts, to deploy complete services.  An option, to provide more fine-grained user authorization and access to the container images is SUSE http://port.us.org/[Portus].
 
 * Various types of logs are available:
 ** The setup and configuration of the cluster
@@ -587,7 +609,7 @@ Beyond the three distinct operational modes described in this document, some ver
 
 == Summary
 
-Combining the features of DellEMC Network Switches, PowerEdge R640 server with the software from SUSE CaaS Platform yields a robust, powerful and flexible container-as-a-service infrastructure. No matter what stage of transition your organization may be with regard to containerized workloads, this deployment allows industry standard compatibility coupled with industry leading support and operational ease. Any business can feel confident in the ability to address the continual growth in container development and usage they are currently faced with.
+Combining the features of Dell EMC Network Switches, PowerEdge R640 server with the software from SUSE CaaS Platform yields a robust, powerful and flexible container-as-a-service infrastructure. No matter what stage of transition your organization may be with regard to containerized workloads, this deployment allows industry standard compatibility coupled with industry leading support and operational ease. Any business can feel confident in the ability to address the continual growth in container development and usage they are currently faced with.
 
 == Appendices
 
@@ -597,8 +619,8 @@ Combining the features of DellEMC Network Switches, PowerEdge R640 server with t
 .Bill of Materials - Network
 |===
 |*_Role_*|*_Quantity_*|*_Description_*|*_Notes_*
-|*Top of Rack Network Switch* | 1 | DellEMC S3048-ON | connects up to 48 systems, add as needed
-|*Top of Rack Network Switch* | 1 | DellEMC S4048T-ON | 1 per rack of systems, unless System NIC bonding, then multiple by number of linked interfaces
+|*Top of Rack Network Switch* | 1 | Dell EMC S3048-ON | connects up to 48 systems, add as needed
+|*Top of Rack Network Switch* | 1 | Dell EMC S4048T-ON | 1 per rack of systems, unless System NIC bonding, then multiple by number of linked interfaces
 |===
 
 [cols=",,,,,", options="header"]
@@ -606,12 +628,12 @@ Combining the features of DellEMC Network Switches, PowerEdge R640 server with t
 |===
 |*_Role_*|*_Quantity PoC_*|*_Quantity V2P_*|*_Quantity Production_*|*_Description_*|*_Notes_*
 |*Solution Admin Host* | 1 | 1 | 1 |Dell PowerEdge R640 Server | n/a
-|*Kubernetes Master Node(s)* | 0 | 0 | 3 | DellEMC PowerEdge R640 Server | requires an odd number to provide high availability
-|*Kubernetes Worker Node(s)* | 0 | 2 | 2 | DellEMC PowerEdge R640 Server | can be scaled up to 100 for a single cluster instance 
+|*Kubernetes Master Node(s)* | 0 | 0 | 3 | Dell EMC PowerEdge R640 Server | requires an odd number to provide high availability
+|*Kubernetes Worker Node(s)* | 0 | 2 | 2 | Dell EMC PowerEdge R640 Server | can be scaled up to 100 for a single cluster instance 
 |===
 
 [cols=",,,", options="header"]
-.Bill of Materials - DellEMC PowerEdge R640 System
+.Bill of Materials - Dell EMC PowerEdge R640 System
 |===
 |*_Role_*|*_Quantity_*|*_SKU_*|*_Description_*
 |Every System Role|1|210-AKWU|PowerEdge R640 Server
@@ -678,11 +700,11 @@ Combining the features of DellEMC Network Switches, PowerEdge R640 server with t
 
 == Resources
 
-DellEMC Network Switches::
+Dell EMC Network Switches::
 * S3048-ON - https://www.dell.com/en-us/work/shop/povw/networking-s-series-1gbe
 * S4048T-ON - https://www.dell.com/en-us/work/shop/povw/networking-s-series-10gbe
 
-DellEMC PowerEdge Servers::
+Dell EMC PowerEdge Servers::
 * R640 Rack Server - https://www.dell.com/en-us/work/shop/povw/poweredge-r640
 
 SUSE Software::

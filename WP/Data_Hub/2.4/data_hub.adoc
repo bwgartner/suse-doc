@@ -1,0 +1,87 @@
+:Author: Alex Arnoldy
+:AuthorEMail: alex.arnoldy@suse.com
+
+:ISVPartner: SAP
+:ISVSolution: Data Hub
+
+:CompanyName: SUSE
+:ProductName: CaaS Platform
+
+:IHVPartner: n/a
+:IHVPlatform: n/a
+
+= {ISVPartner}(R) {ISVSolution} on {CompanyName}(R) {ProductName} Framework 
+{Author}, {CompanyName} < {AuthorEMail} >
+
+== Overview
+Describe why this effort satisfies current/future needs
+
+=== Target Audience
+Likely targeting technical folks, as the basis for other, complimentary GTM materials
+
+=== Business problem
+Today's business leaders are under increasing pressure to drive their business with data driven decisions. This presents a particular challenge for those executives who strive to bring together the right combination of disparate data sources to unlock new value for the business. 
+
+This difficulty is compounded by the very nature of how data is collected and stored, which results in independent data silos with no easy way to make critical associations across them. These data silos may be stored geographically close together, or far apart. Some may be built with on premise resources, and some housed in one or more public clouds. Valuable data is often found in structured and unstructured databases, Hadoop data lakes, data warehouses, and even in text files. Gaining new insights into potential customers and business opportunities may involve nearly all of the data silos a company has available to it.
+
+What's more, finding a business application to perform the task is not even the hardest part. Businesses need to ensure their data analysis software investment can meet the scale of their current, as well as their future application/data landscape, plus enforce data governance. Equally as important is the resiliency and scalability of the underlying infrastructure. Experienced leaders know that Enterprise grade software is a poor investment if it is not built on Enterprise grade infrastructure.
+
+=== Business value
+{ISVPartner} {ISVSolution} is a containerized solution designed to be deployed on Enterprise grade Kubernetes clusters such as {CompanyName} {ProductName}. For more than 17 years {ISVPartner} has developed their software on {CompanyName} Linux Enterprise Server (SLES) and {CompanyName} solutions such as {ProductName}.
+
+{ISVPartner} {ISVSolution} is built on a next generation data aggregation model that does away with the need for expensive data warehouses. Instead, {ISVPartner} {ISVSolution} allows data extraction and formatting to be done on the platform where the data resides. Instead of the cumbersome, single-use Extraction, Transformation, Load (ELT) operations that are used to populate data warehouses; {ISVPartner} {ISVSolution} provides formatted, refined and cleansed data from multiple sources directly to the data consumers. 
+
+{ISVPartner} {ISVSolution} leverages data pipelines, which are built from reusable application components. Data pipelines are computational models that are executed natively on the data source. They define what data should be gathered from which sources, and how that data should be formatted at the source. Pipelines also specify what refinements and cleansing each stream of data should go through to make it compatible with the other data streams in the pipeline. Finally, they identify to which consumer or consumers the collated data should be sent. Since {ISVPartner} {ISVSolution} does not need persist data, it completely eliminates the need for expensive, scale-limiting data warehouses.
+
+Data pipelines can be created through a graphical user interface to leverage existing data sources such as {ISVPartner} HANA, {ISVPartner} Vora, Apache Spark, and Apache Hadoop; as well as all major open and closed source OLTP, OLAP and NoSQL databases.
+
+== Solution Components
+
+=== {CompanyName} {ProductName} Overview
+{CompanyName} {ProductName} is an integrated software platform which greatly automates the tasks of building, managing and upgrading Kubernetes clusters. It combines the benefits of an enterprise-ready operating system with the agility of an orchestration platform for containerized applications such as {ISVPartner} {ISVSolution}.
+
+While there are several top tier Kubernetes offerings in the market, {CompanyName} {ProductName} stands out for its ease of installation and configuration, DevOps integration (via {CompanyName} Cloud Application Platform), and Enterprise level of operability and scalability. 
+
+One of the biggest challenges for Kubernetes operators is matching the scalability of the node level infrastructure with that of the overlaying container infrastructure. Inconsistently applied software changes as well as node configuration drift create ticking time bombs in production Kubernetes clusters. 
+
+{CompanyName} {ProductName} resolves these problems with a combination of {CompanyName} MicroOS as the container host operating system and Salt for configuration management. {CompanyName} MicroOS is a mission-specific derivative of {CompanyName} Linux Enterprise Server (SLES). While MicroOS comes straight from SLES code, its implementation ensures that software changes are applied atomically and within a snapshot-protected environment. The combination of MicroOS and Salt guarantees that all nodes in a cluster are always in a known and consistent state. The troubleshooting nightmares of discovering a single node with a partially-failed configuration or software change are a thing of the past.
+
+A {CompanyName} {ProductName} cluster consists of the following node types:
+
+{CompanyName} {ProductName} Administration Node::
+The Administration Node of the {CompanyName} {Product Name} manages the deployment of the cluster and runs central services like:
+* The Velum, the web-UI dashboard used to administer the cluster. 
+* The Salt master, which manages the configuration of the cluster nodes. 
+* The MariaDB database, used to store Velum data and salt master daemon events
+* The Dex identity service, which provides user authentication and a robust RBAC system. 
+
+{CompanyName} {ProductName} Kubernetes Master Nodes::
+The {ProductName} Master Nodes maintain the Kubernetes control plane services. These services run as containers on the Master Nodes. While three Master Nodes are required for high availability of the Kubernetes control plane, a single Master Node is acceptable for demonstration purposes.
+
+{CompanyName} {ProductName} Kubernetes Worker Nodes::
+The {ProductName} Kubernetes Worker Nodes run the {ISVPartner} {ISVSolution} application containers. {ISVPartner} {ISVSolution} requires a minimum of three Kubernetes Worker Nodes and {CompanyName} currently supports {ProductName} clusters of up to 150 nodes. Additional Worker Nodes can be added to a Production {ProductName} cluster non-disruptively.
+
+=== Storage Architectural Overview
+The storage layer of this solution leverages the Software Defined Storage capabilities of {CompanyName} Enterprise Storage 5.5 (SES 5.5). SES 5.5 is a commercially supported distribution of the Ceph enterprise grade, scale out storage solution. 
+
+Ceph is a scale out, distributed object store which provides excellent performance, scalability and reliability. In most use cases clients use Linux kernel libraries to read and write object and block data directly to/from a storage node in the SES cluster. SES also provides gateway options to support data access via iSCSI, NFS, S3, and Swift protocols.
+
+The storage capacity of the SES solution can be expanded easily by integrating additional storage nodes to the cluster. Exiting storage nodes will take care of redistributing the data to the newly added nodes without interrupting the availability of storage services to the clients.
+
+SES 5.5 provides a reliable, scalable storage layer for the complete solution that supports:
+* Dynamically provisioned block storage volumes to the pods running on {CompanyName} {ProductName}
+* (Optionally) Block storage volumes for the co-located Hadoop cluster nodes, if configured
+* Object storage through an S3-API compatible interface for additional data storage and backups
+
+==== Dynamically Provisioned Storage Volumes
+In addition providing block storage to the optional Hadoop cluster, a pod running on {ProductName} can gain access to dynamically provisioned Kubernetes persistent volumes (PV) through Kubernetes persistent volume claims (PVC). Persistent volumes are created as block devices in the supporting SES 5.5 cluster. {ProductName} uses persistent volume claims (PVC)s to obtain dynamically provisioned persistent volumes through the Software Defined Storage mechanisms in SES 5.5. When a PVC is removed, the persistent volume and its associated block storage device in SES are automatically removed.
+
+=== {ISVPartner} Vora Distributed Database
+{ISVPartner} Vora is a horizontally scalable, distributed database which can store and process structured data, time-series data (i.e. IoT streams), graph data and semi-structured documents in-memory and/or on disk. {ISVPartner} Vora is only available with {ISVPartner} {ISVSolution}, running in Kubernetes as a fully containerized application. It can storage and analytics data in Kubernetes pods as well as provide a bi-directional Spark2 interface between {ISVPartner} {ISVSolution} and an optionally co-located Hadoop cluster. Like {ISVPartner} {ISVSolution}, Vora requires a {ProductName} cluster of at least three Worker Nodes, but runs alongside Data Hub on the same {ProductName} cluster.
+
+=== {ISVPartner} HANA
+{ISVPartner} HANA is {ISVPartner}'s premiere, in-memory database. HANA provides ultra-low latency performance for OLTP and OLAP environments. {CompanyName} Linux Enterprise Server for {ISVPartner} is SLES with specific enhancements for Enterprise class {ISVPartner} applications, including {ISVPartner} HANA. Deploying an Enterprise {ISVPartner} HANA database on SLES for {ISVPartner} allows for important enhancements in terms of availability, security, data encryption, and hardware support (such as NV-DIMMs). An important aspect of {ISVPartner} {ISVSolution} is that it leverages a small, containerized {ISVPartner} HANA database for managing Data Hub metadata. No installation, maintenance, or sizing considerations are required for this HANA instance.
+
+=== Optional Hadoop Cluster
+An optional Hadoop cluster can be built on dedicated nodes and co-located with {ISVPartner} {ISVSolution}. This associated Hadoop Data Lake can be used as a local computational/storage medium for {ISVPartner} {ISVSolution} original and uploaded content. The {ISVPartner} {ISVSolution} Spark Extensions are used to interface with the Spark2 environment on the Hadoop cluster for processing and storing data.  When utilizing this cluster, Data Hub users can leverage the analytical strengths of {ISVPartner} Vora to analyze and store data in HDFS through the {ISVPartner} {ISVSolution} Vora Spark Extension. {CompanyName} has extensive experience deploying bare-metal and virtualized Hadoop clusters on {CompanyName} Linux Enterprise Server. While this Hadoop cluster uses dedicated nodes, its HDFS storage is built on block storage from the SES 5.5 storage cluster that also serves {ISVPartner} {ISVSolution}.
+

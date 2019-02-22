@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN" "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd">
+<?asciidoc-toc?>
+<?asciidoc-numbered?>
+
+<book lang="en">
+<bookinfo>
+    <title>SAP&#174; Data Hub on SUSE&#174; CaaS Platform Framework</title>
+    <author>
+        <firstname>Alex Arnoldy, SUSE &lt; alex.arnoldy@suse.com &gt;</firstname>
+    </author>
+    <authorinitials>{</authorinitials>
+<orgname>SUSE</orgname>
+</bookinfo>
+<chapter id="_overview">
+<title>Overview</title>
+<simpara>Describe why this effort satisfies current/future needs</simpara>
+<section id="_target_audience">
+<title>Target Audience</title>
+<simpara>Likely targeting technical folks, as the basis for other, complimentary GTM materials</simpara>
+</section>
+<section id="_business_problem">
+<title>Business problem</title>
+<simpara>Today&#8217;s business leaders are under increasing pressure to drive their business with data driven decisions. This presents a particular challenge for those executives who strive to bring together the right combination of disparate data sources to unlock new value for the business.</simpara>
+<simpara>This difficulty is compounded by the very nature of how data is collected and stored, which results in independent data silos with no easy way to make critical associations across them. These data silos may be stored geographically close together, or far apart. Some may be built with on premise resources, and some housed in one or more public clouds. Valuable data is often found in structured and unstructured databases, Hadoop data lakes, data warehouses, and even in text files. Gaining new insights into potential customers and business opportunities may involve nearly all of the data silos a company has available to it.</simpara>
+<simpara>What&#8217;s more, finding a business application to perform the task is not even the hardest part. Businesses need to ensure their data analysis software investment can meet the scale of their current, as well as their future application/data landscape, plus enforce data governance. Equally as important is the resiliency and scalability of the underlying infrastructure. Experienced leaders know that Enterprise grade software is a poor investment if it is not built on Enterprise grade infrastructure.</simpara>
+</section>
+<section id="_business_value">
+<title>Business value</title>
+<simpara>SAP Data Hub is a containerized solution designed to be deployed on Enterprise grade Kubernetes clusters such as SUSE CaaS Platform. For more than 17 years SAP has developed their software on SUSE Linux Enterprise Server (SLES) and SUSE solutions such as CaaS Platform.</simpara>
+<simpara>SAP Data Hub is built on a next generation data aggregation model that does away with the need for expensive data warehouses. Instead, SAP Data Hub allows data extraction and formatting to be done on the platform where the data resides. Instead of the cumbersome, single-use Extraction, Transformation, Load (ELT) operations that are used to populate data warehouses; SAP Data Hub provides formatted, refined and cleansed data from multiple sources directly to the data consumers.</simpara>
+<simpara>SAP Data Hub leverages data pipelines, which are built from reusable application components. Data pipelines are computational models that are executed natively on the data source. They define what data should be gathered from which sources, and how that data should be formatted at the source. Pipelines also specify what refinements and cleansing each stream of data should go through to make it compatible with the other data streams in the pipeline. Finally, they identify to which consumer or consumers the collated data should be sent. Since SAP Data Hub does not need persist data, it completely eliminates the need for expensive, scale-limiting data warehouses.</simpara>
+<simpara>Data pipelines can be created through a graphical user interface to leverage existing data sources such as SAP HANA, SAP Vora, Apache Spark, and Apache Hadoop; as well as all major open and closed source OLTP, OLAP and NoSQL databases.</simpara>
+</section>
+</chapter>
+<chapter id="_solution_components">
+<title>Solution Components</title>
+<section id="_suse_caas_platform_overview">
+<title>SUSE CaaS Platform Overview</title>
+<simpara>SUSE CaaS Platform is an integrated software platform which greatly automates the tasks of building, managing and upgrading Kubernetes clusters. It combines the benefits of an enterprise-ready operating system with the agility of an orchestration platform for containerized applications such as SAP Data Hub.</simpara>
+<simpara>While there are several top tier Kubernetes offerings in the market, SUSE CaaS Platform stands out for its ease of installation and configuration, DevOps integration (via SUSE Cloud Application Platform), and Enterprise level of operability and scalability.</simpara>
+<simpara>One of the biggest challenges for Kubernetes operators is matching the scalability of the node level infrastructure with that of the overlaying container infrastructure. Inconsistently applied software changes as well as node configuration drift create ticking time bombs in production Kubernetes clusters.</simpara>
+<simpara>SUSE CaaS Platform resolves these problems with a combination of SUSE MicroOS as the container host operating system and Salt for configuration management. SUSE MicroOS is a mission-specific derivative of SUSE Linux Enterprise Server (SLES). While MicroOS comes straight from SLES code, its implementation ensures that software changes are applied atomically and within a snapshot-protected environment. The combination of MicroOS and Salt guarantees that all nodes in a cluster are always in a known and consistent state. The troubleshooting nightmares of discovering a single node with a partially-failed configuration or software change are a thing of the past.</simpara>
+<simpara>A SUSE CaaS Platform cluster consists of the following node types:</simpara>
+<variablelist>
+<varlistentry>
+<term>
+SUSE CaaS Platform Administration Node
+</term>
+<listitem>
+<simpara>
+The Administration Node of the SUSE {Product Name} manages the deployment of the cluster and runs central services like:
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+The Velum, the web-UI dashboard used to administer the cluster.
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+The Salt master, which manages the configuration of the cluster nodes.
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+The MariaDB database, used to store Velum data and salt master daemon events
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+The Dex identity service, which provides user authentication and a robust RBAC system.
+</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>
+SUSE CaaS Platform Kubernetes Master Nodes
+</term>
+<listitem>
+<simpara>
+The CaaS Platform Master Nodes maintain the Kubernetes control plane services. These services run as containers on the Master Nodes. While three Master Nodes are required for high availability of the Kubernetes control plane, a single Master Node is acceptable for demonstration purposes.
+</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>
+SUSE CaaS Platform Kubernetes Worker Nodes
+</term>
+<listitem>
+<simpara>
+The CaaS Platform Kubernetes Worker Nodes run the SAP Data Hub application containers. SAP Data Hub requires a minimum of three Kubernetes Worker Nodes and SUSE currently supports CaaS Platform clusters of up to 150 nodes. Additional Worker Nodes can be added to a Production CaaS Platform cluster non-disruptively.
+</simpara>
+</listitem>
+</varlistentry>
+</variablelist>
+</section>
+<section id="_storage_architectural_overview">
+<title>Storage Architectural Overview</title>
+<simpara>The storage layer of this solution leverages the Software Defined Storage capabilities of SUSE Enterprise Storage 5.5 (SES 5.5). SES 5.5 is a commercially supported distribution of the Ceph enterprise grade, scale out storage solution.</simpara>
+<simpara>Ceph is a scale out, distributed object store which provides excellent performance, scalability and reliability. In most use cases clients use Linux kernel libraries to read and write object and block data directly to/from a storage node in the SES cluster. SES also provides gateway options to support data access via iSCSI, NFS, S3, and Swift protocols.</simpara>
+<simpara>The storage capacity of the SES solution can be expanded easily by integrating additional storage nodes to the cluster. Exiting storage nodes will take care of redistributing the data to the newly added nodes without interrupting the availability of storage services to the clients.</simpara>
+<simpara>SES 5.5 provides a reliable, scalable storage layer for the complete solution that supports:
+* Dynamically provisioned block storage volumes to the pods running on SUSE CaaS Platform
+* (Optionally) Block storage volumes for the co-located Hadoop cluster nodes, if configured
+* Object storage through an S3-API compatible interface for additional data storage and backups</simpara>
+<section id="_dynamically_provisioned_storage_volumes">
+<title>Dynamically Provisioned Storage Volumes</title>
+<simpara>In addition providing block storage to the optional Hadoop cluster, a pod running on CaaS Platform can gain access to dynamically provisioned Kubernetes persistent volumes (PV) through Kubernetes persistent volume claims (PVC). Persistent volumes are created as block devices in the supporting SES 5.5 cluster. CaaS Platform uses persistent volume claims (PVC)s to obtain dynamically provisioned persistent volumes through the Software Defined Storage mechanisms in SES 5.5. When a PVC is removed, the persistent volume and its associated block storage device in SES are automatically removed.</simpara>
+</section>
+</section>
+<section id="_sap_vora_distributed_database">
+<title>SAP Vora Distributed Database</title>
+<simpara>SAP Vora is a horizontally scalable, distributed database which can store and process structured data, time-series data (i.e. IoT streams), graph data and semi-structured documents in-memory and/or on disk. SAP Vora is only available with SAP Data Hub, running in Kubernetes as a fully containerized application. It can storage and analytics data in Kubernetes pods as well as provide a bi-directional Spark2 interface between SAP Data Hub and an optionally co-located Hadoop cluster. Like SAP Data Hub, Vora requires a CaaS Platform cluster of at least three Worker Nodes, but runs alongside Data Hub on the same CaaS Platform cluster.</simpara>
+</section>
+<section id="_sap_hana">
+<title>SAP HANA</title>
+<simpara>SAP HANA is SAP&#8217;s premiere, in-memory database. HANA provides ultra-low latency performance for OLTP and OLAP environments. SUSE Linux Enterprise Server for SAP is SLES with specific enhancements for Enterprise class SAP applications, including SAP HANA. Deploying an Enterprise SAP HANA database on SLES for SAP allows for important enhancements in terms of availability, security, data encryption, and hardware support (such as NV-DIMMs). An important aspect of SAP Data Hub is that it leverages a small, containerized SAP HANA database for managing Data Hub metadata. No installation, maintenance, or sizing considerations are required for this HANA instance.</simpara>
+</section>
+<section id="_optional_hadoop_cluster">
+<title>Optional Hadoop Cluster</title>
+<simpara>An optional Hadoop cluster can be built on dedicated nodes and co-located with SAP Data Hub. This associated Hadoop Data Lake can be used as a local computational/storage medium for SAP Data Hub original and uploaded content. The SAP Data Hub Spark Extensions are used to interface with the Spark2 environment on the Hadoop cluster for processing and storing data.  When utilizing this cluster, Data Hub users can leverage the analytical strengths of SAP Vora to analyze and store data in HDFS through the SAP Data Hub Vora Spark Extension. SUSE has extensive experience deploying bare-metal and virtualized Hadoop clusters on SUSE Linux Enterprise Server. While this Hadoop cluster uses dedicated nodes, its HDFS storage is built on block storage from the SES 5.5 storage cluster that also serves SAP Data Hub.</simpara>
+</section>
+</chapter>
+</book>

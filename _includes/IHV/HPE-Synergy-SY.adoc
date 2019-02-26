@@ -1,0 +1,4 @@
+
+{IHVPartner} {IHVPlatform} {IHVPlatformModel} Compute Module::
+* delivers an efficient and flexibile two-socket workhorse to support most demanding workloads. Powered by Intel® Xeon® Scalable Family of processors, up to 3TB DDR4, more storage capacity and controllers and a variety of GPU options within a composable architecture. {IHVPartner} {IHVPlatform} {IHVPlatformModel} Compute Module is the ideal platform for general-purpose enterprise workload performance now and in the future.
+

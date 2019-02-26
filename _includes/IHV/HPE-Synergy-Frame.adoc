@@ -1,0 +1,4 @@
+
+{IHVPartner} {IHVPlatform} 12000 Frame::
+* is uniquely architected as Composable Infrastructure (CI) to match the powerful 'infrastructure-as-code' capabilities of the {IHVPartner} intelligent software architecture. Flexible access to compute, storage, and fabric resources allows for use and re-purposing. Linking multiple {IHVPartner} {IHVPlatform} Frames efficiently scales the infrastructure with a dedicated single view of the entire management network.
+* allows creating multiple composable domains in the infrastructure can efficiently deliver available resources to the business. {IHVPartner} {IHVPlatform} Frames reduce complexity by using intelligent auto-discovery to find all available resources to accelerate workload deployments. This drives IT efficiency as the business grows and delivers balanced performance across resources to increase solution effectiveness.

@@ -1,0 +1,816 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN" "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd">
+<?asciidoc-toc?>
+<?asciidoc-numbered?>
+
+<book lang="en">
+<bookinfo>
+    <title>Reference Configuration : SUSE CaaS Platform 3 with HPE Synergy</title>
+    <author>
+        <firstname>Bryan Gartner, SUSE &lt; Bryan.Gartner@SUSE.com &gt;</firstname>
+    </author>
+    <authorinitials>{</authorinitials>
+<orgname>SUSE</orgname>
+</bookinfo>
+<chapter id="_executive_summary">
+<title>Executive Summary</title>
+<simpara>This reference configuration is intended to help an organization create and deploy an on-premise container-as-a-service platform infrastructure to deploy, orchestrate and manage containerized workloads.</simpara>
+<simpara>For most enterprise-level businesses, the demand for an on-premise, infrastructure to deploy and orchestrate containers is increasing rapidly, allowing the hosting of both production and other phases of workloads development. As with any software-defined infrastructure, all the classic IT disciplines around networking, computing and storage are involved and need to be effectively planned and integrated. This document provides an implementation overview for a production ready deployment with design considerations, implementation suggestions, and best practices. An intelligent, software-defined infrastructure consisting of SUSE&#174; CaaS Platform technology and HPE&#174; Synergy system hardware enables you to transform your enterprise. With the inherent composability of the combination, delivering container-as-a-service can help reduce costs while still providing flexibility to keep up with your future demands. Leveraging this tested approach, you will have the confidence to deploy a working solution in an agile manner, and be able to maintain and scale it as needed over time.</simpara>
+</chapter>
+<chapter id="_target_audience">
+<title>Target Audience</title>
+<simpara>This document is intended for IT decision makers, architects, system administrators and technicians who are implementing a flexible, software-defined, container-as-a-service platform. The reader should be familiar with all of the traditional pillars of IT infrastructures&#8201;&#8212;&#8201;networking, computing and storage&#8201;&#8212;&#8201;along with their local use cases for sizing, scaling and limitations within their environments.</simpara>
+</chapter>
+<chapter id="_solution_overview">
+<title>Solution Overview</title>
+<simpara>Even on the journey to a full <ulink url="https://landscape.cncf.io/">Cloud Native Landscape</ulink>, the classic IT pillars are still very much in play. General requirements include the need for a small, purpose-built operating system with a container runtime engine and a container orchestration platform to distribute workloads across a target, clustered instance. With all of these attributes in place, both developer and operation teams can effectively deploy, manage and deliver functionality to their end users in a resilient and agile manner.</simpara>
+<note><simpara>As a further reference, the National Institute of Standards and Technology&#8217;s (NIST) <ulink url="https://csrc.nist.gov/publications/detail/sp/800-180/draft">Definition of Microservices, Application Containers and System Virtual Machines</ulink> describes the important characteristics of application containers.</simpara></note>
+<simpara>While the footprint of each of the containerized microservices is usually much smaller than similar bare-metal or virtual machine workload deployments, the IT pillars must still be designed to readily be composed and accommodate the sheer scale of such high counts of workloads. Core networking technologies, like high-speed, scalable network switches and connectivity can provide the foundational interconnection among computing and workload resources. Physical resource nodes or even virtual machines running atop a hypervisor can deliver the container-as-a-service functionality. A composable infrastructure, like HPE Synergy provides an ideal target platform, letting users start small and scale-out over time with inherent consistency.  This platform addresses both network and storage resources with industry-leading x86-based servers provided by the HPE Synergy servers, offering balanced performance and efficiency. Finally, it is the container-as-a service software, SUSE CaaS Platform, that provides the user interface for setup, configuration, maintenance, and long term operation of the core software-defined infrastructure requirements bonding them into a cohesive service offering. Each of these components is detailed in the following sections.</simpara>
+</chapter>
+<chapter id="_solution_components">
+<title>Solution Components</title>
+<section id="_facility">
+<title>Facility</title>
+<simpara>While beyond the scope of this document, the heating, ventilation, air conditioning (HVAC) requirements of hosting such a infrastructure solution should be carefully considered and planned. To aid in determining the power requirements for system deployment, use the <ulink url="https://h20195.www2.hpe.com/v2/GetPDF.aspx/4AA6-2925ENW.pdf">HPE Power Advisor</ulink> as either an on-line version or a downloadable application. Using this tool, you can plan the needs for your solution and order the correct Power Distribution Unit (PDU) to account for the local power conditions and connections in the final installation location.</simpara>
+</section>
+<section id="_network">
+<title>Network</title>
+<simpara>Networking and the associated services are the technology components which typically requires the most advance planning. Connectivity, capacity and bandwidth requirements for a container-as-a-service infrastructure have a fair amount of complexity, especially when integrated with an existing IT infrastructure and accounting for the magnitude of microservices being deployed.</simpara>
+<simpara>With the inherent features and composability aspect of HPE Synergy much of the configuration complexity for network interconnects can easily be codified into a template for each target resource node. This includes the mapping of which network interfaces to which network fabrics within a collection of managed HPE Synergy frames. The baseline network bandwidth, both for each resource node and collectively within the frame, provided by HPE Synergy is quite sufficient for a container-as-a-service deployment. While beyond the scope of this document, the only remaining consideration is for capacity and bandwidth for the interconnecting Top-of-Rack switches. In addition access to each of the resource node&#8217;s HPE iLO can be effectively coordinated and managed through the user interface of HPE Synergy Composer.</simpara>
+</section>
+<section id="_computing">
+<title>Computing</title>
+<simpara>HPE Synergy, the first Composable Infrastructure, empowers IT to create and deliver new value easily and continuously. This single infrastructure reduces operational complexity for traditional workloads and increases operational velocity for the new breed of applications and services. Through a single interface, HPE Synergy composes compute, storage and fabric pools into any configuration for any application. It also enables a broad range of workloads from bare metal to virtual machines to containers, and operational models like hybrid cloud and DevOps. HPE Synergy enables IT to rapidly react to new business demands with the following components:</simpara>
+<variablelist>
+<varlistentry>
+<term>
+HPE Synergy 12000 Frame
+</term>
+<listitem>
+<itemizedlist>
+<listitem>
+<simpara>
+is uniquely architected as Composable Infrastructure (CI) to match the powerful <emphasis>infrastructure-as-code</emphasis> capabilities of the HPE intelligent software architecture. Flexible access to compute, storage, and fabric resources allows for use and re-purposing. Linking multiple HPE Synergy Frames efficiently scales the infrastructure with a dedicated single view of the entire management network.
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+allows creating multiple composable domains in the infrastructure can efficiently deliver available resources to the business. HPE Synergy Frames reduce complexity by using intelligent auto-discovery to find all available resources to accelerate workload deployments. This drives IT efficiency as the business grows and delivers balanced performance across resources to increase solution effectiveness.
+</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>
+HPE Synergy Composer
+</term>
+<listitem>
+<itemizedlist>
+<listitem>
+<simpara>
+provides the enterprise-level management to compose and deploy system resources to your application needs. This management appliance uses software-defined intelligence with embedded HPE OneView to aggregate compute, storage, and fabric resources in a manner that scales to your application needs, instead of being restricted to the fixed ratios of traditional resource offerings. HPE Synergy template-based provisioning enables fast time to service with a single point for defining compute module state, pooled storage, network connectivity, and boot image.
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+is a comprehensive unifying management interface designed for converged infrastructure management. A unifying platform increases the productivity of every member of the internal IT team across servers, storage, and networking. By streamlining processes, incorporating best practices, and creating a new holistic way to work, HPE OneView provides organizations with a more efficient way to work. It is designed for open integration with existing tools and processes to extend these efficiencies.
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+is instrumental for the deployment and management of HPE servers and enclosure networking. It collapses infrastructure management tools into a single resource-oriented architecture that provides direct access to all logical and physical resources of the solution. Logical resources include server profiles and server profile templates, enclosures and enclosure groups, and logical interconnects and logical interconnect groups. Physical resources include server hardware blades and rack servers, networking interconnects, and computing resources.
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+offers a uniform console for administrators to interact with resources by providing a RESTful API foundation. The RESTful APIs enable administrators to utilize a growing ecosystem of integrations to further expand the advantages of the integrated resource model that removes the need for the administrator to enter and maintain the same configuration data more than once and keep all versions up to date. It encapsulates and abstracts many underlying tools behind the integrated resource model, so the administrator can operate with new levels of simplicity, speed, and agility to provision, monitor, and maintain the solution.
+</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>
+HPE Synergy ImageStreamer
+</term>
+<listitem>
+<itemizedlist>
+<listitem>
+<simpara>
+can quickly provision an operating environment across a large number infrastructure blocks or nodes. It can deploy and update many systems quickly, possibly as fast of you can reboot servers, to quickly expand or change environments. This management capability is implemented using redundant physical appliances for production environments to maintain high availability in operations. These management appliances are automatically set up with active-active storage to control and protect your image repository. Your image content might contain an OS or even a complete application stack. Your images can be quickly applied to multiple compute nodes to optimize your IT service deliveries.
+</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+</varlistentry>
+</variablelist>
+<note><simpara>At this point, HPE Synergy ImageStreamer does not yet support Btrfs-based operating system node deployments, which is the basis for SUSE CaaS Platform. So this technology is not utilized or detailed in this solution document.</simpara></note>
+<variablelist>
+<varlistentry>
+<term>
+HPE Synergy 480 Gen10 Compute Module
+</term>
+<listitem>
+<itemizedlist>
+<listitem>
+<simpara>
+delivers an efficient and flexibile two-socket workhorse to support most demanding workloads. Powered by Intel® Xeon® Scalable Family of processors, up to 3TB DDR4, more storage capacity and controllers and a variety of GPU options within a composable architecture. HPE Synergy 480 Gen10 Compute Module is the ideal platform for general-purpose enterprise workload performance now and in the future.
+</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+</varlistentry>
+</variablelist>
+<simpara>For this the implementation, HPE Synergy 480 Gen10 servers were utilized for all node roles. Example configurations are included in the Appendices.</simpara>
+<note><simpara>Any <ulink url="https://www.suse.com/yessearch/">SUSE YES</ulink> certified HPE platform, like the HPE Synergy 480 Gen10, can be used for the physical nodes of this deployment, as long as the certification refers to the major version of the underlying SUSE operating system required by the SUSE CaaS Platform release.</simpara></note>
+</section>
+<section id="_storage">
+<title>Storage</title>
+<simpara>Each of the resource nodes is also expected to have some local, direct-attach storage, which is predominantly used for the node&#8217;s operating system. For this deployment, a pair of disk drives, configured as a RAID1 volume, via the HPE Synergy Composer templates for the operating system helps provide fewer points of failure.</simpara>
+<simpara>This storage attribute is also used for the ephemeral container images running on any given node. For more stateful microservice deployments, additional storage technologies can be integrated to house persistent volumes. Such integrations are detailed in other documents.</simpara>
+</section>
+<section id="_software">
+<title>Software</title>
+<simpara>SUSE CaaS Platform is an enterprise class container management solution that enables IT and DevOps professionals to more easily deploy, manage, and scale container-based applications and services. It includes Kubernetes to automate lifecycle management of modern applications, and surrounding technologies that enrich Kubernetes and make the platform itself easy to operate. As a result, enterprises that use SUSE CaaS Platform can reduce application delivery cycle times and improve business agility.</simpara>
+<simpara>SUSE is focused on delivering an exceptional operator experience with SUSE CaaS Platform. With deep competencies in infrastructure, systems, process integration, platform security, lifecycle management and enterprise-grade support, SUSE aims to ensure IT operations teams can deliver the power of Kubernetes to their users quickly, securely and efficiently. With SUSE CaaS Platformyou can:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+Achieve faster time to value with an enterprise-ready container management platform, built from industry leading technologies, and delivered as a complete package, with everything you need to quickly offer container services.
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+Simplify management and control of your container platform with efficient installation, easy scaling, and update automation.
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+Maximize return on your investment, with a flexible container services solution for today and tomorrow.
+</simpara>
+</listitem>
+</itemizedlist>
+<figure id="img-CaaSPOrbit"><title>SUSE CaaS Platform Features</title>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="CaaSPOrbit.png"/>
+  </imageobject>
+  <textobject><phrase>SUSE CaaS Platform Orbits</phrase></textobject>
+</mediaobject>
+</figure>
+<variablelist>
+<varlistentry>
+<term>
+Host Operating System
+</term>
+<listitem>
+<simpara>
+Typically a small footprint operating system installation, having just enough functionality to support the container runtime engine, leaving as many CPU, memory and I/O resources available for the containerized workloads.
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+SUSE currently delivers this as MicroOS, a read-mostly, minimal operating system based upon SUSE Linux Enterprise Server.  This is complemented by a distributed key-value store provided by etcd to retain persistent configuration data. In addition, MicroOS provides a snapshot-driven, transactional-update methodology to perform atomic upgrades.
+</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>
+Container Runtime Engine(s)
+</term>
+<listitem>
+<simpara>
+Comprised of both a format for and service to run containerized applications on top of the host operating system.
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+SUSE provides support for Docker&#174; Community Edition Engine, the current, defacto standard open source format for application containers.
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+SUSE also offers a technical preview of CRI-O, an implementation of Container Runtime Interface (CRI), designed specifically for Kubernetes as a lightweight alternative, using Open Container Initiative (OCI) images.
+</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>
+Container Networking
+</term>
+<listitem>
+<simpara>
+An intra-cluster service and overlay network used for container and orchestration communication.
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+SUSE currently utilizes the Container Network Interface (CNI) with the Flannel plugin and a configuration management web-interface to setup and deploy these networks.
+</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>
+Container Orchestration
+</term>
+<listitem>
+<simpara>
+A service to manage deployments of containerized workload, known as Kubernetes, sometimes designated in shortform abbreviation as K8s, which is the current, defacto standard open source implementation for large scale container orchestration.
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+SUSE currently delivers and supports a Cloud-Native Computing Foundation (CNCF) certified Kubernetes distribution. Included with this is a role-based access control technology to, as desired, limit access to resources, functions and services.
+</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+</varlistentry>
+</variablelist>
+<simpara>In addition to these high-level architectural components, SUSE CaaS Platform provides and relies upon the following types of nodes / roles:</simpara>
+<note><simpara>Refer to the "Architectural Overview" section of <ulink url="https://www.suse.com/documentation/suse-caasp-3/">SUSE CaaS Platform Deployment Guide</ulink> for more details.</simpara></note>
+<variablelist>
+<varlistentry>
+<term>
+Admininstration Node
+</term>
+<listitem>
+<simpara>
+Provides a cluster infrastructure management system, with each service run as containers on this host and providing configuration management plus a web-based dashboard to manage other node types within the cluster
+</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>
+Master Node(s)
+</term>
+<listitem>
+<simpara>
+Oversees Kubernetes container workload orchestration services across the cluster, and manages the Kubernetes Worker Nodes
+</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>
+Worker Node(s)
+</term>
+<listitem>
+<simpara>
+Where the user-defined containerized workloads and services run in Kubernetes pods
+</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>
+Client System
+</term>
+<listitem>
+<simpara>
+One or more existing system, with your choice of operating system, used to access the cluster and various services provided from a command line, via <literal>kubectl</literal> and <literal>helm</literal>, and/or a web browser.
+</simpara>
+</listitem>
+</varlistentry>
+</variablelist>
+<simpara>The following networking requirements must be in place for a successful deployment:</simpara>
+<note><simpara>Refer to the "Networking Requirements" section of <ulink url="https://www.suse.com/documentation/suse-caasp-3/">SUSE CaaS Platform Deployment Guide</ulink> for more details and port specifics.</simpara></note>
+<variablelist>
+<varlistentry>
+<term>
+Cluster network
+</term>
+<listitem>
+<itemizedlist>
+<listitem>
+<simpara>
+Choose a subnet range that will span the total number of cluster nodes. This range can also be segmented or secured for access to specific node roles as desired.
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+All of the cluster node types must be able to communicate on the same network , with this primary network interface card. A client system with similar network access is also required for command-line and web browser interaction with the cluster, especially during setup.
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+Higher speed network interface cards (minimum of 10GigE and above) and switching are preferred, since the number of containerized workloads can be high and they share this infrastructure capacity, both from an external and intra-cluster perspective.
+</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>
+Internal networks
+</term>
+<listitem>
+<itemizedlist>
+<listitem>
+<simpara>
+Known as the Overlay and Service networks, these are used by Kubernetes and the underlying Flannel network plug-in to manage the internal cluster and container connections. These are implemented with bridges to the main cluster network.
+</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+</varlistentry>
+</variablelist>
+<important><simpara>These internal network ranges should be planned prior to deployment, are usually non-routable network ranges and cannot be changed without redploying the entire cluster.</simpara></important>
+<variablelist>
+<varlistentry>
+<term>
+Core Network Infrastructure Components / Services
+</term>
+<listitem>
+<itemizedlist>
+<listitem>
+<simpara>
+Domain Name Service (DNS) - an external network-accessible service to map IP Addresses to hostnames
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+Network Time Protocol (NTP) - an external network-accessible service to obtain and synchronize system times to aid in timestamp consistency
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+Software Update Service - access to a network-based repository for software u pdate packages. This can be accessed directly from each node via registration to the <ulink url="http://scc.suse.com">SUSE Customer Center</ulink> or from local servers running a SUSE <ulink url="https://www.suse.com/documentation/sles-12/singlehtml/book_smt/book_smt.htm">Subscription Management Tool</ulink> (SMT) instance. As each node is deployed, it can be pointed to the respective update service and update notification and applicate will be managed by the configuration management web interface.
+</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+</varlistentry>
+</variablelist>
+</section>
+</chapter>
+<chapter id="_solution_details">
+<title>Solution Details</title>
+<simpara>This document focuses on a new SUSE CaaS Platform deployment which could be scaled over time. A starting point could be a single hypervisor host with virtual machines setup for each of the needed roles to create a basic, minimal cluster to simple evaluate functionality. Over time more physical nodes could be added to augment the cluster or to replace some of the initial, virtual-machine based roles. To provide a production-ready cluster and to take advantage of the HPE Synergy platform and it&#8217;s composable features, the following figure shows the target logical cluster deployment:</simpara>
+<figure id="img-DeployLV"><title>Deployment Logical View</title>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="Deployment-Logical-View.png"/>
+  </imageobject>
+  <textobject><phrase>Deployment-Logical-View</phrase></textobject>
+</mediaobject>
+</figure>
+<section id="_deployment_flow">
+<title>Deployment Flow</title>
+<simpara>The remainder of this section is meant as a companion guide to the official network, system and software product deployment documentation, citing specific settings as needed for this reference implementation. Default settings are assumed to be in use unless otherwise cited to accomplish the respective best practices and design decisions herein.</simpara>
+<simpara>Given the very detailed information contained in the <ulink url="https://www.suse.com/documentation/suse-caasp-3/">SUSE CaaS Platform Deployment Guide</ulink> Guide, only the following additional, incremental configurations and modifications are described below:</simpara>
+<variablelist>
+<varlistentry>
+<term>
+Pre-Installation Checklist
+</term>
+<listitem>
+<itemizedlist>
+<listitem>
+<simpara>
+As preparation, obtain the following software media and documentation artifacts:
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+from the <ulink url="https://download.suse.com/Download?buildid=z7ezhywXXRc~">SUSE CaaS Platform</ulink> site download the CaaS Platform x86_64 install media (DVD1)
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+utilize either trial or purchased subscriptions for the all the resource nodes to ensure access to support and software updates. The bill of materials section in the appendices outlines the type and quantity of subscriptions needed.
+</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara>
+in addition, obtain and preview the <ulink url="https://www.suse.com/documentation/suse-caasp-3/index.html">SUSE CaaS Platform</ulink> documentation, focusing on the:
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+Installation Quick Start
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+Deployment Guide
+</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara>
+Create an HPE Synergy Composer template to address:
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+minimum CPU/Memory/Disk/Networking requirements of SUSE CaaS Platform, as noted in <ulink url="https://www.suse.com/documentation/suse-caasp-3/">SUSE CaaS Platform Deployment Guide</ulink> to be applied to any available HPE Synergy resource nodes
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+consistent and up-to-date versions for BIOS/uEFI/device firmware to reduce potential troubleshooting issues later
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+the BIOS/uEFI settings are reset to defaults for a known baseline, consistent state or with desired values
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+use of either local or shared direct-attach storage elements, in a RAID1 configuration, to be used as the operating system installation target
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+network interfaces, including HPE iLO configured as desired to match the target network topology and connectivity
+</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara>
+Verify the following considerations for various network service configurations are ready to access:
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+ensure that you have access to a valid, reliable external NTP service, as this is a critical requirement for all nodes.
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+setup external DNS A records for all nodes. Decide on subnet ranges and configure the switch ports accordingly to match those nodes in use.
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+ensure access to software security updates and fixes by registering nodes to the <ulink url="http://scc.suse.com">SUSE Customer Center</ulink>, or by creating a local <ulink url="https://www.suse.com/documentation/sles-12/singlehtml/book_smt/book_smt.html">Subscription Management Tool</ulink> service.
+</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+</itemizedlist>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>
+Administration Node Installation
+</term>
+<listitem>
+<simpara>
+Install the SUSE CaaS Platform Platform Administration Node either as a virtual machine or as the first physical resource node
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+Apply the HPE Synergy Composer template to the target resource node in the HPE Synergy frame
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+If a physical node, configure the following HPE iLO virtual media image for use
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+SUSE CaaS Platform ISO image (bootable)
+</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+</itemizedlist>
+</listitem>
+</varlistentry>
+</variablelist>
+<note><simpara>The installation process used, across all nodes, whether virtual or physical, was done from ISO images just for consistency in this document. Other options are available as noted in the <ulink url="https://www.suse.com/documentation/suse-caasp-3/">SUSE CaaS Platform Deployment Guide</ulink>.</simpara></note>
+<itemizedlist>
+<listitem>
+<simpara>
+Follow the "Installing the Administration Node" process steps described in the <ulink url="https://www.suse.com/documentation/suse-caasp-3/">SUSE CaaS Platform Deployment Guide</ulink>
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+When the installation is complete and the system reboots, use a client system to access the Velum Dashboard web-interface at the Fully-Qualified Doman Name (FQDN) of the Administration Node. Continue the setup described in the "Configuring the Administration Node" section of the <ulink url="https://www.suse.com/documentation/suse-caasp-3/">SUSE CaaS Platform Deployment Guide</ulink>. Ensure the following items are addressed:
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+on the home page, "Create Admin" account with a valid email address and password, then log in
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+check the "Install Tiler (Helm&#8217;s server component)" box in "Cluster Services" as this will be used extensively later.
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+ensure the Overlay and Service network settings match the desired values, if the default values are not satisfactory.
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+select the desire container runtime. For this deployment, the Docker open source engine was used.
+</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara>
+on the "Bootstrap your CaaS Platform" page:
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+refer to the location of the <emphasis>AutoYast</emphasis> file, in case you&#8217;d like to help automate other resource node installations.
+</simpara>
+<variablelist>
+<varlistentry>
+<term>
+Master and Worker Nodes Installation
+</term>
+<listitem>
+<simpara>
+Begin installation of the remaining resource nodes. At least three are required for a minimal cluster.
+</simpara>
+</listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+</itemizedlist>
+</listitem>
+</itemizedlist>
+</listitem>
+</itemizedlist>
+<tip><simpara>To provide more resiliency and failover capabilities, it is recommended to install three Master Nodes plus two Worker Nodes. Additional nodes, for master or worker roles, can be added to the cluster or swapped into the cluster at any point in time.</simpara></tip>
+<itemizedlist>
+<listitem>
+<simpara>
+As with the install of the Administration Node, apply the respective HPE Synergy Composer template and use the HPE iLO virtual media
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+Complete the installation steps as described in the "Installing Master and Worker Nodes" section of the <ulink url="https://www.suse.com/documentation/suse-caasp-3/">SUSE CaaS Platform Deployment Guide</ulink>
+</simpara>
+<variablelist>
+<varlistentry>
+<term>
+HAProxy Setup
+</term>
+<listitem>
+<simpara>
+Either a load-balancer or and HAProxy is a suggested approach to make the cluster, and more specifically some of the core Kubernetes Master Node API functions, accessible to client systems. It does this via a virtual IP address which then sends the call to any active masters. While not required for a single master cluster, setting this up in advance allows later expansion and substitutions to happen.
+</simpara>
+</listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+<listitem>
+<simpara>
+For HAProxy, this process can be run on any host or virtual machine with access to the cluster network. The steps to deploy this service are described in <ulink url="https://www.suse.com/documentation/sle-ha-12/singlehtml/book_sleha/book_sleha.html#sec.ha.lb.haproxy">Configuring Load Balancing with HAProxy</ulink>.
+</simpara>
+</listitem>
+</itemizedlist>
+<note><simpara>As noted in the <ulink url="https://www.suse.com/documentation/suse-caasp-3/">SUSE CaaS Platform Deployment Guide</ulink>, HAProxy should be configured to provide load balancing for both Kubernetes API server (port 6443) and for DEX (OIDC Connect, port 32000). Also ensure that the "stats" configuration stanza does not conflict with any other services (default of port 80) on the target node.</simpara></note>
+<variablelist>
+<varlistentry>
+<term>
+Bootstrap the Cluster
+</term>
+<listitem>
+<simpara>
+When all the cluster nodes are installed and rebooted
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+Use the client system again to login and access the Velum Dashboard web-interface at the FQDN of the Administration Node to continue the cluster formation.
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+There should be a corresponding list of nodes in the "Pending Nodes" section, so "Accept All Nodes"
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+Designate the "Master" and "Worker" to the respective nodes, then "Next"
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+Enter the Kubernetes Master LB/HAProxy virtual IP FQDN setting for the "External Kubernetes API FQDN"
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+Enter the FQDN of the Administration Node in "External Dashboard FQDN", then "Bootstrap Cluster"
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+Once this process completes, you should have a fully functional SUSE CaaS Platform cluster to use. You can validate this:
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+by logging into the Administration Node and running:
+</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+</itemizedlist>
+</listitem>
+</varlistentry>
+</variablelist>
+<screen>root@caasp-admin# kubectl cluster-info
+root@caasp-admin# kubectl get nodes
+root@caasp-admin# kubectl get pods -n kube-system</screen>
+<itemizedlist>
+<listitem>
+<simpara>
+and also by logging into a client system:
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+using a web browser, login to the Velum Dashboard web-interface with the admin credentials at the FQDN of the Administration Node
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+download the <emphasis>kubeconfig</emphasis> file, and put a copy in the default location of <emphasis>\~/.kube/config</emphasis>
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+ensure the client system has <literal>kubectl</literal> installed, then run the same set of <literal>kubectl</literal> commands from the previous section
+</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+</itemizedlist>
+<note><simpara>If using a SUSE Linux Enterprise 12 or newer release host as the client, both the <literal>kubectl</literal> and <literal>helm</literal> commands can be found in <ulink url="https://packagehub.suse.com/">SUSE Package Hub</ulink></simpara></note>
+<itemizedlist>
+<listitem>
+<simpara>
+To further validate the functionality of the cluster, a representative set of the upstream Kubernetes conformance test suite can be seen at <ulink url="https://github.com/heptio/sonobuoy">Heptio / Sonobuoy</ulink>. This can be easily run via a browser on the client system that has access to the admin <emphasis>kubeconfig</emphasis> file as noted in the "Getting Started" section of this site.
+</simpara>
+</listitem>
+</itemizedlist>
+</section>
+<section id="_additional_considerations">
+<title>Additional Considerations</title>
+<simpara>Review the following information to understand the administration aspects of the cluster by reviewing <ulink url="https://www.suse.com/documentation/suse-caasp-3/">SUSE CaaS Platform Administration Guide</ulink>, including:
+* Changing or scaling  the cluster node count by adding and removing resource nodes,
+* Updating the cluster node&#8217;s operating system and core packages,
+* Setting up resource metrics gathering and visualization,
+* Addressing security, by creating users and managing fine-grained, role-based access controls,
+* Creating and utilizing a local container image registry, and
+* Accessing log locations and creating collection options</simpara>
+</section>
+</chapter>
+<chapter id="_conclusion">
+<title>Conclusion</title>
+<simpara>After understanding and working through the steps described in this document, you should have a working container-as-a-service platform that is scalable through the addition of even more resource nodes, as needed. SUSE CaaS Platform provides a complete suite of the necessary software and processes which leverages the composability aspect of HPE Synergy to create a production-worthy and agile platform for deployment of containerized microservice workloads.</simpara>
+</chapter>
+<chapter id="_resources_and_additional_links">
+<title>Resources and additional links</title>
+<variablelist>
+<varlistentry>
+<term>
+HPE Synergy
+</term>
+<listitem>
+<itemizedlist>
+<listitem>
+<simpara>
+HPE Synergy 480 Gen10 System - <ulink url="https://www.hpe.com/us/en/product-catalog/synergy/synergy-compute/pip.hpe-synergy-480-gen10-compute-module.1010025863.html">https://www.hpe.com/us/en/product-catalog/synergy/synergy-compute/pip.hpe-synergy-480-gen10-compute-module.1010025863.html</ulink>
+</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+</varlistentry>
+</variablelist>
+<table
+frame="all"
+rowsep="1" colsep="1"
+>
+<title>Bill of Materials - HPE Synergy</title>
+<tgroup cols="5">
+<colspec colname="col_1" colwidth="20*"/>
+<colspec colname="col_2" colwidth="20*"/>
+<colspec colname="col_3" colwidth="20*"/>
+<colspec colname="col_4" colwidth="20*"/>
+<colspec colname="col_5" colwidth="20*"/>
+<thead>
+<row>
+<entry align="left" valign="top"><emphasis role="strong"><emphasis>Role</emphasis></emphasis></entry>
+<entry align="left" valign="top"><emphasis role="strong"><emphasis>Quantity</emphasis></emphasis></entry>
+<entry align="left" valign="top"><emphasis role="strong"><emphasis>Product Number</emphasis></emphasis></entry>
+<entry align="left" valign="top"><emphasis role="strong"><emphasis>Product_Description</emphasis></emphasis></entry>
+<entry align="left" valign="top"><emphasis role="strong"><emphasis>Notes</emphasis></emphasis></entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara>Frame</simpara></entry>
+<entry align="left" valign="top"><simpara>1</simpara></entry>
+<entry align="left" valign="top"><simpara>797740-B22</simpara></entry>
+<entry align="left" valign="top"><simpara>HPE Synergy 12000 Frame Configure-to-order Frame with 2x FLM 6x Power Supplies 10x Fans</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>1</simpara></entry>
+<entry align="left" valign="top"><simpara>804353-B22</simpara></entry>
+<entry align="left" valign="top"><simpara>HPE Synergy Composer</simpara></entry>
+<entry align="left" valign="top"><simpara>add second module for HA configuration</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Administration Node</simpara></entry>
+<entry align="left" valign="top"><simpara>1</simpara></entry>
+<entry align="left" valign="top"><simpara>871946-B21</simpara></entry>
+<entry align="left" valign="top"><simpara>HPE Synergy 480 Gen10 3104 1P 16GB-R S100i SATA Entry Compute Module</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Master Node</simpara></entry>
+<entry align="left" valign="top"><simpara>1</simpara></entry>
+<entry align="left" valign="top"><simpara>871946-B21</simpara></entry>
+<entry align="left" valign="top"><simpara>HPE Synergy 480 Gen10 3104 1P 16GB-R S100i SATA Entry Compute Module</simpara></entry>
+<entry align="left" valign="top"><simpara>recommend 3 for HA configuration</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Worker Node</simpara></entry>
+<entry align="left" valign="top"><simpara>1</simpara></entry>
+<entry align="left" valign="top"><simpara>871946-B21</simpara></entry>
+<entry align="left" valign="top"><simpara>HPE Synergy 480 Gen10 3104 1P 16GB-R S100i SATA Entry Compute Module</simpara></entry>
+<entry align="left" valign="top"><simpara>minimum of 2, but can scale to &lt;100</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+<variablelist>
+<varlistentry>
+<term>
+CaaS Platform
+</term>
+<listitem>
+<itemizedlist>
+<listitem>
+<simpara>
+Product Documentation - <ulink url="https://www.suse.com/documentation/suse-caasp-3/">https://www.suse.com/documentation/suse-caasp-3/</ulink>
+</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+</varlistentry>
+</variablelist>
+<table
+frame="all"
+rowsep="1" colsep="1"
+>
+<title>Bill of Materials - Software</title>
+<tgroup cols="5">
+<colspec colname="col_1" colwidth="20*"/>
+<colspec colname="col_2" colwidth="20*"/>
+<colspec colname="col_3" colwidth="20*"/>
+<colspec colname="col_4" colwidth="20*"/>
+<colspec colname="col_5" colwidth="20*"/>
+<thead>
+<row>
+<entry align="left" valign="top"><emphasis role="strong"><emphasis>Role</emphasis></emphasis></entry>
+<entry align="left" valign="top"><emphasis role="strong"><emphasis>Quantity</emphasis></emphasis></entry>
+<entry align="left" valign="top"><emphasis role="strong"><emphasis>Product Number</emphasis></emphasis></entry>
+<entry align="left" valign="top"><emphasis role="strong"><emphasis>Description</emphasis></emphasis></entry>
+<entry align="left" valign="top"><emphasis role="strong"><emphasis>Notes</emphasis></emphasis></entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara>Software</simpara></entry>
+<entry align="left" valign="top"><simpara>1</simpara></entry>
+<entry align="left" valign="top"><simpara>Q9K53AAE</simpara></entry>
+<entry align="left" valign="top"><simpara>SUSE CaaS Platform, 1-2 Sockets 3yr 24x7</simpara></entry>
+<entry align="left" valign="top"><simpara>for each node of the deployment</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+</chapter>
+</book>

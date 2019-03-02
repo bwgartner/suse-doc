@@ -5,7 +5,7 @@
 
 <book lang="en">
 <bookinfo>
-    <title>Reference Configuration : SUSE CaaS Platform 3 with HPE Synergy</title>
+    <title>Reference Configuration: SUSE CaaS Platform 3 with HPE Synergy</title>
     <author>
         <firstname>Bryan Gartner, SUSE &lt; Bryan.Gartner@SUSE.com &gt;</firstname>
     </author>
@@ -14,8 +14,8 @@
 </bookinfo>
 <chapter id="_executive_summary">
 <title>Executive Summary</title>
-<simpara>This reference configuration is intended to help an organization create and deploy an on-premise container-as-a-service platform infrastructure to deploy, orchestrate and manage containerized workloads.</simpara>
-<simpara>For most enterprise-level businesses, the demand for an on-premise, infrastructure to deploy and orchestrate containers is increasing rapidly, allowing the hosting of both production and other phases of workloads development. As with any software-defined infrastructure, all the classic IT disciplines around networking, computing and storage are involved and need to be effectively planned and integrated. This document provides an implementation overview for a production ready deployment with design considerations, implementation suggestions, and best practices. An intelligent, software-defined infrastructure consisting of SUSE&#174; CaaS Platform technology and HPE&#174; Synergy system hardware enables you to transform your enterprise. With the inherent composability of the combination, delivering container-as-a-service can help reduce costs while still providing flexibility to keep up with your future demands. Leveraging this tested approach, you will have the confidence to deploy a working solution in an agile manner, and be able to maintain and scale it as needed over time.</simpara>
+<simpara>This reference configuration is intended to help an organization plan and install an on-premise container-as-a-service platform infrastructure to deploy, orchestrate and manage containerized workloads.</simpara>
+<simpara>For most enterprise-level businesses, the demand for an on-premise, infrastructure to deploy and orchestrate containers is increasing rapidly, allowing the hosting of both production and other phases of workloads development. As with any software-defined infrastructure, all the classic IT disciplines around networking, computing and storage are involved and need to be effectively planned and integrated. This document provides an implementation overview for a production-ready deployment with design considerations, implementation suggestions, and best practices. An intelligent, software-defined infrastructure consisting of SUSE&#174; CaaS Platform technology and HPE&#174; Synergy system hardware enables you to transform your enterprise. With the inherent composability of the combination, delivering container-as-a-service can help reduce costs while still providing flexibility to keep up with your future demands. Leveraging this tested approach, you will have the confidence to deploy a working solution in an agile manner, and be able to maintain and scale it as needed over time.</simpara>
 </chapter>
 <chapter id="_target_audience">
 <title>Target Audience</title>
@@ -23,19 +23,19 @@
 </chapter>
 <chapter id="_solution_overview">
 <title>Solution Overview</title>
-<simpara>Even on the journey to a full <ulink url="https://landscape.cncf.io/">Cloud Native Landscape</ulink>, the classic IT pillars are still very much in play. General requirements include the need for a small, purpose-built operating system with a container runtime engine and a container orchestration platform to distribute workloads across a target, clustered instance. With all of these attributes in place, both developer and operation teams can effectively deploy, manage and deliver functionality to their end users in a resilient and agile manner.</simpara>
+<simpara>Even on the journey to a full <ulink url="https://landscape.cncf.io/">Cloud Native Landscape</ulink>, the classic IT pillars are still very much in play. General requirements include the need for a small, purpose-built operating system with a container runtime engine and a container orchestration platform to distribute workloads across a target, clustered instance. The dominant technology for container orchestration is Kubernetes. Having a large community of developers and a plethora of features and capabilities, Kubernetes has become the defacto standard, included across amost container-as-a-service platforms. With all of these attributes in place, both developer and operation teams can effectively deploy, manage and deliver functionality to their end users in a resilient and agile manner.</simpara>
 <note><simpara>As a further reference, the National Institute of Standards and Technology&#8217;s (NIST) <ulink url="https://csrc.nist.gov/publications/detail/sp/800-180/draft">Definition of Microservices, Application Containers and System Virtual Machines</ulink> describes the important characteristics of application containers.</simpara></note>
-<simpara>While the footprint of each of the containerized microservices is usually much smaller than similar bare-metal or virtual machine workload deployments, the IT pillars must still be designed to readily be composed and accommodate the sheer scale of such high counts of workloads. Core networking technologies, like high-speed, scalable network switches and connectivity can provide the foundational interconnection among computing and workload resources. Physical resource nodes or even virtual machines running atop a hypervisor can deliver the container-as-a-service functionality. A composable infrastructure, like HPE Synergy provides an ideal target platform, letting users start small and scale-out over time with inherent consistency.  This platform addresses both network and storage resources with industry-leading x86-based servers provided by the HPE Synergy servers, offering balanced performance and efficiency. Finally, it is the container-as-a service software, SUSE CaaS Platform, that provides the user interface for setup, configuration, maintenance, and long term operation of the core software-defined infrastructure requirements bonding them into a cohesive service offering. Each of these components is detailed in the following sections.</simpara>
+<simpara>While the footprint of each of the containerized microservices is usually much smaller than similar bare-metal or virtual machine workload, all of the IT pillars&#8201;&#8212;&#8201;networking, computing, and storage, must still accommodate the sheer scale of such high counts of workloads. Core networking technologies, including high-speed, scalable network switches and network interfaces must provide the foundational bandwidth for compute resource nodes, the workload and for non-direct attached storage resources. Physical resource nodes or even virtual machines running atop a hypervisor can deliver the container-as-a-service functionality. A composable infrastructure, like HPE Synergy provides an ideal target platform, letting users start small and scale-out over time with inherent consistency.  This platform addresses both network and storage resources with industry-leading x86-based servers provided by the HPE Synergy servers, offering balanced performance and efficiency. Finally, it is the container-as-a service software, SUSE CaaS Platform, that provides the user interface for setup, configuration, maintenance, and long term operation of the core software-defined infrastructure requirements bonding them into a cohesive service offering. Each of these components is detailed in the following sections.</simpara>
 </chapter>
 <chapter id="_solution_components">
 <title>Solution Components</title>
 <section id="_facility">
 <title>Facility</title>
-<simpara>While beyond the scope of this document, the heating, ventilation, air conditioning (HVAC) requirements of hosting such a infrastructure solution should be carefully considered and planned. To aid in determining the power requirements for system deployment, use the <ulink url="https://h20195.www2.hpe.com/v2/GetPDF.aspx/4AA6-2925ENW.pdf">HPE Power Advisor</ulink> as either an on-line version or a downloadable application. Using this tool, you can plan the needs for your solution and order the correct Power Distribution Unit (PDU) to account for the local power conditions and connections in the final installation location.</simpara>
+<simpara>While beyond the scope of this document, the heating, ventilation, air conditioning (HVAC) requirements of hosting such an infrastructure solution should be carefully considered and planned. To aid in determining the power requirements for system deployment, use the <ulink url="https://h20195.www2.hpe.com/v2/GetPDF.aspx/4AA6-2925ENW.pdf">HPE Power Advisor</ulink> as either an online version or a downloadable application. Using this tool, you can plan the needs for your solution and order the correct Power Distribution Unit (PDU) to account for the local power conditions and connections in the final installation location.</simpara>
 </section>
 <section id="_network">
 <title>Network</title>
-<simpara>Networking and the associated services are the technology components which typically requires the most advance planning. Connectivity, capacity and bandwidth requirements for a container-as-a-service infrastructure have a fair amount of complexity, especially when integrated with an existing IT infrastructure and accounting for the magnitude of microservices being deployed.</simpara>
+<simpara>Networking and the associated services are the technology components which typically requires the most advanced planning. Connectivity, capacity and bandwidth requirements for a container-as-a-service infrastructure have a fair amount of complexity, especially when integrated with an existing IT infrastructure and accounting for the magnitude of microservices being deployed.</simpara>
 <simpara>With the inherent features and composability aspect of HPE Synergy much of the configuration complexity for network interconnects can easily be codified into a template for each target resource node. This includes the mapping of which network interfaces to which network fabrics within a collection of managed HPE Synergy frames. The baseline network bandwidth, both for each resource node and collectively within the frame, provided by HPE Synergy is quite sufficient for a container-as-a-service deployment. While beyond the scope of this document, the only remaining consideration is for capacity and bandwidth for the interconnecting Top-of-Rack switches. In addition access to each of the resource node&#8217;s HPE iLO can be effectively coordinated and managed through the user interface of HPE Synergy Composer.</simpara>
 </section>
 <section id="_computing">
@@ -50,7 +50,7 @@ HPE Synergy 12000 Frame
 <itemizedlist>
 <listitem>
 <simpara>
-is uniquely architected as Composable Infrastructure (CI) to match the powerful <emphasis>infrastructure-as-code</emphasis> capabilities of the HPE intelligent software architecture. Flexible access to compute, storage, and fabric resources allows for use and re-purposing. Linking multiple HPE Synergy Frames efficiently scales the infrastructure with a dedicated single view of the entire management network.
+is uniquely architected as Composable Infrastructure (CI) to match the powerful <emphasis>infrastructure-as-code</emphasis> capabilities of the HPE intelligent software architecture. Flexible access to compute, storage, and fabric resources enables the customer to maximize their resource usage and ability to repurpose underutilizied resources. Linking multiple HPE Synergy Frames efficiently scales the infrastructure with a dedicated single view of the entire management network.
 </simpara>
 </listitem>
 <listitem>
@@ -115,7 +115,7 @@ HPE Synergy 480 Gen10 Compute Module
 <itemizedlist>
 <listitem>
 <simpara>
-delivers an efficient and flexibile two-socket workhorse to support most demanding workloads. Powered by Intel® Xeon® Scalable Family of processors, up to 3TB DDR4, more storage capacity and controllers and a variety of GPU options within a composable architecture. HPE Synergy 480 Gen10 Compute Module is the ideal platform for general-purpose enterprise workload performance now and in the future.
+delivers an efficient and flexible two-socket workhorse to support most demanding workloads. Powered by Intel® Xeon® Scalable Family of processors, up to 3TB DDR4, more storage capacity and controllers and a variety of GPU options within a composable architecture. HPE Synergy 480 Gen10 Compute Module is the ideal platform for general-purpose enterprise workload performance now and in the future.
 </simpara>
 </listitem>
 </itemizedlist>
@@ -128,16 +128,19 @@ delivers an efficient and flexibile two-socket workhorse to support most demandi
 <section id="_storage">
 <title>Storage</title>
 <simpara>Each of the resource nodes is also expected to have some local, direct-attach storage, which is predominantly used for the node&#8217;s operating system. For this deployment, a pair of disk drives, configured as a RAID1 volume, via the HPE Synergy Composer templates for the operating system helps provide fewer points of failure.</simpara>
-<simpara>This storage attribute is also used for the ephemeral container images running on any given node. For more stateful microservice deployments, additional storage technologies can be integrated to house persistent volumes. Such integrations are detailed in other documents.</simpara>
+<simpara>This storage configuration is also used for the ephemeral container images running on any given node. These are simply copies of the reference container image version, obtained from a centralized location like a registry, which is utilized during the workload&#8217;s runtime. Once the workload is terminated or moved, this disk space is reclaimed and becomes available for subsequent usages.</simpara>
+<tip><simpara>This local storage element can become both a limiter for the number and size of container workloads running on a given node plus can also become a performance limiter. So, having performant local storage devices, like solid-state drives, is encouraged. Monitoring of workloads and scale can also help determine if capacity or performance constraints are becoming an issue.</simpara></tip>
+<simpara>For any stateful microservice deployments, additional storage technologies should be integrated to house persistent volumes. Both static and dynamic volume claims can be utilized via the modular Container-Storage-Interface (CSI) technologies. A commonly utilized approach for these non-cloud-native workloads requiring persistent storage is a Ceph-based, software-defined storage infrastructure.  This solution can provide block and file, or other protocol integration options with a Kubernetes-based container-as-a-service platform.</simpara>
+<note><simpara>Such integrations, with solutions like SUSE Enterprise Storage are detailed in other reference documents.</simpara></note>
 </section>
 <section id="_software">
 <title>Software</title>
-<simpara>SUSE CaaS Platform is an enterprise class container management solution that enables IT and DevOps professionals to more easily deploy, manage, and scale container-based applications and services. It includes Kubernetes to automate lifecycle management of modern applications, and surrounding technologies that enrich Kubernetes and make the platform itself easy to operate. As a result, enterprises that use SUSE CaaS Platform can reduce application delivery cycle times and improve business agility.</simpara>
-<simpara>SUSE is focused on delivering an exceptional operator experience with SUSE CaaS Platform. With deep competencies in infrastructure, systems, process integration, platform security, lifecycle management and enterprise-grade support, SUSE aims to ensure IT operations teams can deliver the power of Kubernetes to their users quickly, securely and efficiently. With SUSE CaaS Platformyou can:</simpara>
+<simpara>SUSE CaaS Platform is an enterprise-class container management solution that enables IT and DevOps professionals to more easily deploy, manage, and scale container-based applications and services. It includes Kubernetes to automate lifecycle management of modern applications, and surrounding technologies that enrich Kubernetes and make the platform itself easy to operate. As a result, enterprises that use SUSE CaaS Platform can reduce application delivery cycle times and improve business agility.</simpara>
+<simpara>SUSE is focused on delivering an exceptional operator experience with SUSE CaaS Platform. With deep competencies in infrastructure, systems, process integration, platform security, lifecycle management and enterprise-grade support, SUSE aims to ensure IT operations teams can deliver the power of Kubernetes to their users quickly, securely and efficiently. With SUSE CaaS Platform you can:</simpara>
 <itemizedlist>
 <listitem>
 <simpara>
-Achieve faster time to value with an enterprise-ready container management platform, built from industry leading technologies, and delivered as a complete package, with everything you need to quickly offer container services.
+Achieve faster time to value with an enterprise-ready container management platform, built from industry-leading technologies, and delivered as a complete package, with everything you need to quickly offer container services.
 </simpara>
 </listitem>
 <listitem>
@@ -171,7 +174,7 @@ Typically a small footprint operating system installation, having just enough fu
 <itemizedlist>
 <listitem>
 <simpara>
-SUSE currently delivers this as MicroOS, a read-mostly, minimal operating system based upon SUSE Linux Enterprise Server.  This is complemented by a distributed key-value store provided by etcd to retain persistent configuration data. In addition, MicroOS provides a snapshot-driven, transactional-update methodology to perform atomic upgrades.
+SUSE currently delivers this as MicroOS, a read-mostly, operating system based upon SUSE Linux Enterprise Server built for microservices.  This is complemented by a distributed key-value store provided by etcd to retain persistent configuration data. In addition, MicroOS provides a snapshot-driven, transactional-update methodology to perform atomic upgrades.
 </simpara>
 </listitem>
 </itemizedlist>
@@ -188,7 +191,7 @@ Comprised of both a format for and service to run containerized applications on 
 <itemizedlist>
 <listitem>
 <simpara>
-SUSE provides support for Docker&#174; Community Edition Engine, the current, defacto standard open source format for application containers.
+SUSE provides support for Docker&#174; Community Edition Engine format for application containers.
 </simpara>
 </listitem>
 <listitem>
@@ -210,7 +213,7 @@ An intra-cluster service and overlay network used for container and orchestratio
 <itemizedlist>
 <listitem>
 <simpara>
-SUSE currently utilizes the Container Network Interface (CNI) with the Flannel plugin and a configuration management web-interface to setup and deploy these networks.
+SUSE currently utilizes the Container Network Interface (CNI) with the Flannel plugin and a configuration management web-interface to set up and deploy these networks.
 </simpara>
 </listitem>
 </itemizedlist>
@@ -222,7 +225,7 @@ Container Orchestration
 </term>
 <listitem>
 <simpara>
-A service to manage deployments of containerized workload, known as Kubernetes, sometimes designated in shortform abbreviation as K8s, which is the current, defacto standard open source implementation for large scale container orchestration.
+A service to manage deployments of containerized workload, known as Kubernetes, sometimes designated in short form abbreviation as K8s, which is the current, defacto standard open source implementation for large scale container orchestration.
 </simpara>
 <itemizedlist>
 <listitem>
@@ -234,12 +237,12 @@ SUSE currently delivers and supports a Cloud-Native Computing Foundation (CNCF) 
 </listitem>
 </varlistentry>
 </variablelist>
-<simpara>In addition to these high-level architectural components, SUSE CaaS Platform provides and relies upon the following types of nodes / roles:</simpara>
+<simpara>In addition to these high-level architectural components, SUSE CaaS Platform provides and relies upon the following types of nodes and roles:</simpara>
 <note><simpara>Refer to the "Architectural Overview" section of <ulink url="https://www.suse.com/documentation/suse-caasp-3/">SUSE CaaS Platform Deployment Guide</ulink> for more details.</simpara></note>
 <variablelist>
 <varlistentry>
 <term>
-Admininstration Node
+Administration Node
 </term>
 <listitem>
 <simpara>
@@ -263,7 +266,7 @@ Worker Node(s)
 </term>
 <listitem>
 <simpara>
-Where the user-defined containerized workloads and services run in Kubernetes pods
+Where the user-defined containerized workloads and services run in Kubernetes pods. A pod is the smallest and simplest unit that you create and deploy as a running process for Kubernetes, encapsulating one or more container images and resources.
 </simpara>
 </listitem>
 </varlistentry>
@@ -320,7 +323,7 @@ Known as the Overlay and Service networks, these are used by Kubernetes and the 
 </listitem>
 </varlistentry>
 </variablelist>
-<important><simpara>These internal network ranges should be planned prior to deployment, are usually non-routable network ranges and cannot be changed without redploying the entire cluster.</simpara></important>
+<important><simpara>These internal network ranges should be planned prior to deployment, are usually non-routable network ranges and cannot be changed without redeploying the entire cluster.</simpara></important>
 <variablelist>
 <varlistentry>
 <term>
@@ -340,7 +343,7 @@ Network Time Protocol (NTP) - an external network-accessible service to obtain a
 </listitem>
 <listitem>
 <simpara>
-Software Update Service - access to a network-based repository for software u pdate packages. This can be accessed directly from each node via registration to the <ulink url="http://scc.suse.com">SUSE Customer Center</ulink> or from local servers running a SUSE <ulink url="https://www.suse.com/documentation/sles-12/singlehtml/book_smt/book_smt.htm">Subscription Management Tool</ulink> (SMT) instance. As each node is deployed, it can be pointed to the respective update service and update notification and applicate will be managed by the configuration management web interface.
+Software Update Service - access to a network-based repository for software update packages. This can be accessed directly from each node via registration to the <ulink url="http://scc.suse.com">SUSE Customer Center</ulink> or from local servers running a SUSE <ulink url="https://www.suse.com/documentation/sles-12/singlehtml/book_smt/book_smt.htm">Subscription Management Tool</ulink> (SMT) instance. As each node is deployed, it can be pointed to the respective update service and update notification and applicate will be managed by the configuration management web interface.
 </simpara>
 </listitem>
 </itemizedlist>
@@ -383,7 +386,7 @@ from the <ulink url="https://download.suse.com/Download?buildid=z7ezhywXXRc~">SU
 <itemizedlist>
 <listitem>
 <simpara>
-utilize either trial or purchased subscriptions for the all the resource nodes to ensure access to support and software updates. The bill of materials section in the appendices outlines the type and quantity of subscriptions needed.
+utilize either trial or purchased subscriptions for all the resource nodes to ensure access to support and software updates. The bill of materials section in the appendices outlines the type and quantity of subscriptions needed.
 </simpara>
 </listitem>
 </itemizedlist>
@@ -523,7 +526,7 @@ ensure the Overlay and Service network settings match the desired values, if the
 </listitem>
 <listitem>
 <simpara>
-select the desire container runtime. For this deployment, the Docker open source engine was used.
+select the desired container runtime. For this deployment, the Docker open source engine was used.
 </simpara>
 </listitem>
 </itemizedlist>
@@ -573,7 +576,7 @@ HAProxy Setup
 </term>
 <listitem>
 <simpara>
-Either a load-balancer or and HAProxy is a suggested approach to make the cluster, and more specifically some of the core Kubernetes Master Node API functions, accessible to client systems. It does this via a virtual IP address which then sends the call to any active masters. While not required for a single master cluster, setting this up in advance allows later expansion and substitutions to happen.
+Either a load-balancer or HAProxy is a suggested approach to make the cluster, and more specifically some of the core Kubernetes Master Node API functions, accessible to client systems. It does this via a virtual IP address which then sends the call to any active masters. While not required for a single master cluster, setting this up in advance allows later expansion and substitutions to happen.
 </simpara>
 </listitem>
 </varlistentry>

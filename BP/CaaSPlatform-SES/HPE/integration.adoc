@@ -1,0 +1,200 @@
+:Author: Bryan Gartner
+:AuthorEMail: Bryan.Gartner@SUSE.com
+
+:CompanyName: SUSE
+:ProductName: CaaS Platform
+:ProductName2: Enterprise Storage
+
+:IHVPartner: HPE
+:IHVPartnerBMC: iLO
+
+= {CompanyName}(R) {ProductName} Integration with {CompanyName} {ProductName2} on {IHVPartner}(R) Platforms
+{Author}, {CompanyName} < {AuthorEmail} >
+
+== Use Case Overview
+Quite often, the initial deployments of newly containerized microservices utilies simple, stateless APIs and functions. Yet, over time, as previous monolithic applications are migrated towards containers or as more complex service topologies are created, the need for stateful containers occurs. Due to the inherently resilient nature of container orchestration, having persistent volume stores that can be mounted where ever a container is launched then becomes a requirement. This can come either in the form of dynamically created volumes or for long-term retention persistent volumes. To address this, one of the best integrations between Kubernetes-based container-as-a-service infrastructure, like {CompanyName} {ProductName} is with Ceph-based software-defined storage infrastructure, such as {CompanyName} {ProductName2}.
+
+=== Target Audience
+This document is intended for IT decision makers, architects, system administrators and technicians who are implementing the combination of a flexible, Kubernetes-based, container-as-a-service platform and Ceph-based storage for persistent volumes. The reader should be familiar with all of the traditional pillars of IT infrastructures -- networking, computing and storage -- along with their specific, local use cases for sizing, scaling and limitations within their environments.
+
+== Integration
+As mentioned in the <<_use_case_overview>> section, requiring both dynamic and static volumes is key to running stateful containerized microservices. One agile method to accomplish that is to integrate a Kubernetes-based container-as-a-service solution, like {CompanyName} {ProductName} with a Ceph-based, software-defined storage solution, like {CompanyName} {ProductName2}. Coupling this with the inherent value-add and multiple {IHVPartner} system platform product lines yieldsagile, cost-effective and very performant options. These three solutions have the following key attributes:
+
+Kubernetes-based container-as-a-serivce::
+{CompanyName} {ProductName} is an enterprise class container management solution that enables IT and DevOps professionals to more easily deploy, manage, and scale container-based applications and services. It includes Kubernetes to automate lifecycle management of modern applications, and surrounding technologies that enrich Kubernetes and make the platform itself easy to operate. As a result, enterprises that use {CompanyName} {ProductName} can reduce application delivery cycle times and improve business agility.  {CompanyName} is focused on delivering an exceptional operator experience with {CompanyName} {ProductName}. With deep competencies in infrastructure, systems, process integration, platform security, lifecycle management and enterprise-grade support, {CompanyName} aims to ensure IT operations teams can deliver the power of Kubernetes to their users quickly, securely and efficiently. With {CompanyName} {ProductName} you can:
+
+* Achieve faster time to value with an enterprise-ready container management platform, built from industry leading technologies, and delivered as a complete package, with everything you need to quickly offer container services.
+* Simplify management and control of your container platform with efficient installation, easy scaling, and update automation.
+* Maximize return on your investment, with a flexible container services solution for today and tomorrow.
+
+Ceph-based Persistent Storage::
+{CompanyName} {ProductName2} is an intelligent software-defined storage solution, powered by Ceph technology, which enables you to transform your enterprise storage infrastructure.  Providing IT organizations with a simple to manage, agile infrastructure with increased speed of delivery, durability and reliability. Accelerate innovation, reduce costs and alleviate proprietary hardware lock-in by transforming your enterprise storage infrastructure with a truly open, and unified intelligent software-defined storage solution. Let {CompanyName} and our partners provide you with the most flexible enterprise-grade storage solution providing:
+
+* A single truly unified software-defined storage cluster that provides applications with object, block and file system storage providing ubiquitous and universal access to your legacy and modern applications and automated durability of your data with high availability and disaster recovery options.
+* Unlimited scalability with a distributed storage cluster designed to scale to thousands of nodes and multi-hundred petabyte environments and beyond to meet your growing data requirements.
+* Utilize industry standard off-the-shelf hardware that is at minimum 30 percent less expensive than average capacity optimized solutions to drive significant CAPEX savings
+* Highly redundant storage infrastructure design maximizes application availability with no single points of failure.
+* Self-healing capabilities minimize storage administration involvement and optimize data placement, enabling rapid reconstruction of redundancy, maximizing system resiliency and availability.
+* Automated re-balancing and optimized data placement with an easy to manage intelligent solution that continuously monitors data utilization and infrastructure without any manual intervention and without growing IT staff.
+
+ifeval::["{IHVPartner}" == "HPE"]
+
+include::../../../_includes/IHV/{IHVPartner}-Servers.adoc[]
+
+endif::[]
+
+These software solutions have tested across several {IHVPartner} platforms with reference configurations available, listed on both the https://www.suse.com/partners/alliance/hpe/[{CompanyName}] and https://h22168.www2.hpe.com/us/en/partners/suse/[{IHVPartner}] alliance partner web sites.
+
+NOTE: Any https://www.suse.com/yessearch/[{CompanyName} YES] certified {IHVPartner} platform can be used for the physical nodes of either solution's deployment, as long as the certification refers to the major version of the underlying {CompanyName} operating system required by the solution release.
+
+=== Solution Prerequisites
+Given the use case, the following software-defined solutions are assumed to be in place and running:
+
+* {CompanyName} {ProductName}
+* {CompanyName} {ProductName2}
+
+While it is possible to implement the integration even with the basic, minimal configurations of each solution, the following additional best practices should be observed:
+
+* Network and Network Services
+Routable networks::
+** an intranet or client-access network to access both solutions
+** each solution should have a "public" network, likely routable to the other one and to any client-facing network, yet can be intranet, on-premise only. The integration access happens across this network
+** an internet-facing network, if needed, to access cluster resources from beyond an organization's internal networks
+Potentially non-routed networks::
+** a Baseboard Management Control (BMC) network used to connect and control {IHVPartner} {IHVPartnerBMC} interfaces
+** {CompanyName} {ProductName} has a pair of internal cluster networks, that can be non-routable outside the cluster, but do need to be sized according to the number of workload containers to be deployed
+** {CompanyName} {ProductName2}, likewise also has a private network, which is used for backend data replication and should have capacity planned to address recovery and the number of replicas
+Services::
+As with most software-defined, cluster-based solutions, the following network services should be accessible:
+** one or more valid Network Time Protocol (NTP) services, with all the cluster nodes configured to use this
+** one or more valid Domain Name Service (DNS) services, with all the cluster nodes registered
+** ensure access to software security updates and fixes by registering nodes to the http://scc.suse.com[SUSE Customer Center], or by creating a local https://www.suse.com/documentation/sles-12/singlehtml/book_smt/book_smt.html[Subscription Management Tool] service.
+** a reliable Load Balancer (LB), to provide high-availability access to core Kubernetes Master API functions. This could be implemented with any number of technologies, including simple, HAProxy software configurations.
+
+* System Platform
+For each of the software-defined solutions, ensure that each respective node not only meets the minimum requirements for that role, but also has the resource capacity to accommodate the expected number and type of workloads. These minimum guidelines are detailed in the respective solution deployment guides. For both solutions, performance and log monitoring capabilities can be deployed to help access the utilization metrics over time.
+
+These prerequisites are summarized in the  following logical deployment diagram:
+
+[[img-DeployLV]]
+.Deployment Logical View
+image::CaaSP-SES-Logical-Deploy.png[Deployment-Logical-View, 640, 480]
+
+=== Integration Steps
+The remainder of this document is meant as a companion guide to the official network, system and software product deployment documentation, citing specific settings as needed for this reference implementation. Default settings are assumed to be in use unless otherwise cited to accomplish the respective best practices and design decisions herein.
+
+TIP: The prompt designated in the steps below help illustrate where to run each command and with what user access.
+
+To create the necessary integration from a Kubernetes-based {CompanyName} {ProductName} cluster and a Ceph-based storage cluster like {CompanyName} {ProductName2}, first start on the {CompanyName} {ProductName2}.
+
+* Log in to the respective Admin Node
+
+* Collect the list of Monitor Node IP Addresses from '/etc/ceph/ceph.conf'
+
+* Create and validate a dedicated storage pool (_e.g. "caasp-pool"_) for rbd-based applications using the following commands. Adjust the placement group size (_e.g. "512"_) as desired.
+
+----
+root@ses-admin # ceph osd pool create caasp-pool 512
+root@ses-admin # ceph osd pool ls
+root@ses-admin # ceph osd pool application enable caasp-pool rbd
+root@ses-admin # ceph osd pool application get caasp-pool 
+----
+
+* Capture and encode the admin key, which will be used later
+
+----
+root@ses-admin # ceph auth get-key client.admin | base64
+----
+
+* Create a specific user (_e.g. "caasp"_) with necessary capabilities to utilize the "caasp-pool", then capture and encode user the key, which will be used later
+
+----
+root@ses-admin # ceph auth get-or-create client.caasp mon 'allow r' osd 'allow class-read object_prefix rbd_children, allow rwx pool=caasp-pool' -o ceph.client. caasp.keyring
+root@ses-admin # ceph auth get-key client.caasp | base64
+----
+
+Then from the {CompanyName} {ProductName}, login to the respective Administration Node
+
+* Create the file 'ceph-secret-admin.yaml'
+
+[source, yaml]
+----
+# file - ceph-secret-admin.yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  name: ceph-secret-admin
+  namespace: default
+type: "kubernetes.io/rbd"
+data:
+  key: #insert output string from client.admin encode step
+----
+
+* Apply and validate deployment of the file 'ceph-secret-admin.yaml'
+----
+root@caasp-admin # kubectl apply -f ceph-secret-admin.yaml
+root@caasp-admin # kubectl get secrets
+----
+
+* Create the file 'ceph-secret-caasp.yaml'
+[source, yaml]
+----
+# file - ceph-secret-caasp.yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  name: ceph-secret-caasp
+  namespace: default
+type: "kubernetes.io/rbd"
+data:
+  key: #insert output string from client.caasp encode step
+----
+
+* Apply and validate file 'ceph-secret-caasp.yaml'
+----
+root@caasp-admin # kubectl apply -f ceph-secret-caasp.yaml
+root@caasp-admin # kubectl get secrets
+----
+
+* Create the file 'ses-rbd-storage-class.yaml', using the Monitor Node IP addresses collected earlier
+[source, yaml]
+----
+# file - ses-rbd-storage-class.yaml
+kind: StorageClass
+apiVersion: storage.k8s.io/v1
+metadata:
+  name: ses-rbd-sc
+provisioner: kubernetes.io/rbd
+parameters:
+  monitors: <IPAddressMon1>:6789, <IPAddressMon2>:6789, <IPAddressMon3>:6789
+  adminId: admin
+  adminSecretName: ceph-secret-admin
+  adminSecretNamespace: default
+  pool: caasp-pool
+  userId: caasp
+  userSecretName: ceph-secret-caasp
+----
+
+* Apply and validate persistent volume claim file 'ses-rbd-persistent-volume-claim.yaml'
+----
+root@caasp-admin # kubectl apply -f ses-rbd-persistent-volume-claim.yaml
+root@caasp-admin # kubectl get pvc <-n default>
+----
+
+Then to validate a working integration, create a simple container, like busybox, using the persistent volume claim. Refer to the "Creating Pods with Persistent Volumes" section of the https://www.suse.com/documentation/suse-caasp-3/[SUSE CaaS Platform Administration Guide].
+
+As needed, both {CompanyName} {ProductName} and {CompanyName} {ProductName2} can be scaled with additional resource nodes to provide more capacity, capabilities, and performance. Such operations are described in the respective administration guides.
+
+== Summary
+At this point you should have a working integration between {CompanyName} {ProductName} and {CompanyName} {ProductName2}. Volumes for containerized workloads can now be utilized, as needed and made available to where ever in the Kubernetes cluster that the workload is deployed. Beyond providing the Ceph-based RBD persistent storage for stateful containers, this integration can also be utilized as the backing store for monitoring and performance logs, for tools like Prometheus, plus for the visualization tools, like Grafana, to access as well. 
+
+== Resources
+
+https://www.hpe.com/uk/en/servers.html[{IHVPartner} Platforms]::
+http://h17007.www1.hpe.com/us/en/enterprise/servers/supportmatrix/suse_linux.aspx#.XIBSCKO1uV4[{CompanyName} Linux Enterprise Server Certification and Support], https://www.suse.com/yessearch/SResults.jsp?bulletinNumber=&keywords=&searchSelect=1&productCategory=&companyKey.type=companyName&companyKey.max=25&companyKey.format=Select&companyKey.original=&companyKey=258842&companyKey.index=2&input1=01-01-2001[{CompanyName} YES Certified Bulletin Search]
+
+https://www.suse.com/products/caas-platform/[{CompanyName} {ProductName}]::
+* Product Documentation - https://www.suse.com/documentation/suse-caasp-3/
+
+https://www.suse.com/products/suse-enterprise-storage/[{CompanyName} {ProductName2}]::
+* Product Documentation - https://www.suse.com/documentation/suse-enterprise-storage-5/

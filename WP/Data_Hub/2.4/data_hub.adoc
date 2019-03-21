@@ -10,8 +10,10 @@
 :IHVPartner: n/a
 :IHVPlatform: n/a
 
-= {ISVPartner}^(R)^ {ISVSolution} on {CompanyName}^(R)^ Container as a Service Framework
+= {ISVPartner}^(R)^ {ISVSolution} on {CompanyName}^(R)^ Container as a Service Platform Framework
 {Author}, {CompanyName} < {AuthorEMail} >
+
+= DRAFT COPY - DO NOT PUBLISH
 
 == Overview
 Many companies are challenged with managing and fully utilizing the information stored in data silos (e.g. cloud databases, Hadoop clusters, social media feeds) to build their Big Data pipeline.    These data landscapes can become incredibly complex due to requirements for security, governance, and specialized training.  SAP Data Hub provides a GUI-based business-wide view of a broad array of data systems, databases, and assets to enable your analytics and business intelligence teams to manage your entire data landscape through an intuitive “pane of glass”.    In what is likely to become a trend, SAP mandates that this application is deployed on a Kubernetes compatible container platform.   SUSE Container as a Service Platform enables you to extend your SUSE Enterprise Linux for SAP environment to container-based application delivery.
@@ -23,6 +25,11 @@ This discussion will be of interest to professionals involved in both IT Operati
 Today's business leaders are under increasing pressure to drive their business with data driven decisions. This presents a particular challenge for those executives who strive to bring together the right combination of disparate data sources to unlock new value for the business.
 
 This difficulty is compounded by the very nature of how data is collected and stored, which results in independent data silos with no easy way to make critical associations across them. These data silos may be stored geographically close together, or far apart. Some may be built with on premise resources, and some housed in one or more public clouds. Valuable data is often found in structured and unstructured databases, Hadoop data lakes, data warehouses, and even in text files. Gaining new insights into potential customers and business opportunities may involve nearly all of the data silos a company has available to it.
+
+[#img-Data Pipeline Funnel]
+.SAP Data Hub Data Pipeline Funnel
+image::///home/demo/github/suse-doc/WP/Data_Hub/2.4/images/Data_Funnel_Pipeline.png[]
+
 
 What's more, finding a business application to perform the task is not even the hardest part. Businesses need to ensure their data analysis software investment can meet the scale of their current, as well as their future application/data landscape, plus enforce data governance. Equally as important is the resiliency and scalability of the underlying infrastructure. Experienced leaders know that Enterprise grade software is a poor investment if it is not built on Enterprise grade infrastructure.
 

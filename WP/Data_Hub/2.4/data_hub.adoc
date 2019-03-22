@@ -10,13 +10,16 @@
 :IHVPartner: n/a
 :IHVPlatform: n/a
 
+:xrefstyle: short
+
 = {ISVPartner}^(R)^ {ISVSolution} on {CompanyName}^(R)^ Container as a Service Platform Framework
 {Author}, {CompanyName} < {AuthorEMail} >
 
 = DRAFT COPY - DO NOT PUBLISH
 
-== Overview
-Many companies are challenged with managing and fully utilizing the information stored in data silos (e.g. cloud databases, Hadoop clusters, social media feeds) to build their Big Data pipeline.    These data landscapes can become incredibly complex due to requirements for security, governance, and specialized training.  SAP Data Hub provides a GUI-based business-wide view of a broad array of data systems, databases, and assets to enable your analytics and business intelligence teams to manage your entire data landscape through an intuitive “pane of glass”.    In what is likely to become a trend, SAP mandates that this application is deployed on a Kubernetes compatible container platform.   SUSE Container as a Service Platform enables you to extend your SUSE Enterprise Linux for SAP environment to container-based application delivery.
+== Introduction
+Enterprise data is exploding and is both a challenge and an opportunity. Companies are
+discovering ways to transform their data into services that help differentiate the business and create new lines of revenue.  Unfortunately, managing and fully utilizing the information stored in data silos (e.g. cloud databases, Hadoop clusters, social media feeds) has become incredibly complex due to requirements for security, governance, and specialized training.  SAP Data Hub provides a GUI-based business-wide view of a broad array of data systems, databases, and assets to enable your analytics and business intelligence teams to manage your entire data landscape through an intuitive “single pane of glass”.    In what is likely to become a trend, SAP mandates that this application is deployed on a Kubernetes compatible container platform.   SUSE Container as a Service Platform enables you to extend your SUSE Enterprise Linux for SAP environment to container-based application delivery.
 
 === Target Audience
 This discussion will be of interest to professionals involved in both IT Operations and Analytics/Business Intelligence.   The recommended framework supplies the requirements to implement SAP’s Data Hub on SUSE’s certified Container as a Service Platform.
@@ -34,46 +37,155 @@ What's more, finding a business application to perform the task is not even the 
 
 === Business Value
 {ISVPartner} {ISVSolution} is a containerized solution designed to be deployed on Enterprise grade Kubernetes clusters such as {CompanyName} {ProductName} (See [.underline]*SAP Note 2693555* for certified systems). For more than 17 years {ISVPartner} has developed their software on {CompanyName} Linux Enterprise Server (SLES) and {CompanyName} solutions such as {ProductName}.
- systems)
-{ISVPartner} {ISVSolution} is built on a next generation data aggregation model that does away with the need for expensive data warehouses. Instead, {ISVPartner} {ISVSolution} allows data extraction and formatting to be done on the platform where the data resides. Instead of the cumbersome, single-use Extraction, Transformation, Load (ELT) operations that are used to populate data warehouses; {ISVPartner} {ISVSolution} provides formatted, refined and cleansed data from multiple sources directly to the data consumers.
+
+{ISVPartner} {ISVSolution} is built on a next generation data aggregation model that does away with the need for expensive data warehouses. Instead, {ISVPartner} {ISVSolution} allows data extraction and formatting to be done on the platform where the data resides. This is in contrast to the current practice of using cumbersome, single-use Extract, Load,  Transform (ELT) operations that are used to populate data warehouses; {ISVPartner} {ISVSolution} provides formatted, refined and cleansed data from multiple sources directly to the data consumers.
 
 {ISVPartner} {ISVSolution} leverages data pipelines, which are built from reusable application components. Data pipelines are computational models that are executed natively on the data source. They define what data should be gathered from which sources, and how that data should be formatted at the source. Pipelines also specify what refinements and cleansing each stream of data should go through to make it compatible with the other data streams in the pipeline. Finally, they identify to which consumer or consumers the collated data should be sent. Since {ISVPartner} {ISVSolution} does not need persist data, it completely eliminates the need for expensive, scale-limiting data warehouses.
 
 Data pipelines can be created through a graphical user interface to leverage existing data sources such as {ISVPartner} HANA, {ISVPartner} Vora, Apache Spark, and Apache Hadoop; as well as all major open and closed source OLTP, OLAP and NoSQL databases.
 
+== Requirements
+As an IT organization evaluates solutions to the data growth and migration challenge, key
+requirements will be defined. Below are some typical requirements that you will be
+considering as you experiment and evaluate software.
 
-== Solution Components
+*Existing Data Stores*
 
-=== {CompanyName} {ProductName} Overview
-{CompanyName} {ProductName} is an integrated software platform which greatly automates the tasks of building, managing and upgrading Kubernetes clusters. It combines the benefits of an enterprise-ready operating system with the agility of an orchestration platform for containerized applications such as {ISVPartner} {ISVSolution}.
+* Access data from a variety of data sources, including Hadoop data lakes, object stores,
+databases, and data warehouses, both in the cloud and on-premise.
+* Perform data transformations, data quality, and data preparation processes.
+* Define data pipelines and streams.
+* Embed and productize scripts, programs, and algorithms of the Data Scientist.
+* Productize open libraries or ML algorithms in one framework.
+
+*Distributed Data Processing*
+
+* Distribute computational tasks to the native environments where the data reside.
+* Remote Process scheduling:
+  ** SAP Business Warehouse process chains.
+  ** SAP Data Services dataflows.
+  ** SAP HANA smart data integration Flowgraphs.
+
+*Governance*
+
+* Establish and manage zones in a landscape with attached policies and services levels.
+* Security and Access Control capabilities.
+
+*Orchestration*
+
+* Workflow creation of operations and processes across the landscape with monitoring
+and analysis capabilities.
+* Execution of end-to-end data processes, starting with the ingestion of data into the
+landscape (e.g. the data lake), including data processing, and leading up to the delivery
+or integration of the resulting data into enterprise processes and applications.
+
+*Data Ingestion and Processing*
+
+* Data integration, cleansing, enrichment, masking and anonymization.
+
+*Data Discovery*
+
+* Data Profiles for Big Data Sets showing quality and comprehensive structure
+information.
+* Ability to crawl, discover, and tag data elements.
+* Expose discovered data for further usage.
+
+*Scalability*
+
+* Scalable Architecture, from small to big, test to production deployment.
+
+*Deployment*
+
+* Easy deployment, using a proven-to-work combination of the several components.
+
+*Fault Tolerance*
+
+* Single component error will not lead to whole system unavailability.
+
+*Ease of Management/Operations*
+
+* Reduced complexity for solution management.
+
+*Physical Footprint*
+
+* Compact solution that works within your existing infrastructure models.
+Flexibility
+* Flexible building block approach allows sizing according to customer needs.
+Security
+* Solution provides means to secure customer infrastructure.
+High performance
+* Best practices are designed into the solution to ensure the best performance results.
+
+== Software Architecture
+This section will outline the key concepts in the software architecture of the SAP Data Hub
+reference configuration.
+
+
+== SAP Data Hub
+SAP Data Hub offers data management capabilities to help customers manage their
+growing amount of data. This solution combines data governance, management of data pipelines and data integration using a single visual interface and without the need of moving data into a central data warehouse.  <<img-SAP_Data_Hub_Architecture>> shows a high-level view of the architectural components designed to handle a wide range of enterprise applications scenarios.  The optional Hadoop cluster can be used as the main software platform for handling composition of application data.
+
+
+[#img-SAP_Data_Hub_Architecture]
+.SAP Data Hub Architecture
+image::https://github.com/bwgartner/suse-doc/blob/master/WP/Data_Hub/2.4/images/SAP_HANA_Architecture.png?raw=true[]
+
+Tenant Applications and Services::
+Tenant Applications and Services are the core of SAP Data Hub. SAP Data Hub provides
+various tools for development and administration, as well as applications that are accessible
+through the SAP Data Hub application launchpad. SAP Data Hub Pipelines are the connectors between the various SAP Data Hub data sources. They provide reusable, configurable operations to process data from the various sources,including CSV files, web services APIs as well as SAP’s own data stores and can be flexibly designed. The SAP Data Hub Modeler allows the creation and configuration of such pipelines through a graphical user interface. The Metadata Explorer provides information about the location, attributes, quality, and sensitivity of data. With this information, you can make informed decisions about which datasets to publish and determine who has access to use or view information about the datasets.  The Connection Management block enables connections to managed systems or external storage. Services such as Amazon S3, Google Cloud Services, Microsoft Azure (ADL, WASB),Data services, or Hadoop HDFS can be connected, as well as databases (Oracle, SAP HANA, SAP VORA) or business warehouses (SAP BW).
+
+
+{ISVPartner} Vora Distributed Database::
+
+{ISVPartner} Vora is a horizontally scalable, distributed database which can store and process structured data, time-series data (i.e. IoT streams), graph data and semi-structured documents in-memory and/or on disk. {ISVPartner} Vora is only available with {ISVPartner} {ISVSolution}, running in Kubernetes as a fully containerized application. It can store analytics data in Kubernetes pods as well as provide a bi-directional Spark2 interface between {ISVPartner} {ISVSolution} and an optionally co-located Hadoop cluster. Like {ISVPartner} {ISVSolution}, Vora requires a {ProductName} cluster of at least three Worker Nodes, but runs alongside Data Hub on the same {ProductName} cluster.
+
+{ISVPartner} HANA::
+{ISVPartner} HANA is {ISVPartner}'s premiere, in-memory database. HANA provides ultra-low latency performance for OLTP and OLAP environments. {CompanyName} Linux Enterprise Server for {ISVPartner} has specific enhancements for Enterprise class {ISVPartner} applications, including {ISVPartner} HANA. Deploying an Enterprise {ISVPartner} HANA database on SLES for {ISVPartner} allows for important enhancements in terms of availability, security, data encryption, and hardware support (such as NV-DIMMs). An important aspect of {ISVPartner} {ISVSolution} is that it leverages a small, containerized {ISVPartner} HANA database for managing Data Hub metadata. No installation, maintenance, or sizing considerations are required for this HANA instance.
+
+Docker Registry::
+SAP Data Hub requires a Docker repository for container images. This can be a publicly accessible site or a private collection of workload images. Other public or private registry sites can be used to provide files like Helm charts to deploy complete services.   Although the private Docker registry is not part of the SUSE Container as a Service Platform, you can build an on-premise instance using the Containers Module Add-on included with SLES for SAP along with SUSE Portus (http://port.us.org).  Portus is an open source on-premise authorization service that allows users to administrate and secure their Docker registries with fine grained control.
+
+Optional Hadoop Cluster::
+An optional Hadoop cluster can be built on dedicated nodes and co-located with {ISVPartner} {ISVSolution}. This associated Hadoop Data Lake can be used as a local computational/storage medium for {ISVPartner} {ISVSolution} original and uploaded content. The {ISVPartner} {ISVSolution} Spark Extensions are used to interface with the Spark2 environment on the Hadoop cluster for processing and storing data.  When utilizing this cluster, Data Hub users can leverage the analytical strengths of {ISVPartner} Vora to analyze and store data in HDFS through the {ISVPartner} {ISVSolution} Vora Spark Extension. {CompanyName} has extensive experience deploying bare-metal and virtualized Hadoop clusters on {CompanyName} Linux Enterprise Server. While this Hadoop cluster uses dedicated nodes, its HDFS storage is built on block storage from the SES 5.5 storage cluster that also serves {ISVPartner} {ISVSolution}.
+
+*TRANSISITION PARAGRAPH NEEDED?*
+
+=== {CompanyName} {ProductName}
+{CompanyName} {ProductName} (CaaSP) is an integrated software platform which automates the tasks of building, managing and upgrading Kubernetes clusters. It combines the benefits of an enterprise-ready operating system with the agility of an orchestration platform for containerized applications such as {ISVPartner} {ISVSolution}.
 
 While there are several top tier Kubernetes offerings in the market, {CompanyName} {ProductName} stands out for its ease of installation and configuration, DevOps integration (via {CompanyName} Cloud Application Platform), and Enterprise level of operability and scalability.
 
 One of the biggest challenges for Kubernetes operators is matching the scalability of the node level infrastructure with that of the overlaying container infrastructure. Inconsistently applied software changes as well as node configuration drift create ticking time bombs in production Kubernetes clusters.
 
-{CompanyName} {ProductName} resolves these problems with a combination of {CompanyName} MicroOS as the container host operating system and Salt for configuration management. {CompanyName} MicroOS is a mission-specific derivative of {CompanyName} Linux Enterprise Server (SLES). While MicroOS comes straight from SLES code, its implementation ensures that software changes are applied atomically and within a snapshot-protected environment. The combination of MicroOS and Salt guarantees that all nodes in a cluster are always in a known and consistent state. The troubleshooting nightmares of discovering a single node with a partially-failed configuration or software change are a thing of the past.
+{CompanyName} {ProductName} resolves these problems with a combination of {CompanyName} MicroOS as the container host operating system and Salt (sometimes referred to as the SaltStack platform) for configuration management. {CompanyName} MicroOS is a mission-specific derivative of {CompanyName} Linux Enterprise Server (SLES). While MicroOS comes straight from SLES code, its implementation ensures that software changes are applied atomically and within a snapshot-protected environment. The combination of MicroOS and Salt guarantees that all nodes in a cluster are always in a known and consistent state. The troubleshooting nightmares of discovering a single node with a partially-failed configuration or software change are a thing of the past.
+
+#img-CaaSP_Detailed_Architecture]
+.SUSE CaaS Platform Architecture
+image::https://github.com/bwgartner/suse-doc/blob/master/WP/Data_Hub/2.4/images/CaaSP_Detailed_Architecture.png?raw=true[]
+
 
 A {CompanyName} {ProductName} cluster consists of the following node types:
 
 {CompanyName} {ProductName} Administration Node::
 The Administration Node of the {CompanyName} {Product Name} manages the deployment of the cluster and runs central services like:
-* *Velum*: web-UI dashboard used to administer the cluster.
+* *Velum*: Web-UI dashboard used to administer the cluster.
 * *Salt Master*:  Manages the configuration of the cluster nodes.
-* *MariaDB Database*: Stores Velum data and salt master daemon events
+* *MariaDB Database*: Stores Velum data and Salt master daemon events
 * *Dex Identity Service*: Provides user authentication and a robust role-based access control (RBAC) system.
 
 {CompanyName} {ProductName} Kubernetes Master Nodes::
 The {ProductName} Master Nodes maintain the Kubernetes control plane services. These services run as containers on the Master Nodes. While three or more Master Nodes (always an odd number) are required for high availability of the Kubernetes control plane, a single Master Node is acceptable for demonstration purposes.
 
 {CompanyName} {ProductName} Kubernetes Worker Nodes::
-The {ProductName} Kubernetes Worker Nodes run the {ISVPartner} {ISVSolution} application containers. {ISVPartner} {ISVSolution} requires a minimum of three Kubernetes Worker Nodes (four worker nodes for production) and {CompanyName} currently supports {ProductName} clusters of up to 150 nodes. Additional Worker Nodes can be added to a Production {ProductName} cluster r non-disruptively.  *SAP specifies that each worker node must have a least 8 cores and 64GB of main memory.*
+The {ProductName} Kubernetes Worker Nodes run the {ISVPartner} {ISVSolution} application containers. {ISVPartner} {ISVSolution} requires a minimum of three Kubernetes Worker Nodes (four worker nodes for production) and {CompanyName} currently supports {ProductName} clusters of up to 150 nodes. Additional Worker Nodes can be added to a Production {ProductName} cluster non-disruptively.  *SAP specifies that each worker node must have a least 8 cores and 64GB of main memory.*
 
 
 [#img-Data Pipeline Funnel]
 .SUSE Containers as a Service Platform Architecture
 image::https://github.com/bwgartner/suse-doc/blob/master/WP/Data_Hub/2.4/images/CaaSP_Architecture.png?raw=true[]
 
-=== Storage Architectural Overview
+=== Storage Architecture
 The storage layer of this solution leverages the Software Defined Storage capabilities of {CompanyName} Enterprise Storage 5.5 (SES 5.5). SES 5.5 is a commercially supported distribution of the Ceph enterprise grade, scale out storage solution.
 
 Ceph is a scale out, distributed object store which provides excellent performance, scalability and reliability. In most use cases clients use Linux kernel libraries to read and write object and block data directly to/from a storage node in the SES cluster. SES also provides gateway options to support data access via iSCSI, NFS, S3, and Swift protocols.
@@ -89,20 +201,40 @@ SES 5.5 provides a reliable, scalable storage layer for the complete solution th
 In addition to providing block storage to the optional Hadoop cluster, a pod running on {ProductName} can gain access to dynamically provisioned Kubernetes persistent volumes (PV) through Kubernetes persistent volume claims (PVC). Persistent volumes are created as block devices in the supporting SES 5.5 cluster. {ProductName} uses persistent volume claims (PVC)s to obtain dynamically provisioned persistent volumes through the Software Defined Storage mechanisms in SES 5.5. When a PVC is removed, the persistent volume and its associated block storage device in SES are automatically removed.
 
 
-=== {ISVPartner} {ISVSolution} Overview
-{ISVPartner} Vora Distributed Database::
 
-{ISVPartner} Vora is a horizontally scalable, distributed database which can store and process structured data, time-series data (i.e. IoT streams), graph data and semi-structured documents in-memory and/or on disk. {ISVPartner} Vora is only available with {ISVPartner} {ISVSolution}, running in Kubernetes as a fully containerized application. It can store analytics data in Kubernetes pods as well as provide a bi-directional Spark2 interface between {ISVPartner} {ISVSolution} and an optionally co-located Hadoop cluster. Like {ISVPartner} {ISVSolution}, Vora requires a {ProductName} cluster of at least three Worker Nodes, but runs alongside Data Hub on the same {ProductName} cluster.
 
-{ISVPartner} HANA::
-{ISVPartner} HANA is {ISVPartner}'s premiere, in-memory database. HANA provides ultra-low latency performance for OLTP and OLAP environments. {CompanyName} Linux Enterprise Server for {ISVPartner} is SLES with specific enhancements for Enterprise class {ISVPartner} applications, including {ISVPartner} HANA. Deploying an Enterprise {ISVPartner} HANA database on SLES for {ISVPartner} allows for important enhancements in terms of availability, security, data encryption, and hardware support (such as NV-DIMMs). An important aspect of {ISVPartner} {ISVSolution} is that it leverages a small, containerized {ISVPartner} HANA database for managing Data Hub metadata. No installation, maintenance, or sizing considerations are required for this HANA instance.
+Optional SUSE Cloud Application Platform::
+SUSE CAP (Cloud Application Platform) is a DevOps toolset that speeds enterprise application
+development to container platforms. Called a PaaS, or Platform as a Service, CAP is the
+developer tools that allow rapid application development. *TBD: more.*
 
-Docker Registry::
-SAP Data Hub requires a Docker repository for container images. This can be a publicly accessible site or a private collection of workload images. Other public or private registry sites can be used to provide files like Helm charts to deploy complete services.   Although the private Docker registry is not part of the SUSE Container as a Service Platform, you can build an on-premise instance using the Containers Module Add-on included with SLES for SAP along with SUSE Portus (http://port.us.org).  Portus is an open source on-premise authorization service that allows users to administrate and secure their Docker registries with fine grained control.
 
-Optional Hadoop Cluster::
-An optional Hadoop cluster can be built on dedicated nodes and co-located with {ISVPartner} {ISVSolution}. This associated Hadoop Data Lake can be used as a local computational/storage medium for {ISVPartner} {ISVSolution} original and uploaded content. The {ISVPartner} {ISVSolution} Spark Extensions are used to interface with the Spark2 environment on the Hadoop cluster for processing and storing data.  When utilizing this cluster, Data Hub users can leverage the analytical strengths of {ISVPartner} Vora to analyze and store data in HDFS through the {ISVPartner} {ISVSolution} Vora Spark Extension. {CompanyName} has extensive experience deploying bare-metal and virtualized Hadoop clusters on {CompanyName} Linux Enterprise Server. While this Hadoop cluster uses dedicated nodes, its HDFS storage is built on block storage from the SES 5.5 storage cluster that also serves {ISVPartner} {ISVSolution}.
+== Software and Systems Management
+A scale-out SAP HANA model is utilized to handle rapid data growth. As your SAP environment
+expands, you will need a dependable method of updating your SAP HANA servers.
+SUSE Manager enables you to efficiently manage a set of Linux systems and keep them
+up-to-date. The benefits in a SAP HANA scale-out setup are:
 
-[#img-SAP Data Hub Architecture]
-.SAP Data Hub Architecture
-image::https://github.com/bwgartner/suse-doc/blob/master/WP/Data_Hub/2.4/images/SAP_HANA_Architecture.png?raw=true[]
+*Reduce Complexity of Managing SAP HANA Environments:*
+
+* Ensure consistent management of SAP HANA and all other cluster systems.
+* Manage your data environment across physical, virtual and cloud environments.
+* Manage your channels effectively.
+
+*Create/Manage Development, QA and Production Channels:*
+
+* Add and manage third-party channels.
+* Simplify compliance.
+
+*Audit the Patch Status for SAP HANA and Subsystems:*
+
+* Track the configuration changes and make sure all administrators have the right
+authority for changes.
+* Slash costs of ownership.
+
+*Automate System Management Tasks for SAP HANA and All Other Subsystems:*
+* Leverage a single web-based interface to see the status of all your servers.
+* Use your resources effectively.
+
+== Hardware Architecture
+TBD: This is a drop-in section for IHV Partner.

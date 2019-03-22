@@ -29,9 +29,11 @@ Today's business leaders are under increasing pressure to drive their business w
 
 This difficulty is compounded by the very nature of how data is collected and stored, which results in independent data silos with no easy way to make critical associations across them. These data silos may be stored geographically close together, or far apart. Some may be built with on premise resources, and some housed in one or more public clouds. Valuable data is often found in structured and unstructured databases, Hadoop data lakes, data warehouses, and even in text files. Gaining new insights into potential customers and business opportunities may involve nearly all of the data silos a company has available to it.
 
+
 [#img-Data Pipeline Funnel]
 .SAP Data Hub Data Pipeline Funnel
 image::https://github.com/bwgartner/suse-doc/blob/master/WP/Data_Hub/2.4/images/Data_Funnel_Pipeline.png?raw=true[]
+
 
 What's more, finding a business application to perform the task is not even the hardest part. Businesses need to ensure their data analysis software investment can meet the scale of their current, as well as their future application/data landscape, plus enforce data governance. Equally as important is the resiliency and scalability of the underlying infrastructure. Experienced leaders know that Enterprise grade software is a poor investment if it is not built on Enterprise grade infrastructure.
 
@@ -43,6 +45,8 @@ What's more, finding a business application to perform the task is not even the 
 {ISVPartner} {ISVSolution} leverages data pipelines, which are built from reusable application components. Data pipelines are computational models that are executed natively on the data source. They define what data should be gathered from which sources, and how that data should be formatted at the source. Pipelines also specify what refinements and cleansing each stream of data should go through to make it compatible with the other data streams in the pipeline. Finally, they identify to which consumer or consumers the collated data should be sent. Since {ISVPartner} {ISVSolution} does not need persist data, it completely eliminates the need for expensive, scale-limiting data warehouses.
 
 Data pipelines can be created through a graphical user interface to leverage existing data sources such as {ISVPartner} HANA, {ISVPartner} Vora, Apache Spark, and Apache Hadoop; as well as all major open and closed source OLTP, OLAP and NoSQL databases.
+
+*TRANSISITION PARAGRAPH NEEDED?*
 
 == Requirements
 As an IT organization evaluates solutions to the data growth and migration challenge, key
@@ -116,6 +120,9 @@ Security
 High performance
 * Best practices are designed into the solution to ensure the best performance results.
 
+
+*TRANSISITION PARAGRAPH NEEDED?*
+
 == Software Architecture
 This section will outline the key concepts in the software architecture of the SAP Data Hub
 reference configuration.
@@ -158,14 +165,15 @@ While there are several top tier Kubernetes offerings in the market, {CompanyNam
 
 One of the biggest challenges for Kubernetes operators is matching the scalability of the node level infrastructure with that of the overlaying container infrastructure. Inconsistently applied software changes as well as node configuration drift create ticking time bombs in production Kubernetes clusters.
 
-{CompanyName} {ProductName} resolves these problems with a combination of {CompanyName} MicroOS as the container host operating system and Salt (sometimes referred to as the SaltStack platform) for configuration management. {CompanyName} MicroOS is a mission-specific derivative of {CompanyName} Linux Enterprise Server (SLES). While MicroOS comes straight from SLES code, its implementation ensures that software changes are applied atomically and within a snapshot-protected environment. The combination of MicroOS and Salt guarantees that all nodes in a cluster are always in a known and consistent state. The troubleshooting nightmares of discovering a single node with a partially-failed configuration or software change are a thing of the past.
+{CompanyName} {ProductName} (<<img-CaaSP_Detailed_Architecture>>) resolves these problems with a combination of {CompanyName} MicroOS as the container host operating system and Salt (sometimes referred to as the SaltStack platform) for configuration management. {CompanyName} MicroOS is a mission-specific derivative of {CompanyName} Linux Enterprise Server (SLES). While MicroOS comes straight from SLES code, its implementation ensures that software changes are applied atomically and within a snapshot-protected environment. The combination of MicroOS and Salt guarantees that all nodes in a cluster are always in a known and consistent state. The troubleshooting nightmares of discovering a single node with a partially-failed configuration or software change are a thing of the past.
 
-#img-CaaSP_Detailed_Architecture]
+
+[#img-CaaSP_Detailed_Architecture]
 .SUSE CaaS Platform Architecture
 image::https://github.com/bwgartner/suse-doc/blob/master/WP/Data_Hub/2.4/images/CaaSP_Detailed_Architecture.png?raw=true[]
 
 
-A {CompanyName} {ProductName} cluster consists of the following node types:
+A {CompanyName} {ProductName} (<<img-CaaSP_Nodes>>) consists of the following node types:
 
 {CompanyName} {ProductName} Administration Node::
 The Administration Node of the {CompanyName} {Product Name} manages the deployment of the cluster and runs central services like:
@@ -181,9 +189,11 @@ The {ProductName} Master Nodes maintain the Kubernetes control plane services. T
 The {ProductName} Kubernetes Worker Nodes run the {ISVPartner} {ISVSolution} application containers. {ISVPartner} {ISVSolution} requires a minimum of three Kubernetes Worker Nodes (four worker nodes for production) and {CompanyName} currently supports {ProductName} clusters of up to 150 nodes. Additional Worker Nodes can be added to a Production {ProductName} cluster non-disruptively.  *SAP specifies that each worker node must have a least 8 cores and 64GB of main memory.*
 
 
-[#img-Data Pipeline Funnel]
+[#img-CaaSP_Nodes]
 .SUSE Containers as a Service Platform Architecture
-image::https://github.com/bwgartner/suse-doc/blob/master/WP/Data_Hub/2.4/images/CaaSP_Architecture.png?raw=true[]
+image::https://github.com/bwgartner/suse-doc/blob/master/WP/Data_Hub/2.4/images/CaaSP_Nodes.png?raw=true[]
+
+*TRANSISITION PARAGRAPH NEEDED?*
 
 === Storage Architecture
 The storage layer of this solution leverages the Software Defined Storage capabilities of {CompanyName} Enterprise Storage 5.5 (SES 5.5). SES 5.5 is a commercially supported distribution of the Ceph enterprise grade, scale out storage solution.

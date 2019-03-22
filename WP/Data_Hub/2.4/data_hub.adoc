@@ -46,12 +46,14 @@ What's more, finding a business application to perform the task is not even the 
 
 Data pipelines can be created through a graphical user interface to leverage existing data sources such as {ISVPartner} HANA, {ISVPartner} Vora, Apache Spark, and Apache Hadoop; as well as all major open and closed source OLTP, OLAP and NoSQL databases.
 
-*TRANSISITION PARAGRAPH NEEDED?*
+*TRANSITION PARAGRAPH NEEDED?*
 
 == Requirements
 As an IT organization evaluates solutions to the data growth and migration challenge, key
 requirements will be defined. Below are some typical requirements that you will be
 considering as you experiment and evaluate software.
+
+*JvV - REPLACE THIS SECTION WITH A TABLE?
 
 *Existing Data Stores*
 
@@ -121,7 +123,7 @@ High performance
 * Best practices are designed into the solution to ensure the best performance results.
 
 
-*TRANSISITION PARAGRAPH NEEDED?*
+*TRANSITION PARAGRAPH NEEDED?*
 
 == Software Architecture
 This section will outline the key concepts in the software architecture of the SAP Data Hub
@@ -159,7 +161,7 @@ SAP Data Hub requires a Docker repository for container images. This can be a pu
 Optional Hadoop Cluster::
 An optional Hadoop cluster can be built on dedicated nodes and co-located with {ISVPartner} {ISVSolution}. This associated Hadoop Data Lake can be used as a local computational/storage medium for {ISVPartner} {ISVSolution} original and uploaded content. The {ISVPartner} {ISVSolution} Spark Extensions are used to interface with the Spark2 environment on the Hadoop cluster for processing and storing data.  When utilizing this cluster, Data Hub users can leverage the analytical strengths of {ISVPartner} Vora to analyze and store data in HDFS through the {ISVPartner} {ISVSolution} Vora Spark Extension. {CompanyName} has extensive experience deploying bare-metal and virtualized Hadoop clusters on {CompanyName} Linux Enterprise Server. While this Hadoop cluster uses dedicated nodes, its HDFS storage is built on block storage from the SES 5.5 storage cluster that also serves {ISVPartner} {ISVSolution}.
 
-*TRANSISITION PARAGRAPH NEEDED?*
+*TRANSITION PARAGRAPH NEEDED?*
 
 === {CompanyName} {ProductName}
 {CompanyName} {ProductName} (CaaSP) is an integrated software platform which automates the tasks of building, managing and upgrading Kubernetes clusters. It combines the benefits of an enterprise-ready operating system with the agility of an orchestration platform for containerized applications such as {ISVPartner} {ISVSolution}.
@@ -206,7 +208,7 @@ developer tools that allow rapid application development.
 *BG:  ADD HOW YOU CREATE ANALYTICS (SIDECAR TYPES OF) WORKLOADS WITH CAP.  DEV TEAM/SA PEERS*
 
 
-*TRANSISITION PARAGRAPH NEEDED?*
+*TRANSITION PARAGRAPH NEEDED?*
 
 === Storage Architecture
 The storage layer of this solution leverages the Software Defined Storage capabilities of {CompanyName} Enterprise Storage (SES). SES is a commercially supported distribution of the Ceph enterprise grade, scale out storage solution.
@@ -215,7 +217,7 @@ Ceph is a scale out, distributed object store which provides excellent performan
 
 The storage capacity of the SES solution can be expanded easily by integrating additional storage nodes to the cluster. Exiting storage nodes will take care of redistributing the data to the newly added nodes without interrupting the availability of storage services to the clients.
 
-SES 5.5 provides a reliable, scalable storage layer for the complete solution that supports:
+SES provides a reliable, scalable storage layer for the complete solution that supports:
 * Dynamically provisioned block storage volumes to the pods running on {CompanyName} {ProductName}
 * (Optionally) Block storage volumes for the co-located Hadoop cluster nodes, if configured
 * Object storage through an S3-API compatible interface for additional data storage and backups

@@ -13,7 +13,7 @@
 :xrefstyle: short
 
 ifdef::env-github[]
-:imagesdir: https://github.com/bwgartner/suse-doc/tree/master/WP/Data_Hub/2.4/images/src/png
+:imagesdir: https://github.com/bwgartner/suse-doc/blob/master/WP/Data_Hub/2.4/images/src/png/
 endif::[]
 
 = {ISVPartner}^(R)^ {ISVSolution} on {CompanyName}^(R)^ Container as a Service Platform Framework

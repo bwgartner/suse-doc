@@ -1,0 +1,1 @@
+NOTE: Any https://www.suse.com/yessearch/[{CompanyName} YES] certified {IHVPartner} platform can be used for the physical nodes of this deployment, as long as the certification refers to the major version of the underlying {CompanyName} operating system required by the {CompanyName} {ProductName} release.

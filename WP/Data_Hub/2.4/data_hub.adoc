@@ -49,6 +49,22 @@ Data pipelines can be created through a graphical user interface to leverage exi
 
 *TRANSITION PARAGRAPH NEEDED?*
 
+== Example Use Cases
+This section will outline a few potential use cases for SAP Data Hub build on SUSE Containers as a Service Application Platform.   In general, SAP Data Hub exceeds in pulling information from multiple kinds of internal and external data resources to enable insight into very complex analytical problems.   The use of machine learing and Big Data analytics platforms like SAP, Hadoop, MapR, Cloudera, etc. require access to large pools of unstructured data in a systematic, highly automated, secure way.
+
+*Fraud Detection*
+
+Credit card fraud has become an epidemic with losses in the billions of dollars.  Financial institutions need the ability to create profiles that alert to probable fraud on large volumes of transactions.   The more information they can cross-reference, the more accurate their models will become.  SAP Data Hub can pull in transactional data from ERP systems, credit reporting bureaus, email from a Hadoop cluster, social media data, and “Dark Web” databases to enable data scientist to build very precise detection methodologies.
+
+*Manufacturing Equipment Maintenance*
+
+Global manufacturers rely on the uptime of their equipment to meet product delivery targets.   Unscheduled maintenance or equipment failure can result in lost profits, poor quality, and unmet commitments.   Conversely, over-scheduling maintenance activities also impacts cost and output.   Manufacturers were early adopters of Internet of Things (IOT) technology for the real time monitoring of equipment sensors (e.g. temperature, vibration, humidity, motor loading, etc.)  to have a better understanding of the state of their environment.   What if predictive models and machine learning (ML) could be used to optimize maintenance scheduling?  SAP Data Hub can be used to orchestrate the end-to-end data flow to feed a ML platform to predict impending outages and schedule corrective maintenance before any disruptions. 
+
+*Customer Affinity Recommendations*
+
+E-Commerce sites routinely use various data sources to try to recommend an additional purchase or fine-tune your search to more relevant items.   Early attempts were based solely on purchasing behavior at an individual retailer, but state of the art now requires data input from email, social media, browser search data, clickstream data, and credit card reporting sites.   SAP Data Hub enables you to easily build this pipeline to feed real time recommendations into an active session on a purchasing website for consideration.   This information can greatly increase the revenue per transaction metric that is critical to success.
+
+
 == Requirements
 As an IT organization evaluates solutions to the data growth and migration challenge, key requirements will be defined. Below are some typical requirements that you will be considering as you experiment and evaluate software.
 
@@ -237,4 +253,3 @@ This section is intentionally blank, as we want to discuss the deployment tradeo
 
 == Bill of Materials
 This section is intentionally blank, as we want to discuss the hardware decisions with IHV partners before completion.
-

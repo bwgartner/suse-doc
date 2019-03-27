@@ -7,8 +7,8 @@
 :CompanyName: SUSE
 :ProductName: CaaS Platform
 
-:IHVPartner: HPE
-:IHVPlatform: Synergy
+:IHVPartner: IHV
+:IHVPlatform: Generic
 
 :xrefstyle: short
 
@@ -215,6 +215,12 @@ Automate System Management Tasks for {ISVPartner} HANA and All Other Subsystems:
 
 == Hardware Architecture
 TBD: This is a drop-in section for IHV Partner.
+
+ifeval::["{IHVPartner}" == "IHV"]
+
+include::{IHVPartner}.adoc[]
+
+endif::[]
 
 ifeval::["{IHVPartner}" == "HPE"]
 

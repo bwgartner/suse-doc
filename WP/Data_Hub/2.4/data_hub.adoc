@@ -53,7 +53,7 @@ As an IT organization evaluates solutions to the data growth and migration chall
 requirements will be defined. Below are some typical requirements that you will be
 considering as you experiment and evaluate software.
 
-*JvV - REPLACE THIS SECTION WITH A TABLE?
+*JvV - REPLACE THIS SECTION WITH A TABLE?*
 
 *Existing Data Stores*
 

@@ -5,23 +5,63 @@
 
 <book lang="en">
 <bookinfo>
-    <title>SAP<superscript>&#174;</superscript> Data Hub on SUSE<superscript>&#174;</superscript> Container as a Service Platform Framework</title>
+    <title>SAP<superscript>&#174;</superscript> Data Hub on SUSE<superscript>&#174;</superscript> Container as a Service Platform</title>
     <author>
         <firstname>Alex Arnoldy, SUSE &lt; alex.arnoldy@suse.com &gt;</firstname>
     </author>
     <authorinitials>{</authorinitials>
 <orgname>SUSE</orgname>
 </bookinfo>
-<preface>
-<title></title>
+<chapter id="_revision_history">
+<title>Revision History</title>
+<table
+frame="all"
+rowsep="1" colsep="1"
+>
+<title>Revisions</title>
+<tgroup cols="3">
+<colspec colname="col_1" colwidth="33*"/>
+<colspec colname="col_2" colwidth="33*"/>
+<colspec colname="col_3" colwidth="33*"/>
+<thead>
+<row>
+<entry align="center" valign="top">Version </entry>
+<entry align="left" valign="top">Date         </entry>
+<entry align="left" valign="top">Comments</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="center" valign="top"><simpara><emphasis role="strong">0.5</emphasis></simpara></entry>
+<entry align="left" valign="top"><simpara>01/15/19</simpara></entry>
+<entry align="left" valign="top"><simpara><emphasis role="strong">Initial draft</emphasis></simpara></entry>
+</row>
+<row>
+<entry align="center" valign="top"><simpara><emphasis role="strong">0.6</emphasis></simpara></entry>
+<entry align="left" valign="top"><simpara>02/11/19</simpara></entry>
+<entry align="left" valign="top"><simpara><emphasis role="strong">Collaborative draft</emphasis></simpara></entry>
+</row>
+<row>
+<entry align="center" valign="top"><simpara><emphasis role="strong">1.0</emphasis></simpara></entry>
+<entry align="left" valign="top"><simpara>03/05/19</simpara></entry>
+<entry align="left" valign="top"><simpara><emphasis role="strong">First draft to be shared with HPE as SUSE Company Confidential</emphasis></simpara></entry>
+</row>
+<row>
+<entry align="center" valign="top"><simpara><emphasis role="strong">1.1</emphasis></simpara></entry>
+<entry align="left" valign="top"><simpara>03/31/19</simpara></entry>
+<entry align="left" valign="top"><simpara><emphasis role="strong">Proposed hardware config - shared w/ HPE as SUSE Company Confidential</emphasis></simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</table>
 <simpara><emphasis>*DRAFT COPY - DO NOT PUBLISH*</emphasis></simpara>
-</preface>
+</chapter>
 <chapter id="_introduction">
 <title>Introduction</title>
-<simpara>Enterprise data is exploding and is both a challenge and an opportunity. Companies are discovering ways to transform their data into services that help differentiate the business and create new lines of revenue.  Unfortunately, managing and fully utilizing the information stored in data silos (e.g. cloud databases, Hadoop clusters, social media feeds) has become incredibly complex due to requirements for security, governance, and specialized training.  <ulink url="https://www.sap.com/products/data-hub.html">SAP Data Hub</ulink> provides a GUI-based business-wide view of a broad array of data systems, databases, and assets to enable your analytics and business intelligence teams to manage your entire data landscape through an intuitive “single pane of glass”.    In what is likely to become a trend, SAP mandates that this application is deployed on a Kubernetes compatible container platform. <ulink url="https://www.suse.com/products/caas-platform/">SUSE CaaS Platform</ulink> enables you to extend your SUSE Enterprise Linux for SAP environment to container-based application delivery.</simpara>
+<simpara>Enterprise data is exploding and is both a challenge and an opportunity. Companies are discovering ways to transform their data into services that help differentiate the business and create new lines of revenue.  Unfortunately, managing and fully utilizing the information stored in data silos (e.g. cloud databases, Hadoop clusters, social media feeds) has become incredibly complex due to requirements for security, governance, and specialized training.  <ulink url="https://www.sap.com/products/data-hub.html">SAP Data Hub</ulink> provides a GUI-based business-wide view of a broad array of data systems, databases, and assets to enable your analytics and business intelligence teams to manage your entire data landscape through an intuitive “single pane of glass”.    In what is likely to become a trend, SAP mandates that this application is deployed on a Kubernetes compatible container platform. <ulink url="https://www.suse.com/products/caas-platform/">SUSE SAP Data Hub with SUSE CaaS Platform</ulink> enables you to extend your SUSE Enterprise Linux for SAP environment to container-based application delivery.</simpara>
 <section id="_target_audience">
 <title>Target Audience</title>
-<simpara>This discussion will be of interest to professionals involved in both IT Operations and Analytics/Business Intelligence.   The recommended framework supplies the requirements to implement SAP’s Data Hub that is certified on SUSE CaaS Platform.</simpara>
+<simpara>This discussion will be of interest to professionals involved in both IT Operations and Analytics/Business Intelligence.   The recommended framework supplies the requirements to implement SAP’s Data Hub that is certified on SUSE SAP Data Hub with SUSE CaaS Platform.</simpara>
 </section>
 <section id="_business_problem">
 <title>Business Problem</title>
@@ -39,252 +79,162 @@
 </section>
 <section id="_business_value">
 <title>Business Value</title>
-<simpara>SAP Data Hub is a containerized solution designed to be deployed on Enterprise grade Kubernetes clusters such as SUSE CaaS Platform (See <emphasis role="strong"><phrase role=".underline">SAP Note 2693555</phrase></emphasis> for certified systems). For more than 17 years SAP has developed their software on SUSE Linux Enterprise Server (SLES) and SUSE solutions such as CaaS Platform.</simpara>
+<simpara>SAP Data Hub is a containerized solution designed to be deployed on Enterprise grade Kubernetes clusters such as SUSE SAP Data Hub with SUSE CaaS Platform (See <emphasis role="strong"><phrase role=".underline">SAP Note 2693555</phrase></emphasis> for certified systems). For more than 17 years SAP has developed their software on SUSE Linux Enterprise Server (SLES) and SUSE solutions such as SAP Data Hub with SUSE CaaS Platform.</simpara>
 <simpara>SAP Data Hub is built on a next generation data aggregation model that does away with the need for expensive data warehouses. Instead, SAP Data Hub allows data extraction and formatting to be done on the platform where the data resides. This is in contrast to the current practice of using cumbersome, single-use Extract, Load,  Transform (ELT) operations that are used to populate data warehouses; SAP Data Hub provides formatted, refined and cleansed data from multiple sources directly to the data consumers.</simpara>
 <simpara>SAP Data Hub leverages data pipelines, which are built from reusable application components. Data pipelines are computational models that are executed natively on the data source. They define what data should be gathered from which sources, and how that data should be formatted at the source. Pipelines also specify what refinements and cleansing each stream of data should go through to make it compatible with the other data streams in the pipeline. Finally, they identify to which consumer or consumers the collated data should be sent. Since SAP Data Hub does not need persist data, it completely eliminates the need for expensive, scale-limiting data warehouses.</simpara>
 <simpara>Data pipelines can be created through a graphical user interface to leverage existing data sources such as SAP HANA, SAP Vora, Apache Spark, and Apache Hadoop; as well as all major open and closed source OLTP, OLAP and NoSQL databases.</simpara>
-<simpara><emphasis role="strong">TRANSITION PARAGRAPH NEEDED?</emphasis></simpara>
+<simpara>Before implementing a data analytics solution, you need to consider the specific problem you are working to solve. Below are some use cases that help you to zero in on the type of solution you are pursuing.</simpara>
+</section>
+</chapter>
+<chapter id="_what_the_fuck">
+<title>What The Fuck</title>
+<section id="_example_use_cases">
+<title>Example Use Cases</title>
+<simpara>This section will outline a few potential use cases for SAP Data Hub build on SUSE Containers as a Service Application Platform.   In general, SAP Data Hub exceeds in pulling information from multiple kinds of internal and external data resources to enable insight into very complex analytical problems.   The use of machine learing and Big Data analytics platforms like SAP, Hadoop, MapR, Cloudera, etc. require access to large pools of unstructured data in a systematic, highly automated, secure way.</simpara>
+</section>
+<section id="_fraud_detection">
+<title>Fraud Detection</title>
+<simpara>Credit card fraud has become an epidemic with losses in the billions of dollars.  Financial institutions need the ability to create profiles that alert to probable fraud on large volumes of transactions.   The more information they can cross-reference, the more accurate their models will become.  SAP Data Hub can pull in transactional data from ERP systems, credit reporting bureaus, email from a Hadoop cluster, social media data, and “Dark Web” databases to enable data scientist to build very precise detection methodologies.</simpara>
+</section>
+<section id="_manufacturing_equipment_maintenance">
+<title>Manufacturing Equipment Maintenance</title>
+<simpara>Global manufacturers rely on the uptime of their equipment to meet product delivery targets.   Unscheduled maintenance or equipment failure can result in lost profits, poor quality, and unmet commitments.   Conversely, over-scheduling maintenance activities also impacts cost and output.   Manufacturers were early adopters of Internet of Things (IOT) technology for the real time monitoring of equipment sensors (e.g. temperature, vibration, humidity, motor loading, etc.)  to have a better understanding of the state of their environment.   What if predictive models and machine learning (ML) could be used to optimize maintenance scheduling?  SAP Data Hub can be used to orchestrate the end-to-end data flow to feed a ML platform to predict impending outages and schedule corrective maintenance before any disruptions.</simpara>
+</section>
+<section id="_customer_affinity_recommendations">
+<title>Customer Affinity Recommendations</title>
+<simpara>E-Commerce sites routinely use various data sources to try to recommend an additional purchase or fine-tune your search to more relevant items.   Early attempts were based solely on purchasing behavior at an individual retailer, but state of the art now requires data input from email, social media, browser search data, clickstream data, and credit card reporting sites.   SAP Data Hub enables you to easily build this pipeline to feed real time recommendations into an active session on a purchasing website for consideration.   This information can greatly increase the revenue per transaction metric that is critical to success.</simpara>
 </section>
 </chapter>
 <chapter id="_requirements">
 <title>Requirements</title>
 <simpara>As an IT organization evaluates solutions to the data growth and migration challenge, key requirements will be defined. Below are some typical requirements that you will be considering as you experiment and evaluate software.</simpara>
-<simpara>*JvV - REPLACE THIS SECTION WITH A TABLE?</simpara>
-<variablelist>
-<varlistentry>
-<term>
-Existing Data Stores
-</term>
-<listitem>
-<itemizedlist>
-<listitem>
-<simpara>
-Access data from a variety of data sources, including Hadoop data lakes, object stores,
-databases, and data warehouses, both in the cloud and on-premise.
-</simpara>
-</listitem>
-<listitem>
-<simpara>
-Perform data transformations, data quality, and data preparation processes.
-</simpara>
-</listitem>
-<listitem>
-<simpara>
-Define data pipelines and streams.
-</simpara>
-</listitem>
-<listitem>
-<simpara>
-Embed and productize scripts, programs, and algorithms of the Data Scientist.
-</simpara>
-</listitem>
-<listitem>
-<simpara>
-Productize open libraries or ML algorithms in one framework.
-</simpara>
-</listitem>
-</itemizedlist>
-</listitem>
-</varlistentry>
-<varlistentry>
-<term>
-Distributed Data Processing
-</term>
-<listitem>
-<itemizedlist>
-<listitem>
-<simpara>
-Distribute computational tasks to the native environments where the data reside.
-</simpara>
-</listitem>
-<listitem>
-<simpara>
-Remote Process scheduling:
-</simpara>
-<itemizedlist>
-<listitem>
-<simpara>
-SAP Business Warehouse process chains.
-</simpara>
-</listitem>
-<listitem>
-<simpara>
-SAP Data Services dataflows.
-</simpara>
-</listitem>
-<listitem>
-<simpara>
-SAP HANA smart data integration Flowgraphs.
-</simpara>
-</listitem>
-</itemizedlist>
-</listitem>
-</itemizedlist>
-</listitem>
-</varlistentry>
-<varlistentry>
-<term>
-Governance
-</term>
-<listitem>
-<itemizedlist>
-<listitem>
-<simpara>
-Establish and manage zones in a landscape with attached policies and services levels.
-</simpara>
-</listitem>
-<listitem>
-<simpara>
-Security and Access Control capabilities.
-</simpara>
-</listitem>
-</itemizedlist>
-</listitem>
-</varlistentry>
-<varlistentry>
-<term>
-Orchestration
-</term>
-<listitem>
-<itemizedlist>
-<listitem>
-<simpara>
-Workflow creation of operations and processes across the landscape with monitoring
-and analysis capabilities.
-</simpara>
-</listitem>
-<listitem>
-<simpara>
-Execution of end-to-end data processes, starting with the ingestion of data into the landscape (e.g. the data lake), including data processing, and leading up to the delivery or integration of the resulting data into enterprise processes and applications.
-</simpara>
-</listitem>
-</itemizedlist>
-</listitem>
-</varlistentry>
-<varlistentry>
-<term>
-Data Ingestion and Processing
-</term>
-<listitem>
-<itemizedlist>
-<listitem>
-<simpara>
-Data integration, cleansing, enrichment, masking and anonymization.
-</simpara>
-</listitem>
-</itemizedlist>
-</listitem>
-</varlistentry>
-<varlistentry>
-<term>
-Data Discovery
-</term>
-<listitem>
-<itemizedlist>
-<listitem>
-<simpara>
-Data Profiles for Big Data Sets showing quality and comprehensive structure information.
-</simpara>
-</listitem>
-<listitem>
-<simpara>
-Ability to crawl, discover, and tag data elements.
-</simpara>
-</listitem>
-<listitem>
-<simpara>
-Expose discovered data for further usage.
-</simpara>
-</listitem>
-</itemizedlist>
-</listitem>
-</varlistentry>
-</variablelist>
-<simpara>Scalability:;
-* Scalable Architecture, from small to big, test to production deployment.</simpara>
-<variablelist>
-<varlistentry>
-<term>
-Deployment
-</term>
-<listitem>
-<itemizedlist>
-<listitem>
-<simpara>
-Easy deployment, using a proven-to-work combination of the several components.
-</simpara>
-</listitem>
-</itemizedlist>
-</listitem>
-</varlistentry>
-<varlistentry>
-<term>
-Fault Tolerance
-</term>
-<listitem>
-<itemizedlist>
-<listitem>
-<simpara>
-Single component error will not lead to whole system unavailability.
-</simpara>
-</listitem>
-</itemizedlist>
-</listitem>
-</varlistentry>
-<varlistentry>
-<term>
-Ease of Management/Operations
-</term>
-<listitem>
-<itemizedlist>
-<listitem>
-<simpara>
-Reduced complexity for solution management.
-</simpara>
-</listitem>
-</itemizedlist>
-</listitem>
-</varlistentry>
-<varlistentry>
-<term>
-Physical Footprint
-</term>
-<listitem>
-<itemizedlist>
-<listitem>
-<simpara>
-Compact solution that works within your existing infrastructure models.
-Flexibility
-</simpara>
-</listitem>
-<listitem>
-<simpara>
-Flexible building block approach allows sizing according to customer needs.
-Security
-</simpara>
-</listitem>
-<listitem>
-<simpara>
-Solution provides means to secure customer infrastructure.
-High performance
-</simpara>
-</listitem>
-<listitem>
-<simpara>
-Best practices are designed into the solution to ensure the best performance results.
-</simpara>
-</listitem>
-</itemizedlist>
-</listitem>
-</varlistentry>
-</variablelist>
-<simpara><emphasis role="strong">TRANSITION PARAGRAPH NEEDED?</emphasis></simpara>
+<table
+frame="all"
+rowsep="1" colsep="1"
+>
+<title>Data Analytics Solution Requirements</title>
+<tgroup cols="2">
+<colspec colname="col_1" colwidth="50*"/>
+<colspec colname="col_2" colwidth="50*"/>
+<thead>
+<row>
+<entry align="center" valign="top">Requirement Type      </entry>
+<entry align="left" valign="top">Details</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="center" valign="top"><simpara><emphasis role="strong">Existing Data Stores</emphasis></simpara></entry>
+<entry align="left" valign="top"><simpara><emphasis role="strong">Access data from a variety of data sources, including Hadoop data lakes, object stores, databases, and data warehouses, both in the cloud and on-premise.</emphasis></simpara></entry>
+</row>
+<row>
+<entry align="center" valign="top"><simpara><emphasis role="strong"></emphasis></simpara></entry>
+<entry align="left" valign="top"><simpara><emphasis role="strong">Perform data transformations, data quality, and data preparation processes.</emphasis></simpara></entry>
+</row>
+<row>
+<entry align="center" valign="top"><simpara><emphasis role="strong"></emphasis></simpara></entry>
+<entry align="left" valign="top"><simpara><emphasis role="strong">Define data pipelines and streams.</emphasis></simpara></entry>
+</row>
+<row>
+<entry align="center" valign="top"><simpara><emphasis role="strong"></emphasis></simpara></entry>
+<entry align="left" valign="top"><simpara><emphasis role="strong">Embed and productize scripts, programs, and algorithms of the Data Scientist.</emphasis></simpara></entry>
+</row>
+<row>
+<entry align="center" valign="top"><simpara><emphasis role="strong"></emphasis></simpara></entry>
+<entry align="left" valign="top"><simpara><emphasis role="strong">Productize open libraries or ML algorithms in one framework.</emphasis></simpara></entry>
+</row>
+<row>
+<entry align="center" valign="top"><simpara><emphasis role="strong">Distributed Data Processing</emphasis></simpara></entry>
+<entry align="left" valign="top"><simpara><emphasis role="strong">Distribute computational tasks to the native environments where the data reside.</emphasis></simpara></entry>
+</row>
+<row>
+<entry align="center" valign="top"><simpara><emphasis role="strong"></emphasis></simpara></entry>
+<entry align="left" valign="top"><simpara><emphasis role="strong">Remote Process scheduling:</emphasis></simpara></entry>
+</row>
+<row>
+<entry align="center" valign="top"><simpara><emphasis role="strong"></emphasis></simpara></entry>
+<entry align="left" valign="top"><simpara><emphasis role="strong">SAP Business Warehouse process chains.</emphasis></simpara></entry>
+</row>
+<row>
+<entry align="center" valign="top"><simpara><emphasis role="strong"></emphasis></simpara></entry>
+<entry align="left" valign="top"><simpara><emphasis role="strong">SAP Data Services dataflows.</emphasis></simpara></entry>
+</row>
+<row>
+<entry align="center" valign="top"><simpara><emphasis role="strong"></emphasis></simpara></entry>
+<entry align="left" valign="top"><simpara><emphasis role="strong">SAP HANA smart data integration Flowgraphs.</emphasis></simpara></entry>
+</row>
+<row>
+<entry align="center" valign="top"><simpara><emphasis role="strong">Governance</emphasis></simpara></entry>
+<entry align="left" valign="top"><simpara><emphasis role="strong">Establish and manage zones in a landscape with attached policies and services levels.</emphasis></simpara></entry>
+</row>
+<row>
+<entry align="center" valign="top"><simpara><emphasis role="strong"></emphasis></simpara></entry>
+<entry align="left" valign="top"><simpara><emphasis role="strong">Security and Access Control capabilities.</emphasis></simpara></entry>
+</row>
+<row>
+<entry align="center" valign="top"><simpara><emphasis role="strong">Orchestration</emphasis></simpara></entry>
+<entry align="left" valign="top"><simpara><emphasis role="strong">Workflow creation of operations and processes across the landscape with monitoring and analysis capabilities.</emphasis></simpara></entry>
+</row>
+<row>
+<entry align="center" valign="top"><simpara><emphasis role="strong"></emphasis></simpara></entry>
+<entry align="left" valign="top"><simpara><emphasis role="strong">Execution of end-to-end data processes, starting with the ingestion of data into the landscape (e.g. the data lake), including data processing, and leading up to the delivery or integration of the resulting data into enterprise processes and applications.</emphasis></simpara></entry>
+</row>
+<row>
+<entry align="center" valign="top"><simpara><emphasis role="strong">Data Ingestion and Processing</emphasis></simpara></entry>
+<entry align="left" valign="top"><simpara><emphasis role="strong">Data integration, cleansing, enrichment, masking and anonymization.</emphasis></simpara></entry>
+</row>
+<row>
+<entry align="center" valign="top"><simpara><emphasis role="strong">Data Discovery</emphasis></simpara></entry>
+<entry align="left" valign="top"><simpara><emphasis role="strong">Data Profiles for Big Data Sets showing quality and comprehensive structure information.</emphasis></simpara></entry>
+</row>
+<row>
+<entry align="center" valign="top"><simpara><emphasis role="strong"></emphasis></simpara></entry>
+<entry align="left" valign="top"><simpara><emphasis role="strong">Ability to crawl, discover, and tag data elements.</emphasis></simpara></entry>
+</row>
+<row>
+<entry align="center" valign="top"><simpara><emphasis role="strong"></emphasis></simpara></entry>
+<entry align="left" valign="top"><simpara><emphasis role="strong">Expose discovered data for further usage.</emphasis></simpara></entry>
+</row>
+<row>
+<entry align="center" valign="top"><simpara><emphasis role="strong">Scalability</emphasis></simpara></entry>
+<entry align="left" valign="top"><simpara><emphasis role="strong">Scalable Architecture, from small to big, test to production deployment.</emphasis></simpara></entry>
+</row>
+<row>
+<entry align="center" valign="top"><simpara><emphasis role="strong">Deployment</emphasis></simpara></entry>
+<entry align="left" valign="top"><simpara><emphasis role="strong">Easy deployment, using a proven-to-work combination of the several components.</emphasis></simpara></entry>
+</row>
+<row>
+<entry align="center" valign="top"><simpara><emphasis role="strong">Fault Tolerance</emphasis></simpara></entry>
+<entry align="left" valign="top"><simpara><emphasis role="strong">Single component error will not lead to whole system unavailability.</emphasis></simpara></entry>
+</row>
+<row>
+<entry align="center" valign="top"><simpara><emphasis role="strong">Ease of Management/Ops</emphasis></simpara></entry>
+<entry align="left" valign="top"><simpara><emphasis role="strong">Reduced complexity for solution management.</emphasis></simpara></entry>
+</row>
+<row>
+<entry align="center" valign="top"><simpara><emphasis role="strong">Physical Footprint</emphasis></simpara></entry>
+<entry align="left" valign="top"><simpara><emphasis role="strong">Compact solution that works within your existing infrastructure models.</emphasis></simpara></entry>
+</row>
+<row>
+<entry align="center" valign="top"><simpara><emphasis role="strong">Flexibility</emphasis></simpara></entry>
+<entry align="left" valign="top"><simpara><emphasis role="strong">Flexible building block approach allows sizing according to customer needs.</emphasis></simpara></entry>
+</row>
+<row>
+<entry align="center" valign="top"><simpara><emphasis role="strong">Security</emphasis></simpara></entry>
+<entry align="left" valign="top"><simpara><emphasis role="strong">Solution provides means to secure customer infrastructure.</emphasis></simpara></entry>
+</row>
+<row>
+<entry align="center" valign="top"><simpara><emphasis role="strong">High performance</emphasis></simpara></entry>
+<entry align="left" valign="top"><simpara><emphasis role="strong">Best practices are designed into the solution to ensure the best performance results.</emphasis></simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+<simpara>With a solid understanding of your requirements, you can now begin to design the solution.  The following section will outline the key concepts in the software architecture of the SAP Data Hub reference configuration.</simpara>
 </chapter>
 <chapter id="_software_architecture">
 <title>Software Architecture</title>
-<simpara>This section will outline the key concepts in the software architecture of the SAP Data Hub reference configuration. <emphasis role="strong">NEED MORE</emphasis></simpara>
-</chapter>
-<chapter id="_sap_data_hub">
+<section id="_sap_data_hub">
 <title>SAP Data Hub</title>
 <simpara>SAP Data Hub offers data management capabilities to help customers manage their growing amount of data. This solution combines data governance, management of data pipelines and data integration using a single visual interface and without the need of moving data into a central data warehouse.  <xref linkend="img-Solution_Architecture"/> shows a high-level view of the architectural components designed to handle a wide range of enterprise applications scenarios.  The optional Hadoop cluster can be used as the main software platform for handling composition of application data.</simpara>
 <figure id="img-Solution_Architecture"><title>SAP Data Hub Architecture</title>
@@ -327,7 +277,6 @@ SAP HANA is SAP&#8217;s premiere, in-memory database. HANA provides ultra-low la
 </listitem>
 </varlistentry>
 </variablelist>
-<simpara><emphasis role="strong">JvV:  THIS IS USED FOR INTERNAL-ONLY TRACKING OF METADATA.  SEPARATE FROM ANY HANA DB THE CUSTOMER MIGHT BE USING - NEED TO RE-WORD</emphasis></simpara>
 <variablelist>
 <varlistentry>
 <term>
@@ -335,7 +284,7 @@ Container Registry
 </term>
 <listitem>
 <simpara>
-SAP Data Hub requires a Docker repository for container images. This can be a publicly accessible site or a private collection of workload images. Other public or private registry sites can be used to provide files like Helm charts to deploy complete services. Although the private Docker registry is not part of the SUSE CaaS Platform, you can either build an on-premise instance using the Containers Module Add-on included with SUSE Linux Enterprise Sever for SAP along with the SUSE Portus (<ulink url="http://port.us.org">http://port.us.org</ulink>) package or deploying this as a container directly on SUSE CaaS Platform.  Portus is an open source on-premise authorization service that allows users to administrate and secure their Docker registries with fine grained control.
+SAP Data Hub requires a Docker repository for container images. This can be a publicly accessible site or a private collection of workload images. Other public or private registry sites can be used to provide files like Helm charts to deploy complete services. Although the private Docker registry is not part of the SUSE SAP Data Hub with SUSE CaaS Platform, you can either build an on-premise instance using the Containers Module Add-on included with SUSE Linux Enterprise Sever for SAP along with the SUSE Portus (<ulink url="http://port.us.org">http://port.us.org</ulink>) package or deploying this as a container directly on SUSE SAP Data Hub with SUSE CaaS Platform.  Portus is an open source on-premise authorization service that allows users to administrate and secure their Docker registries with fine grained control.
 </simpara>
 </listitem>
 </varlistentry>
@@ -350,14 +299,14 @@ An optional Hadoop cluster can be built on dedicated nodes and co-located with S
 </listitem>
 </varlistentry>
 </variablelist>
-<simpara><emphasis role="strong">TRANSITION PARAGRAPH NEEDED?</emphasis></simpara>
-<section id="_suse_caas_platform">
-<title>SUSE CaaS Platform</title>
-<simpara>SUSE CaaS Platform is an integrated software platform which automates the tasks of building, managing and upgrading Kubernetes clusters. It combines the benefits of an enterprise-ready operating system with the agility of an orchestration platform for containerized applications such as SAP Data Hub.</simpara>
-<simpara>While there are several top tier Kubernetes offerings in the market, SUSE CaaS Platform stands out for its ease of installation and configuration, DevOps integration (via <ulink url="https://www.suse.com/products/cloud-application-platform/">SUSE Cloud Application Platform</ulink>), and enterprise level of operability and scalability.</simpara>
+</section>
+<section id="_suse_sap_data_hub_with_suse_caas_platform">
+<title>SUSE SAP Data Hub with SUSE CaaS Platform</title>
+<simpara>SUSE SAP Data Hub with SUSE CaaS Platform is an integrated software platform which automates the tasks of building, managing and upgrading Kubernetes clusters. It combines the benefits of an enterprise-ready operating system with the agility of an orchestration platform for containerized applications such as SAP Data Hub.</simpara>
+<simpara>While there are several top tier Kubernetes offerings in the market, SUSE SAP Data Hub with SUSE CaaS Platform stands out for its ease of installation and configuration, DevOps integration (via <ulink url="https://www.suse.com/products/cloud-application-platform/">SUSE Cloud Application Platform</ulink>), and enterprise level of operability and scalability.</simpara>
 <simpara>One of the biggest challenges for Kubernetes operators is matching the scalability of the node level infrastructure with that of the overlaying container infrastructure. Inconsistently applied software changes as well as node configuration drift create ticking time bombs in production Kubernetes clusters.</simpara>
-<simpara>SUSE CaaS Platform (<xref linkend="img-CaaSP_Detailed_Architecture"/>) resolves these problems with a combination of SUSE MicroOS as the container host operating system and Salt for configuration management. SUSE MicroOS is a mission-specific derivative of SUSE Linux Enterprise Server (SLES). While MicroOS leverages the same codebase and packages, its implementation ensures that software changes are applied atomically and within a snapshot-protected environment. The combination of MicroOS and Salt guarantees that all nodes in a cluster are always in a known and consistent state. The troubleshooting nightmares of discovering a single node with a partially-failed configuration or software change are a thing of the past.</simpara>
-<figure id="img-CaaSP_Detailed_Architecture"><title>SUSE CaaS Platform Architecture</title>
+<simpara>SUSE SAP Data Hub with SUSE CaaS Platform (<xref linkend="img-CaaSP_Detailed_Architecture"/>) resolves these problems with a combination of SUSE MicroOS as the container host operating system and Salt for configuration management. SUSE MicroOS is a mission-specific derivative of SUSE Linux Enterprise Server (SLES). While MicroOS leverages the same codebase and packages, its implementation ensures that software changes are applied atomically and within a snapshot-protected environment. The combination of MicroOS and Salt guarantees that all nodes in a cluster are always in a known and consistent state. The troubleshooting nightmares of discovering a single node with a partially-failed configuration or software change are a thing of the past.</simpara>
+<figure id="img-CaaSP_Detailed_Architecture"><title>SUSE SAP Data Hub with SUSE CaaS Platform Architecture</title>
 <mediaobject>
   <imageobject>
   <imagedata fileref="CaaSP_Detailed_Architecture.png"/>
@@ -365,11 +314,11 @@ An optional Hadoop cluster can be built on dedicated nodes and co-located with S
   <textobject><phrase>CaaSP_Detailed_Architecture</phrase></textobject>
 </mediaobject>
 </figure>
-<simpara>A SUSE CaaS Platform (<xref linkend="img-CaaSP_Nodes"/>) consists of the following node types:</simpara>
+<simpara>A SUSE SAP Data Hub with SUSE CaaS Platform (<xref linkend="img-CaaSP_Nodes"/>) consists of the following node types:</simpara>
 <variablelist>
 <varlistentry>
 <term>
-SUSE CaaS Platform Administration Node
+SUSE SAP Data Hub with SUSE CaaS Platform Administration Node
 </term>
 <listitem>
 <simpara>
@@ -401,27 +350,27 @@ The Administration Node of the SUSE {Product Name} manages the deployment of the
 </varlistentry>
 <varlistentry>
 <term>
-SUSE CaaS Platform Kubernetes Master Nodes
+SUSE SAP Data Hub with SUSE CaaS Platform Kubernetes Master Nodes
 </term>
 <listitem>
 <simpara>
-The CaaS Platform Master Nodes maintain the Kubernetes control plane services. These services run as containers on the Master Nodes. While three or more Master Nodes (always an odd number) are required for high availability of the Kubernetes control plane, a single Master Node is acceptable for demonstration purposes.
+The SAP Data Hub with SUSE CaaS Platform Master Nodes maintain the Kubernetes control plane services. These services run as containers on the Master Nodes. While three or more Master Nodes (always an odd number) are required for high availability of the Kubernetes control plane, a single Master Node is acceptable for demonstration purposes.
 </simpara>
 </listitem>
 </varlistentry>
 <varlistentry>
 <term>
-SUSE CaaS Platform Kubernetes Worker Nodes
+SUSE SAP Data Hub with SUSE CaaS Platform Kubernetes Worker Nodes
 </term>
 <listitem>
 <simpara>
-The CaaS Platform Kubernetes Worker Nodes run the SAP Data Hub application containers. SAP Data Hub requires a minimum of three Kubernetes Worker Nodes (four worker nodes for production) and SUSE currently supports CaaS Platform clusters of up to 150 nodes. Additional Worker Nodes can be added to a Production CaaS Platform cluster non-disruptively.
+The SAP Data Hub with SUSE CaaS Platform Kubernetes Worker Nodes run the SAP Data Hub application containers. SAP Data Hub requires a minimum of three Kubernetes Worker Nodes (four worker nodes for production) and SUSE currently supports SAP Data Hub with SUSE CaaS Platform clusters of up to 150 nodes. Additional Worker Nodes can be added to a Production SAP Data Hub with SUSE CaaS Platform cluster non-disruptively.
 </simpara>
 </listitem>
 </varlistentry>
 </variablelist>
 <note><simpara>SAP specifies that each worker node must have a least 8 cores and 64GB of main memory.</simpara></note>
-<figure id="img-CaaSP_Nodes"><title>SUSE CaaS Platform Node Configuration</title>
+<figure id="img-CaaSP_Nodes"><title>SUSE SAP Data Hub with SUSE CaaS Platform Node Configuration</title>
 <mediaobject>
   <imageobject>
   <imagedata fileref="CaaSP_Nodes.png"/>
@@ -441,16 +390,15 @@ SUSE Cloud Application Platform (CAP) is a DevOps toolset that speeds enterprise
 </listitem>
 </varlistentry>
 </variablelist>
-<simpara><emphasis role="strong">BG:  ADD HOW YOU CREATE ANALYTICS (SIDECAR TYPES OF) WORKLOADS WITH CAP.  DEV TEAM/SA PEERS</emphasis></simpara>
-<simpara><emphasis role="strong">TRANSITION PARAGRAPH NEEDED?</emphasis></simpara>
 </section>
-<section id="_storage_architecture">
+</chapter>
+<chapter id="_storage_architecture">
 <title>Storage Architecture</title>
 <simpara>The storage layer of this solution leverages the Software Defined Storage capabilities of SUSE Enterprise Storage (SES). SES is a commercially supported distribution of the Ceph enterprise grade, scale out storage solution.</simpara>
 <simpara>Ceph is a scale out, distributed object store which provides excellent performance, scalability and reliability. In most use cases clients use Linux kernel libraries to read and write object and block data directly to/from a storage node in the SES cluster. SES also provides gateway options to support data access via iSCSI, NFS, S3, and Swift protocols.</simpara>
 <simpara>The storage capacity of the SES solution can be expanded easily by integrating additional storage nodes to the cluster. Exiting storage nodes will take care of redistributing the data to the newly added nodes without interrupting the availability of storage services to the clients.</simpara>
 <simpara>SES provides a reliable, scalable storage layer for the complete solution that supports:
-* Dynamically provisioned block storage volumes to the pods running on SUSE CaaS Platform
+* Dynamically provisioned block storage volumes to the pods running on SUSE SAP Data Hub with SUSE CaaS Platform
 * (Optionally) Block storage volumes for the co-located Hadoop cluster nodes, if configured
 * Object storage through an S3-API compatible interface for additional data storage and backups</simpara>
 <variablelist>
@@ -460,14 +408,12 @@ Dynamically Provisioned Storage Volumes
 </term>
 <listitem>
 <simpara>
-In addition to providing block storage to the optional Hadoop cluster, a pod running on CaaS Platform can gain access to dynamically provisioned Kubernetes persistent volumes (PV) through Kubernetes persistent volume claims (PVC). Persistent volumes are created as block devices in the supporting SES cluster. CaaS Platform uses persistent volume claims (PVC)s to obtain dynamically provisioned persistent volumes through the Software Defined Storage mechanisms in SES. When a PVC is removed, the persistent volume and its associated block storage device in SES are automatically removed.
+In addition to providing block storage to the optional Hadoop cluster, a pod running on SAP Data Hub with SUSE CaaS Platform can gain access to dynamically provisioned Kubernetes persistent volumes (PV) through Kubernetes persistent volume claims (PVC). Persistent volumes are created as block devices in the supporting SES cluster. SAP Data Hub with SUSE CaaS Platform uses persistent volume claims (PVC)s to obtain dynamically provisioned persistent volumes through the Software Defined Storage mechanisms in SES. When a PVC is removed, the persistent volume and its associated block storage device in SES are automatically removed.
 </simpara>
 </listitem>
 </varlistentry>
 </variablelist>
-</section>
-</chapter>
-<chapter id="_software_and_systems_management">
+<section id="_software_and_systems_management">
 <title>Software and Systems Management</title>
 <simpara>A scale-out SAP HANA model is utilized to handle rapid data growth. As your SAP environment expands, you will need a dependable method of updating your SAP HANA servers.  SUSE Manager enables you to efficiently manage a set of Linux systems and keep them up-to-date. The benefits in a SAP HANA scale-out setup are:</simpara>
 <variablelist>
@@ -553,101 +499,333 @@ Use your resources effectively.
 </listitem>
 </varlistentry>
 </variablelist>
+</section>
 </chapter>
 <chapter id="_hardware_architecture">
 <title>Hardware Architecture</title>
-<simpara>TBD: This is a drop-in section for IHV Partner.</simpara>
-<simpara>HPE Synergy, the first Composable Infrastructure, empowers IT to create and deliver new value easily and continuously. This single infrastructure reduces operational complexity for traditional workloads and increases operational velocity for the new breed of applications and services. Through a single interface, HPE Synergy composes compute, storage and fabric pools into any configuration for any application. It also enables a broad range of workloads from bare metal to virtual machines to containers, and operational models like hybrid cloud and DevOps. HPE Synergy enables IT to rapidly react to new business demands with the following components:</simpara>
-<variablelist>
-<varlistentry>
-<term>
-HPE Synergy 12000 Frame
-</term>
-<listitem>
+<simpara>This reference defines a private proof-of-concept cluster.  Other guides will address cloud-based and production environments.  The proof-of-concept cluster is a starting point for prototyping real-world applications that are meant to go into product.  As such, a proof-of-concept cluster can easily be grown into a production environment.  Further, a private deployment is useful for secure, in-house prototyping, but is also not restricted from using cloud-based applications and data.  SAP Data Hub can manage data from locations both behind the firewall and in the cloud.</simpara>
+<simpara>The backbone of the application environment is the Kubernetes cluster, as implemented in the SUSE SAP Data Hub with SUSE CaaS Platform software.  As described in the architecture section above, this cluster can be implemented on low-cost, commodity hardware, typicall 1U racked boxes with 2-socket processors.  The application environment reflects a key aspect of growth from prototyping to production.  In a PoC, there are typically few application containers, as developers are gaining experience building, deploying, and managing code as containers on the new software environment.  As such, there are less demands on the hardware for resources, particularly main memory.  Memory can easily be expanded, as the cluster needs grow.  Processor speed, on the other hand, is something to carefully consider.  It is not as easy to swap processors, so choosing a medium to high-end Xeon processor with many cores is a good idea.</simpara>
+<simpara>It is recommended to start with a minimum 2-socket Xeon processor with 6 to 12 cores.  Memory can be a meager 32GB.  Local storage on the cluster is used primarily for the operating system and any application temporary data.  A common choice is a RAID1 configuration of operating system disks, each with a minimum of 256GB.  SSD is the recommended choice, as it speeds operations and doesn&#8217;t add considerable cost to the cluster in this case.  Networking is another key performance area, so 10GbE NICs are a minimum recommendation.  You can start with 1 NIC, but that is a bare minimum and 2 or more NICs will be needed for specific network requirements, based on your application needs.  In particular, high-bandwidth data pipelines will move lots of data to the cluster storage and can easily saturate a single NIC.  Consider mapping 1 high-speed NIC to those storage requirements.</simpara>
+<simpara>As described in the SUSE SAP Data Hub with SUSE CaaS Platform section above, a minimum of 5 nodes will be required: 1 as the administration node, 1 master node, and 3 worker nodes.  Any <ulink url="https://www.suse.com/yessearch/">SUSE YES</ulink> certified HPE platform can be used for the physical nodes of this deployment, as long as the certification refers to the major version of the underlying SUSE operating system required by the SUSE SAP Data Hub with SUSE CaaS Platform release.</simpara>
+<figure id="img-SAP-SUSE_DataHub_Arch_ProLiant"><title>SUSE SAP Data Hub with SUSE CaaS Platform Architecture</title>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="SAP-SUSE-DataHub-Arch-ProLiant.png"/>
+  </imageobject>
+  <textobject><phrase>ProLiant_DataHub_Arch</phrase></textobject>
+</mediaobject>
+</figure>
+<section id="_compute">
+<title>Compute</title>
+<simpara>One key benefit of a this data analytics implementation is that HPE industry-standard servers can fulfill each of the resource node&#8217;s computational needs. To reduce the time spent on hardware specification for an initial proof of concept implementation, the hardware should be general purpose and allow for a wide range of configuration options. The industry leading HPE ProLiant rack mount servers with their high performance, multitude of network options and low energy consumption characteristics are ideal virtualization and storage nodes.</simpara>
+<simpara>For this the implementation, HPE ProLiant DL360 servers were utilized for all node roles. The main distinction is higher-end specifications for the compute node, with more CPU cores and higher amounts of RAM, to host the required workloads.</simpara>
+<simpara>The following considerations for the system platforms should be attended to:</simpara>
+<note><simpara>Any <ulink url="https://www.suse.com/yessearch/">SUSE YES</ulink> certified HPE platform, like the HPE ProLiant DL360, can be used for the physical nodes of this deployment, as long as the certification refers to the major version of the underlying SUSE operating system required by the SAP Data Hub with SUSE CaaS Platform release.</simpara></note>
 <itemizedlist>
 <listitem>
 <simpara>
-is uniquely architected as Composable Infrastructure (CI) to match the powerful <emphasis>infrastructure-as-code</emphasis> capabilities of the HPE intelligent software architecture. Flexible access to compute, storage, and fabric resources enables the customer to maximize their resource usage and ability to repurpose underutilizied resources. Linking multiple HPE Synergy Frames efficiently scales the infrastructure with a dedicated single view of the entire management network.
+Ensure that all similar system devices are consistent and up-to-date with regard to BIOS/uEFI/device firmware versions to reduce potential troubleshooting issues later
 </simpara>
 </listitem>
 <listitem>
 <simpara>
-allows creating multiple composable domains in the infrastructure can efficiently deliver available resources to the business. HPE Synergy Frames reduce complexity by using intelligent auto-discovery to find all available resources to accelerate workload deployments. This drives IT efficiency as the business grows and delivers balanced performance across resources to increase solution effectiveness.
+Reset the BIOS setup configuration to the default setting to have a known baseline configuration to provide consistency.
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+If possible, setup RAID1 mirroring on the storage controller across a pair of drives for the operating system installation
 </simpara>
 </listitem>
 </itemizedlist>
-</listitem>
-</varlistentry>
-<varlistentry>
-<term>
-HPE Synergy Composer
-</term>
-<listitem>
+<tip><simpara>HPE OneView can be setup with Server Profile Templates to apply to the various node roles and consistently deliver platform systems into a known state.</simpara></tip>
+</section>
+<section id="_storage">
+<title>Storage</title>
+<simpara>Discussed under the Storage Architecture section, the storage layer of this solution leverages the Software Defined Storage capabilities as provided by SUSE Enterprise Storage.</simpara>
+<simpara>SAP Data Hub and SUSE CaaS Platform are the base framework for a data analytics environment.  The data analytics you execute will be defined by a set of application containers will run on the SUSE CaaS Platform.  These containers will access data across your company&#8217;s infrastructure and may store derived results in SUSE Enterprise Storage.  As you define the workflow of your data analytics applications, you will need to access data across many different storage system in your enterprise.  This access is beyond the scope of this architecture, but it is important to understand that data access will be required to a wide range of disparate storage systems.</simpara>
+<simpara>The SUSE Enterprise Storage cluster can be utilized to store both intermediary and final results from the data analytics pipeline.  In other words, as your data analytics applications derive new data results, those are typically store in SUSE Enterprise Storage.  This allows the data analytics environment (SAP Data Hub, SUSE SAP Data Hub with SUSE CaaS Platform, and your data analytics applications) to be logically organized in one physical location.</simpara>
+</section>
+<section id="_network">
+<title>Network</title>
+<simpara>Networking is the technology component which typically requires the most advance planning.  Your data analytics applications will have unique network access requirements, especially when integrated with an existing IT infrastructure. For the physical level, using pairs of HPE FlexFabric Switch Series devices as top-of-rack (ToR) switches allows all servers, each having multiple 10GbE, or higher speed, NIC ports, to form a link aggregation group (LAG) across the ports with at least one NIC port on each switch in the stack. When using network interface bonding on the resource nodes, the LAG ideally offers switch redundancy within the rack and enables high availability throughout the infrastructure.</simpara>
+<simpara>For this proof of concept deployment, a single 10GbE switch is used, having all resource nodes 10GbE NIC ports connected here, but could easily be expanded to the dual ToR configuration at a later date. To address management functions, the iLO, out-of-band interface can be connected to the same or another network switch infrastructure, but are fundamentally required to be accessible for the deployment.</simpara>
+<simpara>The following considerations for the network switching configuration should be attended to:</simpara>
 <itemizedlist>
 <listitem>
 <simpara>
-provides the enterprise-level management to compose and deploy system resources to your application needs. This management appliance uses software-defined intelligence with embedded HPE OneView to aggregate compute, storage, and fabric resources in a manner that scales to your application needs, instead of being restricted to the fixed ratios of traditional resource offerings. HPE Synergy template-based provisioning enables fast time to service with a single point for defining compute module state, pooled storage, network connectivity, and boot image.
+Configure 802.3ad for system port bonding to get the maximum performance of bonded network interfaces
 </simpara>
 </listitem>
 <listitem>
 <simpara>
-is a comprehensive unifying management interface designed for converged infrastructure management. A unifying platform increases the productivity of every member of the internal IT team across servers, storage, and networking. By streamlining processes, incorporating best practices, and creating a new holistic way to work, HPE OneView provides organizations with a more efficient way to work. It is designed for open integration with existing tools and processes to extend these efficiencies.
-</simpara>
-</listitem>
-<listitem>
-<simpara>
-is instrumental for the deployment and management of HPE servers and enclosure networking. It collapses infrastructure management tools into a single resource-oriented architecture that provides direct access to all logical and physical resources of the solution. Logical resources include server profiles and server profile templates, enclosures and enclosure groups, and logical interconnects and logical interconnect groups. Physical resources include server hardware blades and rack servers, networking interconnects, and computing resources.
-</simpara>
-</listitem>
-<listitem>
-<simpara>
-offers a uniform console for administrators to interact with resources by providing a RESTful API foundation. The RESTful APIs enable administrators to utilize a growing ecosystem of integrations to further expand the advantages of the integrated resource model that removes the need for the administrator to enter and maintain the same configuration data more than once and keep all versions up to date. It encapsulates and abstracts many underlying tools behind the integrated resource model, so the administrator can operate with new levels of simplicity, speed, and agility to provision, monitor, and maintain the solution.
+Ensure that all similar switching devices are consistent and up-to-date with regard to firmware versions to reduce potential troubleshooting issues later.
 </simpara>
 </listitem>
 </itemizedlist>
-</listitem>
-</varlistentry>
-<varlistentry>
-<term>
-HPE Synergy ImageStreamer
-</term>
-<listitem>
-<itemizedlist>
-<listitem>
-<simpara>
-can quickly provision an operating environment across a large number infrastructure blocks or nodes. It can deploy and update many systems quickly, possibly as fast of you can reboot servers, to quickly expand or change environments. This management capability is implemented using redundant physical appliances for production environments to maintain high availability in operations. These management appliances are automatically set up with active-active storage to control and protect your image repository. Your image content might contain an OS or even a complete application stack. Your images can be quickly applied to multiple compute nodes to optimize your IT service deliveries.
-</simpara>
-</listitem>
-</itemizedlist>
-</listitem>
-</varlistentry>
-</variablelist>
-<note><simpara>At this point, HPE Synergy ImageStreamer does not yet support Btrfs-based operating system node deployments, which is the basis for SUSE CaaS Platform. So this technology is not utilized or detailed in this solution document.</simpara></note>
-<variablelist>
-<varlistentry>
-<term>
-HPE Synergy 480 Gen10 Compute Module
-</term>
-<listitem>
-<itemizedlist>
-<listitem>
-<simpara>
-delivers an efficient and flexible two-socket workhorse to support most demanding workloads. Powered by Intel® Xeon® Scalable Family of processors, up to 3TB DDR4, more storage capacity and controllers and a variety of GPU options within a composable architecture. HPE Synergy 480 Gen10 Compute Module is the ideal platform for general-purpose enterprise workload performance now and in the future.
-</simpara>
-</listitem>
-</itemizedlist>
-</listitem>
-</varlistentry>
-</variablelist>
-<simpara>For this the implementation, HPE Synergy 480 Gen10 servers were utilized for all node roles. Example configurations are included in the Appendices.</simpara>
-<note><simpara>Any <ulink url="https://www.suse.com/yessearch/">SUSE YES</ulink> certified HPE platform, like the HPE Synergy 480 Gen10, can be used for the physical nodes of this deployment, as long as the certification refers to the major version of the underlying SUSE operating system required by the SUSE CaaS Platform release.</simpara></note>
-</chapter>
-<chapter id="_deployment">
-<title>Deployment</title>
-<simpara>This section is intentionally blank, as we want to discuss the deployment tradeoffs with IHV partners before completion.</simpara>
+</section>
 </chapter>
 <chapter id="_bill_of_materials">
 <title>Bill of Materials</title>
-<simpara>This section is intentionally blank, as we want to discuss the hardware decisions with IHV partners before completion.</simpara>
+<simpara>The HPE ProLiant DL360 series Gen10 server is an excellent platform for a proof-of-concept implementation of SAP Data Hub on SUSE CaaS Platform software.  The DL360 provides powerful, dense compute and storage capabilities via the servers selected for this reference architecture.
+And the ProLiant iLO management capability is a key piece of the management infrastructure for a data analytics cluster.</simpara>
+<section id="_hpe_proliant_dl360_gen10_servers">
+<title>HPE ProLiant DL360 Gen10 Servers</title>
+<table
+frame="all"
+rowsep="1" colsep="1"
+>
+<title>Bill of Materials - HPE ProLiant DL360 Systems</title>
+<tgroup cols="5">
+<colspec colname="col_1" colwidth="20*"/>
+<colspec colname="col_2" colwidth="20*"/>
+<colspec colname="col_3" colwidth="20*"/>
+<colspec colname="col_4" colwidth="20*"/>
+<colspec colname="col_5" colwidth="20*"/>
+<thead>
+<row>
+<entry align="left" valign="top"><emphasis role="strong"><emphasis>Role</emphasis></emphasis></entry>
+<entry align="left" valign="top"><emphasis role="strong"><emphasis>Quantity</emphasis></emphasis></entry>
+<entry align="left" valign="top"><emphasis role="strong"><emphasis>Product Number</emphasis></emphasis></entry>
+<entry align="left" valign="top"><emphasis role="strong"><emphasis>Product_Name</emphasis></emphasis></entry>
+<entry align="left" valign="top"><emphasis role="strong"><emphasis>Description</emphasis></emphasis></entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara>Administration</simpara></entry>
+<entry align="left" valign="top"><simpara>1</simpara></entry>
+<entry align="left" valign="top"><simpara>755259-B21</simpara></entry>
+<entry align="left" valign="top"><simpara>ProLiant DL360 Gen9</simpara></entry>
+<entry align="left" valign="top"><simpara>HPE ProLiant DL360 Gen9 4LFF Configure-to-order Server HPE Dynamic Smart Array B140i, 4-Bay LFF Drive Cage</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>1</simpara></entry>
+<entry align="left" valign="top"><simpara>755382-L21</simpara></entry>
+<entry align="left" valign="top"><simpara>Processor</simpara></entry>
+<entry align="left" valign="top"><simpara>Intel Xeon E5-2620v3 (2.4GHz/6-core/15MB/85W)</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>4</simpara></entry>
+<entry align="left" valign="top"><simpara>726718-B21</simpara></entry>
+<entry align="left" valign="top"><simpara>Memory</simpara></entry>
+<entry align="left" valign="top"><simpara>8GB (1x8GB) Single Rank x4 DDR4-2133 CAS-15-15-15 Registered Memory Kit</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>1</simpara></entry>
+<entry align="left" valign="top"><simpara>665243-B21</simpara></entry>
+<entry align="left" valign="top"><simpara>Flexible LOM</simpara></entry>
+<entry align="left" valign="top"><simpara>HPE Ethernet 10Gb 2-port 560FLR-SFP+ FIO Adapter</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>2</simpara></entry>
+<entry align="left" valign="top"><simpara>720478-B21</simpara></entry>
+<entry align="left" valign="top"><simpara>Power Supplies</simpara></entry>
+<entry align="left" valign="top"><simpara>HPE 500W Flex Slot Platinum Hot Plug Power supply Kit</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>1</simpara></entry>
+<entry align="left" valign="top"><simpara>749974-B21</simpara></entry>
+<entry align="left" valign="top"><simpara>Storage Controller</simpara></entry>
+<entry align="left" valign="top"><simpara>HPE Smart Array P440ar/2GB FBWC 12Gb 2-ports Int FIO SAS Controller</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>1</simpara></entry>
+<entry align="left" valign="top"><simpara>766211-B21</simpara></entry>
+<entry align="left" valign="top"><simpara>Storage cable</simpara></entry>
+<entry align="left" valign="top"><simpara>HPE DL360 Gen9 LFF P440ar/H240ar SAS Cbl</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>2</simpara></entry>
+<entry align="left" valign="top"><simpara>652757-B21</simpara></entry>
+<entry align="left" valign="top"><simpara>Hard Drives</simpara></entry>
+<entry align="left" valign="top"><simpara>HPE 2TB 6G SAS 7.2K rpm LFF (3.5-inch) SC Midline 1yr Warranty Hard Drive</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>1</simpara></entry>
+<entry align="left" valign="top"><simpara>663202-B21</simpara></entry>
+<entry align="left" valign="top"><simpara>Rail Kit</simpara></entry>
+<entry align="left" valign="top"><simpara>HPE 1U Large Form Factor Ball Bearing Rail Kit</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>1</simpara></entry>
+<entry align="left" valign="top"><simpara>663203-B21</simpara></entry>
+<entry align="left" valign="top"><simpara>Cable Management Arm</simpara></entry>
+<entry align="left" valign="top"><simpara>HPE 1U Cable Management Arm for Ball Bearing Rail Kit</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Master</simpara></entry>
+<entry align="left" valign="top"><simpara>1</simpara></entry>
+<entry align="left" valign="top"><simpara>755259-B21</simpara></entry>
+<entry align="left" valign="top"><simpara>ProLiant DL360 Gen9</simpara></entry>
+<entry align="left" valign="top"><simpara>HPE ProLiant DL360 Gen9 4LFF Configure-to-order Server HPE Dynamic Smart Array B140i, 4-Bay LFF Drive Cage</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>1</simpara></entry>
+<entry align="left" valign="top"><simpara>755382-L21</simpara></entry>
+<entry align="left" valign="top"><simpara>Processor 1</simpara></entry>
+<entry align="left" valign="top"><simpara>Intel® Xeon® E5-2690v3 (2.6GHz/12-core/30MB/135W) FIO Processor Kit</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>1</simpara></entry>
+<entry align="left" valign="top"><simpara>755382-B21</simpara></entry>
+<entry align="left" valign="top"><simpara>Processor 2</simpara></entry>
+<entry align="left" valign="top"><simpara>Intel® Xeon® E5-2690v3 (2.6GHz/12-core/30MB/135W) FIO Processor Kit</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>4</simpara></entry>
+<entry align="left" valign="top"><simpara>726718-B21</simpara></entry>
+<entry align="left" valign="top"><simpara>Memory for 1st processor</simpara></entry>
+<entry align="left" valign="top"><simpara>8GB (1x8GB) Single Rank x4 DDR4-2133 CAS-15-15-15 Registered Memory Kit</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>4</simpara></entry>
+<entry align="left" valign="top"><simpara>726718-B21</simpara></entry>
+<entry align="left" valign="top"><simpara>Memory for 2nd processor</simpara></entry>
+<entry align="left" valign="top"><simpara>8GB (1x8GB) Single Rank x4 DDR4-2133 CAS-15-15-15 Registered Memory Kit</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>1</simpara></entry>
+<entry align="left" valign="top"><simpara>665243-B21</simpara></entry>
+<entry align="left" valign="top"><simpara>FlexibleLOM</simpara></entry>
+<entry align="left" valign="top"><simpara>HPE Ethernet 10Gb 2-port 560FLR-SFP+ FIO Adapter</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>2</simpara></entry>
+<entry align="left" valign="top"><simpara>720478-B21</simpara></entry>
+<entry align="left" valign="top"><simpara>Power Supplies</simpara></entry>
+<entry align="left" valign="top"><simpara>HPE 800W Flex Slot Platinum Hot Plug Power Supply Kit</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>4</simpara></entry>
+<entry align="left" valign="top"><simpara>765424-B21</simpara></entry>
+<entry align="left" valign="top"><simpara>Hard Drives</simpara></entry>
+<entry align="left" valign="top"><simpara>HPE 600GB 12G SAS 15K rpm LFF (3.5-inch) SC Enterprise 3yr Warranty Hard Drive</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>1</simpara></entry>
+<entry align="left" valign="top"><simpara>749974-B21</simpara></entry>
+<entry align="left" valign="top"><simpara>Storage Controller</simpara></entry>
+<entry align="left" valign="top"><simpara>HPE Smart Array P440ar/2GB FBWC 12Gb 2-ports Int FIO SAS Controller</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>1</simpara></entry>
+<entry align="left" valign="top"><simpara>766211-B21</simpara></entry>
+<entry align="left" valign="top"><simpara>Storage Cable</simpara></entry>
+<entry align="left" valign="top"><simpara>HPE DL360 Gen9 LFF P440ar/H240ar SAS Cbl</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>1</simpara></entry>
+<entry align="left" valign="top"><simpara>663202-B21</simpara></entry>
+<entry align="left" valign="top"><simpara>Rail Kit</simpara></entry>
+<entry align="left" valign="top"><simpara>HPE 1U Large Form Factor Ball Bearing Rail Kit</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>1</simpara></entry>
+<entry align="left" valign="top"><simpara>663203-B21</simpara></entry>
+<entry align="left" valign="top"><simpara>Cable Management Arm</simpara></entry>
+<entry align="left" valign="top"><simpara>HPE 1U Cable Management Arm for Ball Bearing Rail Kit</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Compute</simpara></entry>
+<entry align="left" valign="top"><simpara>3</simpara></entry>
+<entry align="left" valign="top"><simpara>755258-B21</simpara></entry>
+<entry align="left" valign="top"><simpara>ProLiant DL360 Gen9</simpara></entry>
+<entry align="left" valign="top"><simpara>HPE ProLiant DL360 Gen9 8SFF Configure-to-order Server HPE Dynamic Smart Array B140i, 8-Bay SFF Drive Cage</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>1</simpara></entry>
+<entry align="left" valign="top"><simpara>780003-L21</simpara></entry>
+<entry align="left" valign="top"><simpara>Processor 1</simpara></entry>
+<entry align="left" valign="top"><simpara>Intel® Xeon® E5-2699v3 (2.6GHz/18-core/45MB/145W) FIO Processor Kit</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>1</simpara></entry>
+<entry align="left" valign="top"><simpara>780003-B21</simpara></entry>
+<entry align="left" valign="top"><simpara>Processor 2</simpara></entry>
+<entry align="left" valign="top"><simpara>Intel® Xeon® E5-2699v3 (2.6GHz/18-core/45MB/145W) FIO Processor Kit</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>4</simpara></entry>
+<entry align="left" valign="top"><simpara>726718-B21</simpara></entry>
+<entry align="left" valign="top"><simpara>Memory for 1st processor</simpara></entry>
+<entry align="left" valign="top"><simpara>8GB (1x8GB) Dual Rank x4 DDR4-2133 CAS-15-15-15 Registered Memory Kit</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>4</simpara></entry>
+<entry align="left" valign="top"><simpara>726718-B21</simpara></entry>
+<entry align="left" valign="top"><simpara>Memory for 2nd processor</simpara></entry>
+<entry align="left" valign="top"><simpara>8GB (1x8GB) Dual Rank x4 DDR4-2133 CAS-15-15-15 Registered Memory Kit</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>1</simpara></entry>
+<entry align="left" valign="top"><simpara>665243-B21</simpara></entry>
+<entry align="left" valign="top"><simpara>FlexibleLOM</simpara></entry>
+<entry align="left" valign="top"><simpara>HPE Ethernet 10Gb 2-port 560FLR-SFP+ FIO Adapter</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>2</simpara></entry>
+<entry align="left" valign="top"><simpara>720479-B21</simpara></entry>
+<entry align="left" valign="top"><simpara>Power Supply</simpara></entry>
+<entry align="left" valign="top"><simpara>HPE 800W Flex Slot Platinum Hot Plug Power Supply Kit</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>6</simpara></entry>
+<entry align="left" valign="top"><simpara>759212-B21</simpara></entry>
+<entry align="left" valign="top"><simpara>Hard Drives</simpara></entry>
+<entry align="left" valign="top"><simpara>HPE 600GB 12G SAS 15K rpm SFF (2.5-inch) SC Enterprise 3yr Warranty Hard Drive</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>1</simpara></entry>
+<entry align="left" valign="top"><simpara>749974-B21</simpara></entry>
+<entry align="left" valign="top"><simpara>Storage Controller</simpara></entry>
+<entry align="left" valign="top"><simpara>HPE Smart Array P440ar/2GB FBWC 12Gb 2-ports Int FIO SAS Controller</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>1</simpara></entry>
+<entry align="left" valign="top"><simpara>663201-B21</simpara></entry>
+<entry align="left" valign="top"><simpara>Rail Kit</simpara></entry>
+<entry align="left" valign="top"><simpara>HPE 1U SFF Ball Bearing Rail Kit</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>1</simpara></entry>
+<entry align="left" valign="top"><simpara>663203-B21</simpara></entry>
+<entry align="left" valign="top"><simpara>Cable Management Arm</simpara></entry>
+<entry align="left" valign="top"><simpara>HPE 1U Cable Management Arm for Ball Bearing Rail Kit</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+</section>
 </chapter>
 </book>

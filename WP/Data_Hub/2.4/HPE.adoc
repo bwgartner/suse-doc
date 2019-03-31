@@ -1,38 +1,42 @@
-:IHVPlatformComposer: Composer
-:IHVPlatformComposerTech: OneView
-:IHVPlatformImager: ImageStreamer
-:IHVPlatformModel: 480 Gen10
+//
+// Name: HPE.adoc
+// Desc: This file is included for the HPE IHV section of an SAP Data Hub Reference Architecture
+//
 
-ifeval::["{IHVPlatform}" == "Synergy"]
+[[img-SAP-SUSE_DataHub_Arch_ProLiant]]
+.{CompanyName} {ProductName} Architecture
+image::SAP-SUSE-DataHub-Arch-ProLiant.png[ProLiant_DataHub_Arch, 640, 480]
 
-include::../../../_includes/IHV/{IHVPartner}-{IHVPlatform}.adoc[]
+=== Compute
+One key benefit of a this data analytics implementation is that {IHVPartner} industry-standard servers can fulfill each of the resource node's computational needs. To reduce the time spent on hardware specification for an initial proof of concept implementation, the hardware should be general purpose and allow for a wide range of configuration options. The industry leading {IHVPartner} {IHVPlatform} rack mount servers with their high performance, multitude of network options and low energy consumption characteristics are ideal virtualization and storage nodes.
 
-endif::[]
+For this the implementation, {IHVPartner} {IHVPlatform} {IHVPlatformModel} servers were utilized for all node roles. The main distinction is higher-end specifications for the compute node, with more CPU cores and higher amounts of RAM, to host the required workloads.
 
-ifeval::["{IHVPlatform}" == "Synergy"]
+The following considerations for the system platforms should be attended to:
 
-include::../../../_includes/IHV/{IHVPartner}-{IHVPlatform}-Frame.adoc[]
+NOTE: Any https://www.suse.com/yessearch/[SUSE YES] certified {IHVPartner} platform, like the {IHVPartner} {IHVPlatform} {IHVPlatformModel}, can be used for the physical nodes of this deployment, as long as the certification refers to the major version of the underlying SUSE operating system required by the {ProductName} release.
 
-endif::[]
+* Ensure that all similar system devices are consistent and up-to-date with regard to BIOS/uEFI/device firmware versions to reduce potential troubleshooting issues later
+* Reset the BIOS setup configuration to the default setting to have a known baseline configuration to provide consistency.
+* If possible, setup RAID1 mirroring on the storage controller across a pair of drives for the operating system installation
 
-ifeval::["{IHVPlatform}" == "Synergy"]
+TIP: {IHVPartner} {IHVPartnerComposer} can be setup with Server Profile Templates to apply to the various node roles and consistently deliver platform systems into a known state.
 
-include::../../../_includes/IHV/{IHVPartner}-{IHVPlatform}-{IHVPlatformComposer}.adoc[]
+=== Storage
+Discussed under the Storage Architecture section, the storage layer of this solution leverages the Software Defined Storage capabilities as provided by {CompanyName} {StorageName}.
 
-endif::[]
+{ISVPartner} {ISVSolution} and SUSE CaaS Platform are the base framework for a data analytics environment.  The data analytics you execute will be defined by a set of application containers will run on the SUSE CaaS Platform.  These containers will access data across your company's infrastructure and may store derived results in {CompanyName} {StorageName}.  As you define the workflow of your data analytics applications, you will need to access data across many different storage system in your enterprise.  This access is beyond the scope of this architecture, but it is important to understand that data access will be required to a wide range of disparate storage systems.
 
-ifeval::["{IHVPlatform}" == "Synergy"]
+The {CompanyName} {StorageName} cluster can be utilized to store both intermediary and final results from the data analytics pipeline.  In other words, as your data analytics applications derive new data results, those are typically store in {CompanyName} {StorageName}.  This allows the data analytics environment ({ISVPartner} {ISVSolution}, {CompanyName} {ProductName}, and your data analytics applications) to be logically organized in one physical location.
 
-include::../../../_includes/IHV/{IHVPartner}-{IHVPlatform}-{IHVPlatformImager}.adoc[]
+=== Network
+Networking is the technology component which typically requires the most advance planning.  Your data analytics applications will have unique network access requirements, especially when integrated with an existing IT infrastructure. For the physical level, using pairs of {IHVPartner} {IHVNetwork} Switch Series devices as top-of-rack (ToR) switches allows all servers, each having multiple 10GbE, or higher speed, NIC ports, to form a link aggregation group (LAG) across the ports with at least one NIC port on each switch in the stack. When using network interface bonding on the resource nodes, the LAG ideally offers switch redundancy within the rack and enables high availability throughout the infrastructure.
 
-endif::[]
+For this proof of concept deployment, a single 10GbE switch is used, having all resource nodes 10GbE NIC ports connected here, but could easily be expanded to the dual ToR configuration at a later date. To address management functions, the {IHVPlatformBMC}, out-of-band interface can be connected to the same or another network switch infrastructure, but are fundamentally required to be accessible for the deployment.
 
-ifeval::["{IHVPlatform}" == "Synergy"]
+The following considerations for the network switching configuration should be attended to:
 
-include::../../../_includes/IHV/{IHVPartner}-{IHVPlatform}-SY.adoc[]
+* Configure 802.3ad for system port bonding to get the maximum performance of bonded network interfaces
+* Ensure that all similar switching devices are consistent and up-to-date with regard to firmware versions to reduce potential troubleshooting issues later.
 
-endif::[]
 
-For this the implementation, {IHVPartner} {IHVPlatform} {IHVPlatformModel} servers were utilized for all node roles. Example configurations are included in the Appendices.
-
-NOTE: Any https://www.suse.com/yessearch/[{CompanyName} YES] certified {IHVPartner} platform, like the {IHVPartner} {IHVPlatform} {IHVPlatformModel}, can be used for the physical nodes of this deployment, as long as the certification refers to the major version of the underlying {CompanyName} operating system required by the {CompanyName} {ProductName} release.

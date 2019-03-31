@@ -29,7 +29,7 @@ endif::[]
 == Revision History
 
 .Revisions
-[options="header",cols="^s,<d,<s"]
+[options="header",cols=",,"]
 |=======================
 |Version |Date         |Comments
 |0.5     |01/15/19     |Initial draft
@@ -68,9 +68,7 @@ Data pipelines can be created through a graphical user interface to leverage exi
 
 Before implementing a data analytics solution, you need to consider the specific problem you are working to solve. Below are some use cases that help you to zero in on the type of solution you are pursuing.
 
-== What The Fuck
-
-=== Example Use Cases
+== Example Use Cases
 This section will outline a few potential use cases for SAP Data Hub build on SUSE Containers as a Service Application Platform.   In general, SAP Data Hub exceeds in pulling information from multiple kinds of internal and external data resources to enable insight into very complex analytical problems.   The use of machine learing and Big Data analytics platforms like SAP, Hadoop, MapR, Cloudera, etc. require access to large pools of unstructured data in a systematic, highly automated, secure way.
 
 === Fraud Detection
@@ -90,7 +88,7 @@ E-Commerce sites routinely use various data sources to try to recommend an addit
 As an IT organization evaluates solutions to the data growth and migration challenge, key requirements will be defined. Below are some typical requirements that you will be considering as you experiment and evaluate software.
 
 .Data Analytics Solution Requirements
-[options="header",cols="^s,<s"]
+[options="header",cols=","]
 |=======================
 |Requirement Type      |Details
 |Existing Data Stores  |Access data from a variety of data sources, including Hadoop data lakes, object stores, databases, and data warehouses, both in the cloud and on-premise.

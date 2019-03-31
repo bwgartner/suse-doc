@@ -25,31 +25,31 @@ rowsep="1" colsep="1"
 <colspec colname="col_3" colwidth="33*"/>
 <thead>
 <row>
-<entry align="center" valign="top">Version </entry>
+<entry align="left" valign="top">Version </entry>
 <entry align="left" valign="top">Date         </entry>
 <entry align="left" valign="top">Comments</entry>
 </row>
 </thead>
 <tbody>
 <row>
-<entry align="center" valign="top"><simpara><emphasis role="strong">0.5</emphasis></simpara></entry>
+<entry align="left" valign="top"><simpara>0.5</simpara></entry>
 <entry align="left" valign="top"><simpara>01/15/19</simpara></entry>
-<entry align="left" valign="top"><simpara><emphasis role="strong">Initial draft</emphasis></simpara></entry>
+<entry align="left" valign="top"><simpara>Initial draft</simpara></entry>
 </row>
 <row>
-<entry align="center" valign="top"><simpara><emphasis role="strong">0.6</emphasis></simpara></entry>
+<entry align="left" valign="top"><simpara>0.6</simpara></entry>
 <entry align="left" valign="top"><simpara>02/11/19</simpara></entry>
-<entry align="left" valign="top"><simpara><emphasis role="strong">Collaborative draft</emphasis></simpara></entry>
+<entry align="left" valign="top"><simpara>Collaborative draft</simpara></entry>
 </row>
 <row>
-<entry align="center" valign="top"><simpara><emphasis role="strong">1.0</emphasis></simpara></entry>
+<entry align="left" valign="top"><simpara>1.0</simpara></entry>
 <entry align="left" valign="top"><simpara>03/05/19</simpara></entry>
-<entry align="left" valign="top"><simpara><emphasis role="strong">First draft to be shared with HPE as SUSE Company Confidential</emphasis></simpara></entry>
+<entry align="left" valign="top"><simpara>First draft to be shared with HPE as SUSE Company Confidential</simpara></entry>
 </row>
 <row>
-<entry align="center" valign="top"><simpara><emphasis role="strong">1.1</emphasis></simpara></entry>
+<entry align="left" valign="top"><simpara>1.1</simpara></entry>
 <entry align="left" valign="top"><simpara>03/31/19</simpara></entry>
-<entry align="left" valign="top"><simpara><emphasis role="strong">Proposed hardware config - shared w/ HPE as SUSE Company Confidential</emphasis></simpara></entry>
+<entry align="left" valign="top"><simpara>Proposed hardware config - shared w/ HPE as SUSE Company Confidential</simpara></entry>
 </row>
 </tbody>
 </tgroup>
@@ -86,12 +86,9 @@ rowsep="1" colsep="1"
 <simpara>Before implementing a data analytics solution, you need to consider the specific problem you are working to solve. Below are some use cases that help you to zero in on the type of solution you are pursuing.</simpara>
 </section>
 </chapter>
-<chapter id="_what_the_fuck">
-<title>What The Fuck</title>
-<section id="_example_use_cases">
+<chapter id="_example_use_cases">
 <title>Example Use Cases</title>
 <simpara>This section will outline a few potential use cases for SAP Data Hub build on SUSE Containers as a Service Application Platform.   In general, SAP Data Hub exceeds in pulling information from multiple kinds of internal and external data resources to enable insight into very complex analytical problems.   The use of machine learing and Big Data analytics platforms like SAP, Hadoop, MapR, Cloudera, etc. require access to large pools of unstructured data in a systematic, highly automated, secure way.</simpara>
-</section>
 <section id="_fraud_detection">
 <title>Fraud Detection</title>
 <simpara>Credit card fraud has become an epidemic with losses in the billions of dollars.  Financial institutions need the ability to create profiles that alert to probable fraud on large volumes of transactions.   The more information they can cross-reference, the more accurate their models will become.  SAP Data Hub can pull in transactional data from ERP systems, credit reporting bureaus, email from a Hadoop cluster, social media data, and “Dark Web” databases to enable data scientist to build very precise detection methodologies.</simpara>
@@ -118,114 +115,114 @@ rowsep="1" colsep="1"
 <colspec colname="col_2" colwidth="50*"/>
 <thead>
 <row>
-<entry align="center" valign="top">Requirement Type      </entry>
+<entry align="left" valign="top">Requirement Type      </entry>
 <entry align="left" valign="top">Details</entry>
 </row>
 </thead>
 <tbody>
 <row>
-<entry align="center" valign="top"><simpara><emphasis role="strong">Existing Data Stores</emphasis></simpara></entry>
-<entry align="left" valign="top"><simpara><emphasis role="strong">Access data from a variety of data sources, including Hadoop data lakes, object stores, databases, and data warehouses, both in the cloud and on-premise.</emphasis></simpara></entry>
+<entry align="left" valign="top"><simpara>Existing Data Stores</simpara></entry>
+<entry align="left" valign="top"><simpara>Access data from a variety of data sources, including Hadoop data lakes, object stores, databases, and data warehouses, both in the cloud and on-premise.</simpara></entry>
 </row>
 <row>
-<entry align="center" valign="top"><simpara><emphasis role="strong"></emphasis></simpara></entry>
-<entry align="left" valign="top"><simpara><emphasis role="strong">Perform data transformations, data quality, and data preparation processes.</emphasis></simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>Perform data transformations, data quality, and data preparation processes.</simpara></entry>
 </row>
 <row>
-<entry align="center" valign="top"><simpara><emphasis role="strong"></emphasis></simpara></entry>
-<entry align="left" valign="top"><simpara><emphasis role="strong">Define data pipelines and streams.</emphasis></simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>Define data pipelines and streams.</simpara></entry>
 </row>
 <row>
-<entry align="center" valign="top"><simpara><emphasis role="strong"></emphasis></simpara></entry>
-<entry align="left" valign="top"><simpara><emphasis role="strong">Embed and productize scripts, programs, and algorithms of the Data Scientist.</emphasis></simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>Embed and productize scripts, programs, and algorithms of the Data Scientist.</simpara></entry>
 </row>
 <row>
-<entry align="center" valign="top"><simpara><emphasis role="strong"></emphasis></simpara></entry>
-<entry align="left" valign="top"><simpara><emphasis role="strong">Productize open libraries or ML algorithms in one framework.</emphasis></simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>Productize open libraries or ML algorithms in one framework.</simpara></entry>
 </row>
 <row>
-<entry align="center" valign="top"><simpara><emphasis role="strong">Distributed Data Processing</emphasis></simpara></entry>
-<entry align="left" valign="top"><simpara><emphasis role="strong">Distribute computational tasks to the native environments where the data reside.</emphasis></simpara></entry>
+<entry align="left" valign="top"><simpara>Distributed Data Processing</simpara></entry>
+<entry align="left" valign="top"><simpara>Distribute computational tasks to the native environments where the data reside.</simpara></entry>
 </row>
 <row>
-<entry align="center" valign="top"><simpara><emphasis role="strong"></emphasis></simpara></entry>
-<entry align="left" valign="top"><simpara><emphasis role="strong">Remote Process scheduling:</emphasis></simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>Remote Process scheduling:</simpara></entry>
 </row>
 <row>
-<entry align="center" valign="top"><simpara><emphasis role="strong"></emphasis></simpara></entry>
-<entry align="left" valign="top"><simpara><emphasis role="strong">SAP Business Warehouse process chains.</emphasis></simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>SAP Business Warehouse process chains.</simpara></entry>
 </row>
 <row>
-<entry align="center" valign="top"><simpara><emphasis role="strong"></emphasis></simpara></entry>
-<entry align="left" valign="top"><simpara><emphasis role="strong">SAP Data Services dataflows.</emphasis></simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>SAP Data Services dataflows.</simpara></entry>
 </row>
 <row>
-<entry align="center" valign="top"><simpara><emphasis role="strong"></emphasis></simpara></entry>
-<entry align="left" valign="top"><simpara><emphasis role="strong">SAP HANA smart data integration Flowgraphs.</emphasis></simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>SAP HANA smart data integration Flowgraphs.</simpara></entry>
 </row>
 <row>
-<entry align="center" valign="top"><simpara><emphasis role="strong">Governance</emphasis></simpara></entry>
-<entry align="left" valign="top"><simpara><emphasis role="strong">Establish and manage zones in a landscape with attached policies and services levels.</emphasis></simpara></entry>
+<entry align="left" valign="top"><simpara>Governance</simpara></entry>
+<entry align="left" valign="top"><simpara>Establish and manage zones in a landscape with attached policies and services levels.</simpara></entry>
 </row>
 <row>
-<entry align="center" valign="top"><simpara><emphasis role="strong"></emphasis></simpara></entry>
-<entry align="left" valign="top"><simpara><emphasis role="strong">Security and Access Control capabilities.</emphasis></simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>Security and Access Control capabilities.</simpara></entry>
 </row>
 <row>
-<entry align="center" valign="top"><simpara><emphasis role="strong">Orchestration</emphasis></simpara></entry>
-<entry align="left" valign="top"><simpara><emphasis role="strong">Workflow creation of operations and processes across the landscape with monitoring and analysis capabilities.</emphasis></simpara></entry>
+<entry align="left" valign="top"><simpara>Orchestration</simpara></entry>
+<entry align="left" valign="top"><simpara>Workflow creation of operations and processes across the landscape with monitoring and analysis capabilities.</simpara></entry>
 </row>
 <row>
-<entry align="center" valign="top"><simpara><emphasis role="strong"></emphasis></simpara></entry>
-<entry align="left" valign="top"><simpara><emphasis role="strong">Execution of end-to-end data processes, starting with the ingestion of data into the landscape (e.g. the data lake), including data processing, and leading up to the delivery or integration of the resulting data into enterprise processes and applications.</emphasis></simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>Execution of end-to-end data processes, starting with the ingestion of data into the landscape (e.g. the data lake), including data processing, and leading up to the delivery or integration of the resulting data into enterprise processes and applications.</simpara></entry>
 </row>
 <row>
-<entry align="center" valign="top"><simpara><emphasis role="strong">Data Ingestion and Processing</emphasis></simpara></entry>
-<entry align="left" valign="top"><simpara><emphasis role="strong">Data integration, cleansing, enrichment, masking and anonymization.</emphasis></simpara></entry>
+<entry align="left" valign="top"><simpara>Data Ingestion and Processing</simpara></entry>
+<entry align="left" valign="top"><simpara>Data integration, cleansing, enrichment, masking and anonymization.</simpara></entry>
 </row>
 <row>
-<entry align="center" valign="top"><simpara><emphasis role="strong">Data Discovery</emphasis></simpara></entry>
-<entry align="left" valign="top"><simpara><emphasis role="strong">Data Profiles for Big Data Sets showing quality and comprehensive structure information.</emphasis></simpara></entry>
+<entry align="left" valign="top"><simpara>Data Discovery</simpara></entry>
+<entry align="left" valign="top"><simpara>Data Profiles for Big Data Sets showing quality and comprehensive structure information.</simpara></entry>
 </row>
 <row>
-<entry align="center" valign="top"><simpara><emphasis role="strong"></emphasis></simpara></entry>
-<entry align="left" valign="top"><simpara><emphasis role="strong">Ability to crawl, discover, and tag data elements.</emphasis></simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>Ability to crawl, discover, and tag data elements.</simpara></entry>
 </row>
 <row>
-<entry align="center" valign="top"><simpara><emphasis role="strong"></emphasis></simpara></entry>
-<entry align="left" valign="top"><simpara><emphasis role="strong">Expose discovered data for further usage.</emphasis></simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>Expose discovered data for further usage.</simpara></entry>
 </row>
 <row>
-<entry align="center" valign="top"><simpara><emphasis role="strong">Scalability</emphasis></simpara></entry>
-<entry align="left" valign="top"><simpara><emphasis role="strong">Scalable Architecture, from small to big, test to production deployment.</emphasis></simpara></entry>
+<entry align="left" valign="top"><simpara>Scalability</simpara></entry>
+<entry align="left" valign="top"><simpara>Scalable Architecture, from small to big, test to production deployment.</simpara></entry>
 </row>
 <row>
-<entry align="center" valign="top"><simpara><emphasis role="strong">Deployment</emphasis></simpara></entry>
-<entry align="left" valign="top"><simpara><emphasis role="strong">Easy deployment, using a proven-to-work combination of the several components.</emphasis></simpara></entry>
+<entry align="left" valign="top"><simpara>Deployment</simpara></entry>
+<entry align="left" valign="top"><simpara>Easy deployment, using a proven-to-work combination of the several components.</simpara></entry>
 </row>
 <row>
-<entry align="center" valign="top"><simpara><emphasis role="strong">Fault Tolerance</emphasis></simpara></entry>
-<entry align="left" valign="top"><simpara><emphasis role="strong">Single component error will not lead to whole system unavailability.</emphasis></simpara></entry>
+<entry align="left" valign="top"><simpara>Fault Tolerance</simpara></entry>
+<entry align="left" valign="top"><simpara>Single component error will not lead to whole system unavailability.</simpara></entry>
 </row>
 <row>
-<entry align="center" valign="top"><simpara><emphasis role="strong">Ease of Management/Ops</emphasis></simpara></entry>
-<entry align="left" valign="top"><simpara><emphasis role="strong">Reduced complexity for solution management.</emphasis></simpara></entry>
+<entry align="left" valign="top"><simpara>Ease of Management/Ops</simpara></entry>
+<entry align="left" valign="top"><simpara>Reduced complexity for solution management.</simpara></entry>
 </row>
 <row>
-<entry align="center" valign="top"><simpara><emphasis role="strong">Physical Footprint</emphasis></simpara></entry>
-<entry align="left" valign="top"><simpara><emphasis role="strong">Compact solution that works within your existing infrastructure models.</emphasis></simpara></entry>
+<entry align="left" valign="top"><simpara>Physical Footprint</simpara></entry>
+<entry align="left" valign="top"><simpara>Compact solution that works within your existing infrastructure models.</simpara></entry>
 </row>
 <row>
-<entry align="center" valign="top"><simpara><emphasis role="strong">Flexibility</emphasis></simpara></entry>
-<entry align="left" valign="top"><simpara><emphasis role="strong">Flexible building block approach allows sizing according to customer needs.</emphasis></simpara></entry>
+<entry align="left" valign="top"><simpara>Flexibility</simpara></entry>
+<entry align="left" valign="top"><simpara>Flexible building block approach allows sizing according to customer needs.</simpara></entry>
 </row>
 <row>
-<entry align="center" valign="top"><simpara><emphasis role="strong">Security</emphasis></simpara></entry>
-<entry align="left" valign="top"><simpara><emphasis role="strong">Solution provides means to secure customer infrastructure.</emphasis></simpara></entry>
+<entry align="left" valign="top"><simpara>Security</simpara></entry>
+<entry align="left" valign="top"><simpara>Solution provides means to secure customer infrastructure.</simpara></entry>
 </row>
 <row>
-<entry align="center" valign="top"><simpara><emphasis role="strong">High performance</emphasis></simpara></entry>
-<entry align="left" valign="top"><simpara><emphasis role="strong">Best practices are designed into the solution to ensure the best performance results.</emphasis></simpara></entry>
+<entry align="left" valign="top"><simpara>High performance</simpara></entry>
+<entry align="left" valign="top"><simpara>Best practices are designed into the solution to ensure the best performance results.</simpara></entry>
 </row>
 </tbody>
 </tgroup>

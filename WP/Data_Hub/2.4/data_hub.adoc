@@ -1,5 +1,13 @@
-:Author: Alex Arnoldy
-:AuthorEMail: alex.arnoldy@suse.com
+//
+// File: data_hub.adoc
+// Desc: WP and RA for SAP Data Hub on SUSE CaaS Platform
+//
+
+// NOTE: This is overridden via attributes passed on the command line (See: Makefile)
+// :Author: Alex Arnoldy
+// :AuthorEMail: alex.arnoldy@suse.com
+:Author: Brian Fromme
+:AuthorEMail: brian.fromme@suse.com
 
 :ISVPartner: SAP
 :ISVSolution: Data Hub
@@ -40,6 +48,7 @@ endif::[]
 
 _*DRAFT COPY - DO NOT PUBLISH*_
 
+<<<
 == Introduction
 Enterprise data is exploding and is both a challenge and an opportunity. Companies are discovering ways to transform their data into services that help differentiate the business and create new lines of revenue.  Unfortunately, managing and fully utilizing the information stored in data silos (e.g. cloud databases, Hadoop clusters, social media feeds) has become incredibly complex due to requirements for security, governance, and specialized training.  https://www.sap.com/products/data-hub.html[{ISVPartner} {ISVSolution}] provides a GUI-based business-wide view of a broad array of data systems, databases, and assets to enable your analytics and business intelligence teams to manage your entire data landscape through an intuitive “single pane of glass”.    In what is likely to become a trend, {ISVPartner} mandates that this application is deployed on a Kubernetes compatible container platform. https://www.suse.com/products/caas-platform/[{CompanyName} {ProductName}] enables you to extend your {CompanyName} Enterprise Linux for {ISVPartner} environment to container-based application delivery.
 
@@ -47,7 +56,7 @@ Enterprise data is exploding and is both a challenge and an opportunity. Compani
 This discussion will be of interest to professionals involved in both IT Operations and Analytics/Business Intelligence.   The recommended framework supplies the requirements to implement {ISVPartner}’s {ISVSolution} that is certified on {CompanyName} {ProductName}.
 
 === Business Problem
-Today's business leaders are under increasing pressure to drive their business with data driven decisions. This presents a particular challenge for those executives who strive to bring together the right combination of disparate data sources to unlock new value for their business.
+Today's business leaders are under increasing pressure to drive their business with data-driven decisions. This presents a particular challenge for those executives who strive to bring together the right combination of disparate data sources to unlock new value for their business.
 
 This difficulty is compounded by the very nature of how data is collected and stored, which results in independent data silos with no easy way to make critical associations across them. These data silos may be stored geographically close together, or far apart. Some may be built with on premise resources, and some housed in one or more public clouds. Valuable data is often found in structured and unstructured databases, Hadoop data lakes, data warehouses, and even in text files. Gaining new insights into potential customers and business opportunities may involve nearly all of the data silos a company has available to it.
 
@@ -55,21 +64,23 @@ This difficulty is compounded by the very nature of how data is collected and st
 .{ISVPartner} {ISVSolution} Data Pipeline Funnel
 image::Data_Funnel_Pipeline.png[{ISVPartner}_Data_Hub_Data_Pipeline_Funnel, 640, 480]
 
-What's more, finding a business application to perform the task is not even the hardest part. Businesses need to ensure their data analysis software investment can meet the scale of their current, as well as their future application/data landscape, plus enforce data governance. Equally as important is the resiliency and scalability of the underlying infrastructure. Experienced leaders know that Enterprise grade software is a poor investment if it is not built on Enterprise grade infrastructure.
+What's more, finding a business application to perform the task is not even the hardest part. Businesses need to ensure their data-analysis software investment can meet the scale of their current, as well as their future application/data landscape, plus enforce data governance. Equally as important is the resiliency and scalability of the underlying infrastructure. Experienced leaders know that enterprise-grade software is a poor investment if it is not built on enterprise-grade infrastructure.
 
 === Business Value
-{ISVPartner} {ISVSolution} is a containerized solution designed to be deployed on Enterprise grade Kubernetes clusters such as {CompanyName} {ProductName} (See [.underline]*SAP Note 2693555* for certified systems). For more than 17 years {ISVPartner} has developed their software on {CompanyName} Linux Enterprise Server (SLES) and {CompanyName} solutions such as {ProductName}.
+{ISVPartner} {ISVSolution} is a containerized solution designed to be deployed on enterprise-grade Kubernetes clusters such as {CompanyName} {ProductName}  For more than 17 years {ISVPartner} has developed their software on {CompanyName} Linux Enterprise Server (SLES) and {CompanyName} solutions such as {ProductName}.
 
-{ISVPartner} {ISVSolution} is built on a next generation data aggregation model that does away with the need for expensive data warehouses. Instead, {ISVPartner} {ISVSolution} allows data extraction and formatting to be done on the platform where the data resides. This is in contrast to the current practice of using cumbersome, single-use Extract, Load,  Transform (ELT) operations that are used to populate data warehouses; {ISVPartner} {ISVSolution} provides formatted, refined and cleansed data from multiple sources directly to the data consumers.
+NOTE: See [.underline]*SAP Note 2693555* for certified systems.
+
+{ISVPartner} {ISVSolution} is built on a next-generation data-aggregation model that does away with the need for expensive data warehouses. Instead, {ISVPartner} {ISVSolution} allows data extraction and formatting to be done on the platform where the data resides. This is in contrast to the current practice of using cumbersome, single-use Extract, Load,  Transform (ELT) operations that are used to populate data warehouses; {ISVPartner} {ISVSolution} provides formatted, refined and cleansed data from multiple sources directly to the data consumers.
 
 {ISVPartner} {ISVSolution} leverages data pipelines, which are built from reusable application components. Data pipelines are computational models that are executed natively on the data source. They define what data should be gathered from which sources, and how that data should be formatted at the source. Pipelines also specify what refinements and cleansing each stream of data should go through to make it compatible with the other data streams in the pipeline. Finally, they identify to which consumer or consumers the collated data should be sent. Since {ISVPartner} {ISVSolution} does not need to persist data, it completely eliminates the need for expensive, scale-limiting data warehouses.
 
 Data pipelines can be created through a graphical user interface to leverage existing data sources such as {ISVPartner} HANA, {ISVPartner} Vora, Apache Spark, and Apache Hadoop; as well as all major open and closed source OLTP, OLAP and NoSQL databases.
 
-Before implementing a data analytics solution, consider the specific problem you are working to solve. Below are some use cases for {ISVPartner} {ISVSolution} that may help to zero in on the type of solution you are pursuing.
+Before implementing a data-analytics solution, consider the specific problem you are working to solve. Below are some use cases for {ISVPartner} {ISVSolution} that may help to zero in on the type of solution you are pursuing.
 
 == Example Use Cases
-This section will outline a few potential use cases for SAP Data Hub built on SUSE Containers as a Service Application Platform.   In general, SAP Data Hub exceeds in pulling information from multiple kinds of internal and external data resources to enable insight into very complex analytical problems.   The use of machine learning and Big Data analytics platforms like SAP, Hadoop, MapR, Cloudera, etc. require access to large pools of unstructured data in a highly automated, systematic and secure way.
+This section will outline a few potential use cases for SAP Data Hub built on SUSE Containers as a Service Application Platform.   In general, SAP Data Hub excels in pulling information from multiple kinds of internal and external data resources to enable insight into very complex analytical problems.   The use of machine learning and Big Data analytics platforms like SAP, Hadoop, MapR, Cloudera, etc. require access to large pools of unstructured data in a highly automated, systematic and secure way.
 
 === Fraud Detection
 
@@ -89,7 +100,7 @@ As an IT organization evaluates solutions to the data growth and migration chall
 
 .Data Analytics Solution Requirements
 [options="header",cols=","]
-|=======================
+|===
 |Requirement Type      |Details
 |Existing Data Stores  |Access data from a variety of data sources, including Hadoop data lakes, object stores, databases, and data warehouses, both in the cloud and on-premise.
 |                      |Perform data transformations, data quality, and data preparation processes.
@@ -118,10 +129,10 @@ As an IT organization evaluates solutions to the data growth and migration chall
 |Flexibility           |Flexible building block approach allows sizing according to customer needs.
 |Security              |Solution provides means to secure customer infrastructure.
 |High performance      |Best practices are designed into the solution to ensure the best performance results.
-|=======================
+|===
 
 
-With a solid understanding of your requirements, you can now begin to design the solution.  The following section will outline the key concepts in the software architecture of the {ISVPartner} {ISVSolution} reference configuration.
+With a solid understanding of your requirements, you can begin to design the solution.  The following section will outline the key concepts in the software architecture of the {ISVPartner} {ISVSolution} reference configuration.
 
 == Software Architecture
 
@@ -156,7 +167,7 @@ An optional Hadoop cluster can be built on dedicated nodes and co-located with {
 === {CompanyName} {ProductName}
 {CompanyName} {ProductName} is an integrated software platform which automates the tasks of building, managing and upgrading Kubernetes clusters. It combines the benefits of an enterprise-ready operating system with the agility of an orchestration platform for containerized applications such as {ISVPartner} {ISVSolution}.
 
-While there are several top tier Kubernetes offerings in the market, {CompanyName} {ProductName} stands out for its ease of installation and configuration, DevOps integration (via https://www.suse.com/products/cloud-application-platform/[{CompanyName} Cloud Application Platform]), and enterprise level of operability and scalability.
+While there are several top-tier Kubernetes offerings in the market, {CompanyName} {ProductName} stands out for its ease of installation and configuration, DevOps integration (via https://www.suse.com/products/cloud-application-platform/[{CompanyName} Cloud Application Platform]), and enterprise level of operability and scalability.
 
 One of the biggest challenges for Kubernetes operators is matching the scalability of the node level infrastructure with that of the overlaying container infrastructure. Inconsistently applied software changes as well as node configuration drift create ticking time bombs in production Kubernetes clusters.
 
@@ -246,7 +257,7 @@ include::{IHVPartner}.adoc[]
 endif::[]
 
 == Bill of Materials
-The HPE ProLiant DL360 series Gen10 server is an excellent platform for a proof-of-concept implementation of SAP Data Hub on SUSE CaaS Platform software.  The DL360 provides powerful, dense compute and storage capabilities via the servers selected for this reference architecture.
+The HPE ProLiant DL360 series Gen9 server is an excellent platform for a proof-of-concept implementation of SAP Data Hub on SUSE CaaS Platform software.  The DL360 provides powerful, dense compute and storage capabilities via the servers selected for this reference architecture.
 And the ProLiant iLO management capability is a key piece of the management infrastructure for a data analytics cluster.
 
 === HPE ProLiant DL360 Gen10 Servers
@@ -259,7 +270,7 @@ And the ProLiant iLO management capability is a key piece of the management infr
 |*_Role_*|*_Quantity_*|*_Product Number_*|*_Product_Name_*|*_Description_*
 |Administration|1|755259-B21|ProLiant DL360 Gen9|HPE ProLiant DL360 Gen9 4LFF Configure-to-order Server HPE Dynamic Smart Array B140i, 4-Bay LFF Drive Cage
 | |1|755382-L21|Processor|Intel Xeon E5-2620v3 (2.4GHz/6-core/15MB/85W)
-| |4|726718-B21|Memory|8GB (1x8GB) Single Rank x4 DDR4-2133 CAS-15-15-15 Registered Memory Kit
+| |8|726718-B21|Memory|8GB (1x8GB) Single Rank x4 DDR4-2133 CAS-15-15-15 Registered Memory Kit
 | |1|665243-B21|Flexible LOM|HPE Ethernet 10Gb 2-port 560FLR-SFP+ FIO Adapter
 | |2|720478-B21|Power Supplies|HPE 500W Flex Slot Platinum Hot Plug Power supply Kit
 | |1|749974-B21|Storage Controller|HPE Smart Array P440ar/2GB FBWC 12Gb 2-ports Int FIO SAS Controller

@@ -9,6 +9,9 @@ HTMLTGZ=/tmp/html.tgz
 PDF=build/data_hub/data_hub_color_en.pdf
 HTMLDIR=build/data_hub/single-html/data_hub
 BUILD=build
+## Attributes
+AUTHOR="Author=Brian Fromme"
+EMAIL="AuthorEMail=brian.fromme@suse.com"
 ## Hard-coded paths -- change these for your env
 DL=carmel://home/fromme/Downloads
 GITPRJ=~/projects/SUSE/suse-doc

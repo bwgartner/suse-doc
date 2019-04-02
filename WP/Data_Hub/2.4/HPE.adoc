@@ -13,7 +13,6 @@ One key benefit of a this data analytics implementation is that {IHVPartner} ind
 For this the implementation, {IHVPartner} {IHVPlatform} {IHVPlatformModel} servers were utilized for all node roles. The main distinction is higher-end specifications for the compute node, with more CPU cores and higher amounts of RAM, to host the required workloads.
 
 The following considerations for the system platforms should be emphasized:
-
 * Ensure that all similar system devices are consistent and up-to-date with regard to BIOS/uEFI/device firmware versions to reduce potential troubleshooting issues later
 * Reset the BIOS setup configuration to the default setting to have a known baseline configuration to provide consistency.
 * If possible, setup RAID1 mirroring on the storage controller across a pair of drives for the operating system installation

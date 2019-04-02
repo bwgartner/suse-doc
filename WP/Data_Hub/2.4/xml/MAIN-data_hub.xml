@@ -388,10 +388,22 @@ SUSE Cloud Application Platform (CAP) is a DevOps toolset that speeds enterprise
 <note><simpara>SAP Data Hub 2.x no longer supports the NFS protocol (See <emphasis role="strong"><phrase role=".underline">SAP Note 2712050</phrase></emphasis>)</simpara></note>
 <simpara>Ceph is a scale out, distributed object store which provides excellent performance, scalability and reliability. In most use cases clients use Linux kernel libraries to read and write object and block data directly to/from a storage node in the SES cluster. SES also provides gateway options to support data access via iSCSI, NFS, S3, and Swift protocols.</simpara>
 <simpara>The storage capacity of the SES solution can be expanded easily by integrating additional storage nodes to the cluster. Exiting storage nodes will take care of redistributing the data to the newly added nodes without interrupting the availability of storage services to the clients.</simpara>
-<simpara>SES provides a reliable, scalable storage layer for the complete solution that supports:
-* Dynamically provisioned block storage volumes to the pods running on SUSE CaaS Platform
-* (Optionally) Block storage volumes for the co-located Hadoop cluster nodes, if configured
-* Object storage through an S3-API compatible interface for additional data storage and backups</simpara>
+<simpara>SES provides a reliable, scalable storage layer for the complete solution that supports:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+Dynamically provisioned block storage volumes to the pods running on SUSE CaaS Platform.
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+(Optionally) Block storage volumes for the co-located Hadoop cluster nodes, if configured.
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+Object storage through an S3-API compatible interface for additional data storage and backups.
+</simpara>
 <variablelist>
 <varlistentry>
 <term>
@@ -404,6 +416,8 @@ In addition to providing block storage to the optional Hadoop cluster, a pod run
 </listitem>
 </varlistentry>
 </variablelist>
+</listitem>
+</itemizedlist>
 <section id="_software_and_systems_management">
 <title>Software and Systems Management</title>
 <simpara>While SAP Data Hub doesn&#8217;t necessarily require an external SAP HANA instance to function, most users of this solution will be attaching to an existing HANA database.  The scale-out capabilities of  SAP HANA support rapid data growth, but it is important to have a dependable method of updating your SAP HANA servers.  SUSE Manager enables you to efficiently manage a set of Linux systems and keep them up-to-date. The benefits in a SAP HANA scale-out setup are:</simpara>

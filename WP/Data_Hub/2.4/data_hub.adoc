@@ -215,9 +215,11 @@ Ceph is a scale out, distributed object store which provides excellent performan
 The storage capacity of the SES solution can be expanded easily by integrating additional storage nodes to the cluster. Exiting storage nodes will take care of redistributing the data to the newly added nodes without interrupting the availability of storage services to the clients.
 
 SES provides a reliable, scalable storage layer for the complete solution that supports:
-* Dynamically provisioned block storage volumes to the pods running on {CompanyName} {ProductName}
-* (Optionally) Block storage volumes for the co-located Hadoop cluster nodes, if configured
-* Object storage through an S3-API compatible interface for additional data storage and backups
+
+* Dynamically provisioned block storage volumes to the pods running on {CompanyName} {ProductName}.
+* (Optionally) Block storage volumes for the co-located Hadoop cluster nodes, if configured.
+* Object storage through an S3-API compatible interface for additional data storage and backups.
+
 
 Dynamically Provisioned Storage Volumes::
 In addition to providing block storage to the optional Hadoop cluster, a pod running on {ProductName} can gain access to dynamically provisioned Kubernetes persistent volumes (PV) through Kubernetes persistent volume claims (PVC). Persistent volumes are created as block devices in the supporting SES cluster. {ProductName} uses persistent volume claims (PVC)s to obtain dynamically provisioned persistent volumes through the Software Defined Storage mechanisms in SES. When a PVC is removed, the persistent volume and its associated block storage device in SES are automatically removed.

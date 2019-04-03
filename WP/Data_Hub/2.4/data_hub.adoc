@@ -62,7 +62,7 @@ This difficulty is compounded by the very nature of how data is collected and st
 
 [[img-Data_Pipeline_Funnel]]
 .{ISVPartner} {ISVSolution} Data Pipeline Funnel
-image::Data_Funnel_Pipeline.png[{ISVPartner}_Data_Hub_Data_Pipeline_Funnel, 640, 480]
+image::Data_Funnel_Pipeline.png[{ISVPartner}_Data_Hub_Data_Pipeline_Funnel, 241, 300]
 
 What's more, finding a business application to perform the task is not even the hardest part. Businesses need to ensure their data-analysis software investment can meet the scale of their current, as well as their future application/data landscape, plus enforce data governance. Equally as important is the resiliency and scalability of the underlying infrastructure. Experienced leaders know that enterprise-grade software is a poor investment if it is not built on enterprise-grade infrastructure.
 
@@ -141,7 +141,7 @@ With a solid understanding of your requirements, you can begin to design the sol
 
 [[img-Solution_Architecture]]
 .{ISVPartner} {ISVSolution} Architecture
-image::SAP_HANA_Architecture.png[{ISVPartner}_Data_Hub_Architecture, 640, 480]
+image::SAP_HANA_Architecture.png[{ISVPartner}_Data_Hub_Architecture, 800, 260]
 
 Tenant Applications and Services::
 Tenant Applications and Services are the core of {ISVPartner} {ISVSolution}. {ISVPartner} {ISVSolution} provides various tools for development and administration, as well as applications that are accessible through the {ISVPartner} {ISVSolution} application launchpad. {ISVPartner} {ISVSolution} Pipelines are the connectors between the various {ISVPartner} {ISVSolution} data sources. They provide reusable, configurable operations to process data from the various sources,including CSV files, web services APIs as well as {ISVPartner}’s own data stores and can be flexibly designed. The {ISVPartner} {ISVSolution} Modeler allows the creation and configuration of such pipelines through a graphical user interface. The Metadata Explorer provides information about the location, attributes, quality, and sensitivity of data. With this information, you can make informed decisions about which datasets to publish and determine who has access to use or view information about the datasets.  The Connection Management block enables connections to managed systems or external storage. Services such as Amazon S3, Google Cloud Services, Microsoft Azure (ADL, WASB),Data services, or Hadoop HDFS can be connected, as well as databases (Oracle, {ISVPartner} HANA, {ISVPartner} VORA) or business warehouses ({ISVPartner} BW).
@@ -175,7 +175,7 @@ One of the biggest challenges for Kubernetes operators is matching the scalabili
 
 [[img-CaaSP_Detailed_Architecture]]
 .{CompanyName} {ProductName} Architecture
-image::CaaSP_Detailed_Architecture.png[CaaSP_Detailed_Architecture, 640, 480]
+image::CaaSP_Detailed_Architecture.png[CaaSP_Detailed_Architecture, 814, 440]
 
 A {CompanyName} {ProductName} (<<img-CaaSP_Nodes>>) consists of the following node types:
 
@@ -196,7 +196,7 @@ NOTE: {ISVPartner} specifies that each worker node must have a least 8 cores and
 
 [[img-CaaSP_Nodes]]
 .{CompanyName} {ProductName} Node Configuration
-image::CaaSP_Nodes.png[CaaSP_Nodes, 640, 480]
+image::CaaSP_Nodes.png[CaaSP_Nodes, 400, 638]
 
 Optional {CompanyName} Cloud Application Platform::
 https://www.suse.com/products/cloud-application-platform[SUSE Cloud Application Platform] is a modern application delivery environment used to bring an advanced cloud native DevOps experience to container-based infrastructure.    SUSE's implementation is based on the open source https://www.cloudfoundry.org/project-eirini/[Project Eirini] which uses Kubernetes to orchestrate application containers while maintaining the Cloud Foundry user experience. This Platform as a Service (PaaS) environment is used by developers to streamline lifecycle management of traditional and cloud native applications.  Together, these technologies accelerate innovation, improve IT responsiveness, and maximize return on investment.

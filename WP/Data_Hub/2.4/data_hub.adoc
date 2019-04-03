@@ -199,7 +199,7 @@ NOTE: {ISVPartner} specifies that each worker node must have a least 8 cores and
 image::CaaSP_Nodes.png[CaaSP_Nodes, 640, 480]
 
 Optional {CompanyName} Cloud Application Platform::
-https://www.suse.com/products/cloud-application-platform[SUSE Cloud Application Platform] is a modern application delivery platform used to bring an advanced cloud native DevOps experience to container platforms.    SUSE's implementation is based on the open source https://www.cloudfoundry.org/project-eirini/[Project Eirini] which uses Kubernetes to orchestrate application containers while maintaining the Cloud Foundry user experience. This Platform as a Service (PaaS) environment is used by developers to streamline lifecycle management of traditional and cloud native applications.  Together, these technologies accelerate innovation, improve IT responsiveness, and maximize return on investment.
+https://www.suse.com/products/cloud-application-platform[SUSE Cloud Application Platform] is a modern application delivery environment used to bring an advanced cloud native DevOps experience to container-based infrastructure.    SUSE's implementation is based on the open source https://www.cloudfoundry.org/project-eirini/[Project Eirini] which uses Kubernetes to orchestrate application containers while maintaining the Cloud Foundry user experience. This Platform as a Service (PaaS) environment is used by developers to streamline lifecycle management of traditional and cloud native applications.  Together, these technologies accelerate innovation, improve IT responsiveness, and maximize return on investment.
 
 
 // BG:  ADD HOW YOU CREATE ANALYTICS (SIDECAR TYPES OF) WORKLOADS WITH CAP.  DEV TEAM/SA PEERS

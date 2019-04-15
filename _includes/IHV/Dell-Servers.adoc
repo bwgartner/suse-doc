@@ -5,3 +5,4 @@ Utilizing the above software solutions with the server platforms offered by {IHV
 * advanced - with more cache and speed, options for more processors, expansion and virtualization
 * innovative designs - from balanced to high performance, single to four socket, allowing capacity to meet future growth, demands and scaling
 * modular infrastructure  - blade and hybrid configurations that integrate servers, storage, networking and management to accommodate density and efficiency
+

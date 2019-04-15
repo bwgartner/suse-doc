@@ -1,0 +1,6 @@
+
+{IHVPartner} {IHVPlatform} {IHVPlatformModel} Compute::
+* one, two or four Intel® Xeon® Scalable processors, up to 28 cores per processor
+* 24 DDR4 DIMM slots, Supports RDIMM /LRDIMM, speeds up to 2666MT/s, 3TB max Up to 12 NVDIMM, 192 GB Max
+* front drive bays: Up to 10-16 x 2.5” SAS/SATA (HDD/SSD) with up to 8 NVMe SSD max 58TB or up to 4 x 3.5” SAS/SATA HDD max 48TB. Rear drive bays: Up to 2 x 2.5” SAS/SATA (HDD/SSD), NVMe SSD max 12TB Optional DVD-ROM, DVD+RW
+* max depth: 757.75mm – For the 8 x 2.5” front bay drive configuration, 808.51mm – For the 4 x 3.5” or 10 x2.5” front bay drive configurations (plus up to 2 rear drives).

@@ -1,1 +1,2 @@
-NOTE: Any https://www.suse.com/yessearch/[{CompanyName} YES] certified {IHVPartner} platform can be used for the physical nodes of this deployment, as long as the certification refers to the major version of the underlying {CompanyName} operating system required by the {CompanyName} {ProductName} release.
+Given the overlay of all the software-defined infrastructure components, many choices of industry standard servers can form the basis for this solution. So you can select any of your favorite hardware providers, obtain the desired number of nodes and build your solution. The appendices contain some respective component and resource sizing guidelines for each of the node roles.
+

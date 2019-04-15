@@ -1,5 +1,5 @@
 
-{IHVPartner} Platforms::
+{IHVPartner} Platform Portfolio::
 Utilizing the above software solutions with the server platforms offered by {IHVPartner} provides many alternative for scale, cost-effectiveness and performance options that could align with local IT staff platform preferences. Server options abound in the https://www.hpe.com/uk/en/servers.html[{IHVPartner} portfolio], covering
 * density-optimized - high performance and efficiency for big data and the most demanding workloads
 * mission-critical - systems of intelligence to fuel your digital transformation in a world where time and data are the new currency and business continuity is expected

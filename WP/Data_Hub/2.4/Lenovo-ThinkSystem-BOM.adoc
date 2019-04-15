@@ -1,0 +1,135 @@
+
+NOTE: The BOM lists in this appendix are not meant to be exhaustive and must always be double-checked with the configuration tools. Also please remember that a proper sizing exercise is needed for any SAP Data Hub deployment.
+
+.Bill of Materials - {IHVPartner} {IHVPlatform} Systems (Compute Servers)
+[options="header",cols=",,"]
+|===
+|Part Number |Description| Ea
+|7X08CTO1WW |ThinkSystem SR530 - 3yr Warranty |1
+|AV0S |ThinkSystem SR530 2.5" Chassis with 8 Bays |1
+|AWEC |Intel Xeon Silver 4114 10C 85W 2.2GHz Processor |1
+|AUND |ThinkSystem 32GB TruDDR4 2666 MHz (2Rx4 1.2V) RDIMM |6
+|AUWB |ThinkSystem SR530/SR630/SR570 2.5" SATA/SAS 8-Bay Backplane |1
+|AUNG |ThinkSystem RAID 530-8i PCIe 12Gb Adapter |1
+|B0YY |ThinkSystem 2.5" Intel S4500 240GB Entry SATA 6Gb Hot Swap SSD |2
+|AV0W |ThinkSystem SR530/SR570 x8 PCIe LP Riser 2 Kit |1
+|AUWC |ThinkSystem SR530/SR570/SR630 x8/x16 PCIe LP+LP Riser 1 Kit |1
+|AUWQ |Lenovo ThinkSystem 1U LP+LP BF Riser Bracket |1
+|AUKJ |ThinkSystem 10Gb 2-port SFP+ LOM |1
+|AVV7 |ThinkSystem 750W(230/115V) Platinum Hot-Swap Power Supply |2
+|6311 2.8m, 10A/100-250V, C13 to C14 Jumper Cord |2
+|AUPW |ThinkSystem XClarity Controller Standard to Enterprise Upgrade |1
+|B0MJ |Feature Enable TPM 1.2 |1
+|AXCA |ThinkSystem Toolless Slide Rail |1
+|AXFJ |ThinkSystem SR530 MB |1
+|AUTA |XCC Network Access Label |1
+|AUTJ |ThinkSystem common Intel Label |1
+|AUTV |ThinkSystem large Label for non-24x2.5"/12x3.5"/10x2.5" |1
+|AV08 |Value 1U Service label LI |1
+|AURR |ThinkSystem M3.5 Screw for Riser 2x2pcs and SR530/550/558/570/590 Planar 5pcs |9
+|AUWG |Lenovo ThinkSystem 1U VGA Filler |1
+|AULP |ThinkSystem 1U CPU Heatsink |1
+|AVJ2 |ThinkSystem 4R CPU HS Clip |1
+|AV0Z |ThinkSystem 4028 Fan Dummy |1
+|AVWK |ThinkSystem EIA Plate with Lenovo Logo |1
+|AVEN |ThinkSystem 1x1 2.5" HDD Filler |6
+|AXFK |ThinkSystem Intel Royalty for 2x10Gb SFP+ PHY Solution |1
+|AV0L |SR530 Model number Label |1
+|AWF9 |ThinkSystem Response time Service Label LI |1
+|AV0G |SR530/SR570 Lenovo Agency Label |1
+|AVWJ |ThinkSystem 750W Platinum RDN PSU Caution Label |1
+|AV06 |ThinkSystem SR530/SR630 2.5" SATA/SAS 8-Bay Backplane Kit |1
+|B0ML |Feature Enable TPM on MB |1
+|AUWN |Lenovo ThinkSystem 1U LP Riser Bracket |1
+|AV1X |Lenovo 3m Passive 25G SFP28 DAC Cable |1
+|AVG0 |3m Green Cat6 Cable |1
+|===
+
+NOTE: For a redundant network setup the number of DAC cables listed above have to be doubled.
+
+
+.Bill of Materials - {IHVPartner} {IHVPlatform} Systems (Storage Servers)
+[options="header",cols=",,"]
+|===
+|Part Number |Description| Ea
+|7X06CTO1WW |Server_DSS-C : ThinkSystem SR650 - 3yr Warranty |1
+|AUVV |ThinkSystem SR650 2.5" Chassis with 8, 16 or 24 bays |1
+|AWEE |Intel Xeon Silver 4110 8C 85W 2.1GHz Processor |2
+|AUND |ThinkSystem 32GB TruDDR4 2666 MHz (2Rx4 1.2V) RDIMM |6
+|AURA |ThinkSystem 2U/Twr 2.5" SATA/SAS 8-Bay Backplane |3
+|AUV1 |ThinkSystem RAID 930-24i 4GB Flash PCIe 12Gb Adapter |1
+|B0YY |ThinkSystem 2.5" Intel S4500 240GB Entry SATA 6Gb Hot Swap SSD |1
+|B0Z0 |ThinkSystem 2.5" Intel S4500 960GB Entry SATA 6Gb Hot Swap SSD* |4
+|AURC |ThinkSystem SR550/SR590/SR650 (x16/x8)/(x16/x16) PCIe FH Riser 2 Kit |1
+|AUR3 |ThinkSystem SR550/SR590/SR650 x16/x8 PCIe FH Riser 1 Kit |1
+|AUAJ |Mellanox ConnectX-4 Lx 2x25GbE SFP28 Adapter |2
+|AVWD |ThinkSystem 750W(230/115V) Platinum Hot-Swap Power Supply |2
+|6311 2.8m, 10A/100-250V, C13 to C14 Jumper Cord |2
+|AUPW |ThinkSystem XClarity Controller Standard to Enterprise Upgrade |1
+|B0MJ |Feature Enable TPM 1.2 |1
+|AXCA |ThinkSystem Toolless Slide Rail |1
+|AURD |ThinkSystem 2U left EIA Latch Standard |1
+|AUAK |2U Bracket for Mellanox ConnectX-4 Lx 2x25GbE SFP28 Adapter |2
+|AUTD |ThinkSystem SR650 model number Label |1
+|AVEP |ThinkSystem 4x1 2.5" HDD Filler |2
+|AURQ |Lenovo ThinkSystem 2U 3FH Riser Bracket |1
+|AUSZ |ThinkSystem SR650 Service Label LI |1
+|AURY |Lenovo ThinkSystem PHY Module Dummy |1
+|AURR | ThinkSystem M3.5 Screw for Riser 2x2pcs and SR530/550/558/570/590 Planar 5pcs |4
+|AUSG |ThinkSystem SR650 6038 Fan module |1
+|AVWJ |ThinkSystem 750W Platinum RDN PSU Caution Label |1
+|AUTQ |ThinkSystem small Lenovo Label for 24x2.5"/12x3.5"/10x2.5" |1
+|AURP |Lenovo ThinkSystem 2U 2FH Riser Bracket |1
+|AURS |Lenovo ThinkSystem Memory Dummy |18
+|AWF9 |ThinkSystem Response time Service Label LI |1
+|AUTA |XCC Network Access Label |1
+|AUSE |Lenovo ThinkSystem 2U CPU Entry Heatsink |2
+|AVWK |ThinkSystem EIA Plate with Lenovo Logo |1
+|AUT1 |ThinkSystem SR650 Lenovo Agency Label |1
+|AUNP |FBU345 SuperCap |1
+|AUSA |Lenovo ThinkSystem M3.5" Screw for EIA |4
+|AVEN |ThinkSystem 1x1 2.5" HDD Filler |8
+|AVJ2 |ThinkSystem 4R CPU HS Clip |2
+|AUTY |ThinkSystem 12-15 sequence Label for 24x2.5"Chassis |1
+|AUTF |ThinkSystem 4-7 sequence Label for 2U 2.5" |1
+|AUSH |MS First 2U 8x2.5" HDD BP Cable Kit |1
+|AVJ0 |ThinkSystem SR650/ST550/ST558 Super Cap Cable |1
+|AUSM |MS 2nd 2U 8X2.5" Cable Kit |2
+|AUQB |Lenovo ThinkSystem Mainstream MB - 2U |1
+|AUTJ |ThinkSystem common Intel Label |1
+|B0ML |Feature Enable TPM on MB |1
+|AV1X |Lenovo 3m Passive 25G SFP28 DAC Cable |2
+|AVG0 |3m Green Cat6 Cable |1
+|===
+
+NOTE: For a redundant network setup the number of DAC cables listed above have to be doubled.
+
+NOTE: For increased storage capacity the number of SSD drives marked with an asterisk (*) can be increased up to a maximum of 22 per node. In addition the number of nodes can be increased for additional capacity.
+
+
+.Bill of Materials - {IHVPartner} {IHVPlatform} Networking (Management)
+[options="header",cols=",,"]
+|===
+|Part Number |Description| Ea
+|7159HCT |Ethernet_Net-Management : Lenovo RackSwitch G7052 (Rear to Front) |1
+|AT0A |Lenovo RackSwitch G7052 (Rear to Front) |1
+|A3HG |Air Inlet Duct for 382 mm RackSwitch |1
+|A3KP |Adjustable 19" 4 Post Rail Kit |1
+|6201 |1.5m, 10A/100-250V, C13 to IEC 320-C14 Rack Power Cable |2
+|A4C0 |RackSwitch G7000 1.8m DC to DC RPS Power Cable |1
+|A4BZ |RackSwitch G7000 Redundant Power Supply |1
+|===
+
+.Bill of Materials - {IHVPartner} {IHVPlatform} Networking (Data Network)
+[options="header",cols=",,"]
+|===
+|Part Number |Description| Ea
+|7159HE3 |Highsped_Net-25G : Lenovo ThinkSystem NE2572 RackSwitch (Rear to Front) |1
+|AV19 |Lenovo ThinkSystem NE2572 RackSwitch (Rear to Front) |1
+|ASTN |Air Inlet Duct for 487 mm RackSwitch |1
+|A3KP |Adjustable 19" 4 Post Rail Kit |1
+|6201 |1.5m, 10A/100-250V, C13 to IEC 320-C14 Rack Power Cable |2
+|AVFW |0.75m Green Cat6 Cable |1
+|===
+
+NOTE: For a redundant network setup add an additional Lenovo ThinkSystem NE2572 RackSwitch and additional cables as indicated above.

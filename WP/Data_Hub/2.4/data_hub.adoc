@@ -17,13 +17,27 @@
 :StorageName: Enterprise Storage
 
 //:ProductName: SAP Data Hub with SUSE CaaS Platform
-:IHVSummary: IHVsummary
-:IHVPartner: HPE
-:IHVPartnerComposer: OneView
-:IHVPlatform: ProLiant
-:IHVNetwork: FlexFabric
-:IHVPlatformModel: DL360
-:IHVPlatformBMC: iLO
+:IHVPartner: IHV
+:IHVPlatform: general
+
+//:IHVPartner: Dell
+//:IHVPlatform: PowerEdge
+//:IHVPlatformModel: R640
+//:IHVPlatformBMC: iDrac
+
+//:IHVPartner: HPE
+//:IHVPlatform: Synergy
+//:IHVPlatform: ProLiant
+//:IHVPartnerComposer: OneView
+//:IHVNetwork: FlexFabric
+//:IHVPlatformModel: SY480
+//:IHVPlatformModel: DL360
+//:IHVPlatformBMC: iLO
+
+//:IHVPartner: Lenovo
+//:IHVPlatform: ThinkSystem
+//:IHVPlatformModel: SR530
+//:IHVPlatformBMC: xClarity Controller
 
 :xrefstyle: short
 
@@ -42,8 +56,8 @@ endif::[]
 |Version |Date         |Comments
 |0.5     |01/15/19     |Initial draft
 |0.6     |02/11/19     |Collaborative draft
-|1.0     |03/05/19     |First draft to be shared with HPE as SUSE Company Confidential
-|1.1     |03/31/19     |Proposed hardwa{CompanyName}re config - shared w/ HPE as SUSE Company Confidential
+|1.0     |03/05/19     |First draft to be shared with {IHVPartner} as {CompanyName} Company Confidential
+|1.1     |03/31/19     |Proposed {IHVPartner} hardware config - shared as {CompanyName} Company Confidential
 |=======================
 
 _*DRAFT COPY - DO NOT PUBLISH*_
@@ -247,61 +261,66 @@ Automate System Management Tasks for {ISVPartner} HANA and All Other Subsystems:
 
 == Hardware Architecture
 
-ifeval::["{IHVSummary}" == "IHVsummary"]
+This reference defines a private proof-of-concept cluster.  Other guides will address cloud-based and production environments.  The proof-of-concept cluster is a starting point for prototyping real-world applications that are meant to go into production.  As such, a proof-of-concept cluster can easily be grown into a production environment.  Further, a private deployment is useful for secure, in-house prototyping, but is not restricted from using cloud-based applications and data.  SAP Data Hub can manage data from locations both behind the firewall and in the cloud.
 
-include::{IHVSummary}.adoc[]
+The backbone of the application environment is the Kubernetes cluster, as implemented in the {CompanyName} {ProductName} software.  As described in the architecture section above, this cluster can be implemented on low-cost, commodity hardware, typicall 1U racked boxes with 2-socket processors.  The application environment reflects a key aspect of growth from prototyping to production.  In a PoC, there are typically few application containers, as developers are gaining experience building, deploying, and managing code as containers on the new software environment.  As such, there are less demands on the hardware for resources, particularly main memory.  Memory can easily be expanded, as the cluster needs to grow.  Processor speed, on the other hand, is something to carefully consider.  It is not as easy to swap processors, so choosing a medium to high-end Xeon processor with many cores is a good idea.
 
-endif::[]
+It is recommended to start with a minimum 2-socket Xeon processor with 8 to 12 cores per CPU.  Memory can start at 64GB.  Local storage on the cluster is used primarily for the operating system and any application temporary data.  A common choice is a RAID1 configuration of operating system disks, each with a minimum of 256GB.  SSD is the recommended choice, as it speeds operations and doesn't add considerable cost to the cluster in this case.  Networking is another key performance area, so 10GbE NICs are a minimum recommendation.  You can start with 1 NIC, but that is a bare minimum and 2 or more NICs will be needed for specific network requirements, based on your application needs.  In particular, high-bandwidth data pipelines will move lots of data to the cluster storage and can easily saturate a single NIC.  Consider mapping 1 high-speed NIC to those storage requirements.
 
-ifeval::["{IHVPartner}" == "HPE"]
+As described in the {CompanyName} {ProductName} section above, a minimum of 5 nodes will be required: 1 as the administration node, 1 master node, and 3 worker nodes.  Any https://www.suse.com/yessearch/[{CompanyName} YES] certified {IHVPartner} platform can be used for the physical nodes of this deployment, as long as the certification refers to the major version of the underlying {CompanyName} operating system required by the {CompanyName} {ProductName} release.
+
+One key benefit of this data analytics implementation is that {IHVPartner} industry-standard servers can fulfill each of the resource node's computational and additional storage needs. To reduce the time spent on hardware specification for an initial proof of concept implementation, the hardware should be general purpose and allow for a wide range of configuration options. The following sections detail attributes of the {IHVPartner} overall portolio and some specific recommendations of platform models.
 
 include::{IHVPartner}.adoc[]
 
-endif::[]
+=== Compute
 
-== Bill of Materials
-The HPE ProLiant DL360 series Gen9 server is an excellent platform for a proof-of-concept implementation of SAP Data Hub on SUSE CaaS Platform software.  The DL360 provides powerful, dense compute and storage capabilities via the servers selected for this reference architecture.
-And the ProLiant iLO management capability is a key piece of the management infrastructure for a data analytics cluster.
+The following considerations for the system platforms should be emphasized:
+* Ensure that all similar system devices are consistent and up-to-date with regard to BIOS/uEFI/device firmware versions to reduce potential troubleshooting issues later
+* Reset the BIOS setup configuration to the default setting to have a known baseline configuration to provide consistency.
+* If possible, setup RAID1 mirroring on the storage controller across a pair of drives for the operating system installation
 
-=== HPE ProLiant DL360 Gen10 Servers
-// This table came from the HOS8 RA and was updated for CaaSP.
-// What about the Gen10 server line?
+=== Storage
+Discussed under the Storage Architecture section, the storage layer of this solution leverages the Software Defined Storage capabilities as provided by {CompanyName} {StorageName}.
 
-[cols=",,,,", options="header"]
-.Bill of Materials - {IHVPartner} {IHVPlatform} {IHVPlatformModel} Systems
-|===
-|*_Role_*|*_Quantity_*|*_Product Number_*|*_Product_Name_*|*_Description_*
-|Administration|1|755259-B21|ProLiant DL360 Gen9|HPE ProLiant DL360 Gen9 4LFF Configure-to-order Server HPE Dynamic Smart Array B140i, 4-Bay LFF Drive Cage
-| |1|755382-L21|Processor|Intel Xeon E5-2620v3 (2.4GHz/6-core/15MB/85W)
-| |8|726718-B21|Memory|8GB (1x8GB) Single Rank x4 DDR4-2133 CAS-15-15-15 Registered Memory Kit
-| |1|665243-B21|Flexible LOM|HPE Ethernet 10Gb 2-port 560FLR-SFP+ FIO Adapter
-| |2|720478-B21|Power Supplies|HPE 500W Flex Slot Platinum Hot Plug Power supply Kit
-| |1|749974-B21|Storage Controller|HPE Smart Array P440ar/2GB FBWC 12Gb 2-ports Int FIO SAS Controller
-| |1|766211-B21|Storage cable|HPE DL360 Gen9 LFF P440ar/H240ar SAS Cbl
-| |2|652757-B21|Hard Drives|HPE 2TB 6G SAS 7.2K rpm LFF (3.5-inch) SC Midline 1yr Warranty Hard Drive
-| |1|663202-B21|Rail Kit|HPE 1U Large Form Factor Ball Bearing Rail Kit
-| |1|663203-B21|Cable Management Arm|HPE 1U Cable Management Arm for Ball Bearing Rail Kit
-|Master|1|755259-B21|ProLiant DL360 Gen9|HPE ProLiant DL360 Gen9 4LFF Configure-to-order Server HPE Dynamic Smart Array B140i, 4-Bay LFF Drive Cage
-| |1|755382-L21|Processor 1|Intel® Xeon® E5-2690v3 (2.6GHz/12-core/30MB/135W) FIO Processor Kit
-| |1|755382-B21|Processor 2|Intel® Xeon® E5-2690v3 (2.6GHz/12-core/30MB/135W) FIO Processor Kit
-| |4|726718-B21|Memory for 1st processor|8GB (1x8GB) Single Rank x4 DDR4-2133 CAS-15-15-15 Registered Memory Kit
-| |4|726718-B21|Memory for 2nd processor|8GB (1x8GB) Single Rank x4 DDR4-2133 CAS-15-15-15 Registered Memory Kit
-| |1|665243-B21|FlexibleLOM|HPE Ethernet 10Gb 2-port 560FLR-SFP+ FIO Adapter
-| |2|720478-B21|Power Supplies|HPE 800W Flex Slot Platinum Hot Plug Power Supply Kit
-| |4|765424-B21|Hard Drives|HPE 600GB 12G SAS 15K rpm LFF (3.5-inch) SC Enterprise 3yr Warranty Hard Drive
-| |1|749974-B21|Storage Controller|HPE Smart Array P440ar/2GB FBWC 12Gb 2-ports Int FIO SAS Controller
-| |1|766211-B21|Storage Cable|HPE DL360 Gen9 LFF P440ar/H240ar SAS Cbl
-| |1|663202-B21|Rail Kit|HPE 1U Large Form Factor Ball Bearing Rail Kit
-| |1|663203-B21|Cable Management Arm|HPE 1U Cable Management Arm for Ball Bearing Rail Kit
-|Compute|3|755258-B21|ProLiant DL360 Gen9|HPE ProLiant DL360 Gen9 8SFF Configure-to-order Server HPE Dynamic Smart Array B140i, 8-Bay SFF Drive Cage
-| |1|780003-L21|Processor 1|Intel® Xeon® E5-2699v3 (2.6GHz/18-core/45MB/145W) FIO Processor Kit
-| |1|780003-B21|Processor 2|Intel® Xeon® E5-2699v3 (2.6GHz/18-core/45MB/145W) FIO Processor Kit
-| |4|726718-B21|Memory for 1st processor|8GB (1x8GB) Dual Rank x4 DDR4-2133 CAS-15-15-15 Registered Memory Kit
-| |4|726718-B21|Memory for 2nd processor|8GB (1x8GB) Dual Rank x4 DDR4-2133 CAS-15-15-15 Registered Memory Kit
-| |1|665243-B21|FlexibleLOM|HPE Ethernet 10Gb 2-port 560FLR-SFP+ FIO Adapter
-| |2|720479-B21|Power Supply|HPE 800W Flex Slot Platinum Hot Plug Power Supply Kit
-| |6|759212-B21|Hard Drives|HPE 600GB 12G SAS 15K rpm SFF (2.5-inch) SC Enterprise 3yr Warranty Hard Drive
-| |1|749974-B21|Storage Controller|HPE Smart Array P440ar/2GB FBWC 12Gb 2-ports Int FIO SAS Controller
-| |1|663201-B21|Rail Kit|HPE 1U SFF Ball Bearing Rail Kit
-| |1|663203-B21|Cable Management Arm|HPE 1U Cable Management Arm for Ball Bearing Rail Kit
-|===
+{ISVPartner} {ISVSolution} and {CompanyName} {ProductName} are the base framework for a data analytics environment.  The data analytics you execute will be defined by a set of application containers that run on the {CompanyName} {ProductName}.  These containers will access data across your company's infrastructure and may store derived results in {CompanyName} {StorageName}.  As you define the workflow of your data analytics applications, you will need to access data across many different storage systems in your enterprise.  This access is beyond the scope of this architecture, but it is important to understand that data access will be required for a wide range of disparate storage systems.
+
+The {CompanyName} {StorageName} cluster can be utilized to store both intermediary and final results from the data analytics pipeline.  In other words, as your data analytics applications derive new data results, those are typically stored in {CompanyName} {StorageName}.  This allows the data analytics environment ({ISVPartner} {ISVSolution}, {CompanyName} {ProductName}, and your data analytics applications) to be logically organized in one physical location.
+
+=== Network
+Networking is the technology component which typically requires the most advanced planning.  Your data analytics applications will have unique network access requirements, especially when integrated with existing IT infrastructure. For the physical level, using pairs of {IHVPartner} {IHVNetwork} Switch Series devices as top-of-rack (ToR) switches allows all servers, each having multiple 10GbE, or higher speed, NIC ports, to form a link aggregation group (LAG) across the ports with at least one NIC port on each switch in the stack. When using network interface bonding on the resource nodes, the LAG ideally offers switch redundancy within the rack and enables high availability throughout the infrastructure.
+
+For this proof of concept deployment, a single 10GbE switch is used, having all resource nodes 10GbE NIC ports connected here, but could easily be expanded to the dual ToR configuration at a later date. To address management functions, the {IHVPlatformBMC}, out-of-band BMC interface can be connected to the same or another network switch infrastructure, but is fundamentally required to be accessible for this deployment.
+
+The following considerations for the networking should be emphasized:
+* Configure 802.3ad for system port bonding to get the maximum performance of bonded network interfaces
+* Ensure that all similar switching devices are consistent and up-to-date with regard to firmware versions to reduce potential troubleshooting issues later.* Configure 802.3ad for system port bonding to get the maximum performance of bonded network interfaces
+* Ensure that all similar switching devices are consistent and up-to-date with regard to firmware versions to reduce potential troubleshooting issues later.
+
+== Summary
+
+FixMe: - add a summary/conclusion parapgaph here
+
+== Appendices / References
+
+FixMe: - add a list of more reference links here
+
+{ISVPartner} {ISVSolution} - https://www.sap.com/products/data-hub.html
+* Release Note - https://launchpad.support.sap.com/#/notes/2721708
+* Prerequisites - https://launchpad.support.sap.com/#/notes/2686169
+* Install Guide - https://help.sap.com/viewer/e66c399612e84a83a8abe97c0eeb443a/2.4.latest/en-US
+
+{CompanyName} {ProductName} - https://www.suse.com/products/caas-platform/
+* Documentation - https://www.suse.com/documentation/suse-caasp-3/
+
+{CompanyName} {StorageName} - https://www.suse.com/products/suse-enterprise-storage/
+* Documentation - https://www.suse.com/documentation/suse-enterprise-storage-5/
+
+=== {ISVPartner} Software Bill of Materials
+include::{ISVPartner}-BOM.adoc[]
+
+=== {CompanyName} Software Bill of Materials
+include::{CompanyName}-BOM.adoc[]
+
+=== {IHVPartner} Hardware Bill of Materials
+include::{IHVPartner}-{IHVPlatform}-BOM.adoc[]

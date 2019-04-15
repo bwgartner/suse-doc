@@ -1,0 +1,8 @@
+
+[cols=",,,,", options="header"]
+.Bill of Materials - {ISVPartner} {ISVSolution} Software
+|===
+|*_Role_*|*_Quantity_*|*_Product Number_*|*_Description_*|*_Notes_*
+|?|?|?|?| FixMe
+|===
+

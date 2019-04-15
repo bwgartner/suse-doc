@@ -1,0 +1,7 @@
+
+{IHVPartner} Platform Portfolio::
+Utilizing the above software solutions with the server platforms offered by {IHVPartner} provides many alternative for value, flexibility and performance options. Server options abound in the https://www.dell.com/en-us/work/shop/dell-poweredge-servers/sc/servers[{IHVPartner} portfolio], covering
+* entrly-level - for businesses just migating to server usage
+* advanced - with more cache and speed, options for more processors, expansion and virtualization
+* innovative designs - from balanced to high performance, single to four socket, allowing capacity to meet future growth, demands and scaling
+* modular infrastructure  - blade and hybrid configurations that integrate servers, storage, networking and management to accommodate density and efficiency

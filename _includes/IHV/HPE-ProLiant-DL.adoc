@@ -1,0 +1,4 @@
+
+{IHVPartner} {IHVPlatform} {IHVPlatformModel} Compute::
+* in a form factor that provides performance-drive density, it delivers security, agility and flexibility without compromise. It supports the Intel® Xeon® Scalable processor with up to a 60% performance gain and 27% increase in cores, along with 2933 MT/s HPE DDR4 SmartMemory supporting up to 3.0 TB  with an increase in performance of up to 82%. With the added performance that persistent memory, {IHVPartner} NVDIMMs and 10 NVMe bring, the {IHVPartner} {IHVPlatform} {IHVPlatformModel} means business. Deploy, update, monitor and maintain with ease by automating essential server life cycle management tasks with {IHVPartner} OneView and {IHVPartner} Integrated Lights Out 5 (iLO 5). Deploy this 2P secure platform for diverse workloads in space constrained environments.
+

@@ -1,0 +1,40 @@
+
+[cols=",,,,", options="header"]
+.Bill of Materials - {IHVPartner} {IHVPlatform} {IHVPlatformModel} Systems
+|===
+|*_Role_*|*_Quantity_*|*_Product Number_*|*_Product_Name_*|*_Description_*
+|Administration|1|755259-B21|ProLiant DL360 Gen9|HPE ProLiant DL360 Gen9 4LFF Configure-to-order Server HPE Dynamic Smart Array B140i, 4-Bay LFF Drive Cage
+| |1|755382-L21|Processor|Intel Xeon E5-2620v3 (2.4GHz/6-core/15MB/85W)
+| |8|726718-B21|Memory|8GB (1x8GB) Single Rank x4 DDR4-2133 CAS-15-15-15 Registered Memory Kit
+| |1|665243-B21|Flexible LOM|HPE Ethernet 10Gb 2-port 560FLR-SFP+ FIO Adapter
+| |2|720478-B21|Power Supplies|HPE 500W Flex Slot Platinum Hot Plug Power supply Kit
+| |1|749974-B21|Storage Controller|HPE Smart Array P440ar/2GB FBWC 12Gb 2-ports Int FIO SAS Controller
+| |1|766211-B21|Storage cable|HPE DL360 Gen9 LFF P440ar/H240ar SAS Cbl
+| |2|652757-B21|Hard Drives|HPE 2TB 6G SAS 7.2K rpm LFF (3.5-inch) SC Midline 1yr Warranty Hard Drive
+| |1|663202-B21|Rail Kit|HPE 1U Large Form Factor Ball Bearing Rail Kit
+| |1|663203-B21|Cable Management Arm|HPE 1U Cable Management Arm for Ball Bearing Rail Kit
+|Master|1|755259-B21|ProLiant DL360 Gen9|HPE ProLiant DL360 Gen9 4LFF Configure-to-order Server HPE Dynamic Smart Array B140i, 4-Bay LFF Drive Cage
+| |1|755382-L21|Processor 1|Intel® Xeon® E5-2690v3 (2.6GHz/12-core/30MB/135W) FIO Processor Kit
+| |1|755382-B21|Processor 2|Intel® Xeon® E5-2690v3 (2.6GHz/12-core/30MB/135W) FIO Processor Kit
+| |4|726718-B21|Memory for 1st processor|8GB (1x8GB) Single Rank x4 DDR4-2133 CAS-15-15-15 Registered Memory Kit
+| |4|726718-B21|Memory for 2nd processor|8GB (1x8GB) Single Rank x4 DDR4-2133 CAS-15-15-15 Registered Memory Kit
+| |1|665243-B21|FlexibleLOM|HPE Ethernet 10Gb 2-port 560FLR-SFP+ FIO Adapter
+| |2|720478-B21|Power Supplies|HPE 800W Flex Slot Platinum Hot Plug Power Supply Kit
+| |4|765424-B21|Hard Drives|HPE 600GB 12G SAS 15K rpm LFF (3.5-inch) SC Enterprise 3yr Warranty Hard Drive
+| |1|749974-B21|Storage Controller|HPE Smart Array P440ar/2GB FBWC 12Gb 2-ports Int FIO SAS Controller
+| |1|766211-B21|Storage Cable|HPE DL360 Gen9 LFF P440ar/H240ar SAS Cbl
+| |1|663202-B21|Rail Kit|HPE 1U Large Form Factor Ball Bearing Rail Kit
+| |1|663203-B21|Cable Management Arm|HPE 1U Cable Management Arm for Ball Bearing Rail Kit
+|Compute|3|755258-B21|ProLiant DL360 Gen9|HPE ProLiant DL360 Gen9 8SFF Configure-to-order Server HPE Dynamic Smart Array B140i, 8-Bay SFF Drive Cage
+| |1|780003-L21|Processor 1|Intel® Xeon® E5-2699v3 (2.6GHz/18-core/45MB/145W) FIO Processor Kit
+| |1|780003-B21|Processor 2|Intel® Xeon® E5-2699v3 (2.6GHz/18-core/45MB/145W) FIO Processor Kit
+| |4|726718-B21|Memory for 1st processor|8GB (1x8GB) Dual Rank x4 DDR4-2133 CAS-15-15-15 Registered Memory Kit
+| |4|726718-B21|Memory for 2nd processor|8GB (1x8GB) Dual Rank x4 DDR4-2133 CAS-15-15-15 Registered Memory Kit
+| |1|665243-B21|FlexibleLOM|HPE Ethernet 10Gb 2-port 560FLR-SFP+ FIO Adapter
+| |2|720479-B21|Power Supply|HPE 800W Flex Slot Platinum Hot Plug Power Supply Kit
+| |6|759212-B21|Hard Drives|HPE 600GB 12G SAS 15K rpm SFF (2.5-inch) SC Enterprise 3yr Warranty Hard Drive
+| |1|749974-B21|Storage Controller|HPE Smart Array P440ar/2GB FBWC 12Gb 2-ports Int FIO SAS Controller
+| |1|663201-B21|Rail Kit|HPE 1U SFF Ball Bearing Rail Kit
+| |1|663203-B21|Cable Management Arm|HPE 1U Cable Management Arm for Ball Bearing Rail Kit
+|===
+

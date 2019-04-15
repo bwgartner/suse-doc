@@ -1,0 +1,8 @@
+
+{IHVPartner} Platform Portfolio::
+Utilizing the above software solutions with the server platforms offered by {IHVPartner} you can driver your business forward with a server that matches your needs. Reduce costs and complexity by investing in a system that handles today's workloads and expands to accomodate future growth. Server options abound in the https://www.lenovo.com/us/en/data-center/servers/c/servers[{IHVPartner} portfolio], covering
+* rack - balanced design, build for business
+* tower - workload hungry, budget friendly
+* blade - no-compromise Flex System Blades, highly composable
+* mission-critical - high-end, industry-leading capabilities
+* high-density - HPC optimized systems

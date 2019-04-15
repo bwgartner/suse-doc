@@ -1,0 +1,16 @@
+
+[cols=",,,,", options="header"]
+.Bill of Materials - {IHVPartner} {IHVPlatform} {IHVPlatformModel} Systems
+|===
+|*_Role_*|*_Quantity_*|*_Product Number_*|*_Product_Description_*|*_Notes_*
+|Frame|1|797740-B22|{IHVPartner} {IHVPlatform} 12000 Frame Configure-to-order Frame with 2x FLM 6x Power Supplies 10x Fans|
+||1|804353-B22|{IHVPartner} {IHVPlatform} {IHVPlatformComposer}|add second module for HA configuration
+|Compute|1|871946-B21|{IHVPartner} {IHVPlatform} 480 Gen10 3104 1P 16GB-R S100i SATA Entry Compute Module|Administration Node
+||1|871946-B21|{IHVPartner} {IHVPlatform} 480 Gen10 3104 1P 16GB-R S100i SATA Entry Compute Module|Master Nodes, recommend minimul of 3 for HA configuration
+|Worker Node|1|871946-B21|{IHVPartner} {IHVPlatform} 480 Gen10 3104 1P 16GB-R S100i SATA Entry Compute Module|Worker Nodes, minimum of 3 for PoC, 4 for production, but can scale to <150
+|Storage|8|871946-B21|{IHVPartner} {IHVPlatform} 480 Gen10 3104 1P 16GB-R S100i SATA Entry Compute Module|used for core node roles (Admin, 3-Mon, 4-OSD)
+||1|??|{IHVPartner} {IHVPlatform} D3940 Storage Module ...|
+||5|??|{IHVPartner} {IHVPlatform} xGB SSD SAS drives|
+||35|??|{IHVPartner} {IHVPlatform} xGB SAS drives|
+|===
+

@@ -2,3 +2,4 @@
 {IHVPartner} {IHVPlatform} Storage Module::
 * The {IHVPartner} {IHVPlatform} D3940 Storage Module provides a fluid pool of storage resources for the Composable Infrastructure. Additional capacity for compute modules is easily provisioned and intelligently managed with integrated data services for availability and protection. The 40 SFF drive bays per storage module can be populated with 12 G SAS or 6 G SATA drives. Expand up to 4 storage modules in a single Synergy 12000 Frame for a total of 200 drives.
 * Any drive bay can be zoned to any compute module for efficient use of capacity without fixed ratios. A second {IHVPartner} {IHVPlatform} D3940 I/O Adapter provides a redundant path to disks inside the storage module for high data availability. The {IHVPartner} {IHVPlatform} D3940 Storage Module and {IHVPartner} {IHVPlatform} 12Gb SAS Connection Module are performance optimized in a non-blocking 12 Gb/s SAS fabric.
+

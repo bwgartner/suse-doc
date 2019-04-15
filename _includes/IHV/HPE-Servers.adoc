@@ -7,3 +7,4 @@ Utilizing the above software solutions with the server platforms offered by {IHV
 * IoT - realize the potential of the Internet of Things to provide compute at the network edge
 * cloud - high-capacity, mass-compute open infrastructure with security and software to match
 * and virtualized use cases.
+

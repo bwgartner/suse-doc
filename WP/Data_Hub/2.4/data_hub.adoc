@@ -16,7 +16,6 @@
 :ProductName: CaaS Platform
 :StorageName: Enterprise Storage
 
-//:ProductName: SAP Data Hub with SUSE CaaS Platform
 :IHVPartner: IHV
 :IHVPlatform: general
 
@@ -26,12 +25,16 @@
 //:IHVPlatformBMC: iDrac
 
 //:IHVPartner: HPE
-//:IHVPlatform: Synergy
 //:IHVPlatform: ProLiant
-//:IHVPartnerComposer: OneView
+//:IHVPlatformComposer: Composer
+//:IHVPlatformModel: DL360
+//:IHVPlatformBMC: iLO
+
+//:IHVPartner: HPE
+//:IHVPlatform: Synergy
+//:IHVPlatformComposer: Composer
 //:IHVNetwork: FlexFabric
 //:IHVPlatformModel: SY480
-//:IHVPlatformModel: DL360
 //:IHVPlatformBMC: iLO
 
 //:IHVPartner: Lenovo

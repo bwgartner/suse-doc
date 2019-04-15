@@ -12,8 +12,8 @@ include::../../../_includes/IHV/{IHVPartner}-{IHVPlatform}-Frame.adoc[]
 include::../../../_includes/IHV/{IHVPartner}-{IHVPlatform}-{IHVPlatformComposer}.adoc[]
 include::../../../_includes/IHV/{IHVPartner}-{IHVPlatform}-{IHVPlatformImager}.adoc[]
 include::../../../_includes/IHV/{IHVPartner}-{IHVPlatform}-SY.adoc[]
-include::../../../_includes/IHV/YES.adoc[]
 include::../../../_includes/IHV/{IHVPartner}-{IHVPlatform}-StorageModule.adoc[]
+include::../../../_includes/IHV/YES.adoc[]
 
 endif::[]
 
@@ -25,9 +25,7 @@ include::../../../_includes/IHV/YES.adoc[]
 
 endif::[]
 
-For this the implementation, {IHVPartner} {IHVPlatform} {IHVPlatformModel} serve
-rs were utilized for all node roles. Example configurations are included in the 
-Appendices.
+For this the implementation, {IHVPartner} {IHVPlatform} {IHVPlatformModel} servers were utilized for all node roles. Example configurations are included in the Appendices.
 
 [[img-SAP-SUSE_DataHub_Arch_ProLiant]]
 .{ISVSolution} on {IHVPartner} {IHVPlatform} Servers

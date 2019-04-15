@@ -1,0 +1,100 @@
+:Author: John von Voros
+:AuthorEMail: jvonvoros@suse.com
+
+:ISVPartner: SAP
+:ISVSolution: Data Hub
+
+:CompanyName: SUSE
+:ProductName: CaaS Platform
+:StorageName: Enterprise Storage
+
+//:ProductName: SAP Data Hub with SUSE CaaS Platform
+:IHVSummary: IHVsummary
+:IHVPartner: HPE
+:IHVPartnerComposer: OneView
+:IHVPlatform: ProLiant
+:IHVNetwork: FlexFabric
+:IHVPlatformModel: DL360
+:IHVPlatformBMC: iLO
+
+:xrefstyle: short
+
+ifdef::env-github[]
+:imagesdir: https://github.com/bwgartner/suse-doc/blob/master/WP/Data_Hub/2.4/images/src/png/
+endif::[]
+
+= {ISVPartner}^(R)^ {ISVSolution} Evaluation Options on {CompanyName}^(R)^ Container as a Service Platform
+{Author}, {CompanyName} < {AuthorEMail} >
+
+== Revision History
+
+.Revisions
+[options="header",cols=",,"]
+|=======================
+|Version |Date         |Comments
+|0.1     |04/08/19     |Initial draft
+|=======================
+
+_*DRAFT COPY - DO NOT PUBLISH*_
+
+== Introduction
+Digital transformation has led to the need to consolidate multiple sources of structured and unstructured data to fill the data pipeline required to build today's analytics based applications.  Common use cases include machine learning, business analytics, Internet of Things (IOT) sensor data for manufacturing, and even fraud protection for financial services.  This causes challenges in pulling data from all kinds of sources including on-premise databases, hadoop clusters, real-time click streams, and geographically disperse public cloud systems.  Further, the need for security and governance makes managing these services cumbersome and inflexible.   https://www.sap.com/products/data-hub.html[{ISVPartner} {ISVSolution}] greatly simplifies the management of all of your data sources with a simple "drag and drop" interface to build your end-to-end data pipeline with fine-grained access control. This unique application works both with and without SAP's other software products.
+
+In what is likely to become a trend for new SAP applications, SAP Data Hub is designed to be installed and run in a Kubernetes/container environment.   https://www.suse.com/products/caas-platform/[{CompanyName} {ProductName}] (Containers-as-a-Service) is one of several SAP-certified Kubernetes platforms approved for production supported environments. The benefits of this approach are easy scalablity, portablity between environments, and isolated troubleshooting.
+
+NOTE: See [.underline]*SAP Note 2693555* for SAP Data Hub certified systems
+
+Fortunately, SAP offers many different ways to evaluate Data Hub ranging from free downloadable evaluation versions that run in a small environment all the way up to fully automated Kubernetes clusters.   This paper will outline the benefits of each method to provide guidance on the best evaluation criteria to consider.
+
+
+=== Target Audience
+This discussion will be of interest to professionals involved in both IT Operations and Analytics/Business Intelligence.   The recommended frameworks offer a range of solutions depending on your Proof of Concept goals and requirements.
+
+=== Summary
+// Ranked from easy to hard.   Need intro
+
+
+
+.SAP Data Hub Evaluation Options
+[options="header",cols=",,"]
+|=======================
+|*_Architecture_*|*_Pros_* |*_Cons_*
+
+a|SingleVirtual Machine or Dedicated Client::
+https://developers.sap.com/tutorials/datahub-docker-v2-setup.html[Single Docker Container]
+
+2-4 CPU Cores, 8GB RAM, 10GB Disk
+a|- Quick setup +
+- Low hardware requirement +
+- Free evaluation software
+- Tutorials available from SAP +
+- Ability to access internal data sources
+a| - No Kubernetes support +
+- Not supported by SAP for Production
+- Some Data Hub functionality not available
+
+// Section on Hypercloud Evaluation
+a| Public Cloud Evaluation::
+    https://blogs.sap.com/2019/03/07/sap-datahub-and-deployment-on-aws-eks/[Amazon AWS] +
+    https://blogs.sap.com/2018/12/10/sap-data-hub-deployment-on-microsoft-azure/[Microsoft Azure]
+
+a|- Quick setup +
+- No Upfront CapEx
+- Full Kubernetes experience
+- SAP-certified configurations possible
+
+a|- Access to internal data may be difficult +
+- Potential for vendor lock-in +
+- Data egress charges may be high depending on size of data stores
+
+// Section on Minimum Config POC with SUSE CaaSP/SES on VMs
+a| Proof of Concept on SUSE CaaS Platform::
+
+1 Server 16/Cores, 64GB RAM 1TB disk +
+3 Servers 16/Cores, 128GB RAM, 3TB SSD
+a| - Low hardware footprint +
+- Similar configuration to Production +
+- Full Kubernetes support
+- Ability to access internal data sources
+a| - Lower performance than bare metal implementations
+ - Not supported by SAP for Production

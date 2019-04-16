@@ -27,7 +27,23 @@ endif::[]
 
 For this the implementation, {IHVPartner} {IHVPlatform} {IHVPlatformModel} servers were utilized for all node roles. Example configurations are included in the Appendices.
 
+//
+// Choose an Arch image based on platform
+//
+
+ifeval::["{IHVPlatform}" == "Synergy"]
+
+[[img-SAP-SUSE_DataHub_Arch_Synergy]]
+.{ISVSolution} on {IHVPartner} {IHVPlatform} Servers
+image::SAP-SUSE-DataHub-Arch-Synergy.png[Synergy_DataHub_Arch, 640, 480]
+
+endif::[]
+
+ifeval::["{IHVPlatform}" == "ProLiant"]
+
 [[img-SAP-SUSE_DataHub_Arch_ProLiant]]
 .{ISVSolution} on {IHVPartner} {IHVPlatform} Servers
 image::SAP-SUSE-DataHub-Arch-ProLiant.png[ProLiant_DataHub_Arch, 640, 480]
+
+endif::[]
 

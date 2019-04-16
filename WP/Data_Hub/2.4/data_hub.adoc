@@ -16,8 +16,8 @@
 :ProductName: CaaS Platform
 :StorageName: Enterprise Storage
 
-:IHVPartner: IHV
-:IHVPlatform: general
+//:IHVPartner: IHV
+//:IHVPlatform: general
 
 //:IHVPartner: Dell
 //:IHVPlatform: PowerEdge
@@ -30,12 +30,12 @@
 //:IHVPlatformModel: DL360
 //:IHVPlatformBMC: iLO
 
-//:IHVPartner: HPE
-//:IHVPlatform: Synergy
-//:IHVPlatformComposer: Composer
-//:IHVNetwork: FlexFabric
-//:IHVPlatformModel: SY480
-//:IHVPlatformBMC: iLO
+:IHVPartner: HPE
+:IHVPlatform: Synergy
+:IHVPlatformComposer: Composer
+:IHVNetwork: FlexFabric
+:IHVPlatformModel: SY480
+:IHVPlatformBMC: iLO
 
 //:IHVPartner: Lenovo
 //:IHVPlatform: ThinkSystem
@@ -61,6 +61,7 @@ endif::[]
 |0.6     |02/11/19     |Collaborative draft
 |1.0     |03/05/19     |First draft to be shared with {IHVPartner} as {CompanyName} Company Confidential
 |1.1     |03/31/19     |Proposed {IHVPartner} hardware config - shared as {CompanyName} Company Confidential
+|1.2     |04/15/19     |Merged templates to allow easy generation of various platforms.
 |=======================
 
 _*DRAFT COPY - DO NOT PUBLISH*_
@@ -84,7 +85,7 @@ image::Data_Funnel_Pipeline.png[{ISVPartner}_Data_Hub_Data_Pipeline_Funnel, 241,
 What's more, finding a business application to perform the task is not even the hardest part. Businesses need to ensure their data-analysis software investment can meet the scale of their current, as well as their future application/data landscape, plus enforce data governance. Equally as important is the resiliency and scalability of the underlying infrastructure. Experienced leaders know that enterprise-grade software is a poor investment if it is not built on enterprise-grade infrastructure.
 
 === Business Value
-{ISVPartner} {ISVSolution} is a containerized solution designed to be deployed on enterprise-grade Kubernetes clusters such as {CompanyName} {ProductName}  For more than 17 years {ISVPartner} has developed their software on {CompanyName} Linux Enterprise Server (SLES) and {CompanyName} solutions such as {ProductName}.
+{ISVPartner} {ISVSolution} is a containerized solution designed to be deployed on enterprise-grade Kubernetes clusters such as {CompanyName} {ProductName}.  For more than 17 years {ISVPartner} has developed their software on {CompanyName} Linux Enterprise Server (SLES) and {CompanyName} solutions such as {ProductName}.
 
 NOTE: See [.underline]*SAP Note 2693555* for certified systems.
 
@@ -279,9 +280,12 @@ include::{IHVPartner}.adoc[]
 === Compute
 
 The following considerations for the system platforms should be emphasized:
-* Ensure that all similar system devices are consistent and up-to-date with regard to BIOS/uEFI/device firmware versions to reduce potential troubleshooting issues later
+
+* Ensure that all similar system devices are consistent and up-to-date with regard to BIOS/uEFI/device firmware versions to reduce potential troubleshooting issues later.
+
 * Reset the BIOS setup configuration to the default setting to have a known baseline configuration to provide consistency.
-* If possible, setup RAID1 mirroring on the storage controller across a pair of drives for the operating system installation
+
+* If possible, setup RAID1 mirroring on the storage controller across a pair of drives for the operating system installation.
 
 === Storage
 Discussed under the Storage Architecture section, the storage layer of this solution leverages the Software Defined Storage capabilities as provided by {CompanyName} {StorageName}.
@@ -302,22 +306,30 @@ The following considerations for the networking should be emphasized:
 
 == Summary
 
-FixMe: - add a summary/conclusion parapgaph here
+{IHVPartner} {IHVPlatform} is an excellent platform for creating a container runtime environment as is needed for {ISVPartner} {ISVSolution}.  Composible infrastructure allows you to define appropriate hardware from software descriptions.  This means you can easily scale, adjust and customize your environment to fit your needs, as you move from a proof-of-concept toward a production environment.
+
+{CompanyName} {ProductName} is an enterprise Kubernetes container platform that provides software infrastructure for not only the {ISVPartner} {ISVSolution} software described in this reference, but also the data analytics applications you will build to ingest and manage your data.
+
+All of the software environments in this reference architecture are supported products and have been tested to work together on {IHVPartner} {IHVPlatform} gear.
+
 
 == Appendices / References
 
-FixMe: - add a list of more reference links here
+NOTE: We intend to expand the list of refernece links.
 
-{ISVPartner} {ISVSolution} - https://www.sap.com/products/data-hub.html
-* Release Note - https://launchpad.support.sap.com/#/notes/2721708
-* Prerequisites - https://launchpad.support.sap.com/#/notes/2686169
-* Install Guide - https://help.sap.com/viewer/e66c399612e84a83a8abe97c0eeb443a/2.4.latest/en-US
+{ISVPartner} {ISVSolution}::
+* https://www.sap.com/products/data-hub.html.
+* Release Note - https://launchpad.support.sap.com/#/notes/2721708.
+* Prerequisites - https://launchpad.support.sap.com/#/notes/2686169.
+* Install Guide - https://help.sap.com/viewer/e66c399612e84a83a8abe97c0eeb443a/2.4.latest/en-US.
 
-{CompanyName} {ProductName} - https://www.suse.com/products/caas-platform/
-* Documentation - https://www.suse.com/documentation/suse-caasp-3/
+{CompanyName} {ProductName}::
+* https://www.suse.com/products/caas-platform.
+* Documentation - https://www.suse.com/documentation/suse-caasp-3.
 
-{CompanyName} {StorageName} - https://www.suse.com/products/suse-enterprise-storage/
-* Documentation - https://www.suse.com/documentation/suse-enterprise-storage-5/
+{CompanyName} {StorageName}::
+* https://www.suse.com/products/suse-enterprise-storage.
+* Documentation - https://www.suse.com/documentation/suse-enterprise-storage-5.
 
 === {ISVPartner} Software Bill of Materials
 include::{ISVPartner}-BOM.adoc[]
@@ -327,3 +339,4 @@ include::{CompanyName}-BOM.adoc[]
 
 === {IHVPartner} Hardware Bill of Materials
 include::{IHVPartner}-{IHVPlatform}-BOM.adoc[]
+

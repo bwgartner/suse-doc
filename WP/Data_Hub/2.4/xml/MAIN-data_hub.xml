@@ -1,0 +1,1106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN" "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd">
+<?asciidoc-toc?>
+<?asciidoc-numbered?>
+
+<book lang="en">
+<bookinfo>
+    <title>SAP<superscript>&#174;</superscript> Data Hub on SUSE<superscript>&#174;</superscript> Container as a Service Platform</title>
+    <authorinitials>{</authorinitials>
+<orgname>SUSE</orgname>
+</bookinfo>
+<chapter id="_revision_history">
+<title>Revision History</title>
+<table
+frame="all"
+rowsep="1" colsep="1"
+>
+<title>Revisions</title>
+<tgroup cols="3">
+<colspec colname="col_1" colwidth="33*"/>
+<colspec colname="col_2" colwidth="33*"/>
+<colspec colname="col_3" colwidth="33*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Version </entry>
+<entry align="left" valign="top">Date         </entry>
+<entry align="left" valign="top">Comments</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara>0.5</simpara></entry>
+<entry align="left" valign="top"><simpara>01/15/19</simpara></entry>
+<entry align="left" valign="top"><simpara>Initial draft</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>0.6</simpara></entry>
+<entry align="left" valign="top"><simpara>02/11/19</simpara></entry>
+<entry align="left" valign="top"><simpara>Collaborative draft</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>1.0</simpara></entry>
+<entry align="left" valign="top"><simpara>03/05/19</simpara></entry>
+<entry align="left" valign="top"><simpara>First draft to be shared with Dell as SUSE Company Confidential</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>1.1</simpara></entry>
+<entry align="left" valign="top"><simpara>03/31/19</simpara></entry>
+<entry align="left" valign="top"><simpara>Proposed Dell hardware config - shared as SUSE Company Confidential</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>1.2</simpara></entry>
+<entry align="left" valign="top"><simpara>04/15/19</simpara></entry>
+<entry align="left" valign="top"><simpara>Merged templates to allow easy generation of various platforms.</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+<simpara><emphasis>*DRAFT COPY - DO NOT PUBLISH*</emphasis></simpara>
+<simpara><?asciidoc-pagebreak?></simpara>
+</chapter>
+<chapter id="_introduction">
+<title>Introduction</title>
+<simpara>Enterprise data is exploding and is both a challenge and an opportunity. Companies are discovering ways to transform their data into services that help differentiate the business and create new lines of revenue.  Unfortunately, managing and fully utilizing the information stored in data silos (e.g. cloud databases, Hadoop clusters, social media feeds) has become incredibly complex due to requirements for security, governance, and specialized training.  <ulink url="https://www.sap.com/products/data-hub.html">SAP Data Hub</ulink> provides a GUI-based business-wide view of a broad array of data systems, databases, and assets to enable your analytics and business intelligence teams to manage your entire data landscape through an intuitive “single pane of glass”.    In what is likely to become a trend, SAP mandates that this application is deployed on a Kubernetes compatible container platform. <ulink url="https://www.suse.com/products/caas-platform/">SUSE CaaS Platform</ulink> enables you to extend your SUSE Enterprise Linux for SAP environment to container-based application delivery.</simpara>
+<section id="_target_audience">
+<title>Target Audience</title>
+<simpara>This discussion will be of interest to professionals involved in both IT Operations and Analytics/Business Intelligence.   The recommended framework supplies the requirements to implement SAP’s Data Hub that is certified on SUSE CaaS Platform.</simpara>
+</section>
+<section id="_business_problem">
+<title>Business Problem</title>
+<simpara>Today&#8217;s business leaders are under increasing pressure to drive their business with data-driven decisions. This presents a particular challenge for those executives who strive to bring together the right combination of disparate data sources to unlock new value for their business.</simpara>
+<simpara>This difficulty is compounded by the very nature of how data is collected and stored, which results in independent data silos with no easy way to make critical associations across them. These data silos may be stored geographically close together, or far apart. Some may be built with on-premise resources, and some housed in one or more public clouds. Valuable data is often found in structured and unstructured databases, Hadoop data lakes, data warehouses, and even in text files. Gaining new insights into potential customers and business opportunities may involve nearly all of the data silos a company has available to it.</simpara>
+<figure id="img-Data_Pipeline_Funnel"><title>SAP Data Hub Data Pipeline Funnel</title>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="Data_Funnel_Pipeline.png"/>
+  </imageobject>
+  <textobject><phrase>SAP_Data_Hub_Data_Pipeline_Funnel</phrase></textobject>
+</mediaobject>
+</figure>
+<simpara>What&#8217;s more, finding a business application to perform the task is not even the hardest part. Businesses need to ensure their data-analysis software investment can meet the scale of their current, as well as their future application/data landscape, plus enforce data governance. Equally as important is the resiliency and scalability of the underlying infrastructure. Experienced leaders know that enterprise-grade software is a poor investment if it is not built on enterprise-grade infrastructure.</simpara>
+</section>
+<section id="_business_value">
+<title>Business Value</title>
+<simpara>SAP Data Hub is a containerized solution designed to be deployed on enterprise-grade Kubernetes clusters such as SUSE CaaS Platform.  For more than 17 years SAP has developed their software on SUSE Linux Enterprise Server (SLES) and SUSE solutions such as CaaS Platform.</simpara>
+<note><simpara>See <emphasis role="strong"><phrase role=".underline">SAP Note 2693555</phrase></emphasis> for certified systems.</simpara></note>
+<simpara>SAP Data Hub is built on a next-generation data-aggregation model that does away with the need for expensive data warehouses. Instead, SAP Data Hub allows data extraction and formatting to be done on the platform where the data resides. This is in contrast to the current practice of using cumbersome, single-use Extract, Load,  Transform (ELT) operations that are used to populate data warehouses; SAP Data Hub provides formatted, refined and cleansed data from multiple sources directly to the data consumers.</simpara>
+<simpara>SAP Data Hub leverages data pipelines, which are built from reusable application components. Data pipelines are computational models that are executed natively on the data source. They define what data should be gathered from which sources, and how that data should be formatted at the source. Pipelines also specify what refinements and cleansing each stream of data should go through to make it compatible with the other data streams in the pipeline. Finally, they identify to which consumer or consumers the collated data should be sent. Since SAP Data Hub does not need to persist data, it completely eliminates the need for expensive, scale-limiting data warehouses.</simpara>
+<simpara>Data pipelines can be created through a graphical user interface to leverage existing data sources such as SAP HANA, SAP Vora, Apache Spark, and Apache Hadoop; as well as all major open and closed source OLTP, OLAP and NoSQL databases.</simpara>
+<simpara>Before implementing a data-analytics solution, consider the specific problem you are working to solve. Below are some use cases for SAP Data Hub that may help to zero in on the type of solution you are pursuing.</simpara>
+</section>
+</chapter>
+<chapter id="_example_use_cases">
+<title>Example Use Cases</title>
+<simpara>This section will outline a few potential use cases for SAP Data Hub built on SUSE Containers as a Service Application Platform.   In general, SAP Data Hub excels in pulling information from multiple kinds of internal and external data resources to enable insight into very complex analytical problems.   The use of machine learning and Big Data analytics platforms like SAP, Hadoop, MapR, Cloudera, etc. require access to large pools of unstructured data in a highly automated, systematic and secure way.</simpara>
+<section id="_fraud_detection">
+<title>Fraud Detection</title>
+<simpara>Credit card fraud has become an epidemic with losses in the billions of dollars.  Financial institutions need the ability to create profiles that alert to probable fraud on large volumes of transactions.   The more information they can cross-reference, the more accurate their models will become.  SAP Data Hub can pull in transactional data from ERP systems, credit reporting bureaus, email from a Hadoop cluster, social media data, and “Dark Web” databases to enable data scientist to build very precise detection methodologies.</simpara>
+</section>
+<section id="_manufacturing_equipment_maintenance">
+<title>Manufacturing Equipment Maintenance</title>
+<simpara>Global manufacturers rely on the uptime of their equipment to meet product delivery targets.   Unscheduled maintenance or equipment failure can result in lost profits, poor quality, and unmet commitments.   Conversely, over-scheduling maintenance activities also impacts cost and output.   Manufacturers were early adopters of Internet of Things (IOT) technology for the real-time monitoring of equipment sensors (e.g. temperature, vibration, humidity, motor loading, etc.)  to have a better understanding of the state of their environment.   What if predictive models and machine learning (ML) could be used to optimize maintenance scheduling?  SAP Data Hub can be used to orchestrate the end-to-end data flow to feed an ML platform to predict impending outages and schedule corrective maintenance before any disruptions.</simpara>
+</section>
+<section id="_customer_affinity_recommendations">
+<title>Customer Affinity Recommendations</title>
+<simpara>E-Commerce sites routinely use various data sources to try to recommend an additional purchase or fine-tune your search to more relevant items.   Early attempts were based solely on purchasing behavior at an individual retailer, but state of the art now requires data input from email, social media, browser search data, clickstream data, and credit card reporting sites.   SAP Data Hub enables you to easily build this pipeline to feed real-time recommendations into an active session on a purchasing website. This information can greatly increase the revenue per transaction metric that is critical to success.</simpara>
+</section>
+</chapter>
+<chapter id="_requirements">
+<title>Requirements</title>
+<simpara>As an IT organization evaluates solutions to the data growth and migration challenge, key requirements will be defined. Below are some typical requirements to consider as you experiment and evaluate software for your analytics applications.</simpara>
+<table
+frame="all"
+rowsep="1" colsep="1"
+>
+<title>Data Analytics Solution Requirements</title>
+<tgroup cols="2">
+<colspec colname="col_1" colwidth="50*"/>
+<colspec colname="col_2" colwidth="50*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Requirement Type      </entry>
+<entry align="left" valign="top">Details</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara>Existing Data Stores</simpara></entry>
+<entry align="left" valign="top"><simpara>Access data from a variety of data sources, including Hadoop data lakes, object stores, databases, and data warehouses, both in the cloud and on-premise.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>Perform data transformations, data quality, and data preparation processes.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>Define data pipelines and streams.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>Embed and productize scripts, programs, and algorithms of the Data Scientist.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>Productize open libraries or ML algorithms in one framework.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Distributed Data Processing</simpara></entry>
+<entry align="left" valign="top"><simpara>Distribute computational tasks to the native environments where the data reside.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>Remote Process scheduling:<?asciidoc-br?>
+                          - SAP Business Warehouse process chains<?asciidoc-br?>
+                          - SAP Data Services dataflows<?asciidoc-br?>
+                          - SAP HANA Smart Data Integration FlowGraph</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Governance</simpara></entry>
+<entry align="left" valign="top"><simpara>Establish and manage zones in a landscape with attached policies and services levels.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>Security and Access Control capabilities.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Orchestration</simpara></entry>
+<entry align="left" valign="top"><simpara>Workflow creation of operations and processes across the landscape with monitoring and analysis capabilities.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>Execution of end-to-end data processes, starting with the ingestion of data into the landscape (e.g. the data lake), including data processing, and leading up to the delivery or integration of the resulting data into enterprise processes and applications.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Data Ingestion and Processing</simpara></entry>
+<entry align="left" valign="top"><simpara>Data integration, cleansing, enrichment, masking and anonymization.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Data Discovery</simpara></entry>
+<entry align="left" valign="top"><simpara>Data Profiles for Big Data Sets showing quality and comprehensive structure information.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>Ability to crawl, discover, and tag data elements.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>Expose discovered data for further usage.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Scalability</simpara></entry>
+<entry align="left" valign="top"><simpara>Scalable Architecture, from small to big, test to production deployment.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Deployment</simpara></entry>
+<entry align="left" valign="top"><simpara>Easy deployment, using a proven-to-work combination of the components.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Fault Tolerance</simpara></entry>
+<entry align="left" valign="top"><simpara>Single component error will not lead to whole system unavailability.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Ease of Management/Ops</simpara></entry>
+<entry align="left" valign="top"><simpara>Reduced complexity for solution management.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Physical Footprint</simpara></entry>
+<entry align="left" valign="top"><simpara>Compact solution that works within your existing infrastructure models.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Flexibility</simpara></entry>
+<entry align="left" valign="top"><simpara>Flexible building block approach allows sizing according to customer needs.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Security</simpara></entry>
+<entry align="left" valign="top"><simpara>Solution provides the means to secure customer infrastructure.</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>High performance</simpara></entry>
+<entry align="left" valign="top"><simpara>Best practices are designed into the solution to ensure the best performance results.</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+<simpara>With a solid understanding of your requirements, you can begin to design the solution.  The following section will outline the key concepts in the software architecture of the SAP Data Hub reference configuration.</simpara>
+</chapter>
+<chapter id="_software_architecture">
+<title>Software Architecture</title>
+<section id="_sap_data_hub">
+<title>SAP Data Hub</title>
+<simpara>SAP Data Hub offers data management capabilities to help customers manage their growing amount of data. This solution combines data governance, management of data pipelines and data integration using a single visual interface and without the need for moving data into a central data warehouse.  <xref linkend="img-Solution_Architecture"/> shows a high-level view of the architectural components designed to handle a wide range of enterprise applications scenarios.  The optional Hadoop cluster can be used as the main software platform for handling the composition of application data.</simpara>
+<figure id="img-Solution_Architecture"><title>SAP Data Hub Architecture</title>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="SAP_HANA_Architecture.png"/>
+  </imageobject>
+  <textobject><phrase>SAP_Data_Hub_Architecture</phrase></textobject>
+</mediaobject>
+</figure>
+<variablelist>
+<varlistentry>
+<term>
+Tenant Applications and Services
+</term>
+<listitem>
+<simpara>
+Tenant Applications and Services are the core of SAP Data Hub. SAP Data Hub provides various tools for development and administration, as well as applications that are accessible through the SAP Data Hub application launchpad. SAP Data Hub Pipelines are the connectors between the various SAP Data Hub data sources. They provide reusable, configurable operations to process data from the various sources, including CSV files, web services APIs as well as SAP’s own data stores and can be flexibly designed. The SAP Data Hub Modeler allows the creation and configuration of such pipelines through a graphical user interface. The Metadata Explorer provides information about the location, attributes, quality, and sensitivity of data. With this information, you can make informed decisions about which datasets to publish and determine who has access to use or view information about the datasets.  The Connection Management block enables connections to managed systems or external storage. Services such as Amazon S3, Google Cloud Services, Microsoft Azure (ADL, WASB), data services, or Hadoop HDFS can be connected, as well as databases (Oracle, SAP HANA, SAP VORA) or business warehouses (SAP BW).
+</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>
+SAP Vora Distributed Database
+</term>
+<listitem>
+<simpara>
+SAP Vora is a horizontally scalable, distributed database which can store and process structured data, time-series data (i.e. IoT streams), graph data and semi-structured documents in-memory and/or on disk. SAP Vora is only available with SAP Data Hub, running in Kubernetes as a fully containerized application. It can store analytics data in Kubernetes pods as well as provide a bi-directional Spark2 interface between SAP Data Hub and an optionally co-located Hadoop cluster. Like SAP Data Hub, Vora requires a Kubernetes cluster of at least three Worker Nodes, but runs alongside Data Hub on the same cluster.
+</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>
+SAP HANA (SAP Data Hub Internal)
+</term>
+<listitem>
+<simpara>
+SAP Data Hub utilizes an internal instance of SAP HANA as a back-end for Data Hub applications.  This instance is automatically installed, sized, and maintained as part of the overall Data Hub installation process.   No special consideration is required.
+</simpara>
+</listitem>
+</varlistentry>
+</variablelist>
+<variablelist>
+<varlistentry>
+<term>
+Container Registry
+</term>
+<listitem>
+<simpara>
+SAP Data Hub requires a Docker repository for container images. This can be a publicly accessible site or a private collection of workload images. Other public or private registry sites can be used to provide files like Helm charts to deploy complete services. Although the private Docker registry is not part of the SUSE CaaS Platform, you can either build an on-premise instance using the Containers Module Add-on included with SUSE Linux Enterprise Server for SAP along with the SUSE Portus (<ulink url="http://port.us.org">http://port.us.org</ulink>) package or deploying this as a container directly on SUSE CaaS Platform.  Portus is an open source on-premise authorization service that allows users to administrate and secure their Docker registries with fine-grained control.
+</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>
+Optional Hadoop Cluster
+</term>
+<listitem>
+<simpara>
+An optional Hadoop cluster can be built on dedicated nodes and co-located with SAP Data Hub. This associated Hadoop Data Lake can be used as a local computational/storage medium for SAP Data Hub original and uploaded content. The SAP Data Hub Spark Extensions are used to interface with the Spark2 environment on the Hadoop cluster for processing and storing data.  When utilizing this cluster, Data Hub users can leverage the analytical strengths of SAP Vora to analyze and store data in HDFS through the SAP Data Hub Vora Spark Extension. SUSE has extensive experience deploying bare-metal and virtualized Hadoop clusters on SUSE Linux Enterprise Server. While this Hadoop cluster uses dedicated nodes, its HDFS storage is built on block storage from the <ulink url="https://www.suse.com/products/suse-enterprise-storage/">SUSE Enterprise Storage</ulink> cluster that also serves SAP Data Hub.
+</simpara>
+</listitem>
+</varlistentry>
+</variablelist>
+</section>
+<section id="_suse_caas_platform">
+<title>SUSE CaaS Platform</title>
+<simpara>SUSE CaaS Platform is an integrated software platform which automates the tasks of building, managing and upgrading Kubernetes clusters. It combines the benefits of an enterprise-ready operating system with the agility of an orchestration platform for containerized applications such as SAP Data Hub.</simpara>
+<simpara>While there are several top-tier Kubernetes offerings in the market, SUSE CaaS Platform stands out for its ease of installation and configuration, DevOps integration (via <ulink url="https://www.suse.com/products/cloud-application-platform/">SUSE Cloud Application Platform</ulink>), and enterprise level of operability and scalability.</simpara>
+<simpara>One of the biggest challenges for Kubernetes operators is matching the scalability of the node level infrastructure with that of the overlaying container infrastructure. Inconsistently applied software changes, as well as node configuration drift, create ticking time bombs in production Kubernetes clusters.</simpara>
+<simpara>SUSE CaaS Platform (<xref linkend="img-CaaSP_Detailed_Architecture"/>) resolves these problems with a combination of SUSE MicroOS as the container host operating system and Salt for configuration management. SUSE MicroOS is a mission-specific derivative of SUSE Linux Enterprise Server (SLES). While MicroOS leverages the same codebase and packages, its implementation ensures that software changes are applied atomically and within a snapshot-protected environment. The combination of MicroOS and Salt guarantees that all nodes in a cluster are always in a known and consistent state. The troubleshooting nightmares of discovering a single node with a partially-failed configuration or software change are a thing of the past.</simpara>
+<figure id="img-CaaSP_Detailed_Architecture"><title>SUSE CaaS Platform Architecture</title>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="CaaSP_Detailed_Architecture.png"/>
+  </imageobject>
+  <textobject><phrase>CaaSP_Detailed_Architecture</phrase></textobject>
+</mediaobject>
+</figure>
+<simpara>A SUSE CaaS Platform (<xref linkend="img-CaaSP_Nodes"/>) consists of the following node types:</simpara>
+<variablelist>
+<varlistentry>
+<term>
+Administration Node
+</term>
+<listitem>
+<simpara>
+The Administration Node of the SUSE CaaS Platform manages the deployment of the cluster and runs central services like:
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+<emphasis role="strong">Velum</emphasis>: Web-UI dashboard used to administer the cluster.
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Salt Master</emphasis>:  Manages the configuration of the cluster nodes.
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">MariaDB Database</emphasis>: Stores Velum data and Salt master daemon events
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Dex Identity Service</emphasis>: Provides user authentication and a robust role-based access control (RBAC) system.
+</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>
+Kubernetes Master Nodes
+</term>
+<listitem>
+<simpara>
+The CaaS Platform Master Nodes maintain the Kubernetes control plane services. These services run as containers on the Master Nodes. While three or more Master Nodes (always an odd number) are required for high availability of the Kubernetes control plane, a single Master Node is acceptable for demonstration purposes.
+</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>
+Kubernetes Worker Nodes
+</term>
+<listitem>
+<simpara>
+The CaaS Platform Kubernetes Worker Nodes run the SAP Data Hub application containers. SAP Data Hub requires a minimum of three Kubernetes Worker Nodes (four worker nodes for production) and SUSE currently supports CaaS Platform clusters of up to 150 nodes. Additional Worker Nodes can be added to a Production CaaS Platform cluster non-disruptively.
+</simpara>
+</listitem>
+</varlistentry>
+</variablelist>
+<note><simpara>SAP specifies that each worker node must have a least 8 cores and 64GB of main memory.</simpara></note>
+<figure id="img-CaaSP_Nodes"><title>SUSE CaaS Platform Node Configuration</title>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="CaaSP_Nodes.png"/>
+  </imageobject>
+  <textobject><phrase>CaaSP_Nodes</phrase></textobject>
+</mediaobject>
+</figure>
+<variablelist>
+<varlistentry>
+<term>
+Optional SUSE Cloud Application Platform
+</term>
+<listitem>
+<simpara>
+<ulink url="https://www.suse.com/products/cloud-application-platform">SUSE Cloud Application Platform</ulink> is a modern application delivery environment used to bring an advanced cloud native DevOps experience to container-based infrastructure.    SUSE&#8217;s implementation is based on the open source <ulink url="https://www.cloudfoundry.org/project-eirini/">Project Eirini</ulink> which uses Kubernetes to orchestrate application containers while maintaining the Cloud Foundry user experience. This Platform as a Service (PaaS) environment is used by developers to streamline lifecycle management of traditional and cloud native applications.  Together, these technologies accelerate innovation, improve IT responsiveness, and maximize return on investment.
+</simpara>
+</listitem>
+</varlistentry>
+</variablelist>
+</section>
+</chapter>
+<chapter id="_storage_architecture">
+<title>Storage Architecture</title>
+<simpara>The storage layer of this solution leverages the Software Defined Storage capabilities of SUSE Enterprise Storage (SES). SES is a commercially supported distribution of the Ceph enterprise-grade, scale-out storage solution.  SAP requires a certified solution for storage that supports Rados Block Devices as well as Dynamically Provisioned Volumes (See <emphasis role="strong"><phrase role=".underline">SAP Note 2686169</phrase></emphasis> for certified storage options)</simpara>
+<note><simpara>SAP Data Hub 2.x no longer supports the NFS protocol (See <emphasis role="strong"><phrase role=".underline">SAP Note 2712050</phrase></emphasis>)</simpara></note>
+<simpara>Ceph is a scale-out, distributed object store which provides excellent performance, scalability, and reliability. In most use cases clients use Linux kernel libraries to read and write object and block data directly to/from a storage node in the SES cluster. SES also provides gateway options to support data access via iSCSI, NFS, S3, and Swift protocols.</simpara>
+<simpara>The storage capacity of the SES solution can be expanded easily by integrating additional storage nodes to the cluster. Exiting storage nodes will take care of redistributing the data to the newly added nodes without interrupting the availability of storage services to the clients.</simpara>
+<simpara>SES provides a reliable, scalable storage layer for the complete solution that supports:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+Dynamically provisioned block storage volumes to the pods running on SUSE CaaS Platform.
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+(Optionally) Block storage volumes for the co-located Hadoop cluster nodes, if configured.
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+Object storage through an S3-API compatible interface for additional data storage and backups.
+</simpara>
+<variablelist>
+<varlistentry>
+<term>
+Dynamically Provisioned Storage Volumes
+</term>
+<listitem>
+<simpara>
+In addition to providing block storage to the optional Hadoop cluster, a pod running on CaaS Platform can gain access to dynamically provisioned Kubernetes persistent volumes (PV) through Kubernetes persistent volume claims (PVC). Persistent volumes are created as block devices in the supporting SES cluster. CaaS Platform uses persistent volume claims (PVC)s to obtain dynamically provisioned persistent volumes through the Software Defined Storage mechanisms in SES. When a PVC is removed, the persistent volume and its associated block storage device in SES are automatically removed.
+</simpara>
+</listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+</itemizedlist>
+<section id="_software_and_systems_management">
+<title>Software and Systems Management</title>
+<simpara>While SAP Data Hub doesn&#8217;t necessarily require an external SAP HANA instance to function, most users of this solution will be attaching to an existing HANA database.  The scale-out capabilities of  SAP HANA support rapid data growth, but it is important to have a dependable method of updating your SAP HANA servers.  SUSE Manager enables you to efficiently manage a set of Linux systems and keep them up-to-date. The benefits in a SAP HANA scale-out setup are:</simpara>
+<variablelist>
+<varlistentry>
+<term>
+Reduced Complexity of Managing SAP HANA Environments
+</term>
+<listitem>
+<itemizedlist>
+<listitem>
+<simpara>
+Ensure consistent management of SAP HANA and all other cluster systems.
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+Manage your data environment across physical, virtual and cloud environments.
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+Manage your channels effectively.
+</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>
+Create/Manage Development, QA and Production Channels
+</term>
+<listitem>
+<itemizedlist>
+<listitem>
+<simpara>
+Add and manage third-party channels.
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+Simplify compliance.
+</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>
+Audit the Patch Status for SAP HANA and Subsystems
+</term>
+<listitem>
+<itemizedlist>
+<listitem>
+<simpara>
+Track the configuration changes and make sure all administrators have the right authority for changes.
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+Slash costs of ownership.
+</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>
+Automate System Management Tasks for SAP HANA and All Other Subsystems
+</term>
+<listitem>
+<itemizedlist>
+<listitem>
+<simpara>
+Leverage a single web-based interface to see the status of all your servers.
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+Use your resources effectively.
+</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+</varlistentry>
+</variablelist>
+</section>
+</chapter>
+<chapter id="_hardware_architecture">
+<title>Hardware Architecture</title>
+<simpara>This reference defines a private proof-of-concept cluster.  Other guides will address cloud-based and production environments.  The proof-of-concept cluster is a starting point for prototyping real-world applications that are meant to go into production.  As such, a proof-of-concept cluster can easily be grown into a production environment.  Further, a private deployment is useful for secure, in-house prototyping, but is not restricted from using cloud-based applications and data.  SAP Data Hub can manage data from locations both behind the firewall and in the cloud.</simpara>
+<simpara>The backbone of the application environment is the Kubernetes cluster, as implemented in the SUSE CaaS Platform software.  As described in the architecture section above, this cluster can be implemented on low-cost, commodity hardware, typicall 1U racked boxes with 2-socket processors.  The application environment reflects a key aspect of growth from prototyping to production.  In a PoC, there are typically few application containers, as developers are gaining experience building, deploying, and managing code as containers on the new software environment.  As such, there are less demands on the hardware for resources, particularly main memory.  Memory can easily be expanded, as the cluster needs to grow.  Processor speed, on the other hand, is something to carefully consider.  It is not as easy to swap processors, so choosing a medium to high-end Xeon processor with many cores is a good idea.</simpara>
+<simpara>It is recommended to start with a minimum 2-socket Xeon processor with 8 to 12 cores per CPU.  Memory can start at 64GB.  Local storage on the cluster is used primarily for the operating system and any application temporary data.  A common choice is a RAID1 configuration of operating system disks, each with a minimum of 256GB.  SSD is the recommended choice, as it speeds operations and doesn&#8217;t add considerable cost to the cluster in this case.  Networking is another key performance area, so 10GbE NICs are a minimum recommendation.  You can start with 1 NIC, but that is a bare minimum and 2 or more NICs will be needed for specific network requirements, based on your application needs.  In particular, high-bandwidth data pipelines will move lots of data to the cluster storage and can easily saturate a single NIC.  Consider mapping 1 high-speed NIC to those storage requirements.</simpara>
+<simpara>As described in the SUSE CaaS Platform section above, a minimum of 5 nodes will be required: 1 as the administration node, 1 master node, and 3 worker nodes.  Any <ulink url="https://www.suse.com/yessearch/">SUSE YES</ulink> certified Dell platform can be used for the physical nodes of this deployment, as long as the certification refers to the major version of the underlying SUSE operating system required by the SUSE CaaS Platform release.</simpara>
+<simpara>One key benefit of this data analytics implementation is that Dell industry-standard servers can fulfill each of the resource node&#8217;s computational and additional storage needs. To reduce the time spent on hardware specification for an initial proof of concept implementation, the hardware should be general purpose and allow for a wide range of configuration options. The following sections detail attributes of the Dell overall portolio and some specific recommendations of platform models.</simpara>
+<variablelist>
+<varlistentry>
+<term>
+Dell Platform Portfolio
+</term>
+<listitem>
+<simpara>
+Utilizing the above software solutions with the server platforms offered by Dell provides many alternatives for value, flexibility and performance options. Server options abound in the <ulink url="https://www.dell.com/en-us/work/shop/dell-poweredge-servers/sc/servers">Dell portfolio</ulink>, covering
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+Entry-level - for businesses just migrating to server usage
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+Advanced - with more cache and speed, options for more processors, expansion and virtualization
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+Innovative designs - from balanced to high performance, single to four socket, allowing capacity to meet future growth, demands and scaling
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+Modular infrastructure  - blade and hybrid configurations that integrate servers, storage, networking and management to accommodate density and efficiency
+</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>
+Dell PowerEdge Portfolio
+</term>
+<listitem>
+<itemizedlist>
+<listitem>
+<simpara>
+Delivers steady performance and the storage capacity to handle future growth.
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+Offers a variety of attributes to achieve high performance and the scalability to adapt nearly any workload.
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+Offers the best performance and scalability for your applications like in-database workloads, HPC to data analytics, and AI and GPU database acceleration.
+</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>
+Dell PowerEdge R640 Compute
+</term>
+<listitem>
+</listitem>
+</varlistentry>
+</variablelist>
+<figure id="img-Dell_R640"><title>Dell R640 Server</title>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="Dell_R640.png"/>
+  </imageobject>
+  <textobject><phrase>Dell_R640</phrase></textobject>
+</mediaobject>
+</figure>
+<itemizedlist>
+<listitem>
+<simpara>
+<emphasis role="strong">CPU:</emphasis>  Up to two Intel® Xeon® Scalable processors, up to 28 cores per processor
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Memory:</emphasis>   24 DDR4 DIMM slots, supports RDIMM /LRDIMM (registered ECC DDR4 DIMMs only), speeds up to 2666MT/s, 3TB max, up to 12 NVDIMM, 192 GB max
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Front Drive Bays:</emphasis>  Up to 10 x 2.5” with up to 8 NVMe, SAS/SATA/SSD/NVMe, max 76.8TB , or up to 10 NVMe drives max 64TB, or up to 4 x 3.5” SAS/SATA, max 56TB
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Rear Drive Bays:</emphasis>  Up to 2 x 2.5” SAS/SATA/SSD/NVMe, max 15.36TB
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Network Daughter Card Options:</emphasis>  4 x 1GE or 2 x 10GE + 2 x 1GE or 4 x 10GE or 2 x 25GE
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis role="strong">Chassis Max Depth (with Bezel):</emphasis>  757.75 mm - For the 8 x 2.5” front bay drive configuration. 808.51 mm - For the 4 x 3.5” or 10 x 2.5” front bay drive configurations (plus up to 2 rear drives).
+TIP: Any <ulink url="https://www.suse.com/yessearch/">SUSE YES</ulink> certified Dell platform can be used for the physical nodes of this deployment, as long as the certification refers to the major version of the underlying SUSE operating system required by the SUSE CaaS Platform release.
+</simpara>
+</listitem>
+</itemizedlist>
+<simpara>For this the implementation, Dell PowerEdge R640 servers were utilized for all node roles. Example configurations are included in the Appendices.</simpara>
+<section id="_compute">
+<title>Compute</title>
+<simpara>The following considerations for the system platforms should be emphasized:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+Ensure that all similar system devices are consistent and up-to-date with regard to BIOS/uEFI/device firmware versions to reduce potential troubleshooting issues later.
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+Reset the BIOS setup configuration to the default setting to have a known baseline configuration to provide consistency.
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+If possible, setup RAID1 mirroring on the storage controller across a pair of drives for the operating system installation.
+</simpara>
+</listitem>
+</itemizedlist>
+</section>
+<section id="_storage">
+<title>Storage</title>
+<simpara>Discussed under the Storage Architecture section, the storage layer of this solution leverages the Software Defined Storage capabilities as provided by SUSE Enterprise Storage.</simpara>
+<simpara>SAP Data Hub and SUSE CaaS Platform are the base framework for a data analytics environment.  The data analytics you execute will be defined by a set of application containers that run on the SUSE CaaS Platform.  These containers will access data across your company&#8217;s infrastructure and may store derived results in SUSE Enterprise Storage.  As you define the workflow of your data analytics applications, you will need to access data across many different storage systems in your enterprise.  This access is beyond the scope of this architecture, but it is important to understand that data access will be required for a wide range of disparate storage systems.</simpara>
+<simpara>The SUSE Enterprise Storage cluster can be utilized to store both intermediary and final results from the data analytics pipeline.  In other words, as your data analytics applications derive new data results, those are typically stored in SUSE Enterprise Storage.  This allows the data analytics environment (SAP Data Hub, SUSE CaaS Platform, and your data analytics applications) to be logically organized in one physical location.</simpara>
+</section>
+<section id="_network">
+<title>Network</title>
+<simpara></simpara>
+<simpara>For this proof of concept deployment, a single 10GbE switch is used, having all resource nodes 10GbE NIC ports connected here, but could easily be expanded to the dual ToR configuration at a later date. To address management functions, the iDrac, out-of-band BMC interface can be connected to the same or another network switch infrastructure, but is fundamentally required to be accessible for this deployment.</simpara>
+<simpara>The following considerations for the networking should be emphasized:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+Configure 802.3ad for system port bonding to get the maximum performance of bonded network interfaces
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+Ensure that all similar switching devices are consistent and up-to-date with regard to firmware versions to reduce potential troubleshooting issues later.* Configure 802.3ad for system port bonding to get the maximum performance of bonded network interfaces
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+Ensure that all similar switching devices are consistent and up-to-date with regard to firmware versions to reduce potential troubleshooting issues later.
+</simpara>
+</listitem>
+</itemizedlist>
+</section>
+</chapter>
+<chapter id="_summary">
+<title>Summary</title>
+<simpara>Dell PowerEdge is an excellent platform for creating a container runtime environment as is needed for SAP Data Hub.  Composible infrastructure allows you to define appropriate hardware from software descriptions.  This means you can easily scale, adjust and customize your environment to fit your needs, as you move from a proof-of-concept toward a production environment.</simpara>
+<simpara>SUSE CaaS Platform is an enterprise Kubernetes container platform that provides software infrastructure for not only the SAP Data Hub software described in this reference, but also the data analytics applications you will build to ingest and manage your data.</simpara>
+<simpara>All of the software environments in this reference architecture are supported products and have been tested to work together on Dell PowerEdge gear.</simpara>
+</chapter>
+<chapter id="_appendices_references">
+<title>Appendices / References</title>
+<note><simpara>We intend to expand the list of reference links.</simpara></note>
+<variablelist>
+<varlistentry>
+<term>
+SAP Data Hub
+</term>
+<listitem>
+<itemizedlist>
+<listitem>
+<simpara>
+<ulink url="https://www.sap.com/products/data-hub.html">https://www.sap.com/products/data-hub.html</ulink>.
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+Release Note - <ulink url="https://launchpad.support.sap.com/#/notes/2721708">https://launchpad.support.sap.com/#/notes/2721708</ulink>.
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+Prerequisites - <ulink url="https://launchpad.support.sap.com/#/notes/2686169">https://launchpad.support.sap.com/#/notes/2686169</ulink>.
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+Install Guide - <ulink url="https://help.sap.com/viewer/e66c399612e84a83a8abe97c0eeb443a/2.4.latest/en-US">https://help.sap.com/viewer/e66c399612e84a83a8abe97c0eeb443a/2.4.latest/en-US</ulink>.
+</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>
+SUSE CaaS Platform
+</term>
+<listitem>
+<itemizedlist>
+<listitem>
+<simpara>
+<ulink url="https://www.suse.com/products/caas-platform">https://www.suse.com/products/caas-platform</ulink>.
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+Documentation - <ulink url="https://www.suse.com/documentation/suse-caasp-3">https://www.suse.com/documentation/suse-caasp-3</ulink>.
+</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>
+SUSE Enterprise Storage
+</term>
+<listitem>
+<itemizedlist>
+<listitem>
+<simpara>
+<ulink url="https://www.suse.com/products/suse-enterprise-storage">https://www.suse.com/products/suse-enterprise-storage</ulink>.
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+Documentation - <ulink url="https://www.suse.com/documentation/suse-enterprise-storage-5">https://www.suse.com/documentation/suse-enterprise-storage-5</ulink>.
+</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+</varlistentry>
+</variablelist>
+<section id="_sap_software_bill_of_materials">
+<title>SAP Software Bill of Materials</title>
+<table
+frame="all"
+rowsep="1" colsep="1"
+>
+<title>Bill of Materials - SAP Data Hub Software</title>
+<tgroup cols="5">
+<colspec colname="col_1" colwidth="20*"/>
+<colspec colname="col_2" colwidth="20*"/>
+<colspec colname="col_3" colwidth="20*"/>
+<colspec colname="col_4" colwidth="20*"/>
+<colspec colname="col_5" colwidth="20*"/>
+<thead>
+<row>
+<entry align="left" valign="top"><emphasis role="strong"><emphasis>Role</emphasis></emphasis></entry>
+<entry align="left" valign="top"><emphasis role="strong"><emphasis>Quantity</emphasis></emphasis></entry>
+<entry align="left" valign="top"><emphasis role="strong"><emphasis>Product Number</emphasis></emphasis></entry>
+<entry align="left" valign="top"><emphasis role="strong"><emphasis>Description</emphasis></emphasis></entry>
+<entry align="left" valign="top"><emphasis role="strong"><emphasis>Notes</emphasis></emphasis></entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara>?</simpara></entry>
+<entry align="left" valign="top"><simpara>?</simpara></entry>
+<entry align="left" valign="top"><simpara>?</simpara></entry>
+<entry align="left" valign="top"><simpara>?</simpara></entry>
+<entry align="left" valign="top"><simpara>FixMe</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+</section>
+<section id="_suse_software_bill_of_materials">
+<title>SUSE Software Bill of Materials</title>
+<table
+frame="all"
+rowsep="1" colsep="1"
+>
+<title>Bill of Materials - SUSE CaaS Platform Software</title>
+<tgroup cols="5">
+<colspec colname="col_1" colwidth="20*"/>
+<colspec colname="col_2" colwidth="20*"/>
+<colspec colname="col_3" colwidth="20*"/>
+<colspec colname="col_4" colwidth="20*"/>
+<colspec colname="col_5" colwidth="20*"/>
+<thead>
+<row>
+<entry align="left" valign="top"><emphasis role="strong"><emphasis>Role</emphasis></emphasis></entry>
+<entry align="left" valign="top"><emphasis role="strong"><emphasis>Quantity</emphasis></emphasis></entry>
+<entry align="left" valign="top"><emphasis role="strong"><emphasis>Product Number</emphasis></emphasis></entry>
+<entry align="left" valign="top"><emphasis role="strong"><emphasis>Description</emphasis></emphasis></entry>
+<entry align="left" valign="top"><emphasis role="strong"><emphasis>Notes</emphasis></emphasis></entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara>Software</simpara></entry>
+<entry align="left" valign="top"><simpara>1</simpara></entry>
+<entry align="left" valign="top"><simpara>874-007633</simpara></entry>
+<entry align="left" valign="top"><simpara>SUSE CaaS Platform, x86-64, 1-2 Sockets with Unlimited Virtual Machines, L3-Priority Subscription, 3 Year</simpara></entry>
+<entry align="left" valign="top"><simpara>for each node of the deployment</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+<table
+frame="all"
+rowsep="1" colsep="1"
+>
+<title>Bill of Materials - SUSE Enterprise Storage Software</title>
+<tgroup cols="5">
+<colspec colname="col_1" colwidth="20*"/>
+<colspec colname="col_2" colwidth="20*"/>
+<colspec colname="col_3" colwidth="20*"/>
+<colspec colname="col_4" colwidth="20*"/>
+<colspec colname="col_5" colwidth="20*"/>
+<thead>
+<row>
+<entry align="left" valign="top"><emphasis role="strong"><emphasis>Role</emphasis></emphasis></entry>
+<entry align="left" valign="top"><emphasis role="strong"><emphasis>Quantity</emphasis></emphasis></entry>
+<entry align="left" valign="top"><emphasis role="strong"><emphasis>Product Number</emphasis></emphasis></entry>
+<entry align="left" valign="top"><emphasis role="strong"><emphasis>Description</emphasis></emphasis></entry>
+<entry align="left" valign="top"><emphasis role="strong"><emphasis>Notes</emphasis></emphasis></entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara>Software</simpara></entry>
+<entry align="left" valign="top"><simpara>1</simpara></entry>
+<entry align="left" valign="top"><simpara>874-007044</simpara></entry>
+<entry align="left" valign="top"><simpara>SUSE Enterprise Storage Base Configuration, x86-64, 4 OSD Nodes with 1-2 Sockets, L3-Priority Subscription, 3 Year</simpara></entry>
+<entry align="left" valign="top"><simpara>includes 4 OSD Nodes plus 6 infrastructure nodes (e.g. Admin, Mon, gateway)</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Software</simpara></entry>
+<entry align="left" valign="top"><simpara>1</simpara></entry>
+<entry align="left" valign="top"><simpara>874-007046</simpara></entry>
+<entry align="left" valign="top"><simpara>SUSE Enterprise Storage Expansion Node, x86-64, 1 OSD Node with 1-2 Sockets, L3-Priority Subscription, 3 Year</simpara></entry>
+<entry align="left" valign="top"><simpara>includes 1 additional OSD Node plus 1 infrastructure node</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+</section>
+<section id="_dell_hardware_bill_of_materials">
+<title>Dell Hardware Bill of Materials</title>
+<table
+frame="all"
+rowsep="1" colsep="1"
+>
+<title>Bill of Materials - Network</title>
+<tgroup cols="4">
+<colspec colname="col_1" colwidth="25*"/>
+<colspec colname="col_2" colwidth="25*"/>
+<colspec colname="col_3" colwidth="25*"/>
+<colspec colname="col_4" colwidth="25*"/>
+<thead>
+<row>
+<entry align="left" valign="top"><emphasis role="strong"><emphasis>Role</emphasis></emphasis></entry>
+<entry align="left" valign="top"><emphasis role="strong"><emphasis>Quantity</emphasis></emphasis></entry>
+<entry align="left" valign="top"><emphasis role="strong"><emphasis>Description</emphasis></emphasis></entry>
+<entry align="left" valign="top"><emphasis role="strong"><emphasis>Notes</emphasis></emphasis></entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara><emphasis role="strong">Top of Rack Network Switch</emphasis></simpara></entry>
+<entry align="left" valign="top"><simpara>1</simpara></entry>
+<entry align="left" valign="top"><simpara>Dell EMC S3048-ON</simpara></entry>
+<entry align="left" valign="top"><simpara>connects up to 48 systems, add as needed</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><emphasis role="strong">Top of Rack Network Switch</emphasis></simpara></entry>
+<entry align="left" valign="top"><simpara>1</simpara></entry>
+<entry align="left" valign="top"><simpara>Dell EMC S4048T-ON</simpara></entry>
+<entry align="left" valign="top"><simpara>1 per rack of systems, unless System NIC bonding, then multiple by number of linked interfaces</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+<table
+frame="all"
+rowsep="1" colsep="1"
+>
+<title>Bill of Materials - Dell EMC PowerEdge R640 System</title>
+<tgroup cols="4">
+<colspec colname="col_1" colwidth="25*"/>
+<colspec colname="col_2" colwidth="25*"/>
+<colspec colname="col_3" colwidth="25*"/>
+<colspec colname="col_4" colwidth="25*"/>
+<thead>
+<row>
+<entry align="left" valign="top"><emphasis role="strong"><emphasis>Role</emphasis></emphasis></entry>
+<entry align="left" valign="top"><emphasis role="strong"><emphasis>Quantity</emphasis></emphasis></entry>
+<entry align="left" valign="top"><emphasis role="strong"><emphasis>SKU</emphasis></emphasis></entry>
+<entry align="left" valign="top"><emphasis role="strong"><emphasis>Description</emphasis></emphasis></entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara>Every System Role</simpara></entry>
+<entry align="left" valign="top"><simpara>1</simpara></entry>
+<entry align="left" valign="top"><simpara>210-AKWU</simpara></entry>
+<entry align="left" valign="top"><simpara>PowerEdge R640 Server</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>1</simpara></entry>
+<entry align="left" valign="top"><simpara>461-AAEM</simpara></entry>
+<entry align="left" valign="top"><simpara>Trusted Platform Module 2.0</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>1</simpara></entry>
+<entry align="left" valign="top"><simpara>321-BCQJ</simpara></entry>
+<entry align="left" valign="top"><simpara>2.5” Chassis with up to 8 Hard Drives and 3PCIe slots</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>1</simpara></entry>
+<entry align="left" valign="top"><simpara>340-BKNE</simpara></entry>
+<entry align="left" valign="top"><simpara>PowerEdge R640 Shipping</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>1</simpara></entry>
+<entry align="left" valign="top"><simpara>343-BBEV</simpara></entry>
+<entry align="left" valign="top"><simpara>PowerEdge R640 x8 Drive Shipping material</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>1</simpara></entry>
+<entry align="left" valign="top"><simpara>338-BLUU</simpara></entry>
+<entry align="left" valign="top"><simpara>Intel Xeon Gold 5115 2.4G, 10CT/20CT, 10.4GT/s, 14M Cache, Turbo, HT(85W) DDR4-2400</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>1</simpara></entry>
+<entry align="left" valign="top"><simpara>374-BBPR</simpara></entry>
+<entry align="left" valign="top"><simpara>Intel Xeon Gold 5115 2.4G, 10CT/20CT, 10.4GT/s, 14M Cache, Turbo, HT(85W) DDR4-2400</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>1</simpara></entry>
+<entry align="left" valign="top"><simpara>370-ABWE, 412-AAIQ, 412-AAIQ</simpara></entry>
+<entry align="left" valign="top"><simpara>Heatsinks for Midbay Configuration 1 370-ABWE</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>1</simpara></entry>
+<entry align="left" valign="top"><simpara>370-ADNU</simpara></entry>
+<entry align="left" valign="top"><simpara>Memory DIMM Type and Speed 2666MT/s RDIMMS</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>1</simpara></entry>
+<entry align="left" valign="top"><simpara>370-AAIP</simpara></entry>
+<entry align="left" valign="top"><simpara>Memory Configuration Type Performance Optimized</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>4</simpara></entry>
+<entry align="left" valign="top"><simpara>370-ADNF</simpara></entry>
+<entry align="left" valign="top"><simpara>Memory Capacity 32GB RDIMM, 2666MT/s, Dual Rank</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>1</simpara></entry>
+<entry align="left" valign="top"><simpara>780-BCDS</simpara></entry>
+<entry align="left" valign="top"><simpara>RAID Configuration C7, Unconfigured RAID for HDDs or SSDs (Mixed Drive Types</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>1</simpara></entry>
+<entry align="left" valign="top"><simpara>400-ASZB</simpara></entry>
+<entry align="left" valign="top"><simpara>RAID/Internal Storage Controllers PERC H740P RAID Controller, 8GB NV Cache, Minicard</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>2</simpara></entry>
+<entry align="left" valign="top"><simpara>400-ASZB</simpara></entry>
+<entry align="left" valign="top"><simpara>Hard Drives 1.92TB SSD SATA Mix Use 6GBPS 512e 2.5in Hot-plug Drive, S4600,3 DWPD, 10512 TBW</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>1</simpara></entry>
+<entry align="left" valign="top"><simpara>421-5736</simpara></entry>
+<entry align="left" valign="top"><simpara>No Media Required</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>1</simpara></entry>
+<entry align="left" valign="top"><simpara>385-BBKT, 528-BBWT</simpara></entry>
+<entry align="left" valign="top"><simpara>iDRAC9 Enterprise with OME Server Configuration Management</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>1</simpara></entry>
+<entry align="left" valign="top"><simpara>379-BCQV</simpara></entry>
+<entry align="left" valign="top"><simpara>iDRAC Group Manager, Enabled</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>1</simpara></entry>
+<entry align="left" valign="top"><simpara>379-BCSG</simpara></entry>
+<entry align="left" valign="top"><simpara>iDRAC, Legacy Password</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>1</simpara></entry>
+<entry align="left" valign="top"><simpara>330-BBGN</simpara></entry>
+<entry align="left" valign="top"><simpara>PCIe Riser Config 2, 3x16 LP</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>1</simpara></entry>
+<entry align="left" valign="top"><simpara>555-BCKP</simpara></entry>
+<entry align="left" valign="top"><simpara>Network Daughter Card Intel X710 Quad Port 10Gb DA/SFP+ Ethernet</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>1</simpara></entry>
+<entry align="left" valign="top"><simpara>384-BBQJ</simpara></entry>
+<entry align="left" valign="top"><simpara>8 Standard Fans for R640</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>1</simpara></entry>
+<entry align="left" valign="top"><simpara>450-ADWS</simpara></entry>
+<entry align="left" valign="top"><simpara>Dual, Hot-plug, Redundant Power Supply (1+1), 750W</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>1</simpara></entry>
+<entry align="left" valign="top"><simpara>450-AALV</simpara></entry>
+<entry align="left" valign="top"><simpara>NEWA 5-15P to C13 Wall Plug, 125 Volt, 15 AMP, 10 Feet (3m), Power Cord, North America</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>1</simpara></entry>
+<entry align="left" valign="top"><simpara>325-BCHH, 350-BBJS</simpara></entry>
+<entry align="left" valign="top"><simpara>Standard Bezel for x4 and x8 Chassis</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>1</simpara></entry>
+<entry align="left" valign="top"><simpara>350-BBKC</simpara></entry>
+<entry align="left" valign="top"><simpara>Quick Sync 2 (At-the-box mgmt.)</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>1</simpara></entry>
+<entry align="left" valign="top"><simpara>750-AABF</simpara></entry>
+<entry align="left" valign="top"><simpara>BIOS and Advanced System Configuration Setting Power Saving Dell Active Power Controller</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>1</simpara></entry>
+<entry align="left" valign="top"><simpara>800-BBDM</simpara></entry>
+<entry align="left" valign="top"><simpara>Advanced System Configurations UEFI BIOS Boot Mode with GPT Partition</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>1</simpara></entry>
+<entry align="left" valign="top"><simpara>770-BBBL</simpara></entry>
+<entry align="left" valign="top"><simpara>ReadyRails Sliding Rails with Cable Management Arm</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>1</simpara></entry>
+<entry align="left" valign="top"><simpara>631-AACK</simpara></entry>
+<entry align="left" valign="top"><simpara>No System Documentation, No OpenManage DVD Kit</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>1</simpara></entry>
+<entry align="left" valign="top"><simpara>813-9255,813-9262,813-9274,989-3439</simpara></entry>
+<entry align="left" valign="top"><simpara>3 Years ProSupport with Next Business Day Onsite Service</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>1</simpara></entry>
+<entry align="left" valign="top"><simpara>804-6747</simpara></entry>
+<entry align="left" valign="top"><simpara>Deployment Services 1 804-6747</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+</section>
+</chapter>
+</book>

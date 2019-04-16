@@ -1,0 +1,6 @@
+Tue Apr 16 14:50:37 CDT 2019
+/home/demo/github/suse-doc/WP/Data_Hub/2.4/build/.profiled/noprofile/MAIN-data_hub.xml:572: element listitem: validity error : Element listitem content does not follow the DTD, expecting (calloutlist | glosslist | bibliolist | itemizedlist | orderedlist | segmentedlist | simplelist | variablelist | caution | important | note | tip | warning | literallayout | programlisting | programlistingco | screen | screenco | screenshot | synopsis | cmdsynopsis | funcsynopsis | classsynopsis | fieldsynopsis | constructorsynopsis | destructorsynopsis | methodsynopsis | formalpara | para | simpara | address | blockquote | graphic | graphicco | mediaobject | mediaobjectco | informalequation | informalexample | informalfigure | informaltable | equation | example | figure | table | msgset | procedure | sidebar | qandaset | task | anchor | bridgehead | remark | highlights | abstract | authorblurb | epigraph | indexterm | beginpage)+, got ()
+Document /home/demo/github/suse-doc/WP/Data_Hub/2.4/build/.profiled/noprofile/MAIN-data_hub.xml does not validate
+make: *** [/usr/share/daps/make/validate.mk:38: /home/demo/github/suse-doc/WP/Data_Hub/2.4/build/.profiled/noprofile/.validate] Error 3
+make: *** Waiting for unfinished jobs....
+[31m /home/demo/github/suse-doc/WP/Data_Hub/2.4/images/src/png/CaaSP_Nodes.png not optimized.[0m

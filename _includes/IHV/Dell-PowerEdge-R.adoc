@@ -1,7 +1,11 @@
 
 {IHVPartner} {IHVPlatform} {IHVPlatformModel} Compute::
-* one, two or four Intel® Xeon® Scalable processors, up to 28 cores per processor
-* 24 DDR4 DIMM slots, Supports RDIMM /LRDIMM, speeds up to 2666MT/s, 3TB max Up to 12 NVDIMM, 192 GB Max
-* front drive bays: Up to 10-16 x 2.5” SAS/SATA (HDD/SSD) with up to 8 NVMe SSD max 58TB or up to 4 x 3.5” SAS/SATA HDD max 48TB. Rear drive bays: Up to 2 x 2.5” SAS/SATA (HDD/SSD), NVMe SSD max 12TB Optional DVD-ROM, DVD+RW
-* max depth: 757.75mm – For the 8 x 2.5” front bay drive configuration, 808.51mm – For the 4 x 3.5” or 10 x2.5” front bay drive configurations (plus up to 2 rear drives).
-
+[[img-Dell_R640]]
+.{IHVPartner} {IHVPlatformModel} Server
+image::Dell_R640.png[Dell_R640, 640, 200]
+* *CPU:*  Up to two Intel® Xeon® Scalable processors, up to 28 cores per processor
+* *Memory:*   24 DDR4 DIMM slots, supports RDIMM /LRDIMM (registered ECC DDR4 DIMMs only), speeds up to 2666MT/s, 3TB max, up to 12 NVDIMM, 192 GB max
+* *Front Drive Bays:*  Up to 10 x 2.5” with up to 8 NVMe, SAS/SATA/SSD/NVMe, max 76.8TB , or up to 10 NVMe drives max 64TB, or up to 4 x 3.5” SAS/SATA, max 56TB
+* *Rear Drive Bays:*  Up to 2 x 2.5” SAS/SATA/SSD/NVMe, max 15.36TB
+* *Network Daughter Card Options:*  4 x 1GE or 2 x 10GE + 2 x 1GE or 4 x 10GE or 2 x 25GE
+* *Chassis Max Depth (with Bezel):*  757.75 mm - For the 8 x 2.5” front bay drive configuration. 808.51 mm - For the 4 x 3.5” or 10 x 2.5” front bay drive configurations (plus up to 2 rear drives).

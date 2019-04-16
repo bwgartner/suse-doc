@@ -30,12 +30,12 @@
 //:IHVPlatformModel: DL360
 //:IHVPlatformBMC: iLO
 
-:IHVPartner: HPE
-:IHVPlatform: Synergy
-:IHVPlatformComposer: Composer
-:IHVNetwork: FlexFabric
-:IHVPlatformModel: SY480
-:IHVPlatformBMC: iLO
+//:IHVPartner: HPE
+//:IHVPlatform: Synergy
+//:IHVPlatformComposer: Composer
+//:IHVNetwork: FlexFabric
+//:IHVPlatformModel: SY480
+//:IHVPlatformBMC: iLO
 
 //:IHVPartner: Lenovo
 //:IHVPlatform: ThinkSystem
@@ -214,7 +214,7 @@ NOTE: {ISVPartner} specifies that each worker node must have a least 8 cores and
 
 [[img-CaaSP_Nodes]]
 .{CompanyName} {ProductName} Node Configuration
-image::CaaSP_Nodes.png[CaaSP_Nodes, 400, 638]
+image::CaaSP_Nodes.png[CaaSP_Nodes, 200, 319]
 
 Optional {CompanyName} Cloud Application Platform::
 https://www.suse.com/products/cloud-application-platform[SUSE Cloud Application Platform] is a modern application delivery environment used to bring an advanced cloud native DevOps experience to container-based infrastructure.    SUSE's implementation is based on the open source https://www.cloudfoundry.org/project-eirini/[Project Eirini] which uses Kubernetes to orchestrate application containers while maintaining the Cloud Foundry user experience. This Platform as a Service (PaaS) environment is used by developers to streamline lifecycle management of traditional and cloud native applications.  Together, these technologies accelerate innovation, improve IT responsiveness, and maximize return on investment.
@@ -300,6 +300,7 @@ Networking is the technology component which typically requires the most advance
 For this proof of concept deployment, a single 10GbE switch is used, having all resource nodes 10GbE NIC ports connected here, but could easily be expanded to the dual ToR configuration at a later date. To address management functions, the {IHVPlatformBMC}, out-of-band BMC interface can be connected to the same or another network switch infrastructure, but is fundamentally required to be accessible for this deployment.
 
 The following considerations for the networking should be emphasized:
+
 * Configure 802.3ad for system port bonding to get the maximum performance of bonded network interfaces
 * Ensure that all similar switching devices are consistent and up-to-date with regard to firmware versions to reduce potential troubleshooting issues later.* Configure 802.3ad for system port bonding to get the maximum performance of bonded network interfaces
 * Ensure that all similar switching devices are consistent and up-to-date with regard to firmware versions to reduce potential troubleshooting issues later.
@@ -315,7 +316,7 @@ All of the software environments in this reference architecture are supported pr
 
 == Appendices / References
 
-NOTE: We intend to expand the list of refernece links.
+NOTE: We intend to expand the list of reference links.
 
 {ISVPartner} {ISVSolution}::
 * https://www.sap.com/products/data-hub.html.
@@ -339,4 +340,3 @@ include::{CompanyName}-BOM.adoc[]
 
 === {IHVPartner} Hardware Bill of Materials
 include::{IHVPartner}-{IHVPlatform}-BOM.adoc[]
-

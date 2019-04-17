@@ -1,17 +1,16 @@
 
 {IHVPartner} {IHVPlatform} {IHVPlatformModel} Compute::
 
-ifeval::["{IHVPlatform}" == "PowerEdge"]
-:imagesdir: https://github.com/bwgartner/suse-doc/blob/master/WP/Data_Hub/2.4/images/src/png/
-endif::[]
+// :imagesdir: https://github.com/bwgartner/suse-doc/blob/master/WP/Data_Hub/2.4/images/src/png/
 
 [[img-Dell_R640]]
-.{IHVPartner} {IHVPlatformModel} Server
+.{IHVPartner} {IHVPlatform} {IHVPlatformModel} Server
 image::Dell_R640.png[Dell_R640, 640, 200]
 
-* *CPU:*  Up to two Intel^®^ Xeon^®^ Scalable processors, up to 28 cores per processor
+
+* *CPU:*  Up to two Intel® Xeon® Scalable processors, up to 28 cores per processor
 * *Memory:*   24 DDR4 DIMM slots, supports RDIMM /LRDIMM (registered ECC DDR4 DIMMs only), speeds up to 2666MT/s, 3TB max, up to 12 NVDIMM, 192 GB max
-* *Front D/ive Bays:*  Up to 10 x 2.5” with up to 8 NVMe, SAS/SATA/SSD/NVMe, max 76.8TB , or up to 10 NVMe drives max 64TB, or up to 4 x 3.5” SAS/SATA, max 56TB
+* *Front Drive Bays:*  Up to 10 x 2.5” with up to 8 NVMe, SAS/SATA/SSD/NVMe, max 76.8TB , or up to 10 NVMe drives max 64TB, or up to 4 x 3.5” SAS/SATA, max 56TB
 * *Rear Drive Bays:*  Up to 2 x 2.5” SAS/SATA/SSD/NVMe, max 15.36TB
 * *Network Daughter Card Options:*  4 x 1GE or 2 x 10GE + 2 x 1GE or 4 x 10GE or 2 x 25GE
 * *Chassis Max Depth (with Bezel):*  757.75 mm - For the 8 x 2.5” front bay drive configuration. 808.51 mm - For the 4 x 3.5” or 10 x 2.5” front bay drive configurations (plus up to 2 rear drives).

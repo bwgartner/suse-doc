@@ -6,8 +6,8 @@
 // NOTE: This is overridden via attributes passed on the command line (See: Makefile)
 // :Author: Alex Arnoldy
 // :AuthorEMail: alex.arnoldy@suse.com
-:Author: Brian Fromme
-:AuthorEMail: brian.fromme@suse.com
+//:Author: Brian Fromme
+//:AuthorEMail: brian.fromme@suse.com
 
 :ISVPartner: SAP
 :ISVSolution: Data Hub

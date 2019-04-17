@@ -8,6 +8,7 @@ ifeval::["{IHVPlatform}" == "PowerEdge"]
 
 include::../../../_includes/IHV/{IHVPartner}-{IHVPlatform}.adoc[]
 include::../../../_includes/IHV/{IHVPartner}-{IHVPlatform}-R.adoc[]
+
 include::../../../_includes/IHV/YES.adoc[]
 
 endif::[]

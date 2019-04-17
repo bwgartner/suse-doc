@@ -1,6 +1,5 @@
 
 {IHVPartner} {IHVPlatform} Portfolio::
-* deliver steady performance and the storage capacity to handle future growth.
-* offer a variety of attributes to achieve high performance and the scalability to adapt nearly any workload.offer a variety of attributes to achieve high performance and the scalability to adapt nearly any workload.
-* offer the best performance and scalability for your applications like in-database workloads, HPC to data analytics, and AI and GPU database acceleration.
-
+* Delivers steady performance and the storage capacity to handle future growth.
+* Offers a variety of attributes to achieve high performance and the scalability to adapt nearly any workload.
+* Offers the best performance and scalability for your applications like in-database workloads, HPC to data analytics, and AI and GPU database acceleration.

@@ -1,8 +1,13 @@
 
 {IHVPartner} {IHVPlatform} {IHVPlatformModel} Compute::
+
+// :imagesdir: https://github.com/bwgartner/suse-doc/blob/master/WP/Data_Hub/2.4/images/src/png/
+
 [[img-Dell_R640]]
-.{IHVPartner} {IHVPlatformModel} Server
+.{IHVPartner} {IHVPlatform} {IHVPlatformModel} Server
 image::Dell_R640.png[Dell_R640, 640, 200]
+
+
 * *CPU:*  Up to two Intel® Xeon® Scalable processors, up to 28 cores per processor
 * *Memory:*   24 DDR4 DIMM slots, supports RDIMM /LRDIMM (registered ECC DDR4 DIMMs only), speeds up to 2666MT/s, 3TB max, up to 12 NVDIMM, 192 GB max
 * *Front Drive Bays:*  Up to 10 x 2.5” with up to 8 NVMe, SAS/SATA/SSD/NVMe, max 76.8TB , or up to 10 NVMe drives max 64TB, or up to 4 x 3.5” SAS/SATA, max 56TB

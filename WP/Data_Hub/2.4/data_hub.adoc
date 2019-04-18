@@ -19,10 +19,10 @@
 //:IHVPartner: IHV
 //:IHVPlatform: general
 
-//:IHVPartner: Dell
-//:IHVPlatform: PowerEdge
-//:IHVPlatformModel: R640
-//:IHVPlatformBMC: iDrac
+:IHVPartner: Dell
+:IHVPlatform: PowerEdge
+:IHVPlatformModel: R640
+:IHVPlatformBMC: iDrac
 
 //:IHVPartner: HPE
 //:IHVPlatform: ProLiant

@@ -14,7 +14,7 @@
 </bookinfo>
 <chapter id="_use_case_overview">
 <title>Use Case Overview</title>
-<simpara>Quite often, the initial deployments of newly containerized microservices utilies simple, stateless APIs and functions. Yet, over time, as previous monolithic applications are migrated towards containers or as more complex service topologies are created, the need for stateful containers occurs. Due to the inherently resilient nature of container orchestration, having persistent volume stores that can be mounted where ever a container is launched then becomes a requirement. This can come either in the form of dynamically created volumes or for long-term retention persistent volumes. To address this, one of the best integrations between Kubernetes-based container-as-a-service infrastructure, like SUSE CaaS Platform is with Ceph-based software-defined storage infrastructure, such as SUSE Enterprise Storage.</simpara>
+<simpara>Quite often, the initial deployments of newly containerized microservices utilizes simple, stateless APIs and functions. Yet, over time, as previous monolithic applications are migrated towards containers or as more complex service topologies are created, the need for stateful containers occurs. Due to the inherently resilient nature of container orchestration, having persistent volume stores that can be mounted where ever a container is launched then becomes a requirement. This can come either in the form of dynamically created volumes or for long-term retention persistent volumes. To address this, one of the best integrations between Kubernetes-based container-as-a-service infrastructure, like SUSE CaaS Platform is with Ceph-based software-defined storage infrastructure, such as SUSE Enterprise Storage.</simpara>
 <section id="_target_audience">
 <title>Target Audience</title>
 <simpara>This document is intended for IT decision makers, architects, system administrators and technicians who are implementing the combination of a flexible, Kubernetes-based, container-as-a-service platform and Ceph-based storage for persistent volumes. The reader should be familiar with all of the traditional pillars of IT infrastructures&#8201;&#8212;&#8201;networking, computing and storage&#8201;&#8212;&#8201;along with their specific, local use cases for sizing, scaling and limitations within their environments.</simpara>
@@ -22,7 +22,7 @@
 </chapter>
 <chapter id="_integration">
 <title>Integration</title>
-<simpara>As mentioned in the <xref linkend="_use_case_overview"/> section, requiring both dynamic and static volumes is key to running stateful containerized microservices. One agile method to accomplish that is to integrate a Kubernetes-based container-as-a-service solution, like SUSE CaaS Platform with a Ceph-based, software-defined storage solution, like SUSE Enterprise Storage. Coupling this with the inherent value-add and multiple HPE system platform product lines yieldsagile, cost-effective and very performant options. These three solutions have the following key attributes:</simpara>
+<simpara>As mentioned in the <xref linkend="_use_case_overview"/> section, requiring both dynamic and static volumes is key to running stateful containerized microservices. One agile method to accomplish that is to integrate a Kubernetes-based container-as-a-service solution, like SUSE CaaS Platform with a Ceph-based, software-defined storage solution, like SUSE Enterprise Storage. Coupling this with the inherent value-add and multiple HPE system platform product lines yields agile, cost-effective and very performant options. These three solutions have the following key attributes:</simpara>
 <variablelist>
 <varlistentry>
 <term>
@@ -95,7 +95,7 @@ Automated re-balancing and optimized data placement with an easy to manage intel
 </varlistentry>
 <varlistentry>
 <term>
-HPE Platforms
+HPE Platform Portfolio
 </term>
 <listitem>
 <simpara>
@@ -262,7 +262,8 @@ For each of the software-defined solutions, ensure that each respective node not
 <section id="_integration_steps">
 <title>Integration Steps</title>
 <simpara>The remainder of this document is meant as a companion guide to the official network, system and software product deployment documentation, citing specific settings as needed for this reference implementation. Default settings are assumed to be in use unless otherwise cited to accomplish the respective best practices and design decisions herein.</simpara>
-<tip><simpara>The prompt designated in the steps below help illustrate where to run each command and with what user access.</simpara></tip>
+<note><simpara>In the process steps designated below, environment variables are used to highlith values you can elect to change to match your local environment, so use caution if simply cut-and-pasting from this document into a live environment without validating those values. Entries enclosed in &lt; &gt; also need to be adjusted to match your environment.</simpara></note>
+<tip><simpara>The prompt designated in the steps below help illustrate where to run each command and the respective user access.</simpara></tip>
 <simpara>To create the necessary integration from a Kubernetes-based SUSE CaaS Platform cluster and a Ceph-based storage cluster like SUSE Enterprise Storage, first start on the SUSE Enterprise Storage.</simpara>
 <itemizedlist>
 <listitem>
@@ -272,7 +273,7 @@ Log in to the respective Admin Node
 </listitem>
 <listitem>
 <simpara>
-Collect the list of Monitor Node IP Addresses from <emphasis>/etc/ceph/ceph.conf</emphasis>
+Collect the list of SUSE Enterprise Storage Monitor Node IP Addresses from <emphasis>/etc/ceph/ceph.conf</emphasis>
 </simpara>
 </listitem>
 <listitem>
@@ -281,10 +282,11 @@ Create and validate a dedicated storage pool (<emphasis>e.g. "caasp-pool"</empha
 </simpara>
 </listitem>
 </itemizedlist>
-<screen>root@ses-admin # ceph osd pool create caasp-pool 512
+<screen>root@ses-admin # export CephPool="caasp-pool" CephPGSize="512"
+root@ses-admin # ceph osd pool create ${CephPool} ${CephPGSize}
 root@ses-admin # ceph osd pool ls
-root@ses-admin # ceph osd pool application enable caasp-pool rbd
-root@ses-admin # ceph osd pool application get caasp-pool</screen>
+root@ses-admin # ceph osd pool application enable ${CephPool} rbd
+root@ses-admin # ceph osd pool application get ${CephPool}</screen>
 <itemizedlist>
 <listitem>
 <simpara>
@@ -300,8 +302,9 @@ Create a specific user (<emphasis>e.g. "caasp"</emphasis>) with necessary capabi
 </simpara>
 </listitem>
 </itemizedlist>
-<screen>root@ses-admin # ceph auth get-or-create client.caasp mon 'allow r' osd 'allow class-read object_prefix rbd_children, allow rwx pool=caasp-pool' -o ceph.client. caasp.keyring
-root@ses-admin # ceph auth get-key client.caasp | base64</screen>
+<screen>root@ses-admin # export CephUser="caasp"
+root@ses-admin # ceph auth get-or-create client.${CephUser} mon 'allow r' osd 'allow class-read object_prefix rbd_children, allow rwx pool=${CephPool}' -o ceph.client.${CephUser}.keyring
+root@ses-admin # ceph auth get-key client.${CephUser} | base64</screen>
 <simpara>Then from the SUSE CaaS Platform, login to the respective Administration Node</simpara>
 <itemizedlist>
 <listitem>
@@ -318,7 +321,7 @@ metadata:
   namespace: default
 type: "kubernetes.io/rbd"
 data:
-  key: #insert output string from client.admin encode step</programlisting>
+  key: &lt;insert output string from client.admin encode step&gt;</programlisting>
 <itemizedlist>
 <listitem>
 <simpara>
@@ -331,32 +334,33 @@ root@caasp-admin # kubectl get secrets</screen>
 <itemizedlist>
 <listitem>
 <simpara>
-Create the file <emphasis>ceph-secret-caasp.yaml</emphasis>
+Create the file <emphasis>ceph-secret-cephuser.yaml</emphasis>
 </simpara>
 </listitem>
 </itemizedlist>
-<programlisting language="yaml" linenumbering="unnumbered"># file - ceph-secret-caasp.yaml
+<programlisting language="yaml" linenumbering="unnumbered"># file - ceph-secret-cephuser.yaml
 apiVersion: v1
 kind: Secret
 metadata:
-  name: ceph-secret-caasp
+  name: ceph-secret-CephUser
   namespace: default
 type: "kubernetes.io/rbd"
 data:
-  key: #insert output string from client.caasp encode step</programlisting>
+  key: &lt;insert output string from client.${CephUser} encode step&gt;</programlisting>
 <itemizedlist>
 <listitem>
 <simpara>
-Apply and validate file <emphasis>ceph-secret-caasp.yaml</emphasis>
+Apply and validate file <emphasis>ceph-secret-cephuser.yaml</emphasis>
 </simpara>
 </listitem>
 </itemizedlist>
-<screen>root@caasp-admin # kubectl apply -f ceph-secret-caasp.yaml
+<screen>root@caasp-admin # sed -i s/CephUser/`echo ${CephUser}`/g ceph-secret-cephuser.yaml
+root@caasp-admin # kubectl apply -f ceph-secret-caasp.yaml
 root@caasp-admin # kubectl get secrets</screen>
 <itemizedlist>
 <listitem>
 <simpara>
-Create the file <emphasis>ses-rbd-storage-class.yaml</emphasis>, using the Monitor Node IP addresses collected earlier
+Create the file <emphasis>ses-rbd-storage-class.yaml</emphasis>, using the SUSE Enterprise Storage Monitor Node IP addresses collected earlier
 </simpara>
 </listitem>
 </itemizedlist>
@@ -371,9 +375,39 @@ parameters:
   adminId: admin
   adminSecretName: ceph-secret-admin
   adminSecretNamespace: default
-  pool: caasp-pool
-  userId: caasp
-  userSecretName: ceph-secret-caasp</programlisting>
+  pool: CephPool
+  userId: CephUser
+  userSecretName: ceph-secret-CephUser</programlisting>
+<itemizedlist>
+<listitem>
+<simpara>
+Apply and validate storage volume claim file <emphasis>ses-rbd-storage-class.yaml</emphasis>
+</simpara>
+</listitem>
+</itemizedlist>
+<screen>root@caasp-admin # sed -i s/CephPool/`echo ${CephPool}`/g ses-rbd-storage-class.yaml
+root@caasp-admin # sed -i s/CephUser/`echo ${CephUser}`/g ses-rbd-storage-class.yaml
+root@caasp-admin # kubectl apply -f ses-rbd-storage-class.yaml
+root@caasp-admin # kubectl get sc &lt;-n default&gt;</screen>
+<itemizedlist>
+<listitem>
+<simpara>
+Create the volume claim file <emphasis>ses-rbd-persistent-volume-claim.yaml</emphasis> referencing the previous storage class
+</simpara>
+</listitem>
+</itemizedlist>
+<programlisting language="yaml" linenumbering="unnumbered"># file - ses-rbd-persistent-volume-claim.yaml
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: ses-rbd-pvc
+spec:
+  storageClassName: ses-rbd-sc
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+    storage: 1Gi # adjust size as needed</programlisting>
 <itemizedlist>
 <listitem>
 <simpara>

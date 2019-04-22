@@ -28,20 +28,12 @@ For most enterprise-level businesses, the demand for data storage is growing muc
 This document is intended for IT decision makers, architects, system administrators and technicians who are implementing the {IHVPartner} {IHVPlatform} platform and need a flexible, software-define storage solution, like {CompanyName} {ProductName}, that can provide multiple protocol access. The reader should have a solid understanding of their storage use cases along with sizing/characterization concepts and limitations within their environments. 
 
 == Solution Overview
-The coupling of a composable infrastructure platform, such as {IHVPartner} {IHVPlatform}, and a software-defined storage solution, such as {CompanyName} {ProductName}, provides an incredibly powerful and flexible combination. Nodes and storage capacity can be quickly added, replaced or substituted over time as demands dictate. By utilizing the composable aspect provided by {IHVPartner} {IHVPlatformComposerTech} Server Profile Templates, confidence in the deployment’s consistency is guaranteed along with an increase in overall simplicity. Given the management paradigm can extend across multiple {IHVPartner} {IHVPlatform} frames, this solution can be easily scaled, both from the storage service aspect and customer consumption access models. Use cases for such a flexible solution range from dynamically allocated storage pools for a virtual or containerized environments, or a custom testing and development solution, to more specific use cases such as integrations with:
+The coupling of a composable infrastructure platform, such as {IHVPartner} {IHVPlatform}, and a software-defined storage solution, such as {CompanyName} {ProductName}, provides an incredibly powerful and flexible combination. Nodes and storage capacity can be quickly added, replaced or substituted over time as demands dictate. By utilizing the composable aspect provided by {IHVPartner} {IHVPlatformComposerTech} Server Profile Templates, confidence in the deployment’s consistency is guaranteed along with an increase in overall simplicity. Given this management paradigm can extend across multiple {IHVPartner} {IHVPlatform} frames, this solution can be easily scaled, both from the storage service aspect and customer consumption access models. Use cases for such a flexible solution range from dynamically allocated storage pools for physical, virtualized or containerized environments, or a custom testing and development solution, to more specific use cases such as integrations with:
 
 * {IHVPartner} {ProductNameCloud}
 * {CompanyName} OpenStack Cloud
 * {CompanyName} {ProductNameContainer}
 * {CompanyName} Cloud Application Platform
-
-As a starting point, this configuration illustrates a single use case of providing guest virtual machines, running on a Linux-based KVM hypervisor host with access to block devices for their root filesystem. This is accomplished through the libvirtd interaction to KVM and librbd to the storage cluster as shown in the following figure: 
-
-[[img-rados-structure]]
-.Interfaces to the Ceph Object Store
-image::rados-structure.png[Interfaces-to-the-Ceph-Object-Store, 640, 480]
-
-Additionally, this solution can be used for multiple access methods --- object, block, file -- and accessed by clients over many different protocols -- iSCSI, S3, NFS, SMB.
 
 == Solution Components
 
@@ -51,7 +43,11 @@ While beyond the scope of this document, the heating, ventilation, air condition
 === Network
 Networking and the associated services are the technology components which typically requires the most advanced planning. Connectivity, capacity and bandwidth requirements for a software-defined storage infrastructure have a fair amount of complexity, especially within the context of an existing IT infrastructure.
 
-Yet, with the inherent features and composability aspect of {IHVPartner} {IHVPlatform}, much of the configuration complexity for network interconnects can easily be codified into a template for each target resource node. This includes the mapping of which network interfaces to which network fabrics within a collection of managed {IHVPartner} {IHVPlatform} frames. The baseline network bandwidth, both for each resource node and collectively within the frame, provided by {IHVPartner} {IHVPlatform} is quite sufficient for a basic deployment. Utilizing the {CompanyName} {ProductName} deployment framework, it is quite manageable to setup the network interfaces for both front-end, public-facing subnets and also for the back-end, private subnets used by the replication methods. While beyond the scope of this document, the only remaining consideration is for capacity and bandwidth for the interconnecting Top-of-Rack switches.
+Yet, with the inherent features and composability aspect of {IHVPartner} {IHVPlatform}, much of the configuration complexity for network interconnects can easily be codified into a template for each target resource node. This includes the mapping of which network interfaces to which network fabrics within a collection of managed {IHVPartner} {IHVPlatform} frames. The baseline network bandwidth, both for each resource node and collectively within the frame, provided by {IHVPartner} {IHVPlatform} is quite sufficient for a basic deployment.
+
+Utilizing the {CompanyName} {ProductName} deployment framework, it is quite manageable to setup the network interfaces for both front-end, public-facing subnets and also for the back-end, private subnets used by the replication methods. While beyond the scope of this document, the only remaining consideration is for capacity and bandwidth for the interconnecting Top-of-Rack switches to ensure that client systems, in a shared fashion, have .
+
+NOTE: Given the available options for {IHVPartner} {IHVPlatform} Interconnect Link Modules with 10, 20, or 40 GbE speeds, you are encouraged to utilize the higher speed ones to help address both the access of many clients and also deal with the back-end replication and recovery aspects, especially as the usage and scale increases.
 
 === Computing
 
@@ -90,7 +86,7 @@ For this the implementation, {IHVPartner} {IHVPlatform} {IHVPlatformModel} serve
 include::../../../../_includes/IHV/YES.adoc[]
 
 === Storage
-Each of the compute resource nodes is also expected to have some local, direct-attach storage, which is used for the node's operating system. For this deployment, a pair of disk drives, configured as a RAID1 volume, via the {IHVPartner} {IHVPlatform} {IHVPlatformComposer} Server Profile Templates for the operating system helps provide fewer points of failure.
+Each of the compute resource nodes is also expected to have local, direct-attach storage, which is used for the node's operating system. For this deployment, a pair of disk drives, configured as a RAID1 volume, via the {IHVPartner} {IHVPlatform} {IHVPlatformComposer} Server Profile Templates for the operating system helps provide fewer points of failure.
 
 ifeval::["{IHVPlatform}" == "Synergy"]
 
@@ -122,7 +118,7 @@ This section is meant as a companion guide to the official network, system and s
 Given the very detailed information contained in the https://www.suse.com/documentation/suse-enterprise-storage-5/[{CompanyName} {ProductName} Deployment Guide] Guide, only the following additional, incremental configurations and modifications are described below:
 
 Pre-Installation Checklist::
-* Obtain the following software media and documentation artifacts:
+* Obtain the following software media and documentation artifacts
 ** from the https://download.suse.com/index.jsp[{CompanyName}] site download both
 *** the {CompanyName} {ProductName} x86_64 install media (DVD1) and
 *** the corresponding {CompanyName} Linux Enterprise Server 12-SP3 x86_64 install media (DVD1)
@@ -137,7 +133,7 @@ Pre-Installation Checklist::
 ** Verify the {IHVPartner} {IHVPlatform} {IHVPlatformStorageModule} Storage Module has the expected number of drives and technologies present
 
 [[img-OneView]]
-.HPE OneView Enclosure View
+.Enclosure View
 image::OneView.png[OneView, 640, 480]
 
 * Prepare those attributes from the {IHVPartner} {IHVPlatformComposer} interface which are frame-wide:
@@ -151,7 +147,7 @@ image::OneView.png[OneView, 640, 480]
 ** Connections : Associate both the public and private networks, or the designated Network Set to the higher numbered Mezzanine Ports (leaving the “a” port unassociated for possible future usages) 
 
 [[img-Admin-SPT]]
-.Administration Node Server Profile Template
+.Administration Node Server Profile Template - Overview
 image::Admin-SPT.png[Administration-Node-Server-Profile Template, 640, 480]
 
 ** Local Storage
@@ -159,7 +155,7 @@ image::Admin-SPT.png[Administration-Node-Server-Profile Template, 640, 480]
 *** For the OSD nodes, leave as configure manually and then interactively use the Intelligent Provisioning boot option to create a RAID1 LUN across the two local drives, prior to applying this Server Profile Template or installing the operating system. For the Mezz 1 storage controller, use HBA mode and add the desired number and type of drives for later use as BlueStore's WAL and DB, cache, and data drives. Follow the recommended number, type, capacity and ratios from the {CompanyName} {ProductName} documentation.
 
 [[img-OSD-SPT]]
-.OSD  Node Server Profile Template
+.OSD Node Server Profile Template - Local Storage
 image::OSD-SPT.png[OSD-Node-Server-Profile Template, 640, 480]
 
 NOTE: Multipath I/O access to disk drives provided by the {IHVPartner} {IHVPlatform} {IHVPlatformStorageModule} Storage Module is not currently supported by Ceph nor the deployment framework of {CompanyName} {ProductName}. During the operating system installation, avoid enabling multipath disk support.
@@ -167,22 +163,17 @@ NOTE: Multipath I/O access to disk drives provided by the {IHVPartner} {IHVPlatf
 ** Apply the respective {IHVPartner} {IHVPlatformComposer} Server Profile Template to each resource node, addressing any issues until each has successfully been applied
 
 Resource Node Installation::
-* Install the {CompanyName} Linux Enterprise Server operating system on each node type, starting with Administration Server, then Monitor Nodes and finally the OSD Nodes. Include only the minimal pattern and components, according to the procedure from deployment. This can be accomplished in any number of ways: with the virtual media option through iLO, or from a PXE network-boot environment.
-
-NOTE: Currently the {IHVPartner} {IHVPlatformImager} does not yet support the deployment of the {CompanyName} Linux Enterprise Server operating system with the default file system of btrfs.
-
+Install the {CompanyName} Linux Enterprise Server operating system on each node type, starting with Administration Server, then Monitor Nodes and finally the OSD Nodes.
+* Include only the minimal pattern and components, according to the procedure from deployment. This can be accomplished in any number of ways: with the virtual media option through iLO, or from a PXE network-boot environment.
 * Use the suggested, default partitioning scheme on each node and validate that the target LUN for the operating system installation corresponds to the RAID1 pair of local disk drives.
-* Verify the following considerations for various network service configurations are ready and accessible:
-** ensure that you have access to a valid, reliable external NTP service, as this is a critical requirement for all nodes.
-** setup external DNS A records for all nodes. Decide on subnet ranges and configure the switch ports accordingly to match those nodes in use.
-** ensure access to software security updates and fixes by registering nodes to the http://scc.suse.com[{CompanyName} Customer Center], or by creating a local https://www.suse.com/documentation/sles-12/singlehtml/book_smt/book_smt.html[Subscription Management Tool] service.
 
-* After the operating system installation is complete across all the nodes preform the following checks:
-** Ensure that each node has access to the necessary software repositories, for later operations and updates. It is suggested that you apply all software updates, via 'zypper up'
-** NTP is configured and operational, synchronizing with a source outside the cluster via 'ntpq -pn'
-** If necessary, adjust the udev rules to ensure that network interfaces are identified (as needed) in the same logical order across the systems, to make later steps easier. Ensure that the respective network interfaces are bonded together with the associated VLANs configured. While configuring these interfaces, it is also recommended to disable IPv6 functionality and the firewall on each node.
+After the operating system installation is complete across all the nodes preform the following checks:
+* Ensure that each node has access to the necessary software repositories, for later operations and updates. It is suggested that you apply all software updates, via 'zypper up'
+* NTP is configured and operational, synchronizing with a source outside the cluster via 'ntpq -pn'
+* DNS is configured and operational, referencing a source outside the cluster
+* If necessary, adjust the udev rules to ensure that network interfaces are identified (as needed) in the same logical order across the systems, to make later steps easier. Ensure that the respective network interfaces are bonded together with the associated VLANs configured. While configuring these interfaces, it is also recommended to disable IPv6 functionality and the firewall on each node.
 
-NOTE: For environments that require firewalls to be in place, refer to the "Cluster Deployment" portion in the https://www.suse.com/documentation/suse-enterprise-storage-5/[{CompanyName} {ProductName} Deployment Guide]
+NOTE: For environments that require firewalls to be in place, refer to the "Cluster Deployment" portion in the https://www.suse.com/documentation/suse-enterprise-storage-5/[{CompanyName} {ProductName} Deployment Guide].
 
 Cluster Deployment::
 Follow the process steps noted in "Cluster Deployment" portion of the https://www.suse.com/documentation/suse-enterprise-storage-5/[{CompanyName} {ProductName} Deployment Guide]. You are strongly encouraged to utilize the "DeepSea" approach, which saves the administrator time and helps to confidently perform complex operations on a Ceph cluster in a staged fashion:
@@ -196,12 +187,12 @@ Follow the process steps noted in "Cluster Deployment" portion of the https://ww
 	wal-size=2g db-size=50g db=745 wal=745 ssd=spinner=True data=279
 ----
 
-NOTE: The size values may need adjustment to effectively use the drive capacity and quantity in your configuration
+NOTE: The size values may need adjustment to effectively use the drive capacity and quantity in your configuration.
 
 ** Then create a policy.cfg file that references the above generated '/srv/pillar/ceph/proposals/profile-synergy' contents.
 ** At this point you should also review and validate the '/srv/pillar/ceph/proposals/profile-synergy/stack/default/ceph/minions/*.yml' content for the OSD nodes to ensure the correct disk designations are in place.
 
-NOTE: If the drive designations appear to use multipath (as shown by 'lsblk', 'blkid' or 'multipath -ll') and the operating systems also does as well, you can selectively exclude the OSD target drives by creating '/etc/multipath.conf' file with the following contents:
+** If the drive designations appear to use multipath (as shown by 'lsblk', 'blkid' or 'multipath -ll') and the operating systems also does as well, you can selectively exclude the OSD target drives by creating '/etc/multipath.conf' file with the following contents:
 
 ----
 blacklist {
@@ -213,7 +204,7 @@ blacklist_exceptions {
 }
 ----
 
-then execute 'systemctl restart multipathd', re-run the 'proposal.populate' or manually modify the OSD node minion files to reflect the drive designation of one I/O path or the other.
+then execute 'systemctl reload multipathd', re-run the previous 'proposal.populate' or manually modify the OSD node minion files to reflect the drive designation of one I/O path or the other.
 
 * Then execute Stage 2 (configuration), Stage 3 (deployment) and Stage 4 (services) to complete the deployment.
 
@@ -224,11 +215,17 @@ ceph health
 ceph status
 ----
 
-and visit the deployed OpenATTIC web interface to view the management dashboard.
+and visit the deployed Ceph Dashboard (openATTIC) web interface to view the management and monitoring dashboard.
 
 [[img-openATTIC]]
-.openATTIC Dashboard
+.Ceph Dashboard
 image::openATTIC.png[openATTIC, 640, 480]
+
+To complete the solution and implement a common use case, this deployment can providing guest virtual machines, running on a Linux-based KVM hypervisor host with access to block devices for their root filesystem. This is accomplished through the libvirtd interaction of Linux/KVM and librbd to the storage cluster as shown in the following figure: 
+
+[[img-rados-structure]]
+.Interfaces to the Ceph Object Store
+image::rados-structure.png[Interfaces-to-the-Ceph-Object-Store, 640, 480]
 
 * At this point you are ready to begin creating the block device and the virtual machines that use this storage service. Refer to the "Integration with Virtualization Tools" section of the https://www.suse.com/documentation/suse-enterprise-storage-5/[Administration Guide].
 ** With this setup configuration completed, you can install virtual machines, using the RBD functionality of {CompanyName} {ProductName} to provide inherent resiliency to their operating system volumes. Even shutting down, or having a hardware failure on one of the Ceph nodes will not affect the running virtual machine.
@@ -241,6 +238,8 @@ Review the following information to understand the administration aspects of the
 * Operating the cluster and managing the storage resources and accessing the data
 * Monitoring and managing the services
 * Troubleshooting hints and tips
+
+Additionally, this solution can be used for multiple access methods --- object, block, file -- and accessed by clients over many different protocols -- iSCSI, S3, NFS, SMB. Each of these can be incrementally added over time, using the {CompanyName} {ProductName} deployment framework and adding the respective gateway roles and nodes.
 
 == Conclusion
 After understanding and working through the steps described in this document, you should have a working software-defined storage platform that is scalable through the addition of even more resource nodes, as needed. {CompanyName} {ProductName} provides a complete suite of the necessary software and processes which leverages the composability aspect of {IHVPartner} {IHVPlatform} to create a production-worthy and agile platform.
@@ -257,11 +256,11 @@ After understanding and working through the steps described in this document, yo
 |Frame|1|797740-B22|{IHVPartner} {IHVPlatform} 12000 Frame Configure-to-order Frame with 2x FLM 6x Power Supplies 10x Fans|
 ||1|804353-B22|{IHVPartner} {IHVPlatform} {IHVPlatformComposer}|add second module for HA configuration
 |Administration Node|1|871946-B21|{IHVPartner} {IHVPlatform} 480 Gen10 3104 1P 16GB-R S100i SATA Entry Compute Module|
-|Mon Node|3|871946-B21|{IHVPartner} {IHVPlatform} 480 Gen10 3104 1P 16GB-R S100i SATA Entry Compute Module|recommend 3 for HA configuration
+|MON Node|3|871946-B21|{IHVPartner} {IHVPlatform} 480 Gen10 3104 1P 16GB-R S100i SATA Entry Compute Module|recommend 3 for HA configuration
 |OSD Node|4|871946-B21|{IHVPartner} {IHVPlatform} 480 Gen10 3104 1P 16GB-R S100i SATA Entry Compute Module|minimum of 4, but can scale infinitely
 |Storage|1|??|{IHVPartner} {IHVPlatform} {IHVPlatformStorageModule} Storage Module | FixMe
-||5|??|{IHVPartner} {IHVPlatform} xGB SSD SAS drives| FixMe
-||35|??|{IHVPartner} {IHVPlatform} xGB SAS drives| FixMe
+||4+|??|{IHVPartner} {IHVPlatform} xGB SSD SAS drives| match the number of OSD nodes and in the ratio of 1 SSD : 5-7 OSD drives
+||28+|??|{IHVPartner} {IHVPlatform} xGB SAS drives| suggested minimum of 8 drives per OSD node
 |===
 
 {CompanyName} {ProductName}::
@@ -272,7 +271,9 @@ After understanding and working through the steps described in this document, yo
 .Bill of Materials - {CompanyName} {ProductName} Software
 |===
 |*_Role_*|*_Quantity_*|*_Product Number_*|*_Description_*|*_Notes_*
-|Software|1|P9P49AAE|{CompanyName} {ProductName} Base Configuration, x86-64, 4 OSD Nodes with 1-2 Sockets, L3-Priority Subscription, 3 Year  | includes 4 OSD Nodes plus 6 infrastructure nodes (e.g. 1-Admin, 3-Mon, 2-gateway)
+|Software|1|P9P49AAE|{CompanyName} {ProductName} Base Configuration, x86-64, 4 OSD Nodes with 1-2 Sockets, L3-Priority Subscription, 3 Year  | includes 4 OSD Nodes plus 6 infrastructure nodes (e.g. 1-Admin, 3-MON, 2-gateway)
 ||1|P9P50AAE|{CompanyName} {ProductName} Expansion Node, x86-64, 1 OSD Node with 1-2 Sockets, L3-Priority Subscription, 3 Year| for scaling includes 1 additional OSD Node plus 1 infrastructure node
 |===
+
+NOTE: With the Base Configuration subscription, two more resource nodes can be added to the documented eight node cluster, to potentially provide other protocol gateways.
 

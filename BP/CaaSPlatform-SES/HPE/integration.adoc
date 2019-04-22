@@ -12,13 +12,13 @@
 {Author}, {CompanyName} < {AuthorEmail} >
 
 == Use Case Overview
-Quite often, the initial deployments of newly containerized microservices utilies simple, stateless APIs and functions. Yet, over time, as previous monolithic applications are migrated towards containers or as more complex service topologies are created, the need for stateful containers occurs. Due to the inherently resilient nature of container orchestration, having persistent volume stores that can be mounted where ever a container is launched then becomes a requirement. This can come either in the form of dynamically created volumes or for long-term retention persistent volumes. To address this, one of the best integrations between Kubernetes-based container-as-a-service infrastructure, like {CompanyName} {ProductName} is with Ceph-based software-defined storage infrastructure, such as {CompanyName} {ProductName2}.
+Quite often, the initial deployments of newly containerized microservices utilizes simple, stateless APIs and functions. Yet, over time, as previous monolithic applications are migrated towards containers or as more complex service topologies are created, the need for stateful containers occurs. Due to the inherently resilient nature of container orchestration, having persistent volume stores that can be mounted where ever a container is launched then becomes a requirement. This can come either in the form of dynamically created volumes or for long-term retention persistent volumes. To address this, one of the best integrations between Kubernetes-based container-as-a-service infrastructure, like {CompanyName} {ProductName} is with Ceph-based software-defined storage infrastructure, such as {CompanyName} {ProductName2}.
 
 === Target Audience
 This document is intended for IT decision makers, architects, system administrators and technicians who are implementing the combination of a flexible, Kubernetes-based, container-as-a-service platform and Ceph-based storage for persistent volumes. The reader should be familiar with all of the traditional pillars of IT infrastructures -- networking, computing and storage -- along with their specific, local use cases for sizing, scaling and limitations within their environments.
 
 == Integration
-As mentioned in the <<_use_case_overview>> section, requiring both dynamic and static volumes is key to running stateful containerized microservices. One agile method to accomplish that is to integrate a Kubernetes-based container-as-a-service solution, like {CompanyName} {ProductName} with a Ceph-based, software-defined storage solution, like {CompanyName} {ProductName2}. Coupling this with the inherent value-add and multiple {IHVPartner} system platform product lines yieldsagile, cost-effective and very performant options. These three solutions have the following key attributes:
+As mentioned in the <<_use_case_overview>> section, requiring both dynamic and static volumes is key to running stateful containerized microservices. One agile method to accomplish that is to integrate a Kubernetes-based container-as-a-service solution, like {CompanyName} {ProductName} with a Ceph-based, software-defined storage solution, like {CompanyName} {ProductName2}. Coupling this with the inherent value-add and multiple {IHVPartner} system platform product lines yields agile, cost-effective and very performant options. These three solutions have the following key attributes:
 
 Kubernetes-based container-as-a-serivce::
 {CompanyName} {ProductName} is an enterprise class container management solution that enables IT and DevOps professionals to more easily deploy, manage, and scale container-based applications and services. It includes Kubernetes to automate lifecycle management of modern applications, and surrounding technologies that enrich Kubernetes and make the platform itself easy to operate. As a result, enterprises that use {CompanyName} {ProductName} can reduce application delivery cycle times and improve business agility.  {CompanyName} is focused on delivering an exceptional operator experience with {CompanyName} {ProductName}. With deep competencies in infrastructure, systems, process integration, platform security, lifecycle management and enterprise-grade support, {CompanyName} aims to ensure IT operations teams can deliver the power of Kubernetes to their users quickly, securely and efficiently. With {CompanyName} {ProductName} you can:
@@ -83,21 +83,24 @@ image::CaaSP-SES-Logical-Deploy.png[Deployment-Logical-View, 640, 480]
 === Integration Steps
 The remainder of this document is meant as a companion guide to the official network, system and software product deployment documentation, citing specific settings as needed for this reference implementation. Default settings are assumed to be in use unless otherwise cited to accomplish the respective best practices and design decisions herein.
 
-TIP: The prompt designated in the steps below help illustrate where to run each command and with what user access.
+NOTE: In the process steps designated below, environment variables are used to highlith values you can elect to change to match your local environment, so use caution if simply cut-and-pasting from this document into a live environment without validating those values. Entries enclosed in < > also need to be adjusted to match your environment.
+
+TIP: The prompt designated in the steps below help illustrate where to run each command and the respective user access.
 
 To create the necessary integration from a Kubernetes-based {CompanyName} {ProductName} cluster and a Ceph-based storage cluster like {CompanyName} {ProductName2}, first start on the {CompanyName} {ProductName2}.
 
 * Log in to the respective Admin Node
 
-* Collect the list of Monitor Node IP Addresses from '/etc/ceph/ceph.conf'
+* Collect the list of {CompanyName} {ProductName2} Monitor Node IP Addresses from '/etc/ceph/ceph.conf'
 
 * Create and validate a dedicated storage pool (_e.g. "caasp-pool"_) for rbd-based applications using the following commands. Adjust the placement group size (_e.g. "512"_) as desired.
 
 ----
-root@ses-admin # ceph osd pool create caasp-pool 512
+root@ses-admin # export CephPool="caasp-pool" CephPGSize="512"
+root@ses-admin # ceph osd pool create ${CephPool} ${CephPGSize}
 root@ses-admin # ceph osd pool ls
-root@ses-admin # ceph osd pool application enable caasp-pool rbd
-root@ses-admin # ceph osd pool application get caasp-pool 
+root@ses-admin # ceph osd pool application enable ${CephPool} rbd
+root@ses-admin # ceph osd pool application get ${CephPool}
 ----
 
 * Capture and encode the admin key, which will be used later
@@ -109,8 +112,9 @@ root@ses-admin # ceph auth get-key client.admin | base64
 * Create a specific user (_e.g. "caasp"_) with necessary capabilities to utilize the "caasp-pool", then capture and encode user the key, which will be used later
 
 ----
-root@ses-admin # ceph auth get-or-create client.caasp mon 'allow r' osd 'allow class-read object_prefix rbd_children, allow rwx pool=caasp-pool' -o ceph.client. caasp.keyring
-root@ses-admin # ceph auth get-key client.caasp | base64
+root@ses-admin # export CephUser="caasp"
+root@ses-admin # ceph auth get-or-create client.${CephUser} mon 'allow r' osd 'allow class-read object_prefix rbd_children, allow rwx pool=${CephPool}' -o ceph.client.${CephUser}.keyring
+root@ses-admin # ceph auth get-key client.${CephUser} | base64
 ----
 
 Then from the {CompanyName} {ProductName}, login to the respective Administration Node
@@ -127,7 +131,7 @@ metadata:
   namespace: default
 type: "kubernetes.io/rbd"
 data:
-  key: #insert output string from client.admin encode step
+  key: <insert output string from client.admin encode step>
 ----
 
 * Apply and validate deployment of the file 'ceph-secret-admin.yaml'
@@ -136,27 +140,28 @@ root@caasp-admin # kubectl apply -f ceph-secret-admin.yaml
 root@caasp-admin # kubectl get secrets
 ----
 
-* Create the file 'ceph-secret-caasp.yaml'
+* Create the file 'ceph-secret-cephuser.yaml'
 [source, yaml]
 ----
-# file - ceph-secret-caasp.yaml
+# file - ceph-secret-cephuser.yaml
 apiVersion: v1
 kind: Secret
 metadata:
-  name: ceph-secret-caasp
+  name: ceph-secret-CephUser
   namespace: default
 type: "kubernetes.io/rbd"
 data:
-  key: #insert output string from client.caasp encode step
+  key: <insert output string from client.${CephUser} encode step>
 ----
 
-* Apply and validate file 'ceph-secret-caasp.yaml'
+* Apply and validate file 'ceph-secret-cephuser.yaml'
 ----
+root@caasp-admin # sed -i s/CephUser/`echo ${CephUser}`/g ceph-secret-cephuser.yaml
 root@caasp-admin # kubectl apply -f ceph-secret-caasp.yaml
 root@caasp-admin # kubectl get secrets
 ----
 
-* Create the file 'ses-rbd-storage-class.yaml', using the Monitor Node IP addresses collected earlier
+* Create the file 'ses-rbd-storage-class.yaml', using the {CompanyName} {ProductName2} Monitor Node IP addresses collected earlier
 [source, yaml]
 ----
 # file - ses-rbd-storage-class.yaml
@@ -170,9 +175,34 @@ parameters:
   adminId: admin
   adminSecretName: ceph-secret-admin
   adminSecretNamespace: default
-  pool: caasp-pool
-  userId: caasp
-  userSecretName: ceph-secret-caasp
+  pool: CephPool
+  userId: CephUser
+  userSecretName: ceph-secret-CephUser
+----
+
+* Apply and validate storage volume claim file 'ses-rbd-storage-class.yaml'
+----
+root@caasp-admin # sed -i s/CephPool/`echo ${CephPool}`/g ses-rbd-storage-class.yaml
+root@caasp-admin # sed -i s/CephUser/`echo ${CephUser}`/g ses-rbd-storage-class.yaml
+root@caasp-admin # kubectl apply -f ses-rbd-storage-class.yaml
+root@caasp-admin # kubectl get sc <-n default>
+----
+
+* Create the volume claim file 'ses-rbd-persistent-volume-claim.yaml' referencing the previous storage class
+[source, yaml]
+----
+# file - ses-rbd-persistent-volume-claim.yaml
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: ses-rbd-pvc
+spec:
+  storageClassName: ses-rbd-sc
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+    storage: 1Gi # adjust size as needed
 ----
 
 * Apply and validate persistent volume claim file 'ses-rbd-persistent-volume-claim.yaml'

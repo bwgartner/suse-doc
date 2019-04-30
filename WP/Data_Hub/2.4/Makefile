@@ -1,7 +1,7 @@
 #
 # Makefile - Brian's tool to run things faster.
 # NOTE:  The project rules have hard-coded paths and need updating for you env.
-# 
+#
 DOC=data_hub.adoc
 XML=xml/MAIN-data_hub.xml
 TGZ=/tmp/suse-doc.tgz
@@ -38,4 +38,3 @@ tarball:
 
 clean:
 	     rm -rf $(XML) $(BUILD)
-

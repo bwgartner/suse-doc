@@ -3,14 +3,13 @@
 .Bill of Materials - {CompanyName} {ProductName} Software
 |===
 |*_Role_*|*_Quantity_*|*_Product Number_*|*_Description_*|*_Notes_*
-|Software|1|874-007633|{CompanyName} {ProductName}, x86-64, 1-2 Sockets with Unlimited Virtual Machines, L3-Priority Subscription, 3 Year| for each node of the deployment
+|Software ^|1|874-007633|{CompanyName} {ProductName}, x86-64, 1-2 Sockets with Unlimited Virtual Machines, L3-Priority Subscription, 3 Year| For each node of the deployment
 |===
 
 [cols=",,,,", options="header"]
 .Bill of Materials - {CompanyName} {StorageName} Software
 |===
 |*_Role_*|*_Quantity_*|*_Product Number_*|*_Description_*|*_Notes_*
-|Software|1|874-007044|{CompanyName} {StorageName} Base Configuration, x86-64, 4 OSD Nodes with 1-2 Sockets, L3-Priority Subscription, 3 Year  | includes 4 OSD Nodes plus 6 infrastructure nodes (e.g. Admin, Mon, gateway)
-|Software|1|874-007046|{CompanyName} {StorageName} Expansion Node, x86-64, 1 OSD Node with 1-2 Sockets, L3-Priority Subscription, 3 Year| includes 1 additional OSD Node plus 1 infrastructure node
+|Software ^|1|874-007044|{CompanyName} {StorageName} Base Configuration, x86-64, 4 OSD Nodes with 1-2 Sockets, L3-Priority Subscription, 3 Year  | Includes 4 OSD Nodes plus 6 infrastructure nodes (e.g. Admin, Mon, gateway)
+|Software ^|1|874-007046|{CompanyName} {StorageName} Expansion Node, x86-64, 1 OSD Node with 1-2 Sockets, L3-Priority Subscription, 3 Year| Includes 1 additional OSD Node plus 1 infrastructure node
 |===
-

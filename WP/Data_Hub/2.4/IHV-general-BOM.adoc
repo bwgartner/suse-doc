@@ -1,47 +1,48 @@
 
 include::../../../_includes/IHV/YES.adoc[]
 
-.Bill of Materials - {IHVPartner} Systems (Kubernetes Cluster)
-[options="header",cols=",,"]
+.Bill of Materials - Industry Standard Servers (Kubernetes Cluster)
+[options="header",cols=",,,"]
 |===
-|Part Number |Description| Ea
-| Admin Node | |1
-| |CPU ( >= 2 GHz, >= 4 cores ) |>= 1 socket
-| |Memory ( >= 16 GB RAM ) |divide evenly across CPU sockets
-| |Storage (OS) ( >= 64 GB Disk ) |>= 1 drive
-| |Network ( >= 1+ GbE ) |>= 1 NIC
-| Master Node | |3
-| |CPU ( >= 2 GHz, >= 8 cores ) |>= 1 socket
-| |Memory ( >= 32 GB RAM ) |divide evenly across CPU sockets
-| |Storage  (OS) ( >= 128 GB Disk ) |2 drives (RAID1)
-| |Network ( >= 1+ GbE ) |>= 1 NIC
-| Worker Node | |4
-| |CPU ( >= 2 GHz, >= 8 cores ) |>= 1 socket
-| |Memory ( >= 64 GB RAM ) |divide evenly across CPU sockets
-| |Storage  (OS) ( >= 128 GB Disk ) |2 drives (RAID1)
+|Role |Quantity|Component|Description
+| Admin Node  ^|1
+| | | | |CPU | >= 2 GHz, >= 4 cores, >= 1 socket
+| | |Memory | >= 16 GB RAM , Divided evenly across CPU sockets
+| | |Storage (OS) | >= 64 GB Disk, >= 1 drive
+| | |Network |>= 1+ GbE, >= 1 NIC
+| Master Node ^|3
+| | | | |CPU |>= 2 GHz, >= 8 cores, >= 1 socket
+| | |Memory |>= 32 GB RAM, Divided evenly across CPU sockets
+| | |Storage (OS) |>= 128 GB Disk, 2 drives (RAID1)
+| | | Network |>= 1+ GbE, >= 1 NIC
+| Worker Node ^|4
+| | | | |CPU |>= 2 GHz, >= 8 cores, >= 1 socket
+| | |Memory |>= 64 GB RAM, Divided evenly across CPU sockets
+| | |Storage (OS) |>= 128 GB Disk, 2 drives (RAID1)
 | |Network ( >= 1+ GbE ) |>= 1 NIC
 |===
 
-.Bill of Materials - {IHVPartner} Systems (Storage Cluster)
-[options="header",cols=",,"]
+.Bill of Materials - Industry Standard Servers (Storage Cluster)
+[options="header",cols=",,,"]
 |===
-|Part Number |Description| Ea
-| Admin Node | |1
-| |CPU ( >= 2 GHz, >= 4 cores ) |>= 1 socket
-| |Memory ( >= 16 GB RAM ) |divide evenly across CPU sockets
-| |Storage  (OS) ( >= 64 GB Disk ) |>= 1 drive
-| |Network ( >= 10+ GbE ) |>= 1 NIC
-| Mon Node | |3
-| |CPU ( >= 2 GHz, >= 8 cores ) |>= 1 socket
-| |Memory ( >= 32 GB RAM ) |divide evenly across CPU sockets
-| |Storage (OS) ( >= 128 GB Disk ) |2 SSD drives (RAID1)
-| |Network ( >= 10+ GbE ) |>= 2 NIC
-| OSD Node | |4
-| |CPU ( 2 GHz of logical CPU core per OSD drive ) |>= 1 socket
-| |Memory ( 2 GB RAM per TB of OSD capacity ) |divide evenly across CPU sockets
-| |Storage (OS) ( >= 128 GB Disk ) |2 drives (RAID1)
-| |Storage (OSD) ( >= 128 GB Disk ) |>= 8 drives
-| |Storage (OSD journal/) ( >= 128 GB Disk ) | SSD:spinner-OSD = 1:5-7, NVMe:spinner-OSD =1:10
-| |Network ( >= 10+ GbE ) |>= 2 NIC
-|===
+|Role |Quantity|Component|Description
+| Admin Node ^|1 |
+| | | | CPU |>= 2 GHz, >= 4 cores, >= 1 socket
+| | |Memory |>= 16 GB RAM, Divided evenly across CPU sockets
+| | |Storage (OS) |>= 64 GB Disk, >= 1 drive
+| | |Network |>= 10+ GbE, >= 1 NIC
 
+| Mon Node ^|3 |
+| | | |CPU |>= 2 GHz, >= 8 cores, >= 1 socket
+| | | Memory |>= 32 GB RAM, Divided evenly across CPU sockets
+| | |Storage (OS) |>= 128 GB Disk, 2 SSD drives (RAID1)
+| | |Network |>= 10+ GbE, >= 2 NIC
+
+| OSD Node ^|4 |
+| | | |CPU |2 GHz of logical CPU core per OSD drive, >=1 socket
+| | |Memory |2 GB RAM per TB of OSD capacity, Divided evenly across CPU sockets
+| | |Storage (OS) |>= 128 GB Disk, 2 drives (RAID1)
+| | |Storage (OSD) |>= 128 GB Disk, >= 8 drives
+| | |Storage (OSD journal) |>= 128 GB Disk, Ratio SSD:spinner-OSD = 1:5-7, NVMe:spinner-OSD =1:10
+| | |Network |>= 10+ GbE, >= 2 NIC
+|===

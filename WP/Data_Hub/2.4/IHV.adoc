@@ -1,2 +1,1 @@
-Given the overlay of all the software-defined infrastructure components, many choices of industry standard servers can form the basis for this solution. So you can select any of your favorite hardware providers, obtain the desired number of nodes and build your solution. The appendices contain some respective component and resource sizing guidelines for each of the node roles.
-
+Given the overlay of all the software-defined infrastructure components, many choices of industry standard servers can form the basis for this solution. You can select any of your favorite hardware providers, obtain the desired number of nodes and build your solution. The appendices contain some respective component and resource sizing guidelines for each of the node roles.

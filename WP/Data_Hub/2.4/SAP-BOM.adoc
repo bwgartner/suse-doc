@@ -1,8 +1,12 @@
 
-[cols=",,,,", options="header"]
+[cols=",,,,",options="header"]
 .Bill of Materials - {ISVPartner} {ISVSolution} Software
-|===
-|*_Role_*|*_Quantity_*|*_Product Number_*|*_Description_*|*_Notes_*
-|?|?|?|?| FixMe
-|===
 
+
+|===
+|*_Role_*|*_Quantity_*|*_Description_*|*Notes*|*_Installation_*
+
+|Software ^|1|SAP Data Hub 2 - Foundation - Installation Product|Select the desired version when downloading from launchpad.support.sap.com. Please consult the installation guide @ help.sap.com for SAP Data Hub prerequisites|Required
+|Software ^|1|SAP Data Hub 2 – Spark Extension – Installation Product|Select the above corresponding version when downloading from launchpad.support.sap.com. Please consult the installation guide @ help.sap.com for SAP Data Hub prerequisites|Optional
+
+|===

@@ -16,13 +16,13 @@
 :ProductName: CaaS Platform
 :StorageName: Enterprise Storage
 
-//:IHVPartner: IHV
-//:IHVPlatform: general
+:IHVPartner: IHV
+:IHVPlatform: general
 
-:IHVPartner: Dell
-:IHVPlatform: PowerEdge
-:IHVPlatformModel: R640
-:IHVPlatformBMC: iDrac
+//:IHVPartner: Dell
+//:IHVPlatform: PowerEdge
+//:IHVPlatformModel: R640
+//:IHVPlatformBMC: iDrac
 
 //:IHVPartner: HPE
 //:IHVPlatform: ProLiant
@@ -51,20 +51,20 @@ endif::[]
 = {ISVPartner}^(R)^ {ISVSolution} on {CompanyName}^(R)^ Container as a Service Platform
 {Author}, {CompanyName} < {AuthorEMail} >
 
-== Revision History
+// == Revision History
 
-.Revisions
-[options="header",cols=",,"]
-|=======================
-|Version |Date         |Comments
-|0.5     |01/15/19     |Initial draft
-|0.6     |02/11/19     |Collaborative draft
-|1.0     |03/05/19     |First draft to be shared with {IHVPartner} as {CompanyName} Company Confidential
-|1.1     |03/31/19     |Proposed {IHVPartner} hardware config - shared as {CompanyName} Company Confidential
-|1.2     |04/15/19     |Merged templates to allow easy generation of various platforms.
-|=======================
+// .Revisions
+// [options="header",cols=",,"]
+// |=======================
+// |Version |Date         |Comments
+// |0.5     |01/15/19     |Initial draft
+// |0.6     |02/11/19     |Collaborative draft
+// |1.0     |03/05/19     |First draft to be shared with {IHVPartner} as {CompanyName} Company Confidential
+// |1.1     |03/31/19     |Proposed {IHVPartner} hardware config - shared as {CompanyName} Company Confidential
+// |1.2     |04/15/19     |Merged templates to allow easy generation of various platforms.
+// |=======================
 
-_*DRAFT COPY - DO NOT PUBLISH*_
+// _*DRAFT COPY - DO NOT PUBLISH*_
 
 <<<
 == Introduction
@@ -126,10 +126,11 @@ As an IT organization evaluates solutions to the data growth and migration chall
 |                      |Embed and productize scripts, programs, and algorithms of the Data Scientist.
 |                      |Productize open libraries or ML algorithms in one framework.
 |Distributed Data Processing|Distribute computational tasks to the native environments where the data reside.
-|                      |Remote Process scheduling: +
-                          - {ISVPartner} Business Warehouse process chains +
-                          - {ISVPartner} Data Services dataflows +
-                          - {ISVPartner} HANA Smart Data Integration FlowGraph
+|                      a|Remote process scheduling: +
+
+                          * {ISVPartner} Business Warehouse process chains +
+                          * {ISVPartner} Data Services dataflows +
+                          * {ISVPartner} HANA Smart Data Integration FlowGraph
 
 |Governance            |Establish and manage zones in a landscape with attached policies and services levels.
 |                      |Security and Access Control capabilities.
@@ -169,10 +170,9 @@ Tenant Applications and Services are the core of {ISVPartner} {ISVSolution}. {IS
 
 {ISVPartner} Vora is a horizontally scalable, distributed database which can store and process structured data, time-series data (i.e. IoT streams), graph data and semi-structured documents in-memory and/or on disk. {ISVPartner} Vora is only available with {ISVPartner} {ISVSolution}, running in Kubernetes as a fully containerized application. It can store analytics data in Kubernetes pods as well as provide a bi-directional Spark2 interface between {ISVPartner} {ISVSolution} and an optionally co-located Hadoop cluster. Like {ISVPartner} {ISVSolution}, Vora requires a Kubernetes cluster of at least three Worker Nodes, but runs alongside Data Hub on the same cluster.
 
-{ISVPartner} HANA (SAP Data Hub Internal)::
-{ISVPartner} {ISVSolution} utilizes an internal instance of SAP HANA as a back-end for Data Hub applications.  This instance is automatically installed, sized, and maintained as part of the overall Data Hub installation process.   No special consideration is required.
+Persistent Database::
+This database holds all of the required persistent data required by {ISVPartner} {ISVSolution} (e.g. metadata)  This instance is automatically installed, sized, and maintained as part of the overall Data Hub installation process.   No special consideration is required.
 
-// JvV:  Reaching out to Ulrich Schairer (SUSE) and Gianluca De Lorenzo (SAP) for a better explanation of the HANA functionality.
 
 Container Registry::
 {ISVPartner} {ISVSolution} requires a Docker repository for container images. This can be a publicly accessible site or a private collection of workload images. Other public or private registry sites can be used to provide files like Helm charts to deploy complete services. Although the private Docker registry is not part of the {CompanyName} {ProductName}, you can either build an on-premise instance using the Containers Module Add-on included with {CompanyName} Linux Enterprise Server for {ISVPartner} along with the {CompanyName} Portus (http://port.us.org) package or deploying this as a container directly on {CompanyName} {ProductName}.  Portus is an open source on-premise authorization service that allows users to administrate and secure their Docker registries with fine-grained control.
@@ -267,7 +267,7 @@ Automate System Management Tasks for {ISVPartner} HANA and All Other Subsystems:
 
 This reference defines a private proof-of-concept cluster.  Other guides will address cloud-based and production environments.  The proof-of-concept cluster is a starting point for prototyping real-world applications that are meant to go into production.  As such, a proof-of-concept cluster can easily be grown into a production environment.  Further, a private deployment is useful for secure, in-house prototyping, but is not restricted from using cloud-based applications and data.  SAP Data Hub can manage data from locations both behind the firewall and in the cloud.
 
-The backbone of the application environment is the Kubernetes cluster, as implemented in the {CompanyName} {ProductName} software.  As described in the architecture section above, this cluster can be implemented on low-cost, commodity hardware, typicall 1U racked boxes with 2-socket processors.  The application environment reflects a key aspect of growth from prototyping to production.  In a PoC, there are typically few application containers, as developers are gaining experience building, deploying, and managing code as containers on the new software environment.  As such, there are less demands on the hardware for resources, particularly main memory.  Memory can easily be expanded, as the cluster needs to grow.  Processor speed, on the other hand, is something to carefully consider.  It is not as easy to swap processors, so choosing a medium to high-end Xeon processor with many cores is a good idea.
+The backbone of the application environment is the Kubernetes cluster, as implemented in the {CompanyName} {ProductName} software.  As described in the architecture section above, this cluster can be implemented on low-cost, commodity hardware, typically 1U racked boxes with 2-socket processors.  The application environment reflects a key aspect of growth from prototyping to production.  In a PoC, there are typically few application containers, as developers are gaining experience building, deploying, and managing code as containers on the new software environment.  As such, there are less demands on the hardware for resources, particularly main memory.  Memory can easily be expanded, as the cluster needs to grow.  Processor speed, on the other hand, is something to carefully consider.  It is not as easy to swap processors, so choosing a medium to high-end Xeon processor with many cores is a good idea.
 
 It is recommended to start with a minimum 2-socket Xeon processor with 8 to 12 cores per CPU.  Memory can start at 64GB.  Local storage on the cluster is used primarily for the operating system and any application temporary data.  A common choice is a RAID1 configuration of operating system disks, each with a minimum of 256GB.  SSD is the recommended choice, as it speeds operations and doesn't add considerable cost to the cluster in this case.  Networking is another key performance area, so 10GbE NICs are a minimum recommendation.  You can start with 1 NIC, but that is a bare minimum and 2 or more NICs will be needed for specific network requirements, based on your application needs.  In particular, high-bandwidth data pipelines will move lots of data to the cluster storage and can easily saturate a single NIC.  Consider mapping 1 high-speed NIC to those storage requirements.
 
@@ -302,7 +302,6 @@ For this proof of concept deployment, a single 10GbE switch is used, having all 
 The following considerations for the networking should be emphasized:
 
 * Configure 802.3ad for system port bonding to get the maximum performance of bonded network interfaces
-* Ensure that all similar switching devices are consistent and up-to-date with regard to firmware versions to reduce potential troubleshooting issues later.* Configure 802.3ad for system port bonding to get the maximum performance of bonded network interfaces
 * Ensure that all similar switching devices are consistent and up-to-date with regard to firmware versions to reduce potential troubleshooting issues later.
 
 == Summary
@@ -316,7 +315,7 @@ All of the software environments in this reference architecture are supported pr
 
 == Appendices / References
 
-NOTE: We intend to expand the list of reference links.
+// NOTE: We intend to expand the list of reference links.
 
 {ISVPartner} {ISVSolution}::
 * https://www.sap.com/products/data-hub.html.

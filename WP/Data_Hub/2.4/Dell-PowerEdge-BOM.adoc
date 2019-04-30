@@ -1,43 +1,44 @@
 
 [cols=",,,", options="header"]
+
 .Bill of Materials - Network
 |===
 |*_Role_*|*_Quantity_*|*_Description_*|*_Notes_*
-|*Top of Rack Network Switch* | 1 | Dell EMC S3048-ON | connects up to 48 systems, add as needed
-|*Top of Rack Network Switch* | 1 | Dell EMC S4048T-ON | 1 per rack of systems, unless System NIC bonding, then multiple by number of linked interfaces
+|*Top of Rack Network Switch* ^| 1 | Dell EMC S3048-ON | Connects up to 48 systems, add as needed
+|*Top of Rack Network Switch* ^| 1 | Dell EMC S4048T-ON | 1 per rack of systems, unless System NIC bonding, then multiple by number of linked interfaces
 |===
 
 [cols=",,,", options="header"]
 .Bill of Materials - Dell EMC PowerEdge R640 System
 |===
 |*_Role_*|*_Quantity_*|*_SKU_*|*_Description_*
-|Every System Role|1|210-AKWU|PowerEdge R640 Server
-||1|461-AAEM|Trusted Platform Module 2.0
-||1|321-BCQJ|2.5” Chassis with up to 8 Hard Drives and 3PCIe slots
-||1|338-BLUW|Intel Xeon Gold 5118 2.3G, 12CT/24CT, 10.4GT/s, 16.5M Cache, Turbo, HT(105W) DDR4-2400
-||1|374-BBPR|Intel Xeon Gold 5118 2.3G, 12CT/24CT, 10.4GT/s, 16.5M Cache, Turbo, HT(105W) DDR4-2400
-||1|370-ABWE, 412-AAIQ, 412-AAIQ|Heatsinks for Midbay Configuration 1 370-ABWE
-||1|370-ADNU|Memory DIMM Type and Speed 2666MT/s RDIMMS
-||1|370-AAIP|Memory Configuration Type Performance Optimized
-||4|370-ADNF|Memory Capacity 32GB RDIMM, 2666MT/s, Dual Rank
-||1|780-BCDS|RAID Configuration C7, Unconfigured RAID for HDDs or SSDs (Mixed Drive Types
-||1|405-AAMS|RAID/Internal Storage Controllers PERC H740P RAID Controller, 8GB NV Cache, Minicard
-||2|400-ASTN|Hard Drives 1.92TB SSD SATA Mix Use 6GBPS 512e 2.5in Hot-plug Drive, S4600,3 DWPD, 10512 TBW
-||1|421-5736|No Media Required
-||1|385-BBKT, 528-BBWT|iDRAC9 Enterprise with OME Server Configuration Management
-||1|379-BCQV|iDRAC Group Manager, Enabled
-||1|379-BCSG|iDRAC, Legacy Password
-||1|330-BBGN|PCIe Riser Config 2, 3x16 LP
-||1|555-BCKP|Network Daughter Card Intel X710 Quad Port 10Gb DA/SFP+ Ethernet
-||1|384-BBQJ|8 Standard Fans for R640
-||1|450-ADWS|Dual, Hot-plug, Redundant Power Supply (1+1), 750W
-||1|450-AALV|NEWA 5-15P to C13 Wall Plug, 125 Volt, 15 AMP, 10 Feet (3m), Power Cord, North America
-||1|325-BCHH, 350-BBJS|Standard Bezel for x4 and x8 Chassis
-||1|350-BBKC|Quick Sync 2 (At-the-box mgmt.)
-||1|384-BBBL|Performance BIOS Setting
-||1|800-BBDM|Advanced System Configurations UEFI BIOS Boot Mode with GPT Partition
-||1|770-BBBL|ReadyRails Sliding Rails with Cable Management Arm
-||1|631-AACK|No System Documentation, No OpenManage DVD Kit
-||1|813-9255,813-9262,813-9274,989-3439|3 Years ProSupport with Next Business Day Onsite Service
-||1|804-6747|Deployment Services 1 804-6747
+|Every System Role ^|1|210-AKWU|PowerEdge R640 Server
+| ^|1|461-AAEM|Trusted Platform Module 2.0
+| ^|1|321-BCQJ|2.5” Chassis with up to 8 Hard Drives and 3PCIe slots
+| ^|1|338-BLUW|Intel Xeon Gold 5118 2.3G, 12CT/24CT, 10.4GT/s, 16.5M Cache, Turbo, HT(105W) DDR4-2400
+| ^|1|374-BBPR|Intel Xeon Gold 5118 2.3G, 12CT/24CT, 10.4GT/s, 16.5M Cache, Turbo, HT(105W) DDR4-2400
+| ^|1|370-ABWE, 412-AAIQ, 412-AAIQ|Heatsinks for Midbay Configuration 1 370-ABWE
+| ^|1|370-ADNU|Memory DIMM Type and Speed 2666MT/s RDIMMS
+| ^|1|370-AAIP|Memory Configuration Type Performance Optimized
+| ^|4|370-ADNF|Memory Capacity 32GB RDIMM, 2666MT/s, Dual Rank
+| ^|1|780-BCDS|RAID Configuration C7, Unconfigured RAID for HDDs or SSDs (Mixed Drive Types
+| ^|1|405-AAMS|RAID/Internal Storage Controllers PERC H740P RAID Controller, 8GB NV Cache, Minicard
+| ^|2|400-ASTN|Hard Drives 1.92TB SSD SATA Mix Use 6GBPS 512e 2.5in Hot-plug Drive, S4600,3 DWPD, 10512 TBW
+| ^|1|421-5736|No Media Required
+| ^|1|385-BBKT, 528-BBWT|iDRAC9 Enterprise with OME Server Configuration Management
+| ^|1|379-BCQV|iDRAC Group Manager, Enabled
+| ^|1|379-BCSG|iDRAC, Legacy Password
+| ^|1|330-BBGN|PCIe Riser Config 2, 3x16 LP
+| ^|1|555-BCKP|Network Daughter Card Intel X710 Quad Port 10Gb DA/SFP+ Ethernet
+| ^|1|384-BBQJ|8 Standard Fans for R640
+| ^|1|450-ADWS|Dual, Hot-plug, Redundant Power Supply (1+1), 750W
+| ^|1|450-AALV|NEWA 5-15P to C13 Wall Plug, 125 Volt, 15 AMP, 10 Feet (3m), Power Cord, North America
+| ^|1|325-BCHH, 350-BBJS|Standard Bezel for x4 and x8 Chassis
+| ^|1|350-BBKC|Quick Sync 2 (At-the-box mgmt.)
+| ^|1|384-BBBL|Performance BIOS Setting
+| ^|1|800-BBDM|Advanced System Configurations UEFI BIOS Boot Mode with GPT Partition
+| ^|1|770-BBBL|ReadyRails Sliding Rails with Cable Management Arm
+| ^|1|631-AACK|No System Documentation, No OpenManage DVD Kit
+| ^|1|813-9255, 813-9262, 813-9274, 989-3439|3 Years ProSupport with Next Business Day Onsite Service
+| ^|1|804-6747|Deployment Services 1
 |===

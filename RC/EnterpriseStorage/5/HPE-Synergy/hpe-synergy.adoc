@@ -246,22 +246,11 @@ After understanding and working through the steps described in this document, yo
 
 == Resources and additional links
 
-{IHVPartner} {IHVPlatform}:: 
-* {IHVPartner} {IHVPlatform} {IHVPlatformModel} System - https://www.hpe.com/us/en/product-catalog/synergy/synergy-compute/pip.hpe-synergy-480-gen10-compute-module.1010025863.html
+ifeval::["{IHVPlatform}" == "Synergy"]
 
-[cols=",,,,", options="header"]
-.Bill of Materials - {IHVPartner} {IHVPlatform}
-|===
-|*_Role_*|*_Quantity_*|*_Product Number_*|*_Product_Description_*|*_Notes_*
-|Frame|1|797740-B22|{IHVPartner} {IHVPlatform} 12000 Frame Configure-to-order Frame with 2x FLM 6x Power Supplies 10x Fans|
-||1|804353-B22|{IHVPartner} {IHVPlatform} {IHVPlatformComposer}|add second module for HA configuration
-|Administration Node|1|871946-B21|{IHVPartner} {IHVPlatform} 480 Gen10 3104 1P 16GB-R S100i SATA Entry Compute Module|
-|MON Node|3|871946-B21|{IHVPartner} {IHVPlatform} 480 Gen10 3104 1P 16GB-R S100i SATA Entry Compute Module|recommend 3 for HA configuration
-|OSD Node|4|871946-B21|{IHVPartner} {IHVPlatform} 480 Gen10 3104 1P 16GB-R S100i SATA Entry Compute Module|minimum of 4, but can scale infinitely
-|Storage|1|??|{IHVPartner} {IHVPlatform} {IHVPlatformStorageModule} Storage Module | FixMe
-||4+|??|{IHVPartner} {IHVPlatform} xGB SSD SAS drives| match the number of OSD nodes and in the ratio of 1 SSD : 5-7 OSD drives
-||28+|??|{IHVPartner} {IHVPlatform} xGB SAS drives| suggested minimum of 8 drives per OSD node
-|===
+include::hw-bom.adoc[]
+
+endif::[]
 
 {CompanyName} {ProductName}::
 * https://www.suse.com/products/suse-enterprise-storage

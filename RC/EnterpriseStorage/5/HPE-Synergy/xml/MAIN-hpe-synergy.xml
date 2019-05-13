@@ -810,15 +810,13 @@ frame="all"
 rowsep="1" colsep="1"
 >
 <title>Bill of Materials - HPE Synergy</title>
-<tgroup cols="5">
-<colspec colname="col_1" colwidth="20*"/>
-<colspec colname="col_2" colwidth="20*"/>
-<colspec colname="col_3" colwidth="20*"/>
-<colspec colname="col_4" colwidth="20*"/>
-<colspec colname="col_5" colwidth="20*"/>
+<tgroup cols="4">
+<colspec colname="col_1" colwidth="25*"/>
+<colspec colname="col_2" colwidth="25*"/>
+<colspec colname="col_3" colwidth="25*"/>
+<colspec colname="col_4" colwidth="25*"/>
 <thead>
 <row>
-<entry align="left" valign="top"><emphasis role="strong"><emphasis>Role</emphasis></emphasis></entry>
 <entry align="left" valign="top"><emphasis role="strong"><emphasis>Quantity</emphasis></emphasis></entry>
 <entry align="left" valign="top"><emphasis role="strong"><emphasis>Product Number</emphasis></emphasis></entry>
 <entry align="left" valign="top"><emphasis role="strong"><emphasis>Product_Description</emphasis></emphasis></entry>
@@ -827,64 +825,591 @@ rowsep="1" colsep="1"
 </thead>
 <tbody>
 <row>
-<entry align="left" valign="top"><simpara>Frame</simpara></entry>
 <entry align="left" valign="top"><simpara>1</simpara></entry>
-<entry align="left" valign="top"><simpara>797740-B22</simpara></entry>
-<entry align="left" valign="top"><simpara>HPE Synergy 12000 Frame Configure-to-order Frame with 2x FLM 6x Power Supplies 10x Fans</simpara></entry>
+<entry align="left" valign="top"><simpara>797740-B21</simpara></entry>
+<entry align="left" valign="top"><simpara>HPE Synergy 12000 Configure-to-order Frame with 1x Frame Link Module 10x Fans</simpara></entry>
 <entry align="left" valign="top"><simpara></simpara></entry>
 </row>
 <row>
-<entry align="left" valign="top"><simpara></simpara></entry>
 <entry align="left" valign="top"><simpara>1</simpara></entry>
-<entry align="left" valign="top"><simpara>804353-B22</simpara></entry>
-<entry align="left" valign="top"><simpara>HPE Synergy Composer</simpara></entry>
-<entry align="left" valign="top"><simpara>add second module for HA configuration</simpara></entry>
-</row>
-<row>
-<entry align="left" valign="top"><simpara>Administration Node</simpara></entry>
-<entry align="left" valign="top"><simpara>1</simpara></entry>
-<entry align="left" valign="top"><simpara>871946-B21</simpara></entry>
-<entry align="left" valign="top"><simpara>HPE Synergy 480 Gen10 3104 1P 16GB-R S100i SATA Entry Compute Module</simpara></entry>
+<entry align="left" valign="top"><simpara>797740-B21  ABA</simpara></entry>
+<entry align="left" valign="top"><simpara>HPE Synergy 12000 US-English Local Configure-to-order Frame with 1x Frame Link Module 10x Fans</simpara></entry>
 <entry align="left" valign="top"><simpara></simpara></entry>
 </row>
 <row>
-<entry align="left" valign="top"><simpara>MON Node</simpara></entry>
-<entry align="left" valign="top"><simpara>3</simpara></entry>
-<entry align="left" valign="top"><simpara>871946-B21</simpara></entry>
-<entry align="left" valign="top"><simpara>HPE Synergy 480 Gen10 3104 1P 16GB-R S100i SATA Entry Compute Module</simpara></entry>
-<entry align="left" valign="top"><simpara>recommend 3 for HA configuration</simpara></entry>
+<entry align="left" valign="top"><simpara>1</simpara></entry>
+<entry align="left" valign="top"><simpara>835386-B21</simpara></entry>
+<entry align="left" valign="top"><simpara>HPE Synergy D3940 12Gb SAS CTO Drive Enclosure with 40 SFF (2.5in) Drive Bays</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
 </row>
 <row>
-<entry align="left" valign="top"><simpara>OSD Node</simpara></entry>
+<entry align="left" valign="top"><simpara>1</simpara></entry>
+<entry align="left" valign="top"><simpara>835386-B21  0D1</simpara></entry>
+<entry align="left" valign="top"><simpara>Factory Integrated</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>24</simpara></entry>
+<entry align="left" valign="top"><simpara>870753-B21</simpara></entry>
+<entry align="left" valign="top"><simpara>HPE 300GB SAS 12G Enterprise 15K SFF (2.5in) SC 3yr Wty Digitally Signed Firmware HDD</simpara></entry>
+<entry align="left" valign="top"><simpara>(a)</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>24</simpara></entry>
+<entry align="left" valign="top"><simpara>870753-B21  0D1</simpara></entry>
+<entry align="left" valign="top"><simpara>Factory Integrated</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+</row>
+<row>
 <entry align="left" valign="top"><simpara>4</simpara></entry>
-<entry align="left" valign="top"><simpara>871946-B21</simpara></entry>
-<entry align="left" valign="top"><simpara>HPE Synergy 480 Gen10 3104 1P 16GB-R S100i SATA Entry Compute Module</simpara></entry>
-<entry align="left" valign="top"><simpara>minimum of 4, but can scale infinitely</simpara></entry>
+<entry align="left" valign="top"><simpara>P09090-B21</simpara></entry>
+<entry align="left" valign="top"><simpara>HPE 800GB SAS 12G Mixed Use SFF (2.5in) SC 3yr Wty Digitally Signed Firmware SSD</simpara></entry>
+<entry align="left" valign="top"><simpara>(a)</simpara></entry>
 </row>
 <row>
-<entry align="left" valign="top"><simpara>Storage</simpara></entry>
+<entry align="left" valign="top"><simpara>4</simpara></entry>
+<entry align="left" valign="top"><simpara>P09090-B21  0D1</simpara></entry>
+<entry align="left" valign="top"><simpara>Factory Integrated</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+</row>
+<row>
 <entry align="left" valign="top"><simpara>1</simpara></entry>
-<entry align="left" valign="top"><simpara>??</simpara></entry>
-<entry align="left" valign="top"><simpara>HPE Synergy D3940 Storage Module</simpara></entry>
-<entry align="left" valign="top"><simpara>FixMe</simpara></entry>
+<entry align="left" valign="top"><simpara>757323-B21</simpara></entry>
+<entry align="left" valign="top"><simpara>HPE Synergy D3940 Redundant I/O Adapter</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
 </row>
 <row>
+<entry align="left" valign="top"><simpara>1</simpara></entry>
+<entry align="left" valign="top"><simpara>757323-B21  0D1</simpara></entry>
+<entry align="left" valign="top"><simpara>Factory Integrated</simpara></entry>
 <entry align="left" valign="top"><simpara></simpara></entry>
-<entry align="left" valign="top"><simpara>4+</simpara></entry>
-<entry align="left" valign="top"><simpara>??</simpara></entry>
-<entry align="left" valign="top"><simpara>HPE Synergy xGB SSD SAS drives</simpara></entry>
-<entry align="left" valign="top"><simpara>match the number of OSD nodes and in the ratio of 1 SSD : 5-7 OSD drives</simpara></entry>
 </row>
 <row>
+<entry align="left" valign="top"><simpara>4</simpara></entry>
+<entry align="left" valign="top"><simpara>871942-B21</simpara></entry>
+<entry align="left" valign="top"><simpara>HPE Synergy 480 Gen10 Configure-to-order Premium Compute Module</simpara></entry>
 <entry align="left" valign="top"><simpara></simpara></entry>
-<entry align="left" valign="top"><simpara>28+</simpara></entry>
-<entry align="left" valign="top"><simpara>??</simpara></entry>
-<entry align="left" valign="top"><simpara>HPE Synergy xGB SAS drives</simpara></entry>
-<entry align="left" valign="top"><simpara>suggested minimum of 8 drives per OSD node</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>4</simpara></entry>
+<entry align="left" valign="top"><simpara>871942-B21  0D1</simpara></entry>
+<entry align="left" valign="top"><simpara>Factory Integrated</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>4</simpara></entry>
+<entry align="left" valign="top"><simpara>873380-L21</simpara></entry>
+<entry align="left" valign="top"><simpara>HPE Synergy 480/660 Gen10 Intel Xeon-Gold 6132 (2.6GHz/14-core/140W) FIO Processor Kit</simpara></entry>
+<entry align="left" valign="top"><simpara>(a)</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>4</simpara></entry>
+<entry align="left" valign="top"><simpara>873380-B21</simpara></entry>
+<entry align="left" valign="top"><simpara>HPE Synergy 480/660 Gen10 Intel Xeon-Gold 6132 (2.6GHz/14-core/140W) Processor Kit</simpara></entry>
+<entry align="left" valign="top"><simpara>(a)</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>4</simpara></entry>
+<entry align="left" valign="top"><simpara>873380-B21  0D1</simpara></entry>
+<entry align="left" valign="top"><simpara>Factory Integrated</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>16</simpara></entry>
+<entry align="left" valign="top"><simpara>815100-B21</simpara></entry>
+<entry align="left" valign="top"><simpara>HPE 32GB (1x32GB) Dual Rank x4 DDR4-2666 CAS-19-19-19 Registered Smart Memory Kit</simpara></entry>
+<entry align="left" valign="top"><simpara>(a)</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>16</simpara></entry>
+<entry align="left" valign="top"><simpara>815100-B21  0D1</simpara></entry>
+<entry align="left" valign="top"><simpara>Factory Integrated</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>8</simpara></entry>
+<entry align="left" valign="top"><simpara>870753-B21</simpara></entry>
+<entry align="left" valign="top"><simpara>HPE 300GB SAS 12G Enterprise 15K SFF (2.5in) SC 3yr Wty Digitally Signed Firmware HDD</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>8</simpara></entry>
+<entry align="left" valign="top"><simpara>870753-B21  0D1</simpara></entry>
+<entry align="left" valign="top"><simpara>Factory Integrated</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>4</simpara></entry>
+<entry align="left" valign="top"><simpara>P01367-B21</simpara></entry>
+<entry align="left" valign="top"><simpara>HPE 96W Smart Storage Battery (up to 20 Devices) with 260mm Cable Kit</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>4</simpara></entry>
+<entry align="left" valign="top"><simpara>P01367-B21  0D1</simpara></entry>
+<entry align="left" valign="top"><simpara>Factory Integrated</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>4</simpara></entry>
+<entry align="left" valign="top"><simpara>871573-B21</simpara></entry>
+<entry align="left" valign="top"><simpara>HPE Smart Array P416ie-m SR Gen10 SAS Cable Kit</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>4</simpara></entry>
+<entry align="left" valign="top"><simpara>871573-B21  0D1</simpara></entry>
+<entry align="left" valign="top"><simpara>Factory Integrated</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>4</simpara></entry>
+<entry align="left" valign="top"><simpara>777430-B21</simpara></entry>
+<entry align="left" valign="top"><simpara>HPE Synergy 3820C 10/20Gb Converged Network Adapter</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>4</simpara></entry>
+<entry align="left" valign="top"><simpara>777430-B21  0D1</simpara></entry>
+<entry align="left" valign="top"><simpara>Factory Integrated</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>4</simpara></entry>
+<entry align="left" valign="top"><simpara>804428-B21</simpara></entry>
+<entry align="left" valign="top"><simpara>HPE Smart Array P416ie-m SR Gen10 (8 Int 8 Ext Lanes/2GB Cache) 12G SAS Mezzanine Controller</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>4</simpara></entry>
+<entry align="left" valign="top"><simpara>804428-B21  0D1</simpara></entry>
+<entry align="left" valign="top"><simpara>Factory Integrated</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>2</simpara></entry>
+<entry align="left" valign="top"><simpara>755985-B21</simpara></entry>
+<entry align="left" valign="top"><simpara>HPE Synergy 12Gb SAS Connection Module with 12 Internal Ports</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>2</simpara></entry>
+<entry align="left" valign="top"><simpara>755985-B21  0D1</simpara></entry>
+<entry align="left" valign="top"><simpara>Factory Integrated</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>1</simpara></entry>
+<entry align="left" valign="top"><simpara>779218-B21</simpara></entry>
+<entry align="left" valign="top"><simpara>HPE Synergy 20Gb Interconnect Link Module</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>1</simpara></entry>
+<entry align="left" valign="top"><simpara>779218-B21  0D1</simpara></entry>
+<entry align="left" valign="top"><simpara>Factory Integrated</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>1</simpara></entry>
+<entry align="left" valign="top"><simpara>794502-B23</simpara></entry>
+<entry align="left" valign="top"><simpara>HPE Virtual Connect SE 40Gb F8 Module for Synergy</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>1</simpara></entry>
+<entry align="left" valign="top"><simpara>794502-B23  0D1</simpara></entry>
+<entry align="left" valign="top"><simpara>Factory Integrated</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>1</simpara></entry>
+<entry align="left" valign="top"><simpara>798096-B21</simpara></entry>
+<entry align="left" valign="top"><simpara>HPE 6x 2650W Performance Hot Plug Titanium Plus FIO Power Supply Kit</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>1</simpara></entry>
+<entry align="left" valign="top"><simpara>804938-B21</simpara></entry>
+<entry align="left" valign="top"><simpara>HPE Synergy Frame Rack Rail Kit</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>1</simpara></entry>
+<entry align="left" valign="top"><simpara>804938-B21  0D1</simpara></entry>
+<entry align="left" valign="top"><simpara>Factory Integrated</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>1</simpara></entry>
+<entry align="left" valign="top"><simpara>804353-B21</simpara></entry>
+<entry align="left" valign="top"><simpara>HPE Synergy Composer</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>1</simpara></entry>
+<entry align="left" valign="top"><simpara>804353-B21  0D1</simpara></entry>
+<entry align="left" valign="top"><simpara>Factory Integrated</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>1</simpara></entry>
+<entry align="left" valign="top"><simpara>804942-B21</simpara></entry>
+<entry align="left" valign="top"><simpara>HPE Synergy Frame Link Module</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>1</simpara></entry>
+<entry align="left" valign="top"><simpara>804942-B21  0D1</simpara></entry>
+<entry align="left" valign="top"><simpara>Factory Integrated</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>1</simpara></entry>
+<entry align="left" valign="top"><simpara>859493-B21</simpara></entry>
+<entry align="left" valign="top"><simpara>Synergy Multi Frame Master1 FIO</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>1</simpara></entry>
+<entry align="left" valign="top"><simpara>797740-B21</simpara></entry>
+<entry align="left" valign="top"><simpara>HPE Synergy 12000 Configure-to-order Frame with 1x Frame Link Module 10x Fans</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>1</simpara></entry>
+<entry align="left" valign="top"><simpara>797740-B21  ABA</simpara></entry>
+<entry align="left" valign="top"><simpara>HPE Synergy 12000 US-English Local Configure-to-order Frame with 1x Frame Link Module 10x Fans</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>1</simpara></entry>
+<entry align="left" valign="top"><simpara>835386-B21</simpara></entry>
+<entry align="left" valign="top"><simpara>HPE Synergy D3940 12Gb SAS CTO Drive Enclosure with 40 SFF (2.5in) Drive Bays</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>1</simpara></entry>
+<entry align="left" valign="top"><simpara>835386-B21  0D1</simpara></entry>
+<entry align="left" valign="top"><simpara>Factory Integrated</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>24</simpara></entry>
+<entry align="left" valign="top"><simpara>870753-B21</simpara></entry>
+<entry align="left" valign="top"><simpara>HPE 300GB SAS 12G Enterprise 15K SFF (2.5in) SC 3yr Wty Digitally Signed Firmware HDD</simpara></entry>
+<entry align="left" valign="top"><simpara>(a)</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>24</simpara></entry>
+<entry align="left" valign="top"><simpara>870753-B21  0D1</simpara></entry>
+<entry align="left" valign="top"><simpara>Factory Integrated</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>2</simpara></entry>
+<entry align="left" valign="top"><simpara>P09090-B21</simpara></entry>
+<entry align="left" valign="top"><simpara>HPE 800GB SAS 12G Mixed Use SFF (2.5in) SC 3yr Wty Digitally Signed Firmware SSD</simpara></entry>
+<entry align="left" valign="top"><simpara>(a)</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>2</simpara></entry>
+<entry align="left" valign="top"><simpara>P09090-B21  0D1</simpara></entry>
+<entry align="left" valign="top"><simpara>Factory Integrated</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>1</simpara></entry>
+<entry align="left" valign="top"><simpara>757323-B21</simpara></entry>
+<entry align="left" valign="top"><simpara>HPE Synergy D3940 Redundant I/O Adapter</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>1</simpara></entry>
+<entry align="left" valign="top"><simpara>757323-B21  0D1</simpara></entry>
+<entry align="left" valign="top"><simpara>Factory Integrated</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>4</simpara></entry>
+<entry align="left" valign="top"><simpara>871942-B21</simpara></entry>
+<entry align="left" valign="top"><simpara>HPE Synergy 480 Gen10 Configure-to-order Premium Compute Module</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>4</simpara></entry>
+<entry align="left" valign="top"><simpara>871942-B21  0D1</simpara></entry>
+<entry align="left" valign="top"><simpara>Factory Integrated</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>4</simpara></entry>
+<entry align="left" valign="top"><simpara>873380-L21</simpara></entry>
+<entry align="left" valign="top"><simpara>HPE Synergy 480/660 Gen10 Intel Xeon-Gold 6132 (2.6GHz/14-core/140W) FIO Processor Kit</simpara></entry>
+<entry align="left" valign="top"><simpara>(a)</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>4</simpara></entry>
+<entry align="left" valign="top"><simpara>873380-B21</simpara></entry>
+<entry align="left" valign="top"><simpara>HPE Synergy 480/660 Gen10 Intel Xeon-Gold 6132 (2.6GHz/14-core/140W) Processor Kit</simpara></entry>
+<entry align="left" valign="top"><simpara>(a)</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>4</simpara></entry>
+<entry align="left" valign="top"><simpara>873380-B21  0D1</simpara></entry>
+<entry align="left" valign="top"><simpara>Factory Integrated</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>16</simpara></entry>
+<entry align="left" valign="top"><simpara>815100-B21</simpara></entry>
+<entry align="left" valign="top"><simpara>HPE 32GB (1x32GB) Dual Rank x4 DDR4-2666 CAS-19-19-19 Registered Smart Memory Kit</simpara></entry>
+<entry align="left" valign="top"><simpara>(a)</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>16</simpara></entry>
+<entry align="left" valign="top"><simpara>815100-B21  0D1</simpara></entry>
+<entry align="left" valign="top"><simpara>Factory Integrated</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>8</simpara></entry>
+<entry align="left" valign="top"><simpara>870753-B21</simpara></entry>
+<entry align="left" valign="top"><simpara>HPE 300GB SAS 12G Enterprise 15K SFF (2.5in) SC 3yr Wty Digitally Signed Firmware HDD</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>8</simpara></entry>
+<entry align="left" valign="top"><simpara>870753-B21  0D1</simpara></entry>
+<entry align="left" valign="top"><simpara>Factory Integrated</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>4</simpara></entry>
+<entry align="left" valign="top"><simpara>P01367-B21</simpara></entry>
+<entry align="left" valign="top"><simpara>HPE 96W Smart Storage Battery (up to 20 Devices) with 260mm Cable Kit</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>4</simpara></entry>
+<entry align="left" valign="top"><simpara>P01367-B21  0D1</simpara></entry>
+<entry align="left" valign="top"><simpara>Factory Integrated</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>4</simpara></entry>
+<entry align="left" valign="top"><simpara>871573-B21</simpara></entry>
+<entry align="left" valign="top"><simpara>HPE Smart Array P416ie-m SR Gen10 SAS Cable Kit</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>4</simpara></entry>
+<entry align="left" valign="top"><simpara>871573-B21  0D1</simpara></entry>
+<entry align="left" valign="top"><simpara>Factory Integrated</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>4</simpara></entry>
+<entry align="left" valign="top"><simpara>777430-B21</simpara></entry>
+<entry align="left" valign="top"><simpara>HPE Synergy 3820C 10/20Gb Converged Network Adapter</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>4</simpara></entry>
+<entry align="left" valign="top"><simpara>777430-B21  0D1</simpara></entry>
+<entry align="left" valign="top"><simpara>Factory Integrated</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>4</simpara></entry>
+<entry align="left" valign="top"><simpara>804428-B21</simpara></entry>
+<entry align="left" valign="top"><simpara>HPE Smart Array P416ie-m SR Gen10 (8 Int 8 Ext Lanes/2GB Cache) 12G SAS Mezzanine Controller</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>4</simpara></entry>
+<entry align="left" valign="top"><simpara>804428-B21  0D1</simpara></entry>
+<entry align="left" valign="top"><simpara>Factory Integrated</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>2</simpara></entry>
+<entry align="left" valign="top"><simpara>755985-B21</simpara></entry>
+<entry align="left" valign="top"><simpara>HPE Synergy 12Gb SAS Connection Module with 12 Internal Ports</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>2</simpara></entry>
+<entry align="left" valign="top"><simpara>755985-B21  0D1</simpara></entry>
+<entry align="left" valign="top"><simpara>Factory Integrated</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>1</simpara></entry>
+<entry align="left" valign="top"><simpara>779218-B21</simpara></entry>
+<entry align="left" valign="top"><simpara>HPE Synergy 20Gb Interconnect Link Module</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>1</simpara></entry>
+<entry align="left" valign="top"><simpara>779218-B21  0D1</simpara></entry>
+<entry align="left" valign="top"><simpara>Factory Integrated</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>1</simpara></entry>
+<entry align="left" valign="top"><simpara>794502-B23</simpara></entry>
+<entry align="left" valign="top"><simpara>HPE Virtual Connect SE 40Gb F8 Module for Synergy</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>1</simpara></entry>
+<entry align="left" valign="top"><simpara>794502-B23  0D1</simpara></entry>
+<entry align="left" valign="top"><simpara>Factory Integrated</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>1</simpara></entry>
+<entry align="left" valign="top"><simpara>798096-B21</simpara></entry>
+<entry align="left" valign="top"><simpara>HPE 6x 2650W Performance Hot Plug Titanium Plus FIO Power Supply Kit</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>1</simpara></entry>
+<entry align="left" valign="top"><simpara>804938-B21</simpara></entry>
+<entry align="left" valign="top"><simpara>HPE Synergy Frame Rack Rail Kit</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>1</simpara></entry>
+<entry align="left" valign="top"><simpara>804938-B21  0D1</simpara></entry>
+<entry align="left" valign="top"><simpara>Factory Integrated</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>1</simpara></entry>
+<entry align="left" valign="top"><simpara>804353-B21</simpara></entry>
+<entry align="left" valign="top"><simpara>HPE Synergy Composer</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>1</simpara></entry>
+<entry align="left" valign="top"><simpara>804353-B21  0D1</simpara></entry>
+<entry align="left" valign="top"><simpara>Factory Integrated</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>1</simpara></entry>
+<entry align="left" valign="top"><simpara>804942-B21</simpara></entry>
+<entry align="left" valign="top"><simpara>HPE Synergy Frame Link Module</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>1</simpara></entry>
+<entry align="left" valign="top"><simpara>804942-B21  0D1</simpara></entry>
+<entry align="left" valign="top"><simpara>Factory Integrated</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>1</simpara></entry>
+<entry align="left" valign="top"><simpara>859494-B22</simpara></entry>
+<entry align="left" valign="top"><simpara>Synergy Multi Frame Master2 FIO</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>2</simpara></entry>
+<entry align="left" valign="top"><simpara>861412-B21</simpara></entry>
+<entry align="left" valign="top"><simpara>HPE Synergy Frame Link Module CAT6A 1.2m Cable</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>4</simpara></entry>
+<entry align="left" valign="top"><simpara>804101-B21</simpara></entry>
+<entry align="left" valign="top"><simpara>HPE Synergy Interconnect Link 3m Active Optical Cable</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>2</simpara></entry>
+<entry align="left" valign="top"><simpara>720199-B21</simpara></entry>
+<entry align="left" valign="top"><simpara>HPE BladeSystem c-Class 40G QSFP+ to QSFP+ 3m Direct Attach Copper Cable</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>1</simpara></entry>
+<entry align="left" valign="top"><simpara>H1K92A3</simpara></entry>
+<entry align="left" valign="top"><simpara>HPE 3Y Proactive Care 24x7 SVC</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>2</simpara></entry>
+<entry align="left" valign="top"><simpara>H1K92A3     WJP</simpara></entry>
+<entry align="left" valign="top"><simpara>HPE Synergy Composer Supp</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>8</simpara></entry>
+<entry align="left" valign="top"><simpara>H1K92A3     W4A</simpara></entry>
+<entry align="left" valign="top"><simpara>HPE SY480 Gen10 Support</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>2</simpara></entry>
+<entry align="left" valign="top"><simpara>H1K92A3     WJN</simpara></entry>
+<entry align="left" valign="top"><simpara>HPE Synergy 1200 Frame Supp</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>2</simpara></entry>
+<entry align="left" valign="top"><simpara>H1K92A3     WJR</simpara></entry>
+<entry align="left" valign="top"><simpara>HPE Synergy VC SE 40Gb F8 Module Supp</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>2</simpara></entry>
+<entry align="left" valign="top"><simpara>H1K92A3     WJT</simpara></entry>
+<entry align="left" valign="top"><simpara>HPE Synergy Interconnect LinkModule Supp</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>2</simpara></entry>
+<entry align="left" valign="top"><simpara>H1K92A3     WJU</simpara></entry>
+<entry align="left" valign="top"><simpara>HPE Synergy DS3940 Storage Module Supp</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>4</simpara></entry>
+<entry align="left" valign="top"><simpara>H1K92A3     WJV</simpara></entry>
+<entry align="left" valign="top"><simpara>HPE Synergy 12Gb SAS Connection Mod Supp</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>1</simpara></entry>
+<entry align="left" valign="top"><simpara>HA124A1</simpara></entry>
+<entry align="left" valign="top"><simpara>HPE Technical Installation Startup SVC</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>1</simpara></entry>
+<entry align="left" valign="top"><simpara>HA124A1     5ZQ</simpara></entry>
+<entry align="left" valign="top"><simpara>HPE Synergy Additional Frame Startup SVC</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>1</simpara></entry>
+<entry align="left" valign="top"><simpara>HA124A1     5ZM</simpara></entry>
+<entry align="left" valign="top"><simpara>HPE Synergy First Frame Startup SVC</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>3</simpara></entry>
+<entry align="left" valign="top"><simpara>HF385A1</simpara></entry>
+<entry align="left" valign="top"><simpara>HPE Trng Credits Servers/HybridIT SVC</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
 </row>
 </tbody>
 </tgroup>
 </table>
+<note><simpara>(a) CPU cores, Memory, and drive count/capacities can be adjusted as desired, just follow <ulink url="https://www.suse.com/products/suse-enterprise-storage/">SUSE Enterprise Storage</ulink> Tech Spec sizing guidelines</simpara></note>
 <variablelist>
 <varlistentry>
 <term>

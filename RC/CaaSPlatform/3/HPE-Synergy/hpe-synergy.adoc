@@ -18,29 +18,32 @@
 {Author}, {CompanyName} < {AuthorEMail} >
 
 == Executive Summary
-This reference configuration is intended to help an organization plan and install an on-premise container-as-a-service platform infrastructure to deploy, orchestrate and manage containerized workloads.
+This reference configuration is designed to help organizations plan and install an on premises container-as-a-service (CaaS) platform infrastructure to deploy, orchestrate and manage containerized workloads. It provides an implementation overview for a production-ready deployment, with design considerations, implementation suggestions and best practices.
 
-For most enterprise-level businesses, the demand for an on-premise, infrastructure to deploy and orchestrate containers is increasing rapidly, allowing the hosting of both production and other phases of workloads development. As with any software-defined infrastructure, all the classic IT disciplines around networking, computing and storage are involved and need to be effectively planned and integrated. This document provides an implementation overview for a production-ready deployment with design considerations, implementation suggestions, and best practices. An intelligent, software-defined infrastructure consisting of {CompanyName}(R) {ProductName} technology and {IHVPartner}(R) {IHVPlatform} system hardware enables you to transform your enterprise. With the inherent composability of the combination, delivering container-as-a-service can help reduce costs while still providing flexibility to keep up with your future demands. Leveraging this tested approach, you will have the confidence to deploy a working solution in an agile manner, and be able to maintain and scale it as needed over time.
+For most enterprise-level businesses, the demand for an on-premise, infrastructure to deploy and orchestrate containers is increasing rapidly, allowing the hosting of both production and other phases of workloads development. As with any software-defined infrastructure, all the classic IT disciplines around networking, computing and storage are involved and need to be effectively planned and integrated. 
+
+Implementing an intelligent, software-defined infrastructure consisting of CompanyName} {ProductName} technology and {IHVPartner}(R) {IHVPlatform} system hardware enables you to transform your enterprise. The inherent composability of this solution delivers CaaS to help reduce costs, while still providing the flexibility to keep up with your future demands. Leveraging this tested approach, you will have the confidence to deploy a working solution in an agile manner and be able to maintain and scale it as needed over time.
 
 == Target Audience
-This document is intended for IT decision makers, architects, system administrators and technicians who are implementing a flexible, software-defined, container-as-a-service platform. The reader should be familiar with all of the traditional pillars of IT infrastructures -- networking, computing and storage -- along with their local use cases for sizing, scaling and limitations within their environments.
+This document is intended for IT decision makers, architects, system administrators and technicians who are implementing a flexible, software-defined CaaS platform. You should be familiar with the traditional IT infrastructure pillars—networking, computing and storage—along with the pillars’ local use cases for sizing, scaling and limitations within each pillars’ environments.
 
 == Solution Overview
-Even on the journey to a full https://landscape.cncf.io/[Cloud Native Landscape], the classic IT pillars are still very much in play. General requirements include the need for a small, purpose-built operating system with a container runtime engine and a container orchestration platform to distribute workloads across a target, clustered instance. The dominant technology for container orchestration is Kubernetes. Having a large community of developers and a plethora of features and capabilities, Kubernetes has become the defacto standard, included across amost container-as-a-service platforms. With all of these attributes in place, both developer and operation teams can effectively deploy, manage and deliver functionality to their end users in a resilient and agile manner.
+Even on the journey to a full https://landscape.cncf.io/[Cloud Native Landscape], the classic IT pillars are still in play. General requirements include the need for a small, purpose-built operating system with a container runtime engine and a container orchestration platform to distribute workloads across a target, clustered instance. The dominant technology for container orchestration is Kubernetes. With its large community of developers and a plethora of features and capabilities, Kubernetes has become the defacto standard and is included across most CaaS platforms. With all of these attributes in place, both developer and operation teams can effectively deploy, manage and deliver functionality to their end users in a resilient and agile manner.
+
 
 NOTE: As a further reference, the National Institute of Standards and Technology's (NIST) https://csrc.nist.gov/publications/detail/sp/800-180/draft[Definition of Microservices, Application Containers and System Virtual Machines] describes the important characteristics of application containers. 
 
-While the footprint of each of the containerized microservices is usually much smaller than similar bare-metal or virtual machine workload, all of the IT pillars -- networking, computing, and storage, must still accommodate the sheer scale of such high counts of workloads. Core networking technologies, including high-speed, scalable network switches and network interfaces must provide the foundational bandwidth for compute resource nodes, the workload and for non-direct attached storage resources. Physical resource nodes or even virtual machines running atop a hypervisor can deliver the container-as-a-service functionality. A composable infrastructure, like {IHVPartner} {IHVPlatform} provides an ideal target platform, letting users start small and scale-out over time with inherent consistency.  This platform addresses both network and storage resources with industry-leading x86-based servers provided by the {IHVPartner} {IHVPlatform} servers, offering balanced performance and efficiency. Finally, it is the container-as-a service software, {CompanyName} {ProductName}, that provides the user interface for setup, configuration, maintenance, and long term operation of the core software-defined infrastructure requirements bonding them into a cohesive service offering. Each of these components is detailed in the following sections.
+While the footprint of each of the containerized microservices is typically much smaller than a similar bare-metal or virtual machine workload, all of the IT pillars must still accommodate the sheer scale of such high-volume workloads. Core networking technologies, including high-speed, scalable network switches and network interfaces must provide the foundational bandwidth for compute resource nodes, the workload and for non-direct attached storage resources. Physical resource nodes or even virtual machines running atop a hypervisor can deliver the CaaS functionality. A composable infrastructure, like {IHVPartner} {IHVPlatform} provides an ideal target platform enabling you to start small and scale-out over time with inherent consistency.  This platform addresses both network and storage resources with industry-leading x86-based servers, offering balanced performance and efficiency. Finally, it is the CaaS software -- the {CompanyName} {ProductName} -- that provides the user interface for setup, configuration, maintenance, and long term operation of the core software-defined infrastructure requirements, bonding them into a cohesive service offering. Each of these components is detailed in the following sections.
 
 == Solution Components
 
 === Facility
-While beyond the scope of this document, the heating, ventilation, air conditioning (HVAC) requirements of hosting such an infrastructure solution should be carefully considered and planned. To aid in determining the power requirements for system deployment, use the https://h20195.www2.hpe.com/v2/GetPDF.aspx/4AA6-2925ENW.pdf[{IHVPartner} Power Advisor] as either an online version or a downloadable application. Using this tool, you can plan the needs for your solution and order the correct Power Distribution Unit (PDU) to account for the local power conditions and connections in the final installation location.
+While beyond the scope of this document, the heating, ventilation, air conditioning (HVAC) requirements of hosting such an infrastructure solution should be carefully considered and planned. To aid in determining the power requirements for system deployment, use the online or downloadable version of https://h20195.www2.hpe.com/v2/GetPDF.aspx/4AA6-2925ENW.pdf[{IHVPartner} Power Advisor]. Using this tool, you can plan for the needs for your solution and order the correct Power Distribution Unit (PDU) to account for the local power conditions and connections in the final installation location.
 
 === Network
-Networking and the associated services are the technology components which typically requires the most advanced planning. Connectivity, capacity and bandwidth requirements for a container-as-a-service infrastructure have a fair amount of complexity, especially when integrated with an existing IT infrastructure and accounting for the magnitude of microservices being deployed.
+Networking and the associated services are the technology components that typically require the most advanced planning. Connectivity, capacity and bandwidth requirements for a CaaS infrastructure have a fair amount of complexity, especially when integrated with an existing IT infrastructure and accounting for the magnitude of microservices being deployed.
 
-With the inherent features and composability aspect of {IHVPartner} {IHVPlatform} much of the configuration complexity for network interconnects can easily be codified into a template for each target resource node. This includes the mapping of which network interfaces to which network fabrics within a collection of managed {IHVPartner} {IHVPlatform} frames. The baseline network bandwidth, both for each resource node and collectively within the frame, provided by {IHVPartner} {IHVPlatform} is quite sufficient for a container-as-a-service deployment. While beyond the scope of this document, the only remaining consideration is for capacity and bandwidth for the interconnecting Top-of-Rack switches. In addition access to each of the resource node's {IHVPartner} {IHVPlatformBMC} can be effectively coordinated and managed through the user interface of {IHVPartner} {IHVPlatform} {IHVPlatformComposer}.
+With the inherent features and composability aspect of {IHVPartner} {IHVPlatform} much of the configuration complexity for network interconnects can easily be codified into a template for each target resource node. This includes the mapping of network interfaces to network fabrics within a collection of managed {IHVPartner} {IHVPlatform} frames. The baseline network bandwidth provided by {IHVPartner} {IHVPlatform}, for each resource node and collectively within the frame, provided by {IHVPartner} {IHVPlatform} is sufficient for a CaaS deployment. While beyond the scope of this document, the only remaining consideration is for capacity and bandwidth for the interconnecting top-of-rack switches. In addition, access to the {IHVPartner} {IHVPlatformBMC} for each resource node can be effectively coordinated and managed through the user interface of {IHVPartner} {IHVPlatform} {IHVPlatformComposer}.
 
 === Computing
 
@@ -74,20 +77,20 @@ include::../../../../_includes/IHV/{IHVPartner}-{IHVPlatform}-SY.adoc[]
 
 endif::[]
 
-For this the implementation, {IHVPartner} {IHVPlatform} {IHVPlatformModel} servers were utilized for all node roles. Example configurations are included in the Appendices.
+For this the implementation, {IHVPartner} {IHVPlatform} {IHVPlatformModel} servers were utilized for all node roles. Example configurations are included in the "Resources and Additional Links" section.
 
 NOTE: Any https://www.suse.com/yessearch/[{CompanyName} YES] certified {IHVPartner} platform, like the {IHVPartner} {IHVPlatform} {IHVPlatformModel}, can be used for the physical nodes of this deployment, as long as the certification refers to the major version of the underlying {CompanyName} operating system required by the {CompanyName} {ProductName} release.
 
 === Storage
-Each of the resource nodes is also expected to have some local, direct-attach storage, which is predominantly used for the node's operating system. For this deployment, a pair of disk drives, configured as a RAID1 volume, via the {IHVPartner} {IHVPlatform} {IHVPlatformComposer} templates for the operating system helps provide fewer points of failure.
+Each of the resource nodes is expected to have some local, direct-attach storage, which is predominantly used for the node's operating system. For this deployment, a pair of disk drives, configured as a RAID1 volume, via the {IHVPartner} {IHVPlatform} {IHVPlatformComposer} templates for the operating system helps to provide fewer points of failure.
 
-This storage configuration is also used for the ephemeral container images running on any given node. These are simply copies of the reference container image version, obtained from a centralized location like a registry, which is utilized during the workload's runtime. Once the workload is terminated or moved, this disk space is reclaimed and becomes available for subsequent usages.
+This storage configuration is also used for the ephemeral container images running on any given node. These are simply copies of the reference container image version, obtained from a centralized location like a registry, which is utilized during the workload's runtime. Afger the workload is terminated or moved, this disk space is reclaimed and becomes available for subsequent usages.
 
-TIP: This local storage element can become both a limiter for the number and size of container workloads running on a given node plus can also become a performance limiter. So, having performant local storage devices, like solid-state drives, is encouraged. Monitoring of workloads and scale can also help determine if capacity or performance constraints are becoming an issue.
+TIP: This local storage element can become both a limiter for both the number and size of container workloads running on a given node plus; it can also become a performance limiter. As such, having performant local storage devices (such as solid-state drives) is encouraged. Monitoring of workloads and scale can also help to determine if capacity or performance constraints are becoming an issue.
 
-For any stateful microservice deployments, additional storage technologies should be integrated to house persistent volumes. Both static and dynamic volume claims can be utilized via the modular Container-Storage-Interface (CSI) technologies. A commonly utilized approach for these non-cloud-native workloads requiring persistent storage is a Ceph-based, software-defined storage infrastructure.  This solution can provide block and file, or other protocol integration options with a Kubernetes-based container-as-a-service platform.
+For any stateful microservice deployments, additional storage technologies should be integrated to house persistent volumes. Both static and dynamic volume claims can be utilized via the modular Container-Storage-Interface (CSI) technologies. A commonly utilized approach for these non-cloud-native workloads requiring persistent storage is a Ceph-based, software-defined storage infrastructure.  This solution can provide block and file, or other protocol integration options with a Kubernetes-based CaaS platform.
 
-NOTE: Such integrations, with solutions like {CompanyName} {ProductNameSES} are detailed in other reference documents.
+NOTE: Such integrations, with solutions like {CompanyName} {ProductNameSES}, are detailed in other reference documents.
 
 === Software
 
@@ -99,75 +102,74 @@ endif::[]
 
 == Solution Details
 
-This document focuses on a new {CompanyName} {ProductName} deployment which could be scaled over time. A starting point could be a single hypervisor host with virtual machines setup for each of the needed roles to create a basic, minimal cluster to simple evaluate functionality. Over time more physical nodes could be added to augment the cluster or to replace some of the initial, virtual-machine based roles. To provide a production-ready cluster and to take advantage of the {IHVPartner} {IHVPlatform} platform and it's composable features, the following figure shows the target logical cluster deployment:
+This document focuses on a new {CompanyName} {ProductName} deployment which could be scaled over time. A starting point could be a single hypervisor host with virtual machines set up for each of the needed roles to create a basic, minimal cluster to simply evaluate functionality. Over time more physical nodes could be added to augment the cluster or to replace some of the initial, virtual-machine-based roles. To provide a production-ready cluster and take advantage of the {IHVPartner} {IHVPlatform} platform and it's composable features, the following figure shows the target logical cluster deployment:
 
 [[img-DeployLV]]
 .Deployment Logical View
 image::Deployment-Logical-View.png[Deployment-Logical-View, 640, 480]
 
 === Deployment Flow
-The remainder of this section is meant as a companion guide to the official network, system and software product deployment documentation, citing specific settings as needed for this reference implementation. Default settings are assumed to be in use unless otherwise cited to accomplish the respective best practices and design decisions herein.
+The remainder of this section is a companion guide to the official network, system and software product deployment documentation, citing specific settings as needed for this reference implementation. Default settings are assumed to be in use, unless otherwise cited, to accomplish the respective best practices and design decisions herein.
 
-Given the very detailed information contained in the https://www.suse.com/documentation/suse-caasp-3/[{CompanyName} {ProductName} Deployment Guide] Guide, only the following additional, incremental configurations and modifications are described below:
+Given the detailed information contained in the https://www.suse.com/documentation/suse-caasp-3/[{CompanyName} {ProductName} Deployment Guide] Guide, only the following additional, incremental configurations and modifications are described below:
 
 Pre-Installation Checklist::
-* As preparation, obtain the following software media and documentation artifacts:
-** from the https://download.suse.com/Download?buildid=z7ezhywXXRc~[{CompanyName} {ProductName}] site download the {ProductName} x86_64 install media (DVD1)
-*** utilize either trial or purchased subscriptions for all the resource nodes to ensure access to support and software updates. The bill of materials section in the appendices outlines the type and quantity of subscriptions needed.
-** in addition, obtain and preview the https://www.suse.com/documentation/suse-caasp-3/index.html[{CompanyName} {ProductName}] documentation, focusing on the:
+* Obtain the following software media and documentation artifacts:
+** Download {CompanyName} {ProductName} x86_64 install media (DVD1) from the https://download.suse.com/Download?buildid=z7ezhywXXRc~[{CompanyName} {ProductName} site].
+*** To ensure access to technical support and software updates, utilize either trial or purchased subscriptions for all resource nodes. The bill of materials section in the “Resources and Additional Links” section outlines the type and quantity of subscriptions needed.
+*** Obtain and preview the https://www.suse.com/documentation/suse-caasp-3/index.html[{CompanyName} {ProductName}] documentation, focusing on the:
 *** Installation Quick Start
 *** Deployment Guide
 * Create an {IHVPartner} {IHVPlatform} {IHVPlatformComposer} template to address:
-** minimum CPU/Memory/Disk/Networking requirements of {CompanyName} {ProductName}, as noted in https://www.suse.com/documentation/suse-caasp-3/[{CompanyName} {ProductName} Deployment Guide] to be applied to any available {IHVPartner} {IHVPlatform} resource nodes
-** consistent and up-to-date versions for BIOS/uEFI/device firmware to reduce potential troubleshooting issues later 
-** the BIOS/uEFI settings are reset to defaults for a known baseline, consistent state or with desired values
-** use of either local or shared direct-attach storage elements, in a RAID1 configuration, to be used as the operating system installation target
-** network interfaces, including {IHVPartner} {IHVPlatformBMC} configured as desired to match the target network topology and connectivity
+** Minimum CPU/Memory/Disk/Networking requirements of {CompanyName} {ProductName} being applied to any available {IHVPartner} {IHVPlatform} resource nodes.  See the in https://www.suse.com/documentation/suse-caasp-3/[{CompanyName} {ProductName} Deployment Guide] for this information.
+** Consistent and up-to-date versions for BIOS/uEFI/device firmware to reduce potential troubleshooting issues later .
+** The BIOS/uEFI settings are reset to defaults for a known baseline, consistent state or with desired values.
+** Use of either local or shared direct-attach storage elements, in a RAID1 configuration, to be used as the operating system installation target.
+** Network interfaces, including {IHVPartner} {IHVPlatformBMC} are configured as desired to match the target network topology and connectivity.
 * Verify the following considerations for various network service configurations are ready to access:
-** ensure that you have access to a valid, reliable external NTP service, as this is a critical requirement for all nodes.
-** setup external DNS A records for all nodes. Decide on subnet ranges and configure the switch ports accordingly to match those nodes in use.
-** ensure access to software security updates and fixes by registering nodes to the http://scc.suse.com[SUSE Customer Center], or by creating a local https://www.suse.com/documentation/sles-12/singlehtml/book_smt/book_smt.html[Subscription Management Tool] service.
+** Ensure that you have access to a valid, reliable external NTP service; this is a critical requirement for all nodes.
+** Set up external DNS A records for all nodes. Decide on subnet ranges and configure the switch ports accordingly to match the nodes in use.
+** Ensure that you have access to software security updates and fixes by registering nodes to the http://scc.suse.com[SUSE Customer Center], or by creating a local https://www.suse.com/documentation/sles-12/singlehtml/book_smt/book_smt.html[Subscription Management Tool] service.
 
 Administration Node Installation::
-Install the {CompanyName} {ProductName} Platform Administration Node either as a virtual machine or as the first physical resource node
-* Apply the {IHVPartner} {IHVPlatform} {IHVPlatformComposer} template to the target resource node in the {IHVPartner} {IHVPlatform} frame
-* If a physical node, configure the following {IHVPartner} {IHVPlatformBMC} virtual media image for use
-** {CompanyName} {ProductName} ISO image (bootable)
+Install the {CompanyName} {ProductName} Platform Administration Node either as a virtual machine or as the first physical resource node.
+* Apply the {IHVPartner} {IHVPlatform} {IHVPlatformComposer} template to the target resource node in the {IHVPartner} {IHVPlatform} frame.
+* If a physical node, configure the following {IHVPartner} {IHVPlatformBMC} virtual media image for use: {CompanyName} {ProductName} ISO image (bootable)
 
-NOTE: The installation process used, across all nodes, whether virtual or physical, was done from ISO images just for consistency in this document. Other options are available as noted in the https://www.suse.com/documentation/suse-caasp-3/[{CompanyName} {ProductName} Deployment Guide].
+NOTE: For the sake of consistency in this document, the installation process used across all nodes, whether virtual or physical, was done from ISO images. Other options are available as noted in the https://www.suse.com/documentation/suse-caasp-3/[{CompanyName} {ProductName} Deployment Guide].
 
-* Follow the "Installing the Administration Node" process steps described in the https://www.suse.com/documentation/suse-caasp-3/[{CompanyName} {ProductName} Deployment Guide]
-* When the installation is complete and the system reboots, use a client system to access the Velum Dashboard web-interface at the Fully-Qualified Doman Name (FQDN) of the Administration Node. Continue the setup described in the "Configuring the Administration Node" section of the https://www.suse.com/documentation/suse-caasp-3/[{CompanyName} {ProductName} Deployment Guide]. Ensure the following items are addressed:
-** on the home page, "Create Admin" account with a valid email address and password, then log in
-*** check the "Install Tiler (Helm's server component)" box in "Cluster Services" as this will be used extensively later.
-*** ensure the Overlay and Service network settings match the desired values, if the default values are not satisfactory.
-*** select the desired container runtime. For this deployment, the Docker open source engine was used.
-** on the "Bootstrap your CaaS Platform" page:
-*** refer to the location of the 'AutoYast' file, in case you'd like to help automate other resource node installations.
+* Follow the "Installing the Administration Node" steps described in the https://www.suse.com/documentation/suse-caasp-3/[{CompanyName} {ProductName} Deployment Guide].
+* When the installation is complete and the system reboots, use a client system to access the Velum Dashboard web-interface at the Fully-Qualified Doman Name (FQDN) of the Administration Node.
+* Continue the setup described in the "Configuring the Administration Node" section of the https://www.suse.com/documentation/suse-caasp-3/[{CompanyName} {ProductName} Deployment Guide]. Ensure the following items are addressed:
+** On the home page, select "Create Admin" to set up an account with a valid email address and password. Then log in and do the following:
+*** Check the "Install Tiler (Helm's server component)" box in "Cluster Services" as this will be used extensively later.
+*** Ensure the Overlay and Service network settings match the desired values, if the default values are not satisfactory.
+*** Select the desired container runtime. For this deployment, the Docker open source engine was used.
+** On the "Bootstrap your CaaS Platform" page:
+*** Refer to the location of the 'AutoYast' file, in case you'd like to help automate other resource node installations.
 
 Master and Worker Nodes Installation::
-Begin installation of the remaining resource nodes. At least three are required for a minimal cluster.
+Begin the installation of the remaining resource nodes; at least three are required for a minimal cluster.
 
-TIP: To provide more resiliency and failover capabilities, it is recommended to install three Master Nodes plus two Worker Nodes. Additional nodes, for master or worker roles, can be added to the cluster or swapped into the cluster at any point in time.
+NOTE: To provide more resiliency and failover capabilities, it is recommended to install three Master Nodes plus two Worker Nodes. Additional nodes, for master or worker roles, can be added to the cluster or swapped into the cluster at any point in time.
 
 * As with the install of the Administration Node, apply the respective {IHVPartner} {IHVPlatform} {IHVPlatformComposer} template and use the {IHVPartner} {IHVPlatformBMC} virtual media
 * Complete the installation steps as described in the "Installing Master and Worker Nodes" section of the https://www.suse.com/documentation/suse-caasp-3/[{CompanyName} {ProductName} Deployment Guide]
 
 HAProxy Setup::
-Either a load-balancer or HAProxy is a suggested approach to make the cluster, and more specifically some of the core Kubernetes Master Node API functions, accessible to client systems. It does this via a virtual IP address which then sends the call to any active masters. While not required for a single master cluster, setting this up in advance allows later expansion and substitutions to happen.
-* For HAProxy, this process can be run on any host or virtual machine with access to the cluster network. The steps to deploy this service are described in https://www.suse.com/documentation/sle-ha-12/singlehtml/book_sleha/book_sleha.html#sec.ha.lb.haproxy[Configuring Load Balancing with HAProxy].
+Either a load-balancer or HAProxy is a suggested approach to make the cluster accessible to client systems and, more specifically, to some of the Kubernetes Master Node API functions.. It does this via a virtual IP address, which then sends the call to any active masters. While not required for a single master cluster, setting this up in advance allows for expansion and substitutions later on.
 
-NOTE: As noted in the https://www.suse.com/documentation/suse-caasp-3/[{CompanyName} {ProductName} Deployment Guide], HAProxy should be configured to provide load balancing for both Kubernetes API server (port 6443) and for DEX (OIDC Connect, port 32000). Also ensure that the "stats" configuration stanza does not conflict with any other services (default of port 80) on the target node.
+* For HAProxy, this process can be run on any host or virtual machine that has access to the cluster network. The steps to deploy this service are described in the "Configuring Load Balancing with HAProxy" section of the https://www.suse.com/documentation/sle-ha-12/singlehtml/book_sleha/book_sleha.html#sec.ha.lb.haproxy[{CompanyName} Linux Enterprise High Availability Extenstion 12 SP3 Administration Guide].
+
+NOTE: As noted in the https://www.suse.com/documentation/suse-caasp-3/[{CompanyName} {ProductName} Deployment Guide], HAProxy should be configured to provide load balancing for the Kubernetes API server (port 6443) and for DEX (OIDC Connect, port 32000). Also ensure that the "stats" configuration stanza does not conflict with any other services (default of port 80) on the target node.
 
 Bootstrap the Cluster::
-When all the cluster nodes are installed and rebooted
-* Use the client system again to login and access the Velum Dashboard web-interface at the FQDN of the Administration Node to continue the cluster formation.
-* There should be a corresponding list of nodes in the "Pending Nodes" section, so "Accept All Nodes"
-** Designate the "Master" and "Worker" to the respective nodes, then "Next"
-** Enter the Kubernetes Master LB/HAProxy virtual IP FQDN setting for the "External Kubernetes API FQDN"
-** Enter the FQDN of the Administration Node in "External Dashboard FQDN", then "Bootstrap Cluster"
-** Once this process completes, you should have a fully functional {CompanyName} {ProductName} cluster to use. You can validate this:
-** by logging into the Administration Node and running:
+When all the cluster nodes are installed and rebooted, use the client system again to login and access the Velum Dashboard web-interface at the FQDN of the Administration Node to continue the cluster formation.
+* There should be a corresponding list of nodes in the "Pending Nodes" section, so select "Accept All Nodes".
+** Designate the "Master" and "Worker" to the respective nodes, then "Next".
+** Enter the Kubernetes Master LB/HAProxy virtual IP FQDN setting for the "External Kubernetes API FQDN".
+** Enter the FQDN of the Administration Node in "External Dashboard FQDN". Then select "Bootstrap Cluster".
+** Once this process completes, you should have a fully functional {CompanyName} {ProductName} cluster. You can validate this by logging into the Administration Node and running:
 
 ----
 root@caasp-admin# kubectl cluster-info
@@ -175,23 +177,23 @@ root@caasp-admin# kubectl get nodes
 root@caasp-admin# kubectl get pods -n kube-system
 ----
 
-** and also by logging into a client system:
-*** using a web browser, login to the Velum Dashboard web-interface with the admin credentials at the FQDN of the Administration Node
-*** download the 'kubeconfig' file, and put a copy in the default location of '\~/.kube/config'
-*** ensure the client system has `kubectl` installed, then run the same set of `kubectl` commands from the previous section
+** You can also validate this by logging into a client system:
+*** Using a web browser, login to the Velum Dashboard web-interface with the admin credentials at the FQDN of the Administration Node.
+*** Download the 'kubeconfig' file, and put a copy in the default location of '\~/.kube/config'.
+*** Ensure the client system has `kubectl` installed, then run the same set of `kubectl` commands from the previous section.
 
-NOTE: If using a {CompanyName} Linux Enterprise 12 or newer release host as the client, both the `kubectl` and `helm` commands can be found in https://packagehub.suse.com/[{CompanyName} Package Hub]
+NOTE: If using a {CompanyName} Linux Enterprise 12 or newer release host as the client, both the `kubectl` and `helm` commands can be found in https://packagehub.suse.com/[{CompanyName} Package Hub].
 
-* To further validate the functionality of the cluster, a representative set of the upstream Kubernetes conformance test suite can be seen at https://github.com/heptio/sonobuoy[Heptio / Sonobuoy]. This can be easily run via a browser on the client system that has access to the admin 'kubeconfig' file as noted in the "Getting Started" section of this site.
+* To further validate the functionality of the cluster, you can find a representative set of the upstream Kubernetes conformance test suite at https://github.com/heptio/sonobuoy[Heptio / Sonobuoy]. This can be easily run via a browser from the client system that has access to the admin 'kubeconfig' file as noted in the "Getting Started" section of this site.
 
 === Additional Considerations
 
-Review the following information to understand the administration aspects of the cluster by reviewing https://www.suse.com/documentation/suse-caasp-3/[{CompanyName} {ProductName} Administration Guide], including:
-* Changing or scaling  the cluster node count by adding and removing resource nodes,
-* Updating the cluster node's operating system and core packages,
-* Setting up resource metrics gathering and visualization,
-* Addressing security, by creating users and managing fine-grained, role-based access controls,
-* Creating and utilizing a local container image registry, and
+Review the information in the tables below to understand the administration aspects of the cluster. In addition, review the following sections of the https://www.suse.com/documentation/suse-caasp-3/[{CompanyName} {ProductName} Administration Guide]:
+* Changing or scaling  the cluster node count by adding and removing resource nodes
+* Updating the cluster node's operating system and core packages
+* Setting up resource metrics gathering and visualization
+* Addressing security, by creating users and managing fine-grained, role-based access controls
+* Creating and utilizing a local container image registry
 * Accessing log locations and creating collection options
 
 == Conclusion

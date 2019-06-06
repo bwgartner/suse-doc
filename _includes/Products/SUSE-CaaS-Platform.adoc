@@ -1,8 +1,9 @@
-{CompanyName} {ProductName} is an enterprise-class container management solution that enables IT and DevOps professionals to more easily deploy, manage, and scale container-based applications and services. It includes Kubernetes to automate lifecycle management of modern applications, and surrounding technologies that enrich Kubernetes and make the platform itself easy to operate. As a result, enterprises that use {CompanyName} {ProductName} can reduce application delivery cycle times and improve business agility.
+{CompanyName} {ProductName} is an enterprise-class container management solution that enables IT and DevOps professionals to more easily deploy, manage, and scale container-based applications and services. It includes Kubernetes to automate lifecycle management of modern applications and surrounding technologies that enrich Kubernetes and make the platform itself easy to operate. As a result, enterprises that use {CompanyName} {ProductName} can reduce application delivery cycle times and improve business agility.
 
-{CompanyName} is focused on delivering an exceptional operator experience with {CompanyName} {ProductName}. With deep competencies in infrastructure, systems, process integration, platform security, lifecycle management and enterprise-grade support, {CompanyName} aims to ensure IT operations teams can deliver the power of Kubernetes to their users quickly, securely and efficiently. With {CompanyName} {ProductName} you can:
+{CompanyName} is focused on delivering an exceptional operator experience with {CompanyName} {ProductName}. With deep competencies in infrastructure, systems, process integration, platform security, lifecycle management and enterprise-grade support, {CompanyName} aims to ensure that IT operations teams can deliver the power of Kubernetes to their users quickly, securely and efficiently.
 
-* Achieve faster time to value with an enterprise-ready container management platform, built from industry-leading technologies, and delivered as a complete package, with everything you need to quickly offer container services.
+With {CompanyName} {ProductName} you can:
+* Achieve faster time to value with an enterprise-ready container management platform, built from industry-leading technologies, and delivered as a complete package -- with everything you need to quickly offer container services.
 * Simplify management and control of your container platform with efficient installation, easy scaling, and update automation.
 * Maximize return on your investment, with a flexible container services solution for today and tomorrow.
 
@@ -11,12 +12,12 @@
 image::CaaSPOrbit.png[SUSE CaaS Platform Orbits, 640, 480]
 
 Host Operating System::
-Typically a small footprint operating system installation, having just enough functionality to support the container runtime engine, leaving as many CPU, memory and I/O resources available for the containerized workloads.
+Typically a small footprint operating system installation, having just enough functionality to support the container runtime engine, leaving as many CPU, memory and I/O resources available for the containerized workloads as possible.
 * {CompanyName} currently delivers this as MicroOS, a read-mostly, operating system based upon SUSE Linux Enterprise Server built for microservices.  This is complemented by a distributed key-value store provided by etcd to retain persistent configuration data. In addition, MicroOS provides a snapshot-driven, transactional-update methodology to perform atomic upgrades.
 
 Container Runtime Engine(s)::
 Comprised of both a format for and service to run containerized applications on top of the host operating system.
-* {CompanyName} provides support for Docker(R) Community Edition Engine format for application containers.
+* {CompanyName} provides support for Docker(R) Community Edition Engine, a format for application containers.
 * {CompanyName} also offers a technical preview of CRI-O, an implementation of Container Runtime Interface (CRI), designed specifically for Kubernetes as a lightweight alternative, using Open Container Initiative (OCI) images.
 
 Container Networking::
@@ -24,24 +25,24 @@ An intra-cluster service and overlay network used for container and orchestratio
 * {CompanyName} currently utilizes the Container Network Interface (CNI) with the Flannel plugin and a configuration management web-interface to set up and deploy these networks.
 
 Container Orchestration::
-A service to manage deployments of containerized workload, known as Kubernetes, sometimes designated in short form abbreviation as K8s, which is the current, defacto standard open source implementation for large scale container orchestration.
-* {CompanyName} currently delivers and supports a Cloud-Native Computing Foundation (CNCF) certified Kubernetes distribution. Included with this is a role-based access control technology to, as desired, limit access to resources, functions and services.
+A service to manage deployments of containerized workload, known as Kubernetes or K8s, which is the current, defacto standard open source implementation for large scale container orchestration.
+* {CompanyName} currently delivers and supports a Cloud-Native Computing Foundation (CNCF) certified Kubernetes distribution. It includes a role-based access control technology to limit access to resources, functions and services as desired.
 
-In addition to these high-level architectural components, SUSE CaaS Platform provides and relies upon the following types of nodes and roles:
+In addition to these high-level architectural components, {CompanyName} {ProductName} provides and relies upon the following types of nodes and roles:
 
 NOTE: Refer to the "Architectural Overview" section of https://www.suse.com/documentation/suse-caasp-3/[SUSE CaaS Platform Deployment Guide] for more details.
 
 Administration Node::
-Provides a cluster infrastructure management system, with each service run as containers on this host and providing configuration management plus a web-based dashboard to manage other node types within the cluster
+Provides a cluster infrastructure management system. Each service is run as container on this host. It includes configuration management,  plus a web-based dashboard to manage other node types within the cluster
 
 Master Node(s)::
-Oversees Kubernetes container workload orchestration services across the cluster, and manages the Kubernetes Worker Nodes
+Oversees Kubernetes container workload orchestration services across the cluster and manages the Kubernetes Worker Nodes
 
 Worker Node(s)::
-Where the user-defined containerized workloads and services run in Kubernetes pods. A pod is the smallest and simplest unit that you create and deploy as a running process for Kubernetes, encapsulating one or more container images and resources.
+Is where the user-defined containerized workloads and services run in Kubernetes pods. A pod is the smallest and simplest unit that you create and deploy as a running process for Kubernetes, encapsulating one or more container images and resources.
 
 Client System::
-One or more existing system, with your choice of operating system, used to access the cluster and various services provided from a command line, via `kubectl` and `helm`, and/or a web browser.
+One or more existing system, with your choice of operating system, used to access the cluster and various services provided from a command line, via `kubectl` and `helm`, and a web browser.
 
 The following networking requirements must be in place for a successful deployment:
 
@@ -50,15 +51,15 @@ NOTE: Refer to the "Networking Requirements" section of https://www.suse.com/doc
 Cluster network::
 * Choose a subnet range that will span the total number of cluster nodes. This range can also be segmented or secured for access to specific node roles as desired.
 * All of the cluster node types must be able to communicate on the same network , with this primary network interface card. A client system with similar network access is also required for command-line and web browser interaction with the cluster, especially during setup.
-* Higher speed network interface cards (minimum of 10GigE and above) and switching are preferred, since the number of containerized workloads can be high and they share this infrastructure capacity, both from an external and intra-cluster perspective.
+* Higher speed network interface cards (minimum of 10GigE and above) and switching are preferred. This is becasue the number of containerized workloads can be high and the cards share this infrastructure capacity, both from an external and intra-cluster perspective.
 
 Internal networks::
 * Known as the Overlay and Service networks, these are used by Kubernetes and the underlying Flannel network plug-in to manage the internal cluster and container connections. These are implemented with bridges to the main cluster network.
 
-IMPORTANT: These internal network ranges should be planned prior to deployment, are usually non-routable network ranges and cannot be changed without redeploying the entire cluster.
+IMPORTANT: These internal network ranges should be planned prior to deployment. They are usually non-routable network ranges and cannot be changed without redeploying the entire cluster.
 
 Core Network Infrastructure Components / Services::
-* Domain Name Service (DNS) - an external network-accessible service to map IP Addresses to hostnames
-* Network Time Protocol (NTP) - an external network-accessible service to obtain and synchronize system times to aid in timestamp consistency
-* Software Update Service - access to a network-based repository for software update packages. This can be accessed directly from each node via registration to the http://scc.suse.com[{CompanyName} Customer Center] or from local servers running a SUSE https://www.suse.com/documentation/sles-12/singlehtml/book_smt/book_smt.htm[Subscription Management Tool] (SMT) instance. As each node is deployed, it can be pointed to the respective update service and update notification and applicate will be managed by the configuration management web interface. 
+* Domain Name Service (DNS): an external network-accessible service to map IP Addresses to hostnames
+* Network Time Protocol (NTP): an external network-accessible service to obtain and synchronize system times to aid in timestamp consistency
+* Software Update Service: access to a network-based repository for software update packages. This can be accessed directly from each node via registration to the http://scc.suse.com[{CompanyName} Customer Center] or from local servers running a SUSE https://www.suse.com/documentation/sles-12/singlehtml/book_smt/book_smt.htm[Subscription Management Tool] (SMT) instance. As each node is deployed, it can be pointed to the respective update service; and the update notification and applicate will be managed by the configuration management web interface. 
 

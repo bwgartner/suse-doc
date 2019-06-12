@@ -5,7 +5,7 @@
 
 <book lang="en">
 <bookinfo>
-    <title>Reference Configuration: SUSE Enterprise Storage 5 with HPE Synergy</title>
+    <title>Reference Configuration: SUSE Enterprise Storage 5.5 with HPE Synergy</title>
     <author>
         <firstname>Bryan Gartner, SUSE &lt; Bryan.Gartner@SUSE.com &gt;</firstname>
     </author>
@@ -1426,7 +1426,7 @@ Documentation - <ulink url="https://www.suse.com/documentation/suse-enterprise-s
 frame="all"
 rowsep="1" colsep="1"
 >
-<title>Bill of Materials - SUSE Enterprise Storage Software <emphasis role="strong">FixMe</emphasis></title>
+<title>Bill of Materials - SUSE Enterprise Storage Software</title>
 <tgroup cols="5">
 <colspec colname="col_1" colwidth="20*"/>
 <colspec colname="col_2" colwidth="20*"/>

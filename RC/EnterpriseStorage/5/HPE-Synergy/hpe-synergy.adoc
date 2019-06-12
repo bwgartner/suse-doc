@@ -16,7 +16,7 @@
 :IHVPlatformBMC: iLO
 :IHVPlatformStorageModule: D3940
 
-= Reference Configuration: {CompanyName} {ProductName} 5 with {IHVPartner} {IHVPlatform}
+= Reference Configuration: {CompanyName} {ProductName} 5.5 with {IHVPartner} {IHVPlatform}
 {Author}, {CompanyName} < {AuthorEMail} >
 
 == Executive Summary
@@ -259,7 +259,7 @@ endif::[]
 * Documentation - https://www.suse.com/documentation/suse-enterprise-storage-5
 
 [cols=",,,,", options="header"]
-.Bill of Materials - {CompanyName} {ProductName} Software **FixMe**
+.Bill of Materials - {CompanyName} {ProductName} Software
 |===
 |*_Role_*|*_Quantity_*|*_Product Number_*|*_Description_*|*_Notes_*
 |Software|1|P9P49AAE|{CompanyName} {ProductName} Base Configuration, x86-64, 4 OSD Nodes with 1-2 Sockets, L3-Priority Subscription, 3 Year  | includes 4 OSD Nodes plus 6 infrastructure nodes (e.g. 1-Admin, 3-MON, 2-gateway)

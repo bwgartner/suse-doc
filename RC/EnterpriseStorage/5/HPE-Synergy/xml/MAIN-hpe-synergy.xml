@@ -15,15 +15,15 @@
 <chapter id="_executive_summary">
 <title>Executive Summary</title>
 <simpara>This reference configuration is intended to help an organization plan and install a Ceph-based, software-defined storage infrastructure.</simpara>
-<simpara>For most enterprise-level businesses, the demand for data storage is growing much faster than the rate at which the price for storage is shrinking. As a result, you could be forced to increase your budget dramatically to keep up with data demands. This intelligent, software-defined storage solution powered by SUSE Enterprise Storage technology and composable HPE Synergy system hardware enables you to transform your enterprise storage infrastructure to reduce costs while providing unlimited scalability to keep up with your future demands. With this completely tested and certified approach, you will have the confidence to deploy a working solution in an agile manner, and be able to maintain and scale it over time, without capacity-based increases in software subscriptions.</simpara>
+<simpara>For most enterprise-level businesses, the demand for data storage is growing much faster than the rate at which the price for storage is shrinking. As a result, you could be forced to increase your budget dramatically to keep up with data demands. This intelligent, software-defined storage solution&#8201;&#8212;&#8201;powered by SUSE Enterprise Storage technology and composable HPE Synergy system hardware&#8201;&#8212;&#8201;enables you to transform your enterprise storage infrastructure to reduce costs, while providing unlimited scalability to keep up with your future demands. With this completely tested and certified approach, you will have the confidence to deploy a working solution in an agile manner and be able to maintain and scale it over time, without capacity-based increases in software subscriptions.</simpara>
 </chapter>
 <chapter id="_target_audience">
 <title>Target Audience</title>
-<simpara>This document is intended for IT decision makers, architects, system administrators and technicians who are implementing the HPE Synergy platform and need a flexible, software-define storage solution, like SUSE Enterprise Storage, that can provide multiple protocol access. The reader should have a solid understanding of their storage use cases along with sizing/characterization concepts and limitations within their environments.</simpara>
+<simpara>This document is intended for IT decision makers, architects, system administrators and technicians who are implementing the HPE Synergy platform and need a flexible, software-define storage solution&#8201;&#8212;&#8201;such as SUSE Enterprise Storage&#8201;&#8212;&#8201;that can provide multiple protocol access. To ensure optimum results you should have a solid understanding of your storage use cases, along with sizing/characterization concepts and limitations within your environment.</simpara>
 </chapter>
 <chapter id="_solution_overview">
 <title>Solution Overview</title>
-<simpara>The coupling of a composable infrastructure platform, such as HPE Synergy, and a software-defined storage solution, such as SUSE Enterprise Storage, provides an incredibly powerful and flexible combination. Nodes and storage capacity can be quickly added, replaced or substituted over time as demands dictate. By utilizing the composable aspect provided by HPE OneView Server Profile Templates, confidence in the deployment’s consistency is guaranteed along with an increase in overall simplicity. Given this management paradigm can extend across multiple HPE Synergy frames, this solution can be easily scaled, both from the storage service aspect and customer consumption access models. Use cases for such a flexible solution range from dynamically allocated storage pools for physical, virtualized or containerized environments, or a custom testing and development solution, to more specific use cases such as integrations with:</simpara>
+<simpara>The coupling of a composable infrastructure platform such as HPE Synergy and a software-defined storage solution such as SUSE Enterprise Storage provides an incredibly powerful and flexible combination. Nodes and storage capacity can be quickly added, replaced or substituted over time as demands dictate. Utilizing the composable aspect provided by HPE OneView Server Profile Templates guarantees the consistency of the deployemtn and increases overall simplicity. Because this management paradigm can extend across multiple HPE Synergy frames, you can easily scale the storage service aspect and custerom consumption access models of this solutiosn. Use cases for such a flexible solution range from dynamically allocated storage pools for physical, virtualized or containerized environments, to a custom testing and development solution, to more specific use cases such as integrations with:</simpara>
 <itemizedlist>
 <listitem>
 <simpara>
@@ -51,18 +51,18 @@ SUSE Cloud Application Platform
 <title>Solution Components</title>
 <section id="_facility">
 <title>Facility</title>
-<simpara>While beyond the scope of this document, the heating, ventilation, air conditioning (HVAC) requirements of hosting such an infrastructure solution should be carefully considered and planned. To aid in determining the power requirements for system deployment, use the <ulink url="https://h20195.www2.hpe.com/v2/GetPDF.aspx/4AA6-2925ENW.pdf">HPE Power Advisor</ulink> as either an online version or a downloadable application. Using this tool, you can plan the needs for your solution and order the correct Power Distribution Unit (PDU) to account for the local power conditions and connections in the final installation location.</simpara>
+<simpara>While beyond the scope of this document, the heating, ventilation, air conditioning (HVAC) requirements of hosting such an infrastructure solution should be carefully considered and planned. To aid in determining the power requirements for system deployment, use the <ulink url="https://h20195.www2.hpe.com/v2/GetPDF.aspx/4AA6-2925ENW.pdf">HPE Power Advisor</ulink> (available online or as a downloadable application). Using this tool, you can plan the needs for your solution and order the correct Power Distribution Unit (PDU) to account for the local power conditions and connections in the final installation location.</simpara>
 </section>
 <section id="_network">
 <title>Network</title>
-<simpara>Networking and the associated services are the technology components which typically requires the most advanced planning. Connectivity, capacity and bandwidth requirements for a software-defined storage infrastructure have a fair amount of complexity, especially within the context of an existing IT infrastructure.</simpara>
-<simpara>Yet, with the inherent features and composability aspect of HPE Synergy, much of the configuration complexity for network interconnects can easily be codified into a template for each target resource node. This includes the mapping of which network interfaces to which network fabrics within a collection of managed HPE Synergy frames. The baseline network bandwidth, both for each resource node and collectively within the frame, provided by HPE Synergy is quite sufficient for a basic deployment.</simpara>
-<simpara>Utilizing the SUSE Enterprise Storage deployment framework, it is quite manageable to setup the network interfaces for both front-end, public-facing subnets and also for the back-end, private subnets used by the replication methods. While beyond the scope of this document, the only remaining consideration is for capacity and bandwidth for the interconnecting Top-of-Rack switches to ensure that client systems, in a shared fashion, have .</simpara>
-<note><simpara>Given the available options for HPE Synergy Interconnect Link Modules with 10, 20, or 40 GbE speeds, you are encouraged to utilize the higher speed ones to help address both the access of many clients and also deal with the back-end replication and recovery aspects, especially as the usage and scale increases.</simpara></note>
+<simpara>Networking components and their associated services typically require the most advanced planning. Connectivity, capacity and bandwidth requirements for a software-defined storage infrastructure have a fair amount of complexity, especially within the context of an existing IT infrastructure.</simpara>
+<simpara>However, with HPE Synergy&#8217;s inherent features and composability, much of the configuration complexity for network interconnects can easily be codified into a template for each target resource node. This includes mapping specific network interfaces to specific network fabrics within a collection of managed HPE Synergy frames. The baseline network bandwidth provided by HPE Synergy is sufficient for a basic deployment&#8201;&#8212;&#8201;for each resource node and collectively within the frame.</simpara>
+<simpara>Utilizing the SUSE Enterprise Storage deployment framework, it is quite manageable to setup the network interfaces for both front-end, public-facing subnets and also for the back-end, private subnets used by the replication methods. While beyond the scope of this document, the only remaining consideration is for capacity and bandwidth for the interconnecting Top-of-Rack switches to ensure that client systems operate in a shared fashion.</simpara>
+<note><simpara>Given the available options for HPE Synergy Interconnect Link Modules with 10, 20, or 40 GbE speeds, you are encouraged to utilize the higher speed ones to help address the access of many clients and to deal with the back-end replication and recovery aspects, especially as the usage and scale increases.</simpara></note>
 </section>
 <section id="_computing">
 <title>Computing</title>
-<simpara>HPE Synergy, the first Composable Infrastructure, empowers IT to create and deliver new value easily and continuously. This single infrastructure reduces operational complexity for traditional workloads and increases operational velocity for the new breed of applications and services. Through a single interface, HPE Synergy composes compute, storage and fabric pools into any configuration for any application. It also enables a broad range of workloads from bare metal to virtual machines to containers, and operational models like hybrid cloud and DevOps. HPE Synergy enables IT to rapidly react to new business demands with the following components:</simpara>
+<simpara>HPE Synergy, the first Composable Infrastructure, empowers IT to create and deliver new value easily and continuously. This single infrastructure reduces operational complexity for traditional workloads and increases operational velocity for the new breed of applications and services. Through a single interface, HPE Synergy composes compute, storage and fabric pools into any configuration for any application. It also enables a broad range of workloads&#8201;&#8212;&#8201;from bare metal, to virtual machines, to containers, to operational models like hybrid cloud and DevOps. HPE Synergy enables IT to rapidly react to new business demands with the following components:</simpara>
 <variablelist>
 <varlistentry>
 <term>
@@ -72,12 +72,12 @@ HPE Synergy 12000 Frame
 <itemizedlist>
 <listitem>
 <simpara>
-is uniquely architected as Composable Infrastructure (CI) to match the powerful <emphasis>infrastructure-as-code</emphasis> capabilities of the HPE intelligent software architecture. Flexible access to compute, storage, and fabric resources enables the customer to maximize their resource usage and ability to repurpose underutilizied resources. Linking multiple HPE Synergy Frames efficiently scales the infrastructure with a dedicated single view of the entire management network.
+Is uniquely architected as Composable Infrastructure (CI) to match the powerful <emphasis>infrastructure-as-code</emphasis> capabilities of the HPE intelligent software architecture. Flexible access to compute, storage, and fabric resources enables the customer to maximize their resource usage and ability and to repurpose underutilizied resources. Linking multiple HPE Synergy Frames efficiently scales the infrastructure with a dedicated, single view of the entire management network.
 </simpara>
 </listitem>
 <listitem>
 <simpara>
-allows creating multiple composable domains in the infrastructure can efficiently deliver available resources to the business. HPE Synergy Frames reduce complexity by using intelligent auto-discovery to find all available resources to accelerate workload deployments. This drives IT efficiency as the business grows and delivers balanced performance across resources to increase solution effectiveness.
+Allows for creating multiple composable domains in the infrastructure to efficiently deliver available resources to the business. HPE Synergy Frames reduce complexity by using intelligent auto-discovery to find all available resources and accelerate workload deployments. This drives IT efficiency as the business grows and delivers balanced performance across resources to increase solution effectiveness.
 </simpara>
 </listitem>
 </itemizedlist>
@@ -89,34 +89,27 @@ HPE Synergy Composer
 </term>
 <listitem>
 <simpara>
-HPE Synergy Composer is the primary appliance for managing Synergy systems. This
-hardware appliance is powered by HPE OneView and is designed with hardware failover, allowing a redundant
-Composer appliance to take over control and keep your critical infrastructure up and running.
+This is the primary appliance for managing Synergy systems. This hardware appliance is powered by HPE OneView and is designed with hardware failover, allowing a redundant Composer appliance to take over control and keep your critical infrastructure up and running.
 </simpara>
 <itemizedlist>
 <listitem>
 <simpara>
-provides the enterprise-level management to compose and deploy system resources to your application needs. This management appliance uses software-defined intelligence to aggregate compute, storage, and fabric resources in a manner that scales to your application needs, instead of being restricted to the fixed ratios of traditional resource offerings.
+Provides the enterprise-level management to compose and deploy system resources to your application needs. This management appliance uses software-defined intelligence to aggregate compute, storage, and fabric resources in a manner that scales to your application needs, instead of restricted you to the fixed ratios of traditional resource offerings.
 </simpara>
 </listitem>
 <listitem>
 <simpara>
-HPE Synergy template-based provisioning enables fast time to service with a single point for defining compute module state, pooled storage, network connectivity, and boot image.
+Delivers template-based provisioning that enables fast time to service with a single point for defining compute module state, pooled storage, network connectivity and bootimage. This is the comprehensive, unifying management interface designed for converged infrastructure management increases the productivity of every member of the internal IT team across servers, storage, and networking. By streamlining processes, incorporating best practices, and creating a new holistic way to work, HPE OneView provides organizations with a more efficient way to work. It is designed for open integration with existing tools and processes to extend these efficiencies.
 </simpara>
 </listitem>
 <listitem>
 <simpara>
-is a comprehensive unifying management interface designed for converged infrastructure management. A unifying platform increases the productivity of every member of the internal IT team across servers, storage, and networking. By streamlining processes, incorporating best practices, and creating a new holistic way to work, HPE OneView provides organizations with a more efficient way to work. It is designed for open integration with existing tools and processes to extend these efficiencies.
+Is instrumental for the deployment and management of HPE servers and enclosure networking. HPE Synergy Composer collapses infrastructure management tools into a single, resource-oriented architecture that provides direct access to all logical and physical resources of the solution. Logical resources include server profiles and server profile templates, enclosures and enclosure groups and logical interconnects and logical interconnect groups. Physical resources include server hardware blades and rack servers, networking interconnects and computing resources.
 </simpara>
 </listitem>
 <listitem>
 <simpara>
-is instrumental for the deployment and management of HPE servers and enclosure networking. It collapses infrastructure management tools into a single resource-oriented architecture that provides direct access to all logical and physical resources of the solution. Logical resources include server profiles and server profile templates, enclosures and enclosure groups, and logical interconnects and logical interconnect groups. Physical resources include server hardware blades and rack servers, networking interconnects, and computing resources.
-</simpara>
-</listitem>
-<listitem>
-<simpara>
-offers a uniform console for administrators to interact with resources by providing a RESTful API foundation. The RESTful APIs enable administrators to utilize a growing ecosystem of integrations to further expand the advantages of the integrated resource model that removes the need for the administrator to enter and maintain the same configuration data more than once and keep all versions up to date. It encapsulates and abstracts many underlying tools behind the integrated resource model, so the administrator can operate with new levels of simplicity, speed, and agility to provision, monitor, and maintain the solution.
+Offers a uniform console for administrators to interact with resources by providing a RESTful API foundation. The RESTful APIs enable administrators to utilize a growing ecosystem of integrations to further expand the advantages of the integrated resource model. This eliminates the need for the administrator to enter and maintain the same configuration data more than once and keeps all versions up to date. It encapsulates and abstracts many underlying tools behind the integrated resource model, enabling the administrator to operate with new levels of simplicity, speed and agility to provision, monitor and maintain the solution.
 </simpara>
 </listitem>
 </itemizedlist>
@@ -130,14 +123,14 @@ HPE Synergy ImageStreamer
 <itemizedlist>
 <listitem>
 <simpara>
-can quickly provision an operating environment across a large number of infrastructure blocks or nodes. It can deploy and update many systems quickly, possibly as fast of you can reboot servers, to quickly expand or change environments. This management capability is implemented using redundant physical appliances for production environments to maintain high availability in operations. These management appliances are automatically set up with active-active storage to control and protect your image repository. Your image content might contain an OS or even a complete application stack. Your images can be quickly applied to multiple compute nodes to optimize your IT service deliveries.
+Can quickly provision an operating environment across a large number of infrastructure blocks or nodes. It can deploy and update many systems quickly, possibly as fast of you can reboot servers, to quickly expand or change environments. This management capability is implemented using redundant physical appliances for production environments to maintain high availability in operations. These management appliances are automatically set up with active-active storage to control and protect your image repository. Your image content might contain an OS or even a complete application stack. Your images can be quickly applied to multiple compute nodes to optimize your IT service deliveries.
 </simpara>
 </listitem>
 </itemizedlist>
 </listitem>
 </varlistentry>
 </variablelist>
-<note><simpara>At this point, HPE Synergy ImageStreamer does not yet support Btrfs-based node deployments, which is the default, recommended operating system filesystem for SUSE Enterprise Storage. To be clear, this is only a combinatorial limitation for the operating system volumes. So the HPE Synergy ImageStreamer is not utilized or detailed in this document. If another supported filesystem option, like XFS, is preferred for use as operating system volumes, then HPE Synergy ImageStreamer could be leveraged to ease deployment.</simpara></note>
+<note><simpara>At this point, HPE Synergy ImageStreamer does not yet support Btrfs-based operating system node deployments, which is the basis for SUSE Enterprise Storage, so this technologys is not utilized or detailed in this solution document. To be clear, this is only a combinatorial limitation for the operating system volumes. If another supported filesystem option, like XFS, is preferred for use as operating system volumes, then HPE Synergy ImageStreamer could be leveraged to ease deployment.</simpara></note>
 <variablelist>
 <varlistentry>
 <term>
@@ -147,7 +140,7 @@ HPE Synergy 480 Gen10 Compute Module
 <itemizedlist>
 <listitem>
 <simpara>
-delivers an efficient and flexible two-socket workhorse to support most demanding workloads. Powered by Intel® Xeon® Scalable Family of processors, up to 3TB DDR4, more storage capacity and controllers and a variety of GPU options within a composable architecture. HPE Synergy 480 Gen10 Compute Module is the ideal platform for general-purpose enterprise workload performance now and in the future.
+Delivers an efficient and flexible two-socket workhorse to support most demanding workloads. Powered by Intel® Xeon® Scalable Family of processors, up to 3TB DDR4, more storage capacity and controllers and a variety of GPU options within a composable architecture. HPE Synergy 480 Gen10 Compute Module is the ideal platform for general-purpose enterprise workload performance now and in the future.
 </simpara>
 </listitem>
 </itemizedlist>
@@ -159,7 +152,7 @@ delivers an efficient and flexible two-socket workhorse to support most demandin
 </section>
 <section id="_storage">
 <title>Storage</title>
-<simpara>Each of the compute resource nodes is also expected to have local, direct-attach storage, which is used for the node&#8217;s operating system. For this deployment, a pair of disk drives, configured as a RAID1 volume, via the HPE Synergy Composer Server Profile Templates for the operating system helps provide fewer points of failure.</simpara>
+<simpara>Each of the compute resource nodes is also expected to have local, direct-attach storage, which is used for the node&#8217;s operating system. For this deployment, a pair of disk drives configured as a RAID1 volume (via the HPE Synergy Composer Server Profile Templates for the operating system) helps to provide fewer points of failure.</simpara>
 <variablelist>
 <varlistentry>
 <term>
@@ -185,32 +178,32 @@ Any drive bay can be zoned to any compute module for efficient use of capacity w
 </section>
 <section id="_software">
 <title>Software</title>
-<simpara>SUSE Enterprise Storage is an intelligent software-defined storage solution, powered by Ceph technology, which enables you to transform your enterprise storage infrastructure. While a software-defined approach may seem new, the logic within enterprise storage devices has always been written in software. It’s only been in the last few years that hardware has progressed enough so that enterprise storage software and dedicated hardware can now be separated. IT organizations now gain a simple to manage, agile infrastructure approach yielding increased speed of delivery, durability and reliability. This helps to accelerate innovation, reduce costs and alleviate proprietary hardware lock-in by transforming your enterprise storage infrastructure with a truly open, and unified intelligent software-defined storage solution.</simpara>
-<simpara>Being a single, truly unified, software-defined storage cluster that provides applications with object, block and file system storage providing ubiquitous and universal access to your legacy and modern applications and automated durability of your data with high availability and disaster recovery options. Some key features are:</simpara>
+<simpara>SUSE Enterprise Storage is an intelligent software-defined storage solution, powered by Ceph technology, that enables you to transform your enterprise storage infrastructure. While a software-defined approach may seem new, the logic within enterprise storage devices has always been written in software. It’s only been in the last few years that hardware has progressed enough so that enterprise storage software and dedicated hardware can now be separated. This provides IT organizations with a a simple-to-manage, agile infrastructure approach&#8201;&#8212;&#8201;yielding increased speed of delivery, durability and reliability. This helps to accelerate innovation, reduce costs and alleviate proprietary hardware lock-in by transforming your enterprise storage infrastructure with a truly open and unified, intelligent software-defined storage solution.</simpara>
+<simpara>Our single, truly unified, software-defined storage cluster provides applications with object, block and file system storage. It offers ubiquitous and universal access to your legacy and modern applications and automated durability for your data with high availability and disaster recovery options. Some key features are:</simpara>
 <itemizedlist>
 <listitem>
 <simpara>
-Unlimited scalability with a distributed storage cluster designed to scale to thousands of nodes and multi-hundred petabyte environments and beyond to meet your growing data requirements.
+Unlimited scalability with a distributed storage cluster designed to scale to thousands of nodes and multi-hundred petabyte environments (and beyond) to meet your growing data requirements.
 </simpara>
 </listitem>
 <listitem>
 <simpara>
-Highly redundant storage infrastructure design maximizes application availability with no single points of failure.
+A highly redundant storage infrastructure design maximizes application availability with no single points of failure.
 </simpara>
 </listitem>
 <listitem>
 <simpara>
-Self-healing capabilities minimize storage administration involvement and optimize data placement, enabling rapid reconstruction of redundancy, maximizing system resiliency and availability.Self-healing capabilities minimize storage administration involvement and optimize data placement, enabling rapid reconstruction of redundancy, maximizing system resiliency and availability.
+Self-healing capabilities minimize storage administration involvement and optimize data placement, enabling rapid reconstruction of redundancy, maximizing system resiliency and availability.
 </simpara>
 </listitem>
 <listitem>
 <simpara>
-Utilize commodity off-the-shelf hardware that is at minimum 30 percent less expensive than average capacity optimized solutions to drive significant CAPEX savings.
+Utilize commodity, off-the-shelf hardware that is at minimum 30 percent less expensive than average capacity optimized solutions to drive significant CAPEX savings.
 </simpara>
 </listitem>
 <listitem>
 <simpara>
-Automated re-balancing and optimized data placement with an easy to manage intelligent solution that continuously monitors data utilization and infrastructure without any manual intervention and without growing IT staff
+Automated re-balancing and optimized data placement with an easy to manage intelligent solution that continuously monitors data utilization and infrastructure&#8201;&#8212;&#8201;without any manual intervention and without growing IT staff.
 </simpara>
 </listitem>
 <listitem>
@@ -287,7 +280,7 @@ Cluster Networking
 </term>
 <listitem>
 <simpara>
-The network environment where you intend to run Ceph should ideally be a bonded set of at least two network interfaces that is logically split into a public part and a trusted internal part using VLANs. The bonding mode is recommended to be 802.3ad if possible to provide maximum bandwidth and resiliency.  The public VLAN serves to provide the service to the client nodes, while the internal part provides for the authenticated Ceph network communication. The main reason for this is that although Ceph provides authentication and protection against attacks once secret keys are in place, the messages used to configure these keys may be transferred openly and are vulnerable.
+The network environment where you intend to run Ceph should ideally be a bonded set of at least two network interfaces that is logically split into a public part and a trusted internal part, using VLANs. The bonding mode is recommended to be 802.3ad if possible to provide maximum bandwidth and resiliency.  The public VLAN serves to provide the service to the client nodes, while the internal part provides for the authenticated Ceph network communication. The main reason for this is that although Ceph provides authentication and protection against attacks once secret keys are in place, the messages used to configure these keys may be transferred openly and are vulnerable.
 </simpara>
 </listitem>
 </varlistentry>
@@ -327,7 +320,7 @@ Ceph OSD
 </term>
 <listitem>
 <simpara>
-A Ceph OSD is a daemon handling Object Storage Devices which are a physical or logical storage units (hard disks or partitions). Object Storage Devices can be physical disks/partitions or logical volumes. The daemon additionally takes care of data replication and rebalancing in case of added or removed nodes. Ceph OSD daemons communicate with monitor daemons and provide them with the state of the other OSD daemons.
+A Ceph OSD is a daemon handling Object Storage Devices which are a physical or logical storage units (hard disks or partitions). Object Storage Devices can be physical disks/partitions or logical volumes. The daemon additionally takes care of data replication and rebalancing, in case of added or removed nodes. Ceph OSD daemons communicate with monitor daemons and provide them with the state of the other OSD daemons.
 </simpara>
 </listitem>
 </varlistentry>
@@ -344,7 +337,7 @@ Metadata Server
 <itemizedlist>
 <listitem>
 <simpara>
-The metadata servers (MDS) store metadata for the CephFS. By using an MDS you can execute basic file system commands such as ls without overloading the cluster
+The metadata servers (MDS) store metadata for the CephFS. By using an MDS, you can execute basic file system commands such as ls without overloading the cluster
 </simpara>
 </listitem>
 </itemizedlist>
@@ -396,17 +389,17 @@ Additional Network Infrastructure Components / Services
 <itemizedlist>
 <listitem>
 <simpara>
-Domain Name Service (DNS) - an external network-accessible service to map IP Addresses to hostnames for all cluster resource nodes
+Domain Name Service (DNS) : An external network-accessible service to map IP Addresses to hostnames for all cluster resource nodes.
 </simpara>
 </listitem>
 <listitem>
 <simpara>
-Network Time Protocol (NTP) - an external network-accessible service to obtain and synchronize system times to aid in timestamp consistency. It is recommended to point all resource nodes as a physical system/device that provides this service.
+Network Time Protocol (NTP) : An external network-accessible service to obtain and synchronize system times to aid in timestamp consistency. It is recommended to point all resource nodes to a physical system/device that provides this service.
 </simpara>
 </listitem>
 <listitem>
 <simpara>
-Software Update Service - access to a network-based repository for software update packages. This can be accessed directly from each node via registration to the <ulink url="http://scc.suse.com">SUSE Customer Center</ulink> (SCC) or from local servers running a SUSE <ulink url="https://www.suse.com/documentation/sles-12/singlehtml/book_smt/book_smt.htm">Subscription Management Tool</ulink> (SMT) instance. As each node is deployed, it can be pointed to the respective update service and update notification and applicate will be managed by the configuration management web interface.
+Software Update Service : Access to a network-based repository for software update packages. This can be accessed directly from each node via registration to the <ulink url="http://scc.suse.com">SUSE Customer Center</ulink> (SCC) or from local servers running a SUSE <ulink url="https://www.suse.com/documentation/sles-12/singlehtml/book_smt/book_smt.htm">Subscription Management Tool</ulink> (SMT) instance. As each node is deployed, it can be pointed to the respective update service; then update notification and applications will be managed by the configuration management web interface.
 </simpara>
 </listitem>
 </itemizedlist>
@@ -417,7 +410,7 @@ Software Update Service - access to a network-based repository for software upda
 </chapter>
 <chapter id="_solution_details">
 <title>Solution Details</title>
-<simpara>This document focuses on a new, basic SUSE Enterprise Storage deployment on the HPE-Synergy platform which could be scaled over time. Over time more physical nodes could be added to augment the cluster&#8217;s functionality and capacity or to replace some of the initial, resource nodes. To provide a production-ready cluster and to take advantage of the HPE Synergy platform and it&#8217;s composable features, the following figure shows the target logical cluster deployment:</simpara>
+<simpara>This document focuses on a new, basic SUSE Enterprise Storage deployment on the HPE-Synergy platform which could be scaled over time. More physical nodes could also be added to augment the cluster&#8217;s functionality and capacity or to replace some of the initial, resource nodes. To provide a production-ready cluster and to take advantage of the HPE Synergy platform and it&#8217;s composable features, the following figure shows the target logical cluster deployment:</simpara>
 <figure id="img-DeployLV"><title>Deployment Logical View</title>
 <mediaobject>
   <imageobject>
@@ -439,17 +432,17 @@ Pre-Installation Checklist
 <itemizedlist>
 <listitem>
 <simpara>
-Obtain the following software media and documentation artifacts
+Obtain the following software media and documentation artifacts:
 </simpara>
 <itemizedlist>
 <listitem>
 <simpara>
-from the <ulink url="https://download.suse.com/index.jsp">SUSE</ulink> site download both
+From the <ulink url="https://download.suse.com/index.jsp">SUSE</ulink> site download ithe install media and product media as note below:
 </simpara>
 <itemizedlist>
 <listitem>
 <simpara>
-the SUSE Enterprise Storage x86_64 install media (DVD1) and
+the SUSE Enterprise Storage x86_64 install media (DVD1)
 </simpara>
 </listitem>
 <listitem>
@@ -457,16 +450,19 @@ the SUSE Enterprise Storage x86_64 install media (DVD1) and
 the corresponding SUSE Linux Enterprise Server 12-SP3 x86_64 install media (DVD1)
 </simpara>
 </listitem>
-<listitem>
-<simpara>
-utilize either trial or purchased subscriptions for all the resource nodes to ensure access to support and software updates. The bill of materials section in the appendices outlines the type and quantity of subscriptions needed.
-</simpara>
+</itemizedlist>
 </listitem>
 </itemizedlist>
 </listitem>
+</itemizedlist>
+</listitem>
+</varlistentry>
+</variablelist>
+<note><simpara>Utilize either trial or purchased subscriptions for all the resource nodes to ensure access to support and software updates. The bill of materials in <xref linkend="resources_and_links"/> section, outlines the type and quantity of subscriptions needed.</simpara></note>
+<itemizedlist>
 <listitem>
 <simpara>
-in addition, obtain and preview the <ulink url="https://www.suse.com/documentation/suse-enterprise-storage-5/">SUSE Enterprise Storage</ulink> documentation, focusing on the:
+Obtain and preview the <ulink url="https://www.suse.com/documentation/suse-enterprise-storage-5/">SUSE Enterprise Storage</ulink> documentation, focusing on these documents:
 </simpara>
 <itemizedlist>
 <listitem>
@@ -483,37 +479,32 @@ Deployment Guide
 <simpara>
 Admininstration Guide
 </simpara>
-</listitem>
-</itemizedlist>
-</listitem>
-</itemizedlist>
-</listitem>
+<itemizedlist>
 <listitem>
 <simpara>
 Ensure all nodes within the respective HPE Synergy frame(s) have been discovered and accurately show the expected resources:
 </simpara>
-<itemizedlist>
-<listitem>
-<simpara>
-Validate the necessary CPU, memory and interconnect quantity and type are present for each node and intended role
-</simpara>
-</listitem>
-<listitem>
-<simpara>
-Ensure there are a pair of local, direct attached disk drives present, with a preference for SSDs here, on each node, that will become the target for the operating system installation
-</simpara>
-</listitem>
-<listitem>
-<simpara>
-Verify the HPE Synergy D3940 Storage Module has the expected number of drives and technologies present
-</simpara>
 </listitem>
 </itemizedlist>
 </listitem>
 </itemizedlist>
 </listitem>
-</varlistentry>
-</variablelist>
+<listitem>
+<simpara>
+Validate the necessary CPU, memory and interconnect quantity and type are present for each node and intended role.
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+Ensure that a pair of local, direct attached disk drives is present on each node (SSDs are preferred); these will become the target for the operating system installation.
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+Verify the HPE Synergy D3940 Storage Module has the expected number of drives and technologies present.
+</simpara>
+</listitem>
+</itemizedlist>
 <figure id="img-OneView"><title>Enclosure View</title>
 <mediaobject>
   <imageobject>
@@ -525,7 +516,7 @@ Verify the HPE Synergy D3940 Storage Module has the expected number of drives an
 <itemizedlist>
 <listitem>
 <simpara>
-Prepare those attributes from the HPE Composer interface which are frame-wide:
+Prepare the attributes from the HPE Composer interface that are frame-wide:
 </simpara>
 <itemizedlist>
 <listitem>
@@ -535,41 +526,41 @@ Network : Prepare an IP addressing scheme and create both a storage cluster publ
 </listitem>
 <listitem>
 <simpara>
-Interconnects : Ensure the necessary uplink ports are present and configured to access other frames and shared network infrastructure, plus client-access networks
+Interconnects : Ensure the necessary uplink ports are present and are configured to access other frames and shared network infrastructure, plus client-access networks
 </simpara>
 </listitem>
 </itemizedlist>
 </listitem>
 <listitem>
 <simpara>
-Prepare an HPE Composer Server Profile Template for each of the three types of nodes, Administration Server, Monitor, OSD, with the following notable attributes:
+Prepare an HPE Composer Server Profile Template for each of the three types of nodes&#8201;&#8212;&#8201;Administration Server, Monitor, OSD&#8201;&#8212;&#8201;with the following notable attributes:
 </simpara>
 <itemizedlist>
 <listitem>
 <simpara>
-Minimum CPU/Memory/Disk/Networking requirements as noted in the <ulink url="https://www.suse.com/documentation/suse-enterprise-storage-5/">SUSE Enterprise Storage Deployment Guide</ulink> to be applied to any available HPE Synergy resource nodes
+Minimum CPU/Memory/Disk/Networking requirements as noted in the <ulink url="https://www.suse.com/documentation/suse-enterprise-storage-5/">SUSE Enterprise Storage Deployment Guide</ulink> to be applied to any available HPE Synergy resource nodes.
 </simpara>
 </listitem>
 <listitem>
 <simpara>
-Boot Settings : Manage the boot node and select UEFI mode, with the primary device being hard disk
+Boot Settings : Manage the boot node and select UEFI mode, with the primary device being hard disk.
 </simpara>
 </listitem>
 <listitem>
 <simpara>
-BIOS/uEFI settings are reset to defaults for a known baseline, consistent state or perhaps with desired, localized values
+BIOS/uEFI settings are reset to defaults for a known baseline, consistent state or perhaps with desired, localized values.
 </simpara>
 <itemizedlist>
 <listitem>
 <simpara>
-use consistent and up-to-date versions for BIOS/uEFI/device firmware to reduce potential troubleshooting issues later
+Use consistent and up-to-date versions for BIOS/uEFI/device firmware to reduce potential troubleshooting issues later
 </simpara>
 </listitem>
 </itemizedlist>
 </listitem>
 <listitem>
 <simpara>
-Connections : Associate both the public and private networks, or the designated Network Set to the higher numbered Mezzanine Ports (leaving the “a” port unassociated for possible future usages)
+Connections : Associate both the public and private networks, or the designated Network Set to the higher numbered Mezzanine Ports (leaving the “a” port unassociated for possible future usages).
 </simpara>
 </listitem>
 </itemizedlist>
@@ -596,7 +587,7 @@ For Administration and Monitor Nodes, configure the integrated local storage to 
 </listitem>
 <listitem>
 <simpara>
-For the OSD nodes, leave as configure manually and then interactively use the Intelligent Provisioning boot option to create a RAID1 LUN across the two local drives, prior to applying this Server Profile Template or installing the operating system. For the Mezz 1 storage controller, use HBA mode and add the desired number and type of drives for later use as BlueStore&#8217;s WAL and DB, cache, and data drives. Follow the recommended number, type, capacity and ratios from the SUSE Enterprise Storage documentation.
+For the OSD nodes, leave as "configure manually" and then interactively use the Intelligent Provisioning boot option to create a RAID1 LUN across the two local drives, prior to applying this Server Profile Template or installing the operating system. For the Mezz 1 storage controller, use HBA mode and add the desired number and type of drives for later use as BlueStore&#8217;s WAL and DB, cache, and data drives. Follow the recommended number, type, capacity and ratios from the SUSE Enterprise Storage documentation.
 </simpara>
 </listitem>
 </itemizedlist>
@@ -614,7 +605,7 @@ For the OSD nodes, leave as configure manually and then interactively use the In
 <itemizedlist>
 <listitem>
 <simpara>
-Apply the respective HPE Composer Server Profile Template to each resource node, addressing any issues until each has successfully been applied
+Apply the respective HPE Composer Server Profile Template to each resource node, addressing any issues until each has successfully been applied.
 </simpara>
 <variablelist>
 <varlistentry>
@@ -628,7 +619,7 @@ Install the SUSE Linux Enterprise Server operating system on each node type, sta
 <itemizedlist>
 <listitem>
 <simpara>
-Include only the minimal pattern and components, according to the procedure from deployment. This can be accomplished in any number of ways: with the virtual media option through iLO, or from a PXE network-boot environment.
+Include only the minimal pattern and components, according to the procedure from deployment. This can be accomplished in any number of ways, such as with the virtual media option through HPE iLO, or from a PXE network-boot environment.
 </simpara>
 </listitem>
 <listitem>
@@ -643,8 +634,8 @@ Use the suggested, default partitioning scheme on each node and validate that th
 </listitem>
 </itemizedlist>
 <simpara>After the operating system installation is complete across all the nodes preform the following checks:
-* Ensure that each node has access to the necessary software repositories, for later operations and updates. It is suggested that you apply all software updates, via <emphasis>zypper up</emphasis>
-* NTP is configured and operational, synchronizing with a source outside the cluster via <emphasis>ntpq -pn</emphasis>
+* Ensure that each node has access to the necessary software repositories, for later operations and updates. It is suggested that you apply all software updates, via <emphasis>zypper up</emphasis>.
+* NTP is configured and operational, synchronizing with a source outside the cluster via <emphasis>ntpq -pn</emphasis>.
 * DNS is configured and operational, referencing a source outside the cluster
 * If necessary, adjust the udev rules to ensure that network interfaces are identified (as needed) in the same logical order across the systems, to make later steps easier. Ensure that the respective network interfaces are bonded together with the associated VLANs configured. While configuring these interfaces, it is also recommended to disable IPv6 functionality and the firewall on each node.</simpara>
 <note><simpara>For environments that require firewalls to be in place, refer to the "Cluster Deployment" portion in the <ulink url="https://www.suse.com/documentation/suse-enterprise-storage-5/">SUSE Enterprise Storage Deployment Guide</ulink>.</simpara></note>
@@ -660,7 +651,7 @@ Follow the process steps noted in "Cluster Deployment" portion of the <ulink url
 <itemizedlist>
 <listitem>
 <simpara>
-Complete Stage 0 (preparation) and Stage 1 (discovery)
+Complete Stage 0 (preparation) and Stage 1 (discovery).
 </simpara>
 </listitem>
 <listitem>
@@ -670,7 +661,7 @@ Before executing Stage 2
 <itemizedlist>
 <listitem>
 <simpara>
-You may wish to take advantage of SSD devices, if available, for BlueStore WAL/DB to help improve the overall performance of your cluster. This can be accomplished from the command line on the Administration Node via:
+You might wish to take advantage of SSD devices for BlueStore WAL/DB (if available) to help improve the overall performance of your cluster. This can be accomplished from the command line on the Administration Node via:
 </simpara>
 </listitem>
 </itemizedlist>
@@ -686,7 +677,7 @@ You may wish to take advantage of SSD devices, if available, for BlueStore WAL/D
 <itemizedlist>
 <listitem>
 <simpara>
-Then create a policy.cfg file that references the above generated <emphasis>/srv/pillar/ceph/proposals/profile-synergy</emphasis> contents.
+Create a policy.cfg file that references the above generated <emphasis>/srv/pillar/ceph/proposals/profile-synergy</emphasis> contents.
 </simpara>
 </listitem>
 <listitem>
@@ -707,7 +698,7 @@ If the drive designations appear to use multipath (as shown by <emphasis>lsblk</
 blacklist_exceptions {
         wwid "&lt;WWID-of-operating-system-drive*"
 }</screen>
-<simpara>then execute <emphasis>systemctl reload multipathd</emphasis>, re-run the previous <emphasis>proposal.populate</emphasis> or manually modify the OSD node minion files to reflect the drive designation of one I/O path or the other.</simpara>
+<simpara>Execute <emphasis>systemctl reload multipathd</emphasis>, re-run the previous <emphasis>proposal.populate</emphasis> or manually modify the OSD node minion files to reflect the drive designation of one I/O path or the other.</simpara>
 <itemizedlist>
 <listitem>
 <simpara>
@@ -757,7 +748,7 @@ With this setup configuration completed, you can install virtual machines, using
 </section>
 <section id="_additional_considerations">
 <title>Additional Considerations</title>
-<simpara>Review the following information to understand the administration aspects of the cluster by reviewing <ulink url="https://www.suse.com/documentation/storage-5/">SUSE Enterprise Storage Administration Guide</ulink>, including</simpara>
+<simpara>To understand the administration aspects of the cluster, review these sections of the <ulink url="https://www.suse.com/documentation/storage-5/">SUSE Enterprise Storage Administration Guide</ulink>:</simpara>
 <itemizedlist>
 <listitem>
 <simpara>
@@ -1435,7 +1426,7 @@ Documentation - <ulink url="https://www.suse.com/documentation/suse-enterprise-s
 frame="all"
 rowsep="1" colsep="1"
 >
-<title>Bill of Materials - SUSE Enterprise Storage Software</title>
+<title>Bill of Materials - SUSE Enterprise Storage Software <emphasis role="strong">FixMe</emphasis></title>
 <tgroup cols="5">
 <colspec colname="col_1" colwidth="20*"/>
 <colspec colname="col_2" colwidth="20*"/>

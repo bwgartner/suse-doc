@@ -123,7 +123,7 @@ Pre-Installation Checklist::
 *** the {CompanyName} {ProductName} x86_64 install media (DVD1)
 *** the corresponding {CompanyName} Linux Enterprise Server 12-SP3 x86_64 install media (DVD1)
 
-NOTE: Utilize either trial or purchased subscriptions for all the resource nodes to ensure access to support and software updates. The bill of materials in <<resources_and_links>> section, outlines the type and quantity of subscriptions needed.
+NOTE: Utilize either trial or purchased subscriptions for all the resource nodes to ensure access to support and software updates. The bill of materials in Resources and additional links section, outlines the type and quantity of subscriptions needed.
 
 ** Obtain and preview the https://www.suse.com/documentation/suse-enterprise-storage-5/[{CompanyName} {ProductName}] documentation, focusing on these documents:
 *** Release Notes

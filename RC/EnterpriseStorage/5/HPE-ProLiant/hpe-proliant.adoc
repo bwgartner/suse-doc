@@ -1,0 +1,200 @@
+:Author: Bryan Gartner
+:AuthorEMail: Bryan.Gartner@SUSE.com
+
+:CompanyName: SUSE
+:ProductName: Enterprise Storage
+:ProductNameContainer: CaaS Platform
+:ProductNameCloud: Helion OpenStack
+
+:IHVPartner: HPE
+:IHVNetwork: NotApplicable
+:IHVPlatform: ProLiant
+:IHVPlatformModel: DL360
+:IHVPlatformModelOSD: DL380
+:IHVPlatformBMC: iLO
+
+= Reference Configuration: {CompanyName} {ProductName} 5.5 with {IHVPartner} {IHVPlatform}
+{Author}, {CompanyName} < {AuthorEMail} >
+
+== Executive Summary
+This reference configuration is intended to help an organization plan and install a Ceph-based, software-defined storage infrastructure.
+
+For most enterprise-level businesses, the demand for data storage is growing much faster than the rate at which the price for storage is shrinking. As a result, you could be forced to increase your budget dramatically to keep up with data demands. This intelligent, software-defined storage solution -- powered by {CompanyName} {ProductName} technology and {IHVPartner} {IHVPlatform} system hardware -- enables you to transform your enterprise storage infrastructure to reduce costs, while providing unlimited scalability to keep up with your future demands. With this completely tested approach, you will have the confidence to deploy a working solution in an agile manner and be able to maintain and scale it over time, without capacity-based increases in software subscriptions.
+
+== Target Audience
+This document is intended for IT decision makers, architects, system administrators and technicians who are implementing the {IHVPartner} {IHVPlatform} platform and need a flexible, software-define storage solution -- such as {CompanyName} {ProductName} -- that can provide multiple protocol access. To ensure optimum results you should have a solid understanding of your storage use cases, along with sizing/characterization concepts and limitations within your environment. 
+
+== Solution Overview
+The coupling of a industry-leading infrastructure platform such as {IHVPartner} {IHVPlatform} and a software-defined storage solution such as {CompanyName} {ProductName} provides an incredibly powerful and flexible combination. Nodes and storage capacity can be quickly added, replaced or substituted over time as demands dictate. Use cases for such a flexible solution range from dynamically allocated storage pools for physical, virtualized or containerized environments, to a custom testing and development solution, to more specific use cases such as integrations with:
+
+* {IHVPartner} {ProductNameCloud}
+* {CompanyName} OpenStack Cloud
+* {CompanyName} {ProductNameContainer}
+* {CompanyName} Cloud Application Platform
+
+== Solution Components
+
+=== Facility
+While beyond the scope of this document, the heating, ventilation, air conditioning (HVAC) requirements of hosting such an infrastructure solution should be carefully considered and planned. To aid in determining the power requirements for system deployment, use the https://h20195.www2.hpe.com/v2/GetPDF.aspx/4AA6-2925ENW.pdf[{IHVPartner} Power Advisor] (available online or as a downloadable application). Using this tool, you can plan the needs for your solution and order the correct Power Distribution Unit (PDU) to account for the local power conditions and connections in the final installation location.
+
+=== Network
+Networking components and their associated services typically require the most advanced planning. Connectivity, capacity and bandwidth requirements for a software-defined storage infrastructure have a fair amount of complexity, especially within the context of an existing IT infrastructure.
+
+With the range of available network interface card options for {IHVPartner} {IHVPlatform}, the baseline network bandwidth can be easily provided for each resource node and collectively within the software-defined storage deployment. For improved resiliency and performance, it is also possible to bond multiple network interfaces together. While beyond the scope of this document, the only remaining consideration is for capacity and bandwidth for the interconnecting top-of-rack switches.
+
+NOTE: Given the available options for {IHVPartner} {IHVPlatform} with 10, 25, or 100 GbE speeds, you are encouraged to utilize the higher speed ones to help address the access of many clients and to deal with the back-end replication and recovery aspects, especially as the usage and scale increases.
+
+=== Computing
+
+ifeval::["{IHVPlatform}" == "ProLiant"]
+
+include::../../../../_includes/IHV/{IHVPartner}-{IHVPlatform}.adoc[]
+include::../../../../_includes/IHV/{IHVPartner}-{IHVPlatform}-DL.adoc[]
+
+For this implementation, the {IHVPlatformModel} and {IHVPlatformModelOSD} models of {IHVPartner} {IHVPlatform} were used for the various cluster roles as defined in the next section and detailed in bill-of-materials referenced in the Resources and additional links section.
+
+include::../../../../_includes/IHV/YES.adoc[]
+
+endif::[]
+
+=== Storage
+Each of the resource nodes is also expected to have local, direct-attach storage, which is used for the node's operating system. For this deployment, a pair of disk drives configured as a RAID1 volume.
+
+For the OSD nodes, configure the remaining drives as RAID0 LUNs (or HBA mode on the controller). Configure the number and type of these accessible drives to provide the software-defined storage capacity and functions such as BlueStore's WAL and DB, cache, and data drives. Follow the recommended number, type, capacity and ratios from the {CompanyName} {ProductName} documentation.
+
+=== Software
+
+ifeval::["{ProductName}" == "Enterprise Storage"]
+
+include::../../../../_includes/Products/{CompanyName}-Enterprise-Storage.adoc[]
+
+endif::[]
+
+== Solution Details
+
+This document focuses on a new, basic {CompanyName} {ProductName} deployment on the {IHVPartner}-{IHVPlatform} platform which could be scaled over time. More physical nodes could also be added to augment the cluster's functionality and capacity or to replace some of the initial, resource nodes. To provide a production-ready cluster and to take advantage of the {IHVPartner} {IHVPlatform} platform, the following figure shows the target logical cluster deployment:
+
+[[img-DeployLV]]
+.Deployment Logical View
+image::Deployment-Logical-View.png[Deployment-Logical-View, 640, 480]
+
+=== Deployment Flow
+This section is meant as a companion guide to the official network, system and software product deployment documentation, citing specific settings as needed for this reference implementation. Default settings are assumed to be in use unless otherwise cited to accomplish the respective best practices and design decisions herein.
+
+Given the very detailed information contained in the https://www.suse.com/documentation/suse-enterprise-storage-5/[{CompanyName} {ProductName} Deployment Guide] Guide, only the following additional, incremental configurations and modifications are described below:
+
+//-
+Pre-Installation Checklist::
+Start by collecting the necessary install media and validating the inventory of systems to be deployed.
+
+* Obtain the following software media and documentation artifacts:
+** From the https://download.suse.com/index.jsp[{CompanyName}] site download ithe install media and product media as note below:
+*** the {CompanyName} {ProductName} x86_64 install media (DVD1)
+*** the corresponding {CompanyName} Linux Enterprise Server 12-SP3 x86_64 install media (DVD1)
+
+NOTE: Utilize either trial or purchased subscriptions for all the resource nodes to ensure access to support and software updates. The bill of materials in Resources and additional links section, outlines the type and quantity of subscriptions needed.
+
+** Obtain and preview the https://www.suse.com/documentation/suse-enterprise-storage-5/[{CompanyName} {ProductName}] documentation, focusing on these documents:
+*** Release Notes
+*** Deployment Guide
+*** Admininstration Guide
+** Validate the necessary CPU, memory and interconnect quantity and type are present for each node and intended role. Refer to the minimum CPU/Memory/Disk/Networking requirements as noted in the https://www.suse.com/documentation/suse-enterprise-storage-5/[{CompanyName} {ProductName} Deployment Guide].
+** Ensure that a pair of local, direct attached disk drives is present on each node (SSDs are preferred); these will become the target for the operating system installation.
+** Network : Prepare an IP addressing scheme and create both a storage cluster public and private network, along with the desired subnets and VLAN designations.
+** Boot Settings : Manage the boot node and select UEFI mode, with the primary device being hard disk.
+** BIOS/uEFI settings are reset to defaults for a known baseline, consistent state or perhaps with desired, localized values.
+*** Use consistent and up-to-date versions for BIOS/uEFI/device firmware to reduce potential troubleshooting issues later 
+
+//-
+Resource Node Installation::
+Install the {CompanyName} Linux Enterprise Server operating system on each node type, starting with Administration Server, then Monitor Nodes and finally the OSD Nodes.
+
+* Include only the minimal pattern and components, according to the procedure from deployment. This can be accomplished in any number of ways, such as with the virtual media option through {IHVPartner} {IHVPlatformBMC}, or from a PXE network-boot environment.
+* Use the suggested, default partitioning scheme on each node and validate that the target LUN for the operating system installation corresponds to the RAID1 pair of local disk drives.
+* After the operating system installation is complete across all the nodes preform the following checks:
+** Ensure that each node has access to the necessary software repositories, for later operations and updates. It is suggested that you apply all software updates, via 'zypper up'.
+** NTP is configured and operational, synchronizing with a source outside the cluster via 'ntpq -pn'.
+** DNS is configured and operational, referencing a source outside the cluster
+** If necessary, adjust the udev rules to ensure that network interfaces are identified (as needed) in the same logical order across the systems, to make later steps easier. Ensure that the respective network interfaces are bonded together with the associated VLANs configured. While configuring these interfaces, it is also recommended to disable IPv6 functionality and the firewall on each node.
+
+NOTE: For environments that require firewalls to be in place, refer to the "Cluster Deployment" portion in the https://www.suse.com/documentation/suse-enterprise-storage-5/[{CompanyName} {ProductName} Deployment Guide].
+
+//-
+Cluster Deployment::
+Follow the process steps noted in "Cluster Deployment" portion of the https://www.suse.com/documentation/suse-enterprise-storage-5/[{CompanyName} {ProductName} Deployment Guide]. You are strongly encouraged to utilize the "DeepSea" approach, which saves the administrator time and helps to confidently perform complex operations on a Ceph cluster in a staged fashion:
+
+* Complete Stage 0 (preparation) and Stage 1 (discovery).
+* Before executing Stage 2
+** You might wish to take advantage of SSD devices for BlueStore WAL/DB (if available) to help improve the overall performance of your cluster. This can be accomplished from the command line on the Administration Node via:
+
+----
+# salt-run proposal.populate \
+	name=proliant ratio=6 target='cephosd*' format=bluestore \
+	wal-size=2g db-size=50g db=745 wal=745 ssd=spinner=True data=279
+----
+
+NOTE: The size values may need adjustment to effectively use the drive capacity and quantity in your configuration.
+
+** Create a policy.cfg file that references the above generated '/srv/pillar/ceph/proposals/profile-proliant' contents.
+** At this point you should also review and validate the '/srv/pillar/ceph/proposals/profile-proliant/stack/default/ceph/minions/*.yml' content for the OSD nodes to ensure the correct disk designations are in place.
+
+* Then execute Stage 2 (configuration), Stage 3 (deployment) and Stage 4 (services) to complete the deployment.
+
+* Upon successful completion of the previous stages, you can check the cluster status via:
+
+----
+ceph health
+ceph status
+----
+
+and visit the deployed Ceph Dashboard (openATTIC) web interface to view the management and monitoring dashboard.
+
+[[img-openATTIC]]
+.Ceph Dashboard
+image::openATTIC.png[openATTIC, 640, 480]
+
+To complete the solution and implement a common use case, this deployment can providing guest virtual machines, running on a Linux-based KVM hypervisor host with access to block devices for their root filesystem. This is accomplished through the libvirtd interaction of Linux/KVM and librbd to the storage cluster as shown in the following figure: 
+
+[[img-rados-structure]]
+.Interfaces to the Ceph Object Store
+image::rados-structure.png[Interfaces-to-the-Ceph-Object-Store, 640, 480]
+
+* At this point you are ready to begin creating the block device and the virtual machines that use this storage service. Refer to the "Integration with Virtualization Tools" section of the https://www.suse.com/documentation/suse-enterprise-storage-5/[Administration Guide].
+* With this setup configuration completed, you can install virtual machines, using the RBD functionality of {CompanyName} {ProductName} to provide inherent resiliency to their operating system volumes. Even shutting down, or having a hardware failure on one of the Ceph nodes will not affect the running virtual machine.
+
+=== Additional Considerations
+
+To understand the administration aspects of the cluster, review these sections of the https://www.suse.com/documentation/storage-5/[{CompanyName} {ProductName} Administration Guide]:
+
+* Changing or scaling the cluster node count by adding and removing resource nodes,
+* Operating the cluster and managing the storage resources and accessing the data
+* Monitoring and managing the services
+* Troubleshooting hints and tips
+
+Additionally, this solution can be used for multiple access methods --- object, block, file -- and accessed by clients over many different protocols -- iSCSI, S3, NFS, SMB. Each of these can be incrementally added over time, using the {CompanyName} {ProductName} deployment framework and adding the respective gateway roles and nodes.
+
+== Conclusion
+After understanding and working through the steps described in this document, you should have a working software-defined storage platform that is scalable through the addition of even more resource nodes, as needed. {CompanyName} {ProductName} provides a complete suite of the necessary software and processes which leverages the feature set of {IHVPartner} {IHVPlatform} to create a production-worthy and agile platform.
+
+== Resources and additional links
+
+ifeval::["{IHVPlatform}" == "ProLiant"]
+
+include::hw-bom.adoc[]
+
+endif::[]
+
+{CompanyName} {ProductName}::
+* https://www.suse.com/products/suse-enterprise-storage
+* Documentation - https://www.suse.com/documentation/suse-enterprise-storage-5
+
+[cols=",,,,", options="header"]
+.Bill of Materials - {CompanyName} {ProductName} Software **FixMe**
+|===
+|*_Role_*|*_Quantity_*|*_Product Number_*|*_Description_*|*_Notes_*
+|Software|1|P9P49AAE|{CompanyName} {ProductName} Base Configuration, x86-64, 4 OSD Nodes with 1-2 Sockets, L3-Priority Subscription, 3 Year  | includes 4 OSD Nodes plus 6 infrastructure nodes (e.g. 1-Admin, 3-MON, 2-gateway)
+||1|P9P50AAE|{CompanyName} {ProductName} Expansion Node, x86-64, 1 OSD Node with 1-2 Sockets, L3-Priority Subscription, 3 Year| for scaling includes 1 additional OSD Node plus 1 infrastructure node
+|===
+
+NOTE: With the Base Configuration subscription, two more resource nodes can be added to the documented eight node cluster, to potentially provide other protocol gateways.
+

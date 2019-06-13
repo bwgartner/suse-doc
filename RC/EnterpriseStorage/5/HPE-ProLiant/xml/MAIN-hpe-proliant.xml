@@ -1,0 +1,990 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN" "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd">
+<?asciidoc-toc?>
+<?asciidoc-numbered?>
+
+<book lang="en">
+<bookinfo>
+    <title>Reference Configuration: SUSE Enterprise Storage 5.5 with HPE ProLiant</title>
+    <author>
+        <firstname>Bryan Gartner, SUSE &lt; Bryan.Gartner@SUSE.com &gt;</firstname>
+    </author>
+    <authorinitials>{</authorinitials>
+<orgname>SUSE</orgname>
+</bookinfo>
+<chapter id="_executive_summary">
+<title>Executive Summary</title>
+<simpara>This reference configuration is intended to help an organization plan and install a Ceph-based, software-defined storage infrastructure.</simpara>
+<simpara>For most enterprise-level businesses, the demand for data storage is growing much faster than the rate at which the price for storage is shrinking. As a result, you could be forced to increase your budget dramatically to keep up with data demands. This intelligent, software-defined storage solution&#8201;&#8212;&#8201;powered by SUSE Enterprise Storage technology and HPE ProLiant system hardware&#8201;&#8212;&#8201;enables you to transform your enterprise storage infrastructure to reduce costs, while providing unlimited scalability to keep up with your future demands. With this completely tested approach, you will have the confidence to deploy a working solution in an agile manner and be able to maintain and scale it over time, without capacity-based increases in software subscriptions.</simpara>
+</chapter>
+<chapter id="_target_audience">
+<title>Target Audience</title>
+<simpara>This document is intended for IT decision makers, architects, system administrators and technicians who are implementing the HPE ProLiant platform and need a flexible, software-define storage solution&#8201;&#8212;&#8201;such as SUSE Enterprise Storage&#8201;&#8212;&#8201;that can provide multiple protocol access. To ensure optimum results you should have a solid understanding of your storage use cases, along with sizing/characterization concepts and limitations within your environment.</simpara>
+</chapter>
+<chapter id="_solution_overview">
+<title>Solution Overview</title>
+<simpara>The coupling of a industry-leading infrastructure platform such as HPE ProLiant and a software-defined storage solution such as SUSE Enterprise Storage provides an incredibly powerful and flexible combination. Nodes and storage capacity can be quickly added, replaced or substituted over time as demands dictate. Use cases for such a flexible solution range from dynamically allocated storage pools for physical, virtualized or containerized environments, to a custom testing and development solution, to more specific use cases such as integrations with:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+HPE Helion OpenStack
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+SUSE OpenStack Cloud
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+SUSE CaaS Platform
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+SUSE Cloud Application Platform
+</simpara>
+</listitem>
+</itemizedlist>
+</chapter>
+<chapter id="_solution_components">
+<title>Solution Components</title>
+<section id="_facility">
+<title>Facility</title>
+<simpara>While beyond the scope of this document, the heating, ventilation, air conditioning (HVAC) requirements of hosting such an infrastructure solution should be carefully considered and planned. To aid in determining the power requirements for system deployment, use the <ulink url="https://h20195.www2.hpe.com/v2/GetPDF.aspx/4AA6-2925ENW.pdf">HPE Power Advisor</ulink> (available online or as a downloadable application). Using this tool, you can plan the needs for your solution and order the correct Power Distribution Unit (PDU) to account for the local power conditions and connections in the final installation location.</simpara>
+</section>
+<section id="_network">
+<title>Network</title>
+<simpara>Networking components and their associated services typically require the most advanced planning. Connectivity, capacity and bandwidth requirements for a software-defined storage infrastructure have a fair amount of complexity, especially within the context of an existing IT infrastructure.</simpara>
+<simpara>With the range of available network interface card options for HPE ProLiant, the baseline network bandwidth can be easily provided for each resource node and collectively within the software-defined storage deployment. For improved resiliency and performance, it is also possible to bond multiple network interfaces together. While beyond the scope of this document, the only remaining consideration is for capacity and bandwidth for the interconnecting top-of-rack switches.</simpara>
+<note><simpara>Given the available options for HPE ProLiant with 10, 25, or 100 GbE speeds, you are encouraged to utilize the higher speed ones to help address the access of many clients and to deal with the back-end replication and recovery aspects, especially as the usage and scale increases.</simpara></note>
+</section>
+<section id="_computing">
+<title>Computing</title>
+<variablelist>
+<varlistentry>
+<term>
+HPE ProLiant Servers
+</term>
+<listitem>
+<itemizedlist>
+<listitem>
+<simpara>
+This family of servers are the most flexible, reliable, and performance-optimized ProLiant rack servers ever. HPE continues to provide industry-leading compute innovations. The new HPE ProLiant rack portfolio, with flexible choices and versatile design, along with improved energy efficiencies, ultimately lowers your TCO. Integrated with a simplified, but comprehensive management suite and industry-leading support, the ProLiant rack portfolio delivers a more reliable, fast, and secure infrastructure solution, helps increase IT staff productivity, and accelerates service delivery. In addition, the rack portfolio is performance-optimized for multi-application workloads to significantly increase the speed of IT operations and enable IT to respond to business needs of any size, faster.
+</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>
+HPE ProLiant DL3x0 Compute
+</term>
+<listitem>
+<itemizedlist>
+<listitem>
+<simpara>
+in a form factor that provides performance-drive density, it delivers security, agility and flexibility without compromise. It supports the Intel&#174; Xeon&#174; Scalable processor with up to a 60% performance gain and 27% increase in cores, along with 2933 MT/s HPE DDR4 SmartMemory supporting up to 3.0 TB  with an increase in performance of up to 82%. With the added performance that persistent memory, HPE NVDIMMs and 10 NVMe bring, the HPE ProLiant DL360 means business. Deploy, update, monitor and maintain with ease by automating essential server life cycle management tasks with HPE OneView and HPE Integrated Lights Out 5 (iLO 5). Deploy this 2P secure platform for diverse workloads in space constrained environments.
+</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+</varlistentry>
+</variablelist>
+<simpara>For this implementation, the DL360 and DL380 models of HPE ProLiant were used for the various cluster roles as defined in the next section and detailed in bill-of-materials referenced in the Resources and additional links section.</simpara>
+<tip><simpara>Any <ulink url="https://www.suse.com/yessearch/">SUSE YES</ulink> certified HPE platform can be used for the physical nodes of this deployment, as long as the certification refers to the major version of the underlying SUSE operating system required by the SUSE Enterprise Storage release.</simpara></tip>
+</section>
+<section id="_storage">
+<title>Storage</title>
+<simpara>Each of the resource nodes is also expected to have local, direct-attach storage, which is used for the node&#8217;s operating system. For this deployment, a pair of disk drives configured as a RAID1 volume.</simpara>
+<simpara>For the OSD nodes, configure the remaining drives as RAID0 LUNs (or HBA mode on the controller). Configure the number and type of these accessible drives to provide the software-defined storage capacity and functions such as BlueStore&#8217;s WAL and DB, cache, and data drives. Follow the recommended number, type, capacity and ratios from the SUSE Enterprise Storage documentation.</simpara>
+</section>
+<section id="_software">
+<title>Software</title>
+<simpara>SUSE Enterprise Storage is an intelligent software-defined storage solution, powered by Ceph technology, that enables you to transform your enterprise storage infrastructure. While a software-defined approach may seem new, the logic within enterprise storage devices has always been written in software. It’s only been in the last few years that hardware has progressed enough so that enterprise storage software and dedicated hardware can now be separated. This provides IT organizations with a a simple-to-manage, agile infrastructure approach&#8201;&#8212;&#8201;yielding increased speed of delivery, durability and reliability. This helps to accelerate innovation, reduce costs and alleviate proprietary hardware lock-in by transforming your enterprise storage infrastructure with a truly open and unified, intelligent software-defined storage solution.</simpara>
+<simpara>Our single, truly unified, software-defined storage cluster provides applications with object, block and file system storage. It offers ubiquitous and universal access to your legacy and modern applications and automated durability for your data with high availability and disaster recovery options. Some key features are:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+Unlimited scalability with a distributed storage cluster designed to scale to thousands of nodes and multi-hundred petabyte environments (and beyond) to meet your growing data requirements.
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+A highly redundant storage infrastructure design maximizes application availability with no single points of failure.
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+Self-healing capabilities minimize storage administration involvement and optimize data placement, enabling rapid reconstruction of redundancy, maximizing system resiliency and availability.
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+Utilize commodity, off-the-shelf hardware that is at minimum 30 percent less expensive than average capacity optimized solutions to drive significant CAPEX savings.
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+Automated re-balancing and optimized data placement with an easy to manage intelligent solution that continuously monitors data utilization and infrastructure&#8201;&#8212;&#8201;without any manual intervention and without growing IT staff.
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+Included with the solution are the following supported protocols:
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+Native
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+RBD (Block)
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+RADOS (Object)
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+CephFS (With multiple active MDS Servers)
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+S3 &amp; SwiftRBD (Block)
+</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara>
+Traditional
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+iSCSI
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+NFS
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+CIFS/SMB
+</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+</itemizedlist>
+</listitem>
+</itemizedlist>
+<simpara>As noted above Ceph supports both native and traditional client access. The native clients are aware of the storage topology and communicate directly with the storage daemons, resulting in horizontally scaling performance. Non-native protocols, such as ISCSI, S3, and NFS require the use of gateways. While these gateways may be thought of as a limiting factor, the ISCSI and S3 gateways can scale horizontally using load balancing techniques.</simpara>
+<figure id="img-SES"><title>Ceph Archtecture</title>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="suse-enterprise-storage-release-graphic.png"/>
+  </imageobject>
+  <textobject><phrase>SUSE Enteprise Storage</phrase></textobject>
+</mediaobject>
+</figure>
+<simpara>Descriptions of core components, roles and other needed services are noted below:</simpara>
+<variablelist>
+<varlistentry>
+<term>
+Cluster Networking
+</term>
+<listitem>
+<simpara>
+The network environment where you intend to run Ceph should ideally be a bonded set of at least two network interfaces that is logically split into a public part and a trusted internal part, using VLANs. The bonding mode is recommended to be 802.3ad if possible to provide maximum bandwidth and resiliency.  The public VLAN serves to provide the service to the client nodes, while the internal part provides for the authenticated Ceph network communication. The main reason for this is that although Ceph provides authentication and protection against attacks once secret keys are in place, the messages used to configure these keys may be transferred openly and are vulnerable.
+</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>
+Administration Node
+</term>
+<listitem>
+<simpara>
+The Admininstration Node is a central point of the Ceph cluster because it manages the rest of the cluster nodes by querying and instructing their Salt minion services. It usually includes other services as well, for example the Ceph Dashboard (formerly known as openATTIC) web interface with the Grafana dashboard backed by the Prometheus monitoring toolkit.
+</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>
+Ceph Monitor
+</term>
+<listitem>
+<simpara>
+Ceph Monitor (often abbreviated as MON) nodes maintain information about the cluster health state, a map of all nodes and data distribution rules. If failures or conflicts occur, the Ceph Monitor nodes in the cluster decide by majority which information is correct. To form a qualified majority, it is recommended to have an odd number of Ceph Monitor nodes, starting with at least three of them.
+</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>
+Ceph Manager
+</term>
+<listitem>
+<simpara>
+The Ceph manager (MGR) collects the state information from the whole cluster. The Ceph manager daemon runs alongside the monitor daemons. It provides additional monitoring, and interfaces the external monitoring and management systems. The Ceph manager requires no additional configuration, beyond ensuring it is running.
+</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>
+Ceph OSD
+</term>
+<listitem>
+<simpara>
+A Ceph OSD is a daemon handling Object Storage Devices which are a physical or logical storage units (hard disks or partitions). Object Storage Devices can be physical disks/partitions or logical volumes. The daemon additionally takes care of data replication and rebalancing, in case of added or removed nodes. Ceph OSD daemons communicate with monitor daemons and provide them with the state of the other OSD daemons.
+</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>
+Optional Roles
+</term>
+<listitem>
+<itemizedlist>
+<listitem>
+<simpara>
+Metadata Server
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+The metadata servers (MDS) store metadata for the CephFS. By using an MDS, you can execute basic file system commands such as ls without overloading the cluster
+</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara>
+Object Gateway
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+The Ceph Object Gateway provided by Object Gateway is an HTTP REST gateway for the RADOS object store. It is compatible with OpenStack Swift and Amazon S3 and has its own user management
+</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara>
+NFS Ganesha
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+NFS Ganesha provides an NFS access to either the Object Gateway or the CephFS. It runs in the user instead of the kernel space and directly interacts with the Object Gateway or CephFS
+</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara>
+iSCSI Gateway
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+iSCSI is a storage network protocol that allows clients to send SCSI commands to SCSI storage devices (targets) on remote servers
+</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+</itemizedlist>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>
+Additional Network Infrastructure Components / Services
+</term>
+<listitem>
+<itemizedlist>
+<listitem>
+<simpara>
+Domain Name Service (DNS) : An external network-accessible service to map IP Addresses to hostnames for all cluster resource nodes.
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+Network Time Protocol (NTP) : An external network-accessible service to obtain and synchronize system times to aid in timestamp consistency. It is recommended to point all resource nodes to a physical system/device that provides this service.
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+Software Update Service : Access to a network-based repository for software update packages. This can be accessed directly from each node via registration to the <ulink url="http://scc.suse.com">SUSE Customer Center</ulink> (SCC) or from local servers running a SUSE <ulink url="https://www.suse.com/documentation/sles-12/singlehtml/book_smt/book_smt.htm">Subscription Management Tool</ulink> (SMT) instance. As each node is deployed, it can be pointed to the respective update service; then update notification and applications will be managed by the configuration management web interface.
+</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+</varlistentry>
+</variablelist>
+</section>
+</chapter>
+<chapter id="_solution_details">
+<title>Solution Details</title>
+<simpara>This document focuses on a new, basic SUSE Enterprise Storage deployment on the HPE-ProLiant platform which could be scaled over time. More physical nodes could also be added to augment the cluster&#8217;s functionality and capacity or to replace some of the initial, resource nodes. To provide a production-ready cluster and to take advantage of the HPE ProLiant platform, the following figure shows the target logical cluster deployment:</simpara>
+<figure id="img-DeployLV"><title>Deployment Logical View</title>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="Deployment-Logical-View.png"/>
+  </imageobject>
+  <textobject><phrase>Deployment-Logical-View</phrase></textobject>
+</mediaobject>
+</figure>
+<section id="_deployment_flow">
+<title>Deployment Flow</title>
+<simpara>This section is meant as a companion guide to the official network, system and software product deployment documentation, citing specific settings as needed for this reference implementation. Default settings are assumed to be in use unless otherwise cited to accomplish the respective best practices and design decisions herein.</simpara>
+<simpara>Given the very detailed information contained in the <ulink url="https://www.suse.com/documentation/suse-enterprise-storage-5/">SUSE Enterprise Storage Deployment Guide</ulink> Guide, only the following additional, incremental configurations and modifications are described below:</simpara>
+<variablelist>
+<varlistentry>
+<term>
+Pre-Installation Checklist
+</term>
+<listitem>
+<simpara>
+Start by collecting the necessary install media and validating the inventory of systems to be deployed.
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+Obtain the following software media and documentation artifacts:
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+From the <ulink url="https://download.suse.com/index.jsp">SUSE</ulink> site download ithe install media and product media as note below:
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+the SUSE Enterprise Storage x86_64 install media (DVD1)
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+the corresponding SUSE Linux Enterprise Server 12-SP3 x86_64 install media (DVD1)
+</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+</itemizedlist>
+</listitem>
+</itemizedlist>
+</listitem>
+</varlistentry>
+</variablelist>
+<note><simpara>Utilize either trial or purchased subscriptions for all the resource nodes to ensure access to support and software updates. The bill of materials in Resources and additional links section, outlines the type and quantity of subscriptions needed.</simpara></note>
+<itemizedlist>
+<listitem>
+<simpara>
+Obtain and preview the <ulink url="https://www.suse.com/documentation/suse-enterprise-storage-5/">SUSE Enterprise Storage</ulink> documentation, focusing on these documents:
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+Release Notes
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+Deployment Guide
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+Admininstration Guide
+</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara>
+Validate the necessary CPU, memory and interconnect quantity and type are present for each node and intended role. Refer to the minimum CPU/Memory/Disk/Networking requirements as noted in the <ulink url="https://www.suse.com/documentation/suse-enterprise-storage-5/">SUSE Enterprise Storage Deployment Guide</ulink>.
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+Ensure that a pair of local, direct attached disk drives is present on each node (SSDs are preferred); these will become the target for the operating system installation.
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+Network : Prepare an IP addressing scheme and create both a storage cluster public and private network, along with the desired subnets and VLAN designations.
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+Boot Settings : Manage the boot node and select UEFI mode, with the primary device being hard disk.
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+BIOS/uEFI settings are reset to defaults for a known baseline, consistent state or perhaps with desired, localized values.
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+Use consistent and up-to-date versions for BIOS/uEFI/device firmware to reduce potential troubleshooting issues later
+</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+</itemizedlist>
+<variablelist>
+<varlistentry>
+<term>
+Resource Node Installation
+</term>
+<listitem>
+<simpara>
+Install the SUSE Linux Enterprise Server operating system on each node type, starting with Administration Server, then Monitor Nodes and finally the OSD Nodes.
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+Include only the minimal pattern and components, according to the procedure from deployment. This can be accomplished in any number of ways, such as with the virtual media option through HPE iLO, or from a PXE network-boot environment.
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+Use the suggested, default partitioning scheme on each node and validate that the target LUN for the operating system installation corresponds to the RAID1 pair of local disk drives.
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+After the operating system installation is complete across all the nodes preform the following checks:
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+Ensure that each node has access to the necessary software repositories, for later operations and updates. It is suggested that you apply all software updates, via <emphasis>zypper up</emphasis>.
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+NTP is configured and operational, synchronizing with a source outside the cluster via <emphasis>ntpq -pn</emphasis>.
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+DNS is configured and operational, referencing a source outside the cluster
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+If necessary, adjust the udev rules to ensure that network interfaces are identified (as needed) in the same logical order across the systems, to make later steps easier. Ensure that the respective network interfaces are bonded together with the associated VLANs configured. While configuring these interfaces, it is also recommended to disable IPv6 functionality and the firewall on each node.
+</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+</itemizedlist>
+</listitem>
+</varlistentry>
+</variablelist>
+<note><simpara>For environments that require firewalls to be in place, refer to the "Cluster Deployment" portion in the <ulink url="https://www.suse.com/documentation/suse-enterprise-storage-5/">SUSE Enterprise Storage Deployment Guide</ulink>.</simpara></note>
+<variablelist>
+<varlistentry>
+<term>
+Cluster Deployment
+</term>
+<listitem>
+<simpara>
+Follow the process steps noted in "Cluster Deployment" portion of the <ulink url="https://www.suse.com/documentation/suse-enterprise-storage-5/">SUSE Enterprise Storage Deployment Guide</ulink>. You are strongly encouraged to utilize the "DeepSea" approach, which saves the administrator time and helps to confidently perform complex operations on a Ceph cluster in a staged fashion:
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+Complete Stage 0 (preparation) and Stage 1 (discovery).
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+Before executing Stage 2
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+You might wish to take advantage of SSD devices for BlueStore WAL/DB (if available) to help improve the overall performance of your cluster. This can be accomplished from the command line on the Administration Node via:
+</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+</itemizedlist>
+</listitem>
+</varlistentry>
+</variablelist>
+<screen># salt-run proposal.populate \
+        name=proliant ratio=6 target='cephosd*' format=bluestore \
+        wal-size=2g db-size=50g db=745 wal=745 ssd=spinner=True data=279</screen>
+<note><simpara>The size values may need adjustment to effectively use the drive capacity and quantity in your configuration.</simpara></note>
+<itemizedlist>
+<listitem>
+<simpara>
+Create a policy.cfg file that references the above generated <emphasis>/srv/pillar/ceph/proposals/profile-proliant</emphasis> contents.
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+At this point you should also review and validate the <emphasis>/srv/pillar/ceph/proposals/profile-proliant/stack/default/ceph/minions/*.yml</emphasis> content for the OSD nodes to ensure the correct disk designations are in place.
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+Then execute Stage 2 (configuration), Stage 3 (deployment) and Stage 4 (services) to complete the deployment.
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+Upon successful completion of the previous stages, you can check the cluster status via:
+</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+</itemizedlist>
+<screen>ceph health
+ceph status</screen>
+<simpara>and visit the deployed Ceph Dashboard (openATTIC) web interface to view the management and monitoring dashboard.</simpara>
+<figure id="img-openATTIC"><title>Ceph Dashboard</title>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="openATTIC.png"/>
+  </imageobject>
+  <textobject><phrase>openATTIC</phrase></textobject>
+</mediaobject>
+</figure>
+<simpara>To complete the solution and implement a common use case, this deployment can providing guest virtual machines, running on a Linux-based KVM hypervisor host with access to block devices for their root filesystem. This is accomplished through the libvirtd interaction of Linux/KVM and librbd to the storage cluster as shown in the following figure:</simpara>
+<figure id="img-rados-structure"><title>Interfaces to the Ceph Object Store</title>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="rados-structure.png"/>
+  </imageobject>
+  <textobject><phrase>Interfaces-to-the-Ceph-Object-Store</phrase></textobject>
+</mediaobject>
+</figure>
+<itemizedlist>
+<listitem>
+<simpara>
+At this point you are ready to begin creating the block device and the virtual machines that use this storage service. Refer to the "Integration with Virtualization Tools" section of the <ulink url="https://www.suse.com/documentation/suse-enterprise-storage-5/">Administration Guide</ulink>.
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+With this setup configuration completed, you can install virtual machines, using the RBD functionality of SUSE Enterprise Storage to provide inherent resiliency to their operating system volumes. Even shutting down, or having a hardware failure on one of the Ceph nodes will not affect the running virtual machine.
+</simpara>
+</listitem>
+</itemizedlist>
+</section>
+<section id="_additional_considerations">
+<title>Additional Considerations</title>
+<simpara>To understand the administration aspects of the cluster, review these sections of the <ulink url="https://www.suse.com/documentation/storage-5/">SUSE Enterprise Storage Administration Guide</ulink>:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+Changing or scaling the cluster node count by adding and removing resource nodes,
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+Operating the cluster and managing the storage resources and accessing the data
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+Monitoring and managing the services
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+Troubleshooting hints and tips
+</simpara>
+</listitem>
+</itemizedlist>
+<simpara>Additionally, this solution can be used for multiple access methods --- object, block, file&#8201;&#8212;&#8201;and accessed by clients over many different protocols&#8201;&#8212;&#8201;iSCSI, S3, NFS, SMB. Each of these can be incrementally added over time, using the SUSE Enterprise Storage deployment framework and adding the respective gateway roles and nodes.</simpara>
+</section>
+</chapter>
+<chapter id="_conclusion">
+<title>Conclusion</title>
+<simpara>After understanding and working through the steps described in this document, you should have a working software-defined storage platform that is scalable through the addition of even more resource nodes, as needed. SUSE Enterprise Storage provides a complete suite of the necessary software and processes which leverages the feature set of HPE ProLiant to create a production-worthy and agile platform.</simpara>
+</chapter>
+<chapter id="_resources_and_additional_links">
+<title>Resources and additional links</title>
+<variablelist>
+<varlistentry>
+<term>
+HPE ProLiant
+</term>
+<listitem>
+<itemizedlist>
+<listitem>
+<simpara>
+HPE ProLiant Rack Servers - <ulink url="https://www.hpe.com/us/en/servers/proliant-dl-servers.html">https://www.hpe.com/us/en/servers/proliant-dl-servers.html</ulink>
+</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+</varlistentry>
+</variablelist>
+<table
+frame="all"
+rowsep="1" colsep="1"
+>
+<title>Bill of Materials - HPE ProLiant DL360 Systems</title>
+<tgroup cols="5">
+<colspec colname="col_1" colwidth="20*"/>
+<colspec colname="col_2" colwidth="20*"/>
+<colspec colname="col_3" colwidth="20*"/>
+<colspec colname="col_4" colwidth="20*"/>
+<colspec colname="col_5" colwidth="20*"/>
+<thead>
+<row>
+<entry align="left" valign="top"><emphasis role="strong"><emphasis>Role</emphasis></emphasis></entry>
+<entry align="left" valign="top"><emphasis role="strong"><emphasis>Quantity</emphasis></emphasis></entry>
+<entry align="left" valign="top"><emphasis role="strong"><emphasis>Product Number</emphasis></emphasis></entry>
+<entry align="left" valign="top"><emphasis role="strong"><emphasis>Product_Name</emphasis></emphasis></entry>
+<entry align="left" valign="top"><emphasis role="strong"><emphasis>Description</emphasis></emphasis></entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara>Admin</simpara></entry>
+<entry align="left" valign="top"><simpara>1</simpara></entry>
+<entry align="left" valign="top"><simpara>DL360 Gen9</simpara></entry>
+<entry align="left" valign="top"><simpara>HPE ProLiant DL360 Gen9</simpara></entry>
+<entry align="left" valign="top"><simpara>HPE ProLiant DL360 Gen9 4LFF Configure-to-order Server HPE Dynamic Smart Array B140i, 4-Bay LFF Drive Cage</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>1</simpara></entry>
+<entry align="left" valign="top"><simpara>755382-L21</simpara></entry>
+<entry align="left" valign="top"><simpara>Processor</simpara></entry>
+<entry align="left" valign="top"><simpara>Intel Xeon E5-2620v3 (2.4GHz/6-core/15MB/85W)</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>4</simpara></entry>
+<entry align="left" valign="top"><simpara>726718-B21</simpara></entry>
+<entry align="left" valign="top"><simpara>Memory</simpara></entry>
+<entry align="left" valign="top"><simpara>8GB (1x8GB) Single Rank x4 DDR4-2133 CAS-15-15-15 Registered Memory Kit</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>1</simpara></entry>
+<entry align="left" valign="top"><simpara>665243-B21</simpara></entry>
+<entry align="left" valign="top"><simpara>Flexible LOM</simpara></entry>
+<entry align="left" valign="top"><simpara>HPE Ethernet 10Gb 2-port 560FLR-SFP+ FIO Adapter</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>2</simpara></entry>
+<entry align="left" valign="top"><simpara>720478-B21</simpara></entry>
+<entry align="left" valign="top"><simpara>Power Supplies</simpara></entry>
+<entry align="left" valign="top"><simpara>HPE 500W Flex Slot Platinum Hot Plug Power supply Kit</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>1</simpara></entry>
+<entry align="left" valign="top"><simpara>749974-B21</simpara></entry>
+<entry align="left" valign="top"><simpara>Storage Controller</simpara></entry>
+<entry align="left" valign="top"><simpara>HPE Smart Array P440ar/2GB FBWC 12Gb 2-ports Int FIO SAS Controller</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>1</simpara></entry>
+<entry align="left" valign="top"><simpara>766211-B21</simpara></entry>
+<entry align="left" valign="top"><simpara>Storage cable</simpara></entry>
+<entry align="left" valign="top"><simpara>HPE DL360 Gen9 LFF P440ar/H240ar SAS Cbl</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>2</simpara></entry>
+<entry align="left" valign="top"><simpara>652757-B21</simpara></entry>
+<entry align="left" valign="top"><simpara>Hard Drives</simpara></entry>
+<entry align="left" valign="top"><simpara>HPE 2TB 6G SAS 7.2K rpm LFF (3.5-inch) SC Midline 1yr Warranty Hard Drive</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>1</simpara></entry>
+<entry align="left" valign="top"><simpara>663202-B21</simpara></entry>
+<entry align="left" valign="top"><simpara>Rail Kit</simpara></entry>
+<entry align="left" valign="top"><simpara>HPE 1U Large Form Factor Ball Bearing Rail Kit</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>1</simpara></entry>
+<entry align="left" valign="top"><simpara>663203-B21</simpara></entry>
+<entry align="left" valign="top"><simpara>Cable Management Arm</simpara></entry>
+<entry align="left" valign="top"><simpara>HPE 1U Cable Management Arm for Ball Bearing Rail Kit</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Monitor</simpara></entry>
+<entry align="left" valign="top"><simpara>1</simpara></entry>
+<entry align="left" valign="top"><simpara>755259-B21</simpara></entry>
+<entry align="left" valign="top"><simpara>ProLiant DL360 Gen9</simpara></entry>
+<entry align="left" valign="top"><simpara>HPE ProLiant DL360 Gen9 4LFF Configure-to-order Server HPE Dynamic Smart Array B140i, 4-Bay LFF Drive Cage</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>1</simpara></entry>
+<entry align="left" valign="top"><simpara>755382-L21</simpara></entry>
+<entry align="left" valign="top"><simpara>Processor 1</simpara></entry>
+<entry align="left" valign="top"><simpara>Intel® Xeon® E5-2690v3 (2.6GHz/12-core/30MB/135W) FIO Processor Kit</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>1</simpara></entry>
+<entry align="left" valign="top"><simpara>755382-B21</simpara></entry>
+<entry align="left" valign="top"><simpara>Processor 2</simpara></entry>
+<entry align="left" valign="top"><simpara>Intel® Xeon® E5-2690v3 (2.6GHz/12-core/30MB/135W) FIO Processor Kit</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>4</simpara></entry>
+<entry align="left" valign="top"><simpara>726718-B21</simpara></entry>
+<entry align="left" valign="top"><simpara>Memory for 1st processor</simpara></entry>
+<entry align="left" valign="top"><simpara>8GB (1x8GB) Single Rank x4 DDR4-2133 CAS-15-15-15 Registered Memory Kit</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>4</simpara></entry>
+<entry align="left" valign="top"><simpara>726718-B21</simpara></entry>
+<entry align="left" valign="top"><simpara>Memory for 2nd processor</simpara></entry>
+<entry align="left" valign="top"><simpara>8GB (1x8GB) Single Rank x4 DDR4-2133 CAS-15-15-15 Registered Memory Kit</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>1</simpara></entry>
+<entry align="left" valign="top"><simpara>665243-B21</simpara></entry>
+<entry align="left" valign="top"><simpara>FlexibleLOM</simpara></entry>
+<entry align="left" valign="top"><simpara>HPE Ethernet 10Gb 2-port 560FLR-SFP+ FIO Adapter</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>2</simpara></entry>
+<entry align="left" valign="top"><simpara>720478-B21</simpara></entry>
+<entry align="left" valign="top"><simpara>Power Supplies</simpara></entry>
+<entry align="left" valign="top"><simpara>HPE 800W Flex Slot Platinum Hot Plug Power Supply Kit</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>2</simpara></entry>
+<entry align="left" valign="top"><simpara>765424-B21</simpara></entry>
+<entry align="left" valign="top"><simpara>Hard Drives</simpara></entry>
+<entry align="left" valign="top"><simpara>HPE 600GB 12G SAS 15K rpm LFF (3.5-inch) SC Enterprise 3yr Warranty Hard Drive</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>1</simpara></entry>
+<entry align="left" valign="top"><simpara>749974-B21</simpara></entry>
+<entry align="left" valign="top"><simpara>Storage Controller</simpara></entry>
+<entry align="left" valign="top"><simpara>HPE Smart Array P440ar/2GB FBWC 12Gb 2-ports Int FIO SAS Controller</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>1</simpara></entry>
+<entry align="left" valign="top"><simpara>766211-B21</simpara></entry>
+<entry align="left" valign="top"><simpara>Storage Cable</simpara></entry>
+<entry align="left" valign="top"><simpara>HPE DL360 Gen9 LFF P440ar/H240ar SAS Cbl</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>1</simpara></entry>
+<entry align="left" valign="top"><simpara>663202-B21</simpara></entry>
+<entry align="left" valign="top"><simpara>Rail Kit</simpara></entry>
+<entry align="left" valign="top"><simpara>HPE 1U Large Form Factor Ball Bearing Rail Kit</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>1</simpara></entry>
+<entry align="left" valign="top"><simpara>663203-B21</simpara></entry>
+<entry align="left" valign="top"><simpara>Cable Management Arm</simpara></entry>
+<entry align="left" valign="top"><simpara>HPE 1U Cable Management Arm for Ball Bearing Rail Kit</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>OSD</simpara></entry>
+<entry align="left" valign="top"><simpara>1</simpara></entry>
+<entry align="left" valign="top"><simpara>719061-B21</simpara></entry>
+<entry align="left" valign="top"><simpara>ProLiant DL380 Gen9</simpara></entry>
+<entry align="left" valign="top"><simpara>HP ProLiant DL380 Gen9 12LFF Configure-to-order Server HP Dynamic Smart Array B140i 12-Bay LFF Drive Cage</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>1</simpara></entry>
+<entry align="left" valign="top"><simpara>719044-L21</simpara></entry>
+<entry align="left" valign="top"><simpara>Processor 1</simpara></entry>
+<entry align="left" valign="top"><simpara>Intel® Xeon® E5-2690v3 (2.6GHz/12-core/30MB/135W) FIO Processor Kit</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>1</simpara></entry>
+<entry align="left" valign="top"><simpara>719044-B21</simpara></entry>
+<entry align="left" valign="top"><simpara>Processor 2</simpara></entry>
+<entry align="left" valign="top"><simpara>Intel® Xeon® E5-2690v3 (2.6GHz/12-core/30MB/135W) FIO Processor Kit</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>8</simpara></entry>
+<entry align="left" valign="top"><simpara>726718-B21</simpara></entry>
+<entry align="left" valign="top"><simpara>Memory for 1st processor</simpara></entry>
+<entry align="left" valign="top"><simpara>8GB (1x8GB) Single Rank x4 DDR4-2133 CAS-15-15-15 Registered Memory Kit</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>8</simpara></entry>
+<entry align="left" valign="top"><simpara>726718-B21</simpara></entry>
+<entry align="left" valign="top"><simpara>Memory for 2nd processor</simpara></entry>
+<entry align="left" valign="top"><simpara>8GB (1x8GB) Single Rank x4 DDR4-2133 CAS-15-15-15 Registered Memory Kit</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>1</simpara></entry>
+<entry align="left" valign="top"><simpara>665243-B21</simpara></entry>
+<entry align="left" valign="top"><simpara>Flexible LOM</simpara></entry>
+<entry align="left" valign="top"><simpara>HP Ethernet 10Gb 2-port 560FLR-SFP+ FIO Adapter</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>2</simpara></entry>
+<entry align="left" valign="top"><simpara>720479-B21</simpara></entry>
+<entry align="left" valign="top"><simpara>Power Supply</simpara></entry>
+<entry align="left" valign="top"><simpara>HP 800W Flex Slot Platinum Hot Plug Power Supply Kit</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>1</simpara></entry>
+<entry align="left" valign="top"><simpara>724864-B21</simpara></entry>
+<entry align="left" valign="top"><simpara>Additional Disk Bay</simpara></entry>
+<entry align="left" valign="top"><simpara>HP DL380 Gen9 2SFF Bay Kit</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>2</simpara></entry>
+<entry align="left" valign="top"><simpara>765424-B21</simpara></entry>
+<entry align="left" valign="top"><simpara>Hard Drives</simpara></entry>
+<entry align="left" valign="top"><simpara>HP 600GB 12G SAS 15K rpm LFF (3.5-inch) SC Enterprise 3yr Warranty Hard Drive</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>10</simpara></entry>
+<entry align="left" valign="top"><simpara>761477-B21</simpara></entry>
+<entry align="left" valign="top"><simpara>Hard Drives</simpara></entry>
+<entry align="left" valign="top"><simpara>HP 6TB 6G SAS 7.2k rpm LFF (3.5-inch) SC Midline 1yr Warranty Hard Drive</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>1</simpara></entry>
+<entry align="left" valign="top"><simpara>761874-B21</simpara></entry>
+<entry align="left" valign="top"><simpara>Storage Controller</simpara></entry>
+<entry align="left" valign="top"><simpara>HP Smart Array P840/4G FIO Controller</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>1</simpara></entry>
+<entry align="left" valign="top"><simpara>785991-B21</simpara></entry>
+<entry align="left" valign="top"><simpara>Storage Cable</simpara></entry>
+<entry align="left" valign="top"><simpara>HP DL380 Gen9 12LFF SAS Cable Kit</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>1</simpara></entry>
+<entry align="left" valign="top"><simpara>783007-B21</simpara></entry>
+<entry align="left" valign="top"><simpara>Storage Cable</simpara></entry>
+<entry align="left" valign="top"><simpara>HP DL380 Gen9 P840/440 SAS Cable Kit</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>1</simpara></entry>
+<entry align="left" valign="top"><simpara>665249-B21</simpara></entry>
+<entry align="left" valign="top"><simpara>Network</simpara></entry>
+<entry align="left" valign="top"><simpara>HP Ethernet 10Gb 2-port 560SFP+ Adapter</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>1</simpara></entry>
+<entry align="left" valign="top"><simpara>720864-B21</simpara></entry>
+<entry align="left" valign="top"><simpara>Rail Kit</simpara></entry>
+<entry align="left" valign="top"><simpara>HP 2U Large Form Factor Ball Bearing Rail Kit</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>1</simpara></entry>
+<entry align="left" valign="top"><simpara>720865-B21</simpara></entry>
+<entry align="left" valign="top"><simpara>Cable Management Arm</simpara></entry>
+<entry align="left" valign="top"><simpara>HP 2U Cable Management Arm for Ball Bearing Rail Kit</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+<note><simpara>Each of the above node roles is detailed as singular configurations so that it is easier to figure out how to order the appropriate quantity for the desired cluster.</simpara></note>
+<variablelist>
+<varlistentry>
+<term>
+SUSE Enterprise Storage
+</term>
+<listitem>
+<itemizedlist>
+<listitem>
+<simpara>
+<ulink url="https://www.suse.com/products/suse-enterprise-storage">https://www.suse.com/products/suse-enterprise-storage</ulink>
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+Documentation - <ulink url="https://www.suse.com/documentation/suse-enterprise-storage-5">https://www.suse.com/documentation/suse-enterprise-storage-5</ulink>
+</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+</varlistentry>
+</variablelist>
+<table
+frame="all"
+rowsep="1" colsep="1"
+>
+<title>Bill of Materials - SUSE Enterprise Storage Software <emphasis role="strong">FixMe</emphasis></title>
+<tgroup cols="5">
+<colspec colname="col_1" colwidth="20*"/>
+<colspec colname="col_2" colwidth="20*"/>
+<colspec colname="col_3" colwidth="20*"/>
+<colspec colname="col_4" colwidth="20*"/>
+<colspec colname="col_5" colwidth="20*"/>
+<thead>
+<row>
+<entry align="left" valign="top"><emphasis role="strong"><emphasis>Role</emphasis></emphasis></entry>
+<entry align="left" valign="top"><emphasis role="strong"><emphasis>Quantity</emphasis></emphasis></entry>
+<entry align="left" valign="top"><emphasis role="strong"><emphasis>Product Number</emphasis></emphasis></entry>
+<entry align="left" valign="top"><emphasis role="strong"><emphasis>Description</emphasis></emphasis></entry>
+<entry align="left" valign="top"><emphasis role="strong"><emphasis>Notes</emphasis></emphasis></entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara>Software</simpara></entry>
+<entry align="left" valign="top"><simpara>1</simpara></entry>
+<entry align="left" valign="top"><simpara>P9P49AAE</simpara></entry>
+<entry align="left" valign="top"><simpara>SUSE Enterprise Storage Base Configuration, x86-64, 4 OSD Nodes with 1-2 Sockets, L3-Priority Subscription, 3 Year</simpara></entry>
+<entry align="left" valign="top"><simpara>includes 4 OSD Nodes plus 6 infrastructure nodes (e.g. 1-Admin, 3-MON, 2-gateway)</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>1</simpara></entry>
+<entry align="left" valign="top"><simpara>P9P50AAE</simpara></entry>
+<entry align="left" valign="top"><simpara>SUSE Enterprise Storage Expansion Node, x86-64, 1 OSD Node with 1-2 Sockets, L3-Priority Subscription, 3 Year</simpara></entry>
+<entry align="left" valign="top"><simpara>for scaling includes 1 additional OSD Node plus 1 infrastructure node</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+<note><simpara>With the Base Configuration subscription, two more resource nodes can be added to the documented eight node cluster, to potentially provide other protocol gateways.</simpara></note>
+</chapter>
+</book>

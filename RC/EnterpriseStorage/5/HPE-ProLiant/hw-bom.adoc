@@ -1,0 +1,48 @@
+{IHVPartner} {IHVPlatform}:: 
+* {IHVPartner} {IHVPlatform} Rack Servers - https://www.hpe.com/us/en/servers/proliant-dl-servers.html
+
+[cols=",,,,", options="header"]
+.Bill of Materials - {IHVPartner} {IHVPlatform} {IHVPlatformModel} Systems
+|===
+|*_Role_*|*_Quantity_*|*_Product Number_*|*_Product_Name_*|*_Description_*
+|Admin|1|DL360 Gen9|HPE ProLiant DL360 Gen9|HPE ProLiant DL360 Gen9 4LFF Configure-to-order Server HPE Dynamic Smart Array B140i, 4-Bay LFF Drive Cage
+| |1|755382-L21|Processor|Intel Xeon E5-2620v3 (2.4GHz/6-core/15MB/85W)
+| |4|726718-B21|Memory|8GB (1x8GB) Single Rank x4 DDR4-2133 CAS-15-15-15 Registered Memory Kit
+| |1|665243-B21|Flexible LOM|HPE Ethernet 10Gb 2-port 560FLR-SFP+ FIO Adapter
+| |2|720478-B21|Power Supplies|HPE 500W Flex Slot Platinum Hot Plug Power supply Kit
+| |1|749974-B21|Storage Controller|HPE Smart Array P440ar/2GB FBWC 12Gb 2-ports Int FIO SAS Controller
+| |1|766211-B21|Storage cable|HPE DL360 Gen9 LFF P440ar/H240ar SAS Cbl
+| |2|652757-B21|Hard Drives|HPE 2TB 6G SAS 7.2K rpm LFF (3.5-inch) SC Midline 1yr Warranty Hard Drive
+| |1|663202-B21|Rail Kit|HPE 1U Large Form Factor Ball Bearing Rail Kit
+| |1|663203-B21|Cable Management Arm|HPE 1U Cable Management Arm for Ball Bearing Rail Kit
+|Monitor|1|755259-B21|ProLiant DL360 Gen9|HPE ProLiant DL360 Gen9 4LFF Configure-to-order Server HPE Dynamic Smart Array B140i, 4-Bay LFF Drive Cage
+| |1|755382-L21|Processor 1|Intel® Xeon® E5-2690v3 (2.6GHz/12-core/30MB/135W) FIO Processor Kit
+| |1|755382-B21|Processor 2|Intel® Xeon® E5-2690v3 (2.6GHz/12-core/30MB/135W) FIO Processor Kit
+| |4|726718-B21|Memory for 1st processor|8GB (1x8GB) Single Rank x4 DDR4-2133 CAS-15-15-15 Registered Memory Kit
+| |4|726718-B21|Memory for 2nd processor|8GB (1x8GB) Single Rank x4 DDR4-2133 CAS-15-15-15 Registered Memory Kit
+| |1|665243-B21|FlexibleLOM|HPE Ethernet 10Gb 2-port 560FLR-SFP+ FIO Adapter
+| |2|720478-B21|Power Supplies|HPE 800W Flex Slot Platinum Hot Plug Power Supply Kit
+| |2|765424-B21|Hard Drives|HPE 600GB 12G SAS 15K rpm LFF (3.5-inch) SC Enterprise 3yr Warranty Hard Drive
+| |1|749974-B21|Storage Controller|HPE Smart Array P440ar/2GB FBWC 12Gb 2-ports Int FIO SAS Controller
+| |1|766211-B21|Storage Cable|HPE DL360 Gen9 LFF P440ar/H240ar SAS Cbl
+| |1|663202-B21|Rail Kit|HPE 1U Large Form Factor Ball Bearing Rail Kit
+| |1|663203-B21|Cable Management Arm|HPE 1U Cable Management Arm for Ball Bearing Rail Kit
+|OSD |1|719061-B21|ProLiant DL380 Gen9|HP ProLiant DL380 Gen9 12LFF Configure-to-order Server HP Dynamic Smart Array B140i 12-Bay LFF Drive Cage
+| |1|719044-L21|Processor 1|Intel® Xeon® E5-2690v3 (2.6GHz/12-core/30MB/135W) FIO Processor Kit
+| |1|719044-B21|Processor 2|Intel® Xeon® E5-2690v3 (2.6GHz/12-core/30MB/135W) FIO Processor Kit
+| |8|726718-B21|Memory for 1st processor|8GB (1x8GB) Single Rank x4 DDR4-2133 CAS-15-15-15 Registered Memory Kit
+| |8|726718-B21|Memory for 2nd processor|8GB (1x8GB) Single Rank x4 DDR4-2133 CAS-15-15-15 Registered Memory Kit
+| |1|665243-B21|Flexible LOM|HP Ethernet 10Gb 2-port 560FLR-SFP+ FIO Adapter
+| |2|720479-B21|Power Supply|HP 800W Flex Slot Platinum Hot Plug Power Supply Kit
+| |1|724864-B21|Additional Disk Bay|HP DL380 Gen9 2SFF Bay Kit
+| |2|765424-B21|Hard Drives|HP 600GB 12G SAS 15K rpm LFF (3.5-inch) SC Enterprise 3yr Warranty Hard Drive
+| |10|761477-B21|Hard Drives|HP 6TB 6G SAS 7.2k rpm LFF (3.5-inch) SC Midline 1yr Warranty Hard Drive
+| |1|761874-B21|Storage Controller|HP Smart Array P840/4G FIO Controller
+| |1|785991-B21|Storage Cable|HP DL380 Gen9 12LFF SAS Cable Kit
+| |1|783007-B21|Storage Cable|HP DL380 Gen9 P840/440 SAS Cable Kit
+| |1|665249-B21|Network|HP Ethernet 10Gb 2-port 560SFP+ Adapter
+| |1|720864-B21|Rail Kit|HP 2U Large Form Factor Ball Bearing Rail Kit
+| |1|720865-B21|Cable Management Arm|HP 2U Cable Management Arm for Ball Bearing Rail Kit
+|===
+
+NOTE: Each of the above node roles is detailed as singular configurations so that it is easier to figure out how to order the appropriate quantity for the desired cluster.

@@ -1,0 +1,4 @@
+
+{IHVPartner} {IHVPlatform} {IHVPlatformImager}::
+* Can quickly provision an operating environment across a large number of infrastructure blocks or nodes. It can deploy and update many systems quickly, possibly as fast of you can reboot servers, to quickly expand or change environments. This management capability is implemented using redundant physical appliances for production environments to maintain high availability in operations. These management appliances are automatically set up with active-active storage to control and protect your image repository. Your image content might contain an OS or even a complete application stack. Your images can be quickly applied to multiple compute nodes to optimize your IT service deliveries.
+

@@ -1,0 +1,884 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN" "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd">
+<?asciidoc-toc?>
+<?asciidoc-numbered?>
+
+<book lang="en">
+<bookinfo>
+    <title>Reference Configuration : SUSE OpenStack Cloud 9 with HPE Synergy</title>
+    <author>
+        <firstname>Bryan Gartner, SUSE &lt; Bryan.Gartner@SUSE.com &gt;</firstname>
+    </author>
+    <authorinitials>{</authorinitials>
+<orgname>SUSE</orgname>
+</bookinfo>
+<chapter id="_executive_summary">
+<title>Executive Summary</title>
+<simpara>For most enterprise-level businesses, the demand for an on-premise, multi-tenancy private cloud is increasing rapidly, allowing the hosting of both production and other phases of workloads, whether bare-metal, virtualized or containerized. This approach may compliment an existing public cloud strategy of a business or even help reduce the financial impact and improve security aspects of data and workloads. An intelligent, software-defined infrastructure consisting of SUSE&#174; OpenStack Cloud technology and HPE&#174; Synergy system hardware enables you to transform your enterprise. It delivers Infrastructure-as-a-Service (IaaS) to reduce costs while still providing flexibility to keep up with your future demands. Leveraging this tested approach, you will have the confidence to deploy a working solution in an agile manner, and be able to maintain and scale it as needed over time. This Reference Configuration focuses on a new implementation, pointing out design decisions, citing best practices, considerations and recommendations to implement a functional deployment.</simpara>
+<section id="_document_purpose">
+<title>Document Purpose</title>
+<simpara>This Reference Configuration is intended to help an organization create and deploy an entry-level, yet scalable on-premise private cloud infrastructure used to orchestrate and manage application workloads.</simpara>
+</section>
+<section id="_target_audience">
+<title>Target Audience</title>
+<simpara>This Reference Configuration is intended for IT decision makers, architects, system administrators and technicians who are implementing the HPE Synergy platform and need a flexible, software-defined, Infrastructure-as-a-Service platform. The reader should be familiar with all of the traditional pillars of IT infrastructures&#8201;&#8212;&#8201;networking, computing and storage&#8201;&#8212;&#8201;along with their local use cases for sizing, scaling and limitations within their environments.</simpara>
+</section>
+</chapter>
+<chapter id="_introduction">
+<title>Introduction</title>
+<simpara>This Reference Configuration describes a SUSE OpenStack Cloud deployment on HPE Synergy composable infrastructure and includes details on how the environment was configured. When combined with the accompanying [<ulink url="https://documentation.suse.com/soc/9/single-html/suse-openstack-cloud-deployment/#book-deployment">https://documentation.suse.com/soc/9/single-html/suse-openstack-cloud-deployment/#book-deployment</ulink> [Deployment Guide], it provides a comprehensive example demonstrating how the OpenStack technology can be set up to take advantage of the HPE Synergy composable architecture.</simpara>
+<simpara>The sample configuration resides all within a single HPE Synergy Frame consists of three control nodes, arranged in a high-availability fashion to host the required OpenStack services and at least a single compute node to host virtualized workloads on the KVM hypervisor. Additional, shared storage elements for the necessary services are provided by the HPE D3940 Storage Module. The number and type of nodes can easily be expanded to scale out the SUSE OpenStack Cloud cluster, even across multiple IHVPartner} Synergy Frames by leveraging the integration with IHVPartner} OneView.</simpara>
+<simpara>The HPE Synergy platform is designed to bridge traditional and cloud-native applications with the implementation of composable infrastructure. Composable infrastructure combines the use of fluid resource pools, made up of compute, storage, and fabric with software-defined intelligence. Composable pools of compute, storage, and fabric can be intelligently and automatically combined to support any workload. The resource pools can be flexed to meet the needs of any business applications including containerized workloads.</simpara>
+</chapter>
+<chapter id="_solution_overview">
+<title>Solution Overview</title>
+<simpara>Private cloud delivers access to pools of compute, storage, networking functionality and other resources over a network. The deployment abstracts the complex, internal infrastructures from end users. It allows individual compute nodes and workloads to be provisioned on demand from predefined templates with little concern about the underlying infrastructure or resources. Services, consisting of many such orchestrated workloads can be provisioned for use in minutes and then scaled appropriately to meet service demands for use by multiple tenants.</simpara>
+<note><simpara>As a further reference, the National Institute of Standards and Technology&#8217;s (NIST) <ulink url="https://csrc.nist.gov/publications/detail/sp/800-145/final">Definition of Cloud Computing</ulink> describes the important characteristics of cloud computing.</simpara></note>
+<simpara>These resources are integrated through private cloud software to provide the robust foundation for applications and services before adding deployed workloads. Networking is the unifying component tying computing and storage resources together. Given the complexity of such an infrastructure, the network must be fully configurable and adapt to change requests upon demand. Compute resources are provided via physical nodes or virtual machines running atop a hypervisor. Storage resources can be provided through either dedicated storage elements or resilient, distributed storage solutions. Modern, industry-leading x86-based servers like the HPE Synergy servers provide an ideal platform for private clouds because they balance performance and efficiency. Finally, it is the private cloud software that provides the user interface for setup, configuration, maintenance, and long term operation of these three core components bonding them into a cohesive service offering.</simpara>
+</chapter>
+<chapter id="_solution_components">
+<title>Solution Components</title>
+<section id="_facility">
+<title>Facility</title>
+<simpara>While beyond the scope of this Reference Configuration, the heating, ventilation, air conditioning (HVAC) requirements of hosting such a private cloud solution should be carefully considered and planned. To aid in determining the power requirements for system deployment, use the <ulink url="https://h20195.www2.hpe.com/v2/GetPDF.aspx/4AA6-2925ENW.pdf">HPE Power Advisor</ulink> as either an on-line version or a downloadable application. Using this tool, you can plan the needs for your solution and order the correct Power Distribution Unit (PDU) to account for the local power conditions and connections in the final installation location.</simpara>
+</section>
+<section id="_network">
+<title>Network</title>
+<simpara>Networking is the technology component which typically requires the most advance planning. Requirements for a private cloud instance have a fair amount of network complexity, especially when integrated with an existing IT infrastructure. For the physical level, using pairs of HPE network switch devices as top-of-rack (ToR) switches allows all servers, each having multiple 10GbE, or higher speed, NIC ports, to form a link aggregation group (LAG) across the ports with at least one NIC port on each switch in the stack. When using network interface bonding on the resource nodes, the LAG ideally offers switch redundancy within the rack and enables high availability throughout the infrastructure.</simpara>
+<simpara>With HPE Synergy&#8217;s inherent features and composability, much of the configuration complexity for network interconnects can easily be codified into a template for each target resource node. This includes mapping specific network interfaces to specific network fabrics within a collection of managed HPE Synergy frames. The baseline network bandwidth provided by HPE Synergy is sufficient for a basic deployment&#8201;&#8212;&#8201;for each resource node and collectively within the frame. To address management functions, the iLO, out-of-band interface can be connected to the same or another network switch infrastructure, but are fundamentally required to be accessible for the deployment.</simpara>
+<note><simpara>Given the available options for HPE Synergy Interconnect Link Modules with 10, 20, or 40 GbE speeds, you are encouraged to utilize the higher speed ones to help address the access of many clients and to deal with intra-cluster networking requirements, especially as the usage and scale increases.</simpara></note>
+<simpara>The following considerations for the network switching configuration should be attended to:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+Configure 802.3ad for system port bonding to get the maximum performance of bonded network interfaces
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+Ensure that all similar switching devices are consistent and up-to-date with regard to firmware versions to reduce potential troubleshooting issues later.
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+While a bit beyond the scope of this Reference Configuration, the only remaining consideration is for capacity and bandwidth for the interconnecting Top-of-Rack switches to ensure that client systems operate in a shared fashion.
+</simpara>
+</listitem>
+</itemizedlist>
+</section>
+<section id="_computing">
+<title>Computing</title>
+<simpara>HPE Synergy, the first Composable Infrastructure, empowers IT to create and deliver new value easily and continuously. This single infrastructure reduces operational complexity for traditional workloads and increases operational velocity for the new breed of applications and services. Through a single interface, HPE Synergy composes compute, storage and fabric pools into any configuration for any application. It also enables a broad range of workloads&#8201;&#8212;&#8201;from bare metal, to virtual machines, to containers, to operational models like hybrid cloud and DevOps. HPE Synergy enables IT to rapidly react to new business demands with the following components:</simpara>
+<variablelist>
+<varlistentry>
+<term>
+HPE Synergy 12000 Frame
+</term>
+<listitem>
+<itemizedlist>
+<listitem>
+<simpara>
+Is uniquely architected as Composable Infrastructure (CI) to match the powerful <emphasis>infrastructure-as-code</emphasis> capabilities of the HPE intelligent software architecture. Flexible access to compute, storage, and fabric resources enables the customer to maximize their resource usage and ability and to repurpose underutilizied resources. Linking multiple HPE Synergy Frames efficiently scales the infrastructure with a dedicated, single view of the entire management network.
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+Allows for creating multiple composable domains in the infrastructure to efficiently deliver available resources to the business. HPE Synergy Frames reduce complexity by using intelligent auto-discovery to find all available resources and accelerate workload deployments. This drives IT efficiency as the business grows and delivers balanced performance across resources to increase solution effectiveness.
+</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>
+HPE Synergy Composer
+</term>
+<listitem>
+<simpara>
+This is the primary appliance for managing Synergy systems. This hardware appliance is powered by HPE OneView and is designed with hardware failover, allowing a redundant Composer appliance to take over control and keep your critical infrastructure up and running.
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+Provides the enterprise-level management to compose and deploy system resources to your application needs. This management appliance uses software-defined intelligence to aggregate compute, storage, and fabric resources in a manner that scales to your application needs, instead of restricted you to the fixed ratios of traditional resource offerings.
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+Delivers template-based provisioning that enables fast time to service with a single point for defining compute module state, pooled storage, network connectivity and bootimage. This is the comprehensive, unifying management interface designed for converged infrastructure management increases the productivity of every member of the internal IT team across servers, storage, and networking. By streamlining processes, incorporating best practices, and creating a new holistic way to work, HPE OneView provides organizations with a more efficient way to work. It is designed for open integration with existing tools and processes to extend these efficiencies.
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+Is instrumental for the deployment and management of HPE servers and enclosure networking. HPE Synergy Composer collapses infrastructure management tools into a single, resource-oriented architecture that provides direct access to all logical and physical resources of the solution. Logical resources include server profiles and server profile templates, enclosures and enclosure groups and logical interconnects and logical interconnect groups. Physical resources include server hardware blades and rack servers, networking interconnects and computing resources.
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+Offers a uniform console for administrators to interact with resources by providing a RESTful API foundation. The RESTful APIs enable administrators to utilize a growing ecosystem of integrations to further expand the advantages of the integrated resource model. This eliminates the need for the administrator to enter and maintain the same configuration data more than once and keeps all versions up to date. It encapsulates and abstracts many underlying tools behind the integrated resource model, enabling the administrator to operate with new levels of simplicity, speed and agility to provision, monitor and maintain the solution.
+</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+</varlistentry>
+</variablelist>
+<tip><simpara>Using this combination of SUSE OpenStack Cloud and HPE Synergy Composer, an in-product integration exists for these two technologies to communicate and ease deployment processes. By accessing the discovery APIs of HPE Synergy Composer, the administrator can find, target, and incorporate resource nodes as needed to expand or modify the nodes within the deployed cluster. More details will be described in the deployment process steps.</simpara></tip>
+<variablelist>
+<varlistentry>
+<term>
+HPE Synergy ImageStreamer
+</term>
+<listitem>
+<itemizedlist>
+<listitem>
+<simpara>
+Can quickly provision an operating environment across a large number of infrastructure blocks or nodes. It can deploy and update many systems quickly, possibly as fast of you can reboot servers, to quickly expand or change environments. This management capability is implemented using redundant physical appliances for production environments to maintain high availability in operations. These management appliances are automatically set up with active-active storage to control and protect your image repository. Your image content might contain an OS or even a complete application stack. Your images can be quickly applied to multiple compute nodes to optimize your IT service deliveries.
+</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+</varlistentry>
+</variablelist>
+<tip><simpara>Using HPE Synergy ImageStreamer represents an efficient choice to deploy the base operating systems of the resource nodes, including all of the disk partitioning requirements. More details, including other installation options, will be described in the deployment process steps.</simpara></tip>
+<variablelist>
+<varlistentry>
+<term>
+HPE Synergy SY480 Gen10 Compute Module
+</term>
+<listitem>
+<itemizedlist>
+<listitem>
+<simpara>
+Delivers an efficient and flexible two-socket workhorse to support the most demanding workloads. Powered by Intel® Xeon® Scalable Family of processors, up to 3TB DDR4, and large storage capacity within a composable architecture. HPE Synergy SY480 Gen10 Compute Module:
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+Is the most secure server with exclusive HPE Silicon Root of Trust. Protect your applications and assets against downtime associated with hacks and viruses.
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+Offers customer choice for greater performance and flexibility with Intel Xeon Scalable Family of processors on the Synergy SY480 Gen10 architecture.
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+Offers Intelligent System Tuning with processor smoothing and workloads matching to improve processor throughput/overall performance up to 8% over previous generation.
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+Features a maximum memory footprint of 3TB for large in-memory database and analytic applications.
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+Features a hybrid HPE Smart Array for both RAID and HBA zoning in a single controller.
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+Is more performant (over previous generation) with:
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+A 25% performance increase with 1 or 2 processors (up to 205W).
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+An 11% increase in memory speeds with a wide range of memory sizes.
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+A 2.5x increase in compute and network connectivity speed gets your data where it&#8217;s needed faster.
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+Up to 50% performance improvement in random read IOPs in storage controllers.
+</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+</itemizedlist>
+</listitem>
+</itemizedlist>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>
+HPE Synergy SY660 Gen10 Compute Module
+</term>
+<listitem>
+<itemizedlist>
+<listitem>
+<simpara>
+Delivers &#8230; FixMe
+</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+</varlistentry>
+</variablelist>
+<simpara>For this the implementation, either model of the HPE Synergy Compute Module servers could have been utilized for any of the node roles. Example configurations are included in the "Resources and Additional Links" section.</simpara>
+<note><simpara>Further, any <ulink url="https://www.suse.com/yessearch/">SUSE YES</ulink> certified HPE platform can be used for the physical nodes of this deployment, as long as the certification refers to the major version of the underlying SUSE operating system required by the SUSE OpenStack Cloud release.</simpara></note>
+<simpara>The following considerations for the system configuration should be attended to:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+Ensure that all similar system devices are consistent and up-to-date with regard to BIOS/uEFI/device firmware versions to reduce potential troubleshooting issues later
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+Reset the BIOS setup configuration to the default setting to have a known baseline configuration to provide consistency.
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+Ensure, for resource nodes being targeted as hypervisor nodes, that virtualization features are enabled.
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+If possible, setup RAID1 mirroring on the storage controller across a pair of drives for the operating system installation
+</simpara>
+</listitem>
+</itemizedlist>
+<tip><simpara>HPE Synergy OneView can be setup with Server Profile Templates to apply to the various node roles and consistently deliver platform systems into a known state, adhering to the above considerations.</simpara></tip>
+</section>
+<section id="_storage">
+<title>Storage</title>
+<simpara>The various OpenStack services have differing storage access needs&#8201;&#8212;&#8201;object for workload images, block for persistent data volumes, and file for shared applications and data. In addition, each of the resource nodes is also expected to have local, direct-attach storage, which is used for the node&#8217;s operating system. Each of these requirements can be provided in a scalable fashion, utilizing the Compute Module resources, plus the</simpara>
+<variablelist>
+<varlistentry>
+<term>
+HPE Synergy Storage Module
+</term>
+<listitem>
+<itemizedlist>
+<listitem>
+<simpara>
+The HPE Synergy D3940 Storage Module provides a fluid pool of storage resources for the Composable Infrastructure. Additional capacity for compute modules is easily provisioned and intelligently managed with integrated data services for availability and protection. The 40 SFF drive bays per storage module can be populated with 12 Gb/s SAS or 6 Gb/s SATA drives. Expand up to 4 storage modules in a single Synergy 12000 Frame for a total of 200 drives.
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+Any drive bay can be zoned to any compute module for efficient use of capacity without fixed ratios. A second HPE Synergy D3940 I/O Adapter provides a redundant path to disks inside the storage module for high data availability. The HPE Synergy D3940 Storage Module and HPE Synergy 12Gb/s SAS Connection Module are performance optimized in a non-blocking 12 Gb/s SAS fabric.
+</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+</varlistentry>
+</variablelist>
+<simpara>For this deployment, a pair of internal HPE Synergy Compute Module disk drives are configured as a RAID1 volume (via the HPE Synergy Composer Server Profile Templates for the operating system) helps to provide fewer points of failure.
+* Of course these could have also been provided by the HPE Synergy D3940 Storage Module.</simpara>
+<simpara>For some of the core OpenStack services, like Glance (object) and Cinder (block), a Server Profile Template mapped additional drives from the HPE Synergy D3940 Storage Module. Likewise for the OpenStack Nova compute nodes, mapped drives from the Storage Module, were used to increase the capacity for the ephemeral volumes of the running workloads.
+* Of course all of these storage needs could have have instead been provided by the more popular approach of utilizing a Ceph-based storage cluster. By integrating such a solution, like SUSE Enterprise Storage, all of these access modes can be satisfied in a resilient, highly-available and scalable fashion across all the resource nodes, services and roles.  This could be an entirely, external resource, managed distinctly and grown as needed even with tiered performance levels yet still comply with the multi-tenancy benefits of OpenStack.  A variety of reference configurations exist for SUSE Enterprise Storage including on HPE Synergy. Such a deployment could exist in the same HPE Synergy Frame, leverage much of the same Compute Module types and storage elements.
+NOTE: To integrate with Ceph-based, SUSE Enterprise Storage, refer to <ulink url="https://documentation.suse.com/soc/9/single-html/suse-openstack-cloud-deployment/#book-deployment">Deployment Guide using Cloud Lifecycle Manager</ulink>. Several steps are needed before the cloud deployment has begun and a few configuration values must be included into the deployment model.</simpara>
+</section>
+<section id="_software">
+<title>Software</title>
+<simpara>SUSE OpenStack Cloud provides an easy to deploy and manage heterogeneous cloud infrastructure for provisioning your development, test and production workloads in a way that is supportable, compliant and secure. With a focus on ease of deployment, the solution also provides a wide choice of hypervisors, one of the broadest range of hardware certification and the ability monitor, manage and optimize your private cloud environment. SUSE OpenStack Cloud provides the enterprise-grade implementation of OpenStack components abstracts the network, computing, and storage resources. Underlying these OpenStack services is an enterprise-grade distribution of SUSE Linux Enterprise Server that provides a stable, secure and performant foundation.</simpara>
+<note><simpara>Information on the OpenStack version and projects or features included can be found in the <ulink url="https://documentation.suse.com/soc/9/single-html/suse-openstack-cloud-deployment/#book-deployment">Deployment Guide using Cloud Lifecycle Manager</ulink></simpara></note>
+<simpara>SUSE OpenStack Cloud enables organizations to set-up and manage their own private clouds and comprises the following components:</simpara>
+<variablelist>
+<varlistentry>
+<term>
+Cloud Lifecycle Management (CLM) Deployment Server
+</term>
+<listitem>
+<simpara>
+sets up the cloud and configures and provisions the remaining resource nodes and roles. It provides the services and tools needed to quickly and easily deploy all the resource nodes in your private cloud instance. This is implemented on a Deployer Node which can be a physical server, a virtual machine or simply a service on one of the OpenStack Control Nodes. Either a web interface or command-line interface is used during the installation process.
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+For provisioning and configuration management, technology based upon Ansible is used for repeatable deployment of the remaining software components to the resource nodes
+</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>
+Control Node(s)
+</term>
+<listitem>
+<simpara>
+host the cloud&#8217;s self-service portal, providing an image repository and other core OpenStack services. They also automatically track resource state within the Network, Compute and Storage nodes, evaluating available capacity for scheduling and deploying workloads. These functions are delivered in an active-active, high-availability configuration and run on SUSE Linux Enterprise Server.
+</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>
+Compute Node(s)
+</term>
+<listitem>
+<simpara>
+are the physical servers, typically running SUSE Linux Enterprise Server with the KVM hypervisor to host virtual machine workloads, optionally integrate with VMware vCenter to host ESXi workloads, or host bare-metal workloads leveraging OpenStack Ironic.
+</simpara>
+</listitem>
+</varlistentry>
+</variablelist>
+<note><simpara>Information on the supported hypervisors can be found in the <ulink url="https://documentation.suse.com/soc/9/single-html/suse-openstack-cloud-deployment/#book-deployment">Deployment Guide using Cloud Lifecycle Manager</ulink></simpara></note>
+<variablelist>
+<varlistentry>
+<term>
+Storage Nodes
+</term>
+<listitem>
+<simpara>
+are the physical servers used to host object storage using either Swift or can be provided via an external SUSE Enterprise Storage cluster, based upon Ceph, to deliver object, block and file access methods. For this smaller implementation, local storage elements connected from the HPE D3940 Storage Module were used across the control and compute nodes to provide this functionality, hence no distinct storage node roles were deployed.
+</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>
+Miscellaneous Services
+</term>
+<listitem>
+<simpara>
+a cloud administrator also leverages the following services:
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+Network Time Protocol (NTP) to keep system clocks in sync and provide consistent timestamps for all resource nodes, logs and actions
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+Domain Name Service (DNS) to provide mapping of hostname to IP from both external sources for the workloads public visibility and internally for the resource nodes within the private cloud.
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+Software repositories of all of the needed components to initially install the resource nodes, plus allow updates to be applied to the nodes over time
+</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+</varlistentry>
+</variablelist>
+<simpara>As preparation, obtain the following software media and documentation artifacts:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+From the <ulink url="https://www.suse.com/products/server/download/">SUSE download site</ulink>, obtain the following:
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+SUSE OpenStack Cloud (DVD1) install media.
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+SUSE Linux Enterprise Server 12-SP4 operating system (DVD1) install media.
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+the SUSE Linux Enterprise Server Software Development Kit (SDK) 12-SP4 (DVD1) install media.
+</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara>
+Utilize either trial or purchased subscriptions for the all the resource nodes to ensure access to support and software updates. The bill of materials section in the appendices outlines the type and quantity of subscriptions needed.
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+In addition, obtain and preview the <ulink url="https://documentation.suse.com/soc/9/">SUSE OpenStack Cloud</ulink> documentation, focusing on the:
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+Deployment Guide using Cloud Lifecycle Manager
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+Operations Guide CLM
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+Security Guide
+</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+</itemizedlist>
+</section>
+</chapter>
+<chapter id="_capacity_and_sizing">
+<title>Capacity and Sizing</title>
+<simpara>For a SUSE OpenStack Cloud deployment, starting with any of the available input models, the minimum hardware requirements are available in <ulink url="https://documentation.suse.com/soc/9/single-html/suse-openstack-cloud-deployment/#book-deployment">Deployment Guide using Cloud Lifecycle Manager</ulink>. In this same reference, scaling limits of the overall cluster node and workloads are also provided. To further refine the needed resource nodes for roles like the compute nodes, some guidelines are available in the community documentation at <ulink url="https://wiki.openstack.org/wiki/OpsGuide-Capacity-Planning-Scaling">OpsGuide-Capacity-Planning-Scaling</ulink>.</simpara>
+</chapter>
+<chapter id="_solution_details">
+<title>Solution Details</title>
+<simpara>This Reference Configuration focuses on a new SUSE OpenStack Cloud deployment which can be scaled over time, utilizing an Entry-scale KVM configuration with the core OpenStack services. This input model template is included in SUSE OpenStack Cloud and described in the respective section of the <ulink url="https://documentation.suse.com/soc/9/single-html/suse-openstack-cloud-deployment/#book-deployment">Deployment Guide using Cloud Lifecycle Manager</ulink>. It serves as a convenient starting point and includes recommended minimum values for node count and resources.</simpara>
+<figure id="img-DeployLV"><title>Deployment Logical View</title>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="HPE-SOC_RC.png"/>
+  </imageobject>
+  <textobject><phrase>Deployment-Logical-View</phrase></textobject>
+</mediaobject>
+</figure>
+<section id="_deployment_flow">
+<title>Deployment Flow</title>
+<simpara>This section is meant as a companion guide to the official network, system and software product deployment documentation, citing specific settings as needed for this reference implementation. Default settings are assumed to be in use unless otherwise cited to accomplish the respective best practices and design decisions herein.</simpara>
+<simpara>Given the very detailed information contained in the <ulink url="https://documentation.suse.com/soc/9/single-html/suse-openstack-cloud-deployment/#book-deployment">Deployment Guide using Cloud Lifecycle Manager</ulink>, only the following additional, incremental and modifications are described below:</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+Pre-Installation Checklist
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+The network topology shown in the following figure was utilized
+</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+</itemizedlist>
+<figure id="img-DeployNW"><title>Deployment Network Topology</title>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="Network.png"/>
+  </imageobject>
+  <textobject><phrase>Deployment-Network-Topology</phrase></textobject>
+</mediaobject>
+</figure>
+<itemizedlist>
+<listitem>
+<simpara>
+Installing the Cloud Lifecycle Manager server
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+To keep the node count small, this functionality was installed and co-resides on one of the Control Node target systems.
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+In this implementation, an existing <ulink url="https://www.suse.com/documentation/sles-12/index.html">Subscription Management Tool</ulink> (SMT) server was available in the environment and already mirrored all the necessary product and update channels.
+</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara>
+Cloud Installation
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+To simplify the process, the Install UI approach was utilized for the initial deployment. As noted in the SUSE OpenStack Cloud documentation, some physical hardware details will be needed as inputs to the web-interface forms as you step through the various stages. However, given the integration with HPE OneView, many of these attributes will be discovered, once a node is selected for inclusion into the deployment.
+</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+</itemizedlist>
+<note><simpara>Since there are many possible cloud configurations, the remaining steps may differ in content and scope from this Entry-scale KVM sample.</simpara></note>
+<itemizedlist>
+<listitem>
+<simpara>
+The following is a summary of actions performed across the workflow process to complete the installation:
+</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>
+Welcome
+</simpara>
+<figure id="img-Welcome"><title>Install UI Welcome</title>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="Welcome.png"/>
+  </imageobject>
+  <textobject><phrase>CLM-Welcome</phrase></textobject>
+</mediaobject>
+</figure>
+</listitem>
+<listitem>
+<simpara>
+Choose an OpenStack Cloud Model - Entry Scale KVM
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+Cloud Model to Deploy - 3 Controller Nodes, 1 Compute Nodes
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+Once a model has been selected, review the documentation for each node role around minimal resources required, the disk layout and the networking setup. At this point, you can effectively setup the necessary items in the HPE OneView, including:
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+Settings &#8594; Addresses and Identifiers (Subnets and Address Ranges)
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+Networks &#8594; Create (associate subnets and designate bandwidths)
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+Network Sets &#8594; Create (aggregate all the necessary Networks)
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+Logical Interconnects &#8594; Edit (include the respective Network Sets)
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+Logical Interconnect Groups &#8594; Edit (include the respective Network Sets)
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+Server Profile Templates &#8594; Create
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+OS Deployment mode &#8594; could be configured to boot from PXE, local storage, shared storage or from an HPE ImageStreamer mount point
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+Firmware (upgrade to the latest and strive for consistency across node types)
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+Manage Connections (assign the Network Set to be bonded across NICs)
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+Local Storage (create the internal RAID1 set and request additional drives for the respective roles)
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+Manage Boot/BIOS/iLO Settings
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+Server Profile &#8594; Create (assign the role template to the target model)
+</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara>
+Add Servers and Assign Server Roles
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+Utilize the Discover function to link SUSE OpenStack Cloud and HPE OneView to see all of the available nodes that can be assigned to to their respective roles:
+</simpara>
+<figure id="img-OVIntegration"><title>Install UI - Integration with HPE OneView</title>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="InstallUI-OVIntegration.png"/>
+  </imageobject>
+  <textobject><phrase>CLM-Welcome</phrase></textobject>
+</mediaobject>
+</figure>
+</listitem>
+<listitem>
+<simpara>
+Then drag and drop the nodes into the roles and ensure there is no missing configuration information, by reviewing and editing each node&#8217;s server details
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+Manage Cloud Settings - setup DNS/NTP, designate Disk Models/NIC Mappings/Interface Model/Networks
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+Manage Subnet and Netmask - edit Management Network information, ensuring a match exists to those setup in HPE OneView
+</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara>
+Choose servers on which the SUSE Linux Enterprise Server operating system will be installed.  Given the small number of initial nodes in this deployment, each was installed with the SUSE Linux Enterprise Server operating system using the ISO media and the HPE iLO virtual media methodology. However, two other alternatives exist:
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+Use the supplied PXE/Cobbler approach - which is made available by the setup configuration of SUSE OpenStack Cloud. To utilize this, you would need to setup one of the NICs as a PXE device in the IHVPartner} OneView Server Profile Template.
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+Use HPE Synergy ImageStreamer to create and leverage an initial golden, base image. If this option is used, you can change the Local Storage configuration in the Server Profile Template to either not exist or to provide storage elements for a given role instead.
+NOTE: So, if the nodes are already pre-installed or utilize HPE Synergy ImageStreamer, this step can effectively be skipped.
+</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara>
+Server and Server Role Summary - confirm settings for each node&#8217;s role and Manage Cloud Settings
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+Review Configuration Files - adjust as needed, until the "Validate" operation completes successfully and then "Deploy" and you can view the process steps in the log viewer.
+</simpara>
+<figure id="img-Deploy"><title>Install UI Deploy</title>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="Deploy.png"/>
+  </imageobject>
+  <textobject><phrase>CLM-Deploy</phrase></textobject>
+</mediaobject>
+</figure>
+</listitem>
+</orderedlist>
+</listitem>
+</itemizedlist>
+<tip><simpara>If issues arise at any of the above steps, you can simply use the "Back" button to address them and continue to iterate through the process until completed.</simpara></tip>
+<simpara>When all of these steps complete successfully, the next screen will provide links to the relevant interfaces used to administer the deployed cluster and utilize all of the available services:</simpara>
+<variablelist>
+<varlistentry>
+<term>
+CLM Admin Console
+</term>
+<listitem>
+<simpara>
+A consolidated graphical view of the services, roles, topology and servers that are included in this deployed instance. This day two administrative interface also continues to integrates with HPE OneView to discover, display and assigned roles to available HPE Synergy Compute Modules. In this fashion, the cluster can scaled up or down over time, taking advantage of the composable features of both the hardware and software defined infrastructure components.
+</simpara>
+</listitem>
+</varlistentry>
+</variablelist>
+<figure id="img-CLMAdminConsole"><title>CLM Admin Console</title>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="CLMAdminConsole.png"/>
+  </imageobject>
+  <textobject><phrase>CLM-Deploy</phrase></textobject>
+</mediaobject>
+</figure>
+<note><simpara>For more details on using and accessing this interface, refer to <ulink url="https://documentation.suse.com/soc/9/single-html/suse-openstack-cloud-operations/#book-operations">Operations Guide CLM</ulink>.</simpara></note>
+<variablelist>
+<varlistentry>
+<term>
+OpenStack Horizon
+</term>
+<listitem>
+<simpara>
+The default graphical interface for users to access, launch and maintain workloads on the OpenStack deployment. Of course you can also completely manage your workloads via command-line API calls as well.
+</simpara>
+</listitem>
+</varlistentry>
+</variablelist>
+<figure id="img-Horizon"><title>OpenStack Horizon User Interface</title>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="Horizon.png"/>
+  </imageobject>
+  <textobject><phrase>CLM-Deploy</phrase></textobject>
+</mediaobject>
+</figure>
+<note><simpara>For more details on using and accessing this interface, refer to <ulink url="https://documentation.suse.com/external-tree/en-us/soc/9/openstack/user/html/horizon/user/index.html">OpenStack Dashboard User Documentation</ulink> and <ulink url="https://documentation.suse.com/soc/9/single-html/suse-openstack-cloud-supplement/#book-supplement">Supplement to Administrator Guide and User Guide</ulink></simpara></note>
+<variablelist>
+<varlistentry>
+<term>
+Ops Console
+</term>
+<listitem>
+<simpara>
+A console to view data about your cloud infrastructure in a web-based graphical user interface (GUI) to make sure your cloud is operating correctly.
+</simpara>
+</listitem>
+</varlistentry>
+</variablelist>
+<figure id="img-OpsConsole"><title>Ops Console User Interface</title>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="OpsConsole.png"/>
+  </imageobject>
+  <textobject><phrase>CLM-Deploy</phrase></textobject>
+</mediaobject>
+</figure>
+<note><simpara>For more details on using and accessing this interface, refer to <ulink url="https://documentation.suse.com/soc/9/single-html/suse-openstack-cloud-operations/#book-operations">Operations Guide CLM</ulink></simpara></note>
+</section>
+<section id="_additional_considerations">
+<title>Additional Considerations</title>
+<simpara>As a verification of your SUSE OpenStack Cloud deployment, it is common to utilize Tempest to ensure the APIs are present and functioning as expected (refer to the <ulink url="https://documentation.suse.com/soc/9/single-html/suse-openstack-cloud-deployment/#book-deployment">Deployment Guide using Cloud Lifecycle Manager</ulink>. Individual, interactive user-interface tasks are also detailed in that guide as well.</simpara>
+<simpara>While this minimal deployment does provide most of the OpenStack functionality, you can scale the cloud instance as needed to meet your demands (refer to the <ulink url="https://documentation.suse.com/soc/9/">SUSE OpenStack Cloud</ulink> documents). As a reminder, multiple input model templates are available in SUSE OpenStack Cloud, which can be used as a starting point or just to leverage approaches for your specific private cloud needs. In addition, there are also comprehensive documents in this same location for:
+* Release Notes
+* Operations Guide CLM
+* Security Guide
+* Supplement to Administrator Guide and User Guide
+* Upstream Administration and User Guides</simpara>
+<simpara>Further, if one wishes to provide functionality to host containerized workloads in a Kubernetes-orchestrated environment, you should ensure the OpenStack Heat service was deployed and then utilize the Heat Template for SUSE CaaS Platform as noted in the <ulink url="https://documentation.suse.com/soc/9/single-html/suse-openstack-cloud-deployment/#book-deployment">Deployment Guide using Cloud Lifecycle Manager</ulink>.</simpara>
+<simpara>If you happened to be using an earlier version of Helion OpenStack or SUSE OpenStack Cloud instance, instructions are available to linearly upgrade or migrate to this newer release, even from the early <ulink url="http://hos.suse.com/">Helion OpenStack</ulink> releases in the form of specific tasks.</simpara>
+</section>
+</chapter>
+<chapter id="_conclusions">
+<title>Conclusions</title>
+<simpara>After understanding and working through the steps described in this Reference Configuration, you should have a working cloud that is scalable through the addition of even more compute and storage nodes, as needed. SUSE OpenStack Cloud is a complete suite of software and may be configured in many different ways. This solution architecture provides a baseline for a private cloud implementation with highly available control plane services, leveraging the excellent, composable nature of HPE Synergy and the coupled integration with Synergy OneView to ease the discovery and mapping of servers to roles. It provides powerful, dense compute, and storage capabilities via the servers selected for this solution architecture. Leveraging the Synergy iLO management capability is indispensable in deploying and managing a cloud cluster of this kind. The combination of this hardware and software platform is an ideal infrastructure environment for many types of bare-metal, virtualized or containerized workloads.</simpara>
+</chapter>
+<chapter id="_resources_and_additional_links">
+<title>Resources and additional links</title>
+<variablelist>
+<varlistentry>
+<term>
+HPE Synergy
+</term>
+<listitem>
+<itemizedlist>
+<listitem>
+<simpara>
+Product Documentation - <ulink url="https://www.hpe.com/us/en/integrated-systems/synergy.html">https://www.hpe.com/us/en/integrated-systems/synergy.html</ulink>
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+HPE Synergy SY480 Gen10 System - <ulink url="https://www.hpe.com/us/en/product-catalog/synergy/synergy-compute/pip.hpe-synergy-480-gen10-compute-module.1010025863.html">https://www.hpe.com/us/en/product-catalog/synergy/synergy-compute/pip.hpe-synergy-480-gen10-compute-module.1010025863.html</ulink>
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+HPE Synergy SY660 Gen10 System - <ulink url="https://buy.hpe.com/us/en/synergy/synergy-compute/synergy-compute-modules/synergy-compute-modules/hpe-synergy-660-gen10-compute-module/p/1010025844">https://buy.hpe.com/us/en/synergy/synergy-compute/synergy-compute-modules/synergy-compute-modules/hpe-synergy-660-gen10-compute-module/p/1010025844</ulink>
+</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+</varlistentry>
+</variablelist>
+<simpara>FixMe (include Synergy/Frame, SY480/SY660 plus D3940 expected)</simpara>
+<table
+frame="all"
+rowsep="1" colsep="1"
+>
+<title>Bill of Materials - HPE Synergy</title>
+<tgroup cols="5">
+<colspec colname="col_1" colwidth="20*"/>
+<colspec colname="col_2" colwidth="20*"/>
+<colspec colname="col_3" colwidth="20*"/>
+<colspec colname="col_4" colwidth="20*"/>
+<colspec colname="col_5" colwidth="20*"/>
+<thead>
+<row>
+<entry align="left" valign="top"><emphasis role="strong"><emphasis>Role</emphasis></emphasis></entry>
+<entry align="left" valign="top"><emphasis role="strong"><emphasis>Quantity</emphasis></emphasis></entry>
+<entry align="left" valign="top"><emphasis role="strong"><emphasis>Product Number</emphasis></emphasis></entry>
+<entry align="left" valign="top"><emphasis role="strong"><emphasis>Description</emphasis></emphasis></entry>
+<entry align="left" valign="top"><emphasis role="strong"><emphasis>Notes</emphasis></emphasis></entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+<variablelist>
+<varlistentry>
+<term>
+SUSE OpenStack Cloud
+</term>
+<listitem>
+<itemizedlist>
+<listitem>
+<simpara>
+Product Documentation - <ulink url="https://documentation.suse.com/soc/9/">https://documentation.suse.com/soc/9/</ulink>
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+Migration Documentation - <ulink url="http://hos.suse.com/">http://hos.suse.com/</ulink>
+</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+</varlistentry>
+</variablelist>
+<table
+frame="all"
+rowsep="1" colsep="1"
+>
+<title>Bill of Materials - Software</title>
+<tgroup cols="5">
+<colspec colname="col_1" colwidth="20*"/>
+<colspec colname="col_2" colwidth="20*"/>
+<colspec colname="col_3" colwidth="20*"/>
+<colspec colname="col_4" colwidth="20*"/>
+<colspec colname="col_5" colwidth="20*"/>
+<thead>
+<row>
+<entry align="left" valign="top"><emphasis role="strong"><emphasis>Role</emphasis></emphasis></entry>
+<entry align="left" valign="top"><emphasis role="strong"><emphasis>Quantity</emphasis></emphasis></entry>
+<entry align="left" valign="top"><emphasis role="strong"><emphasis>Product Number</emphasis></emphasis></entry>
+<entry align="left" valign="top"><emphasis role="strong"><emphasis>Description</emphasis></emphasis></entry>
+<entry align="left" valign="top"><emphasis role="strong"><emphasis>Notes</emphasis></emphasis></entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara><emphasis role="strong">Software</emphasis></simpara></entry>
+<entry align="left" valign="top"><simpara>1</simpara></entry>
+<entry align="left" valign="top"><simpara>Q9K45AAE</simpara></entry>
+<entry align="left" valign="top"><simpara>SUSE OpenStack Cloud Control Node and Admin Server, x86-64, 1 Instance, 24x7, 3 Year</simpara></entry>
+<entry align="left" valign="top"><simpara>for both Deployer and first Control Node, includes SUSE Linux Enteprise Server</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>1</simpara></entry>
+<entry align="left" valign="top"><simpara>Q9K41AEE</simpara></entry>
+<entry align="left" valign="top"><simpara>SUSE OpenStack Cloud Control Node, x86-64, 1 Instance, 24x7, 3 Year</simpara></entry>
+<entry align="left" valign="top"><simpara>for each remaining Control Node, includes SUSE Linux Enteprise Server</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>1</simpara></entry>
+<entry align="left" valign="top"><simpara>Q9K39AAE</simpara></entry>
+<entry align="left" valign="top"><simpara>SUSE OpenStack Cloud Compute Node, x86-64, 1-2 Sockets, 24x7, 3 Year</simpara></entry>
+<entry align="left" valign="top"><simpara>for each Compute Node, stackable for higher socket-pair systems</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>1</simpara></entry>
+<entry align="left" valign="top"><simpara>M6K29AAE</simpara></entry>
+<entry align="left" valign="top"><simpara>SUSE Linux Enterprise Server, 1-2 Sockets/KVMXen+Unlimited VMs, 24x7, 3 Year</simpara></entry>
+<entry align="left" valign="top"><simpara>for each KVM-based Compute Node</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+</chapter>
+</book>

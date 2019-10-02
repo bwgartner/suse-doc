@@ -1,0 +1,312 @@
+:Author: Bryan Gartner
+:AuthorEMail: Bryan.Gartner@SUSE.com
+
+:CompanyName: SUSE
+:ProductName: OpenStack Cloud
+
+:IHVPartner: HPE
+:IHVPartnerComposer: OneView
+:IHVPlatform: Synergy
+:IHVPlatformComposer: Composer
+:IHVPlatformComposerTech: OneView
+:IHVPlatformImager: ImageStreamer
+:IHVPlatformStorageModule: D3940
+:IHVNetwork: NotApplicable
+:IHVPlatformModel: SY480 Gen10
+:IHVPlatformModel2: SY660 Gen10
+:IHVPlatformBMC: iLO
+
+= Reference Configuration : {CompanyName} {ProductName} 9 with {IHVPartner} {IHVPlatform}
+{Author}, {CompanyName} < {AuthorEMail} >
+
+== Executive Summary
+For most enterprise-level businesses, the demand for an on-premise, multi-tenancy private cloud is increasing rapidly, allowing the hosting of both production and other phases of workloads, whether bare-metal, virtualized or containerized. This approach may compliment an existing public cloud strategy of a business or even help reduce the financial impact and improve security aspects of data and workloads. An intelligent, software-defined infrastructure consisting of {CompanyName}(R) {ProductName} technology and {IHVPartner}(R) {IHVPlatform} system hardware enables you to transform your enterprise. It delivers Infrastructure-as-a-Service (IaaS) to reduce costs while still providing flexibility to keep up with your future demands. Leveraging this tested approach, you will have the confidence to deploy a working solution in an agile manner, and be able to maintain and scale it as needed over time. This Reference Configuration focuses on a new implementation, pointing out design decisions, citing best practices, considerations and recommendations to implement a functional deployment.
+
+=== Document Purpose
+This Reference Configuration is intended to help an organization create and deploy an entry-level, yet scalable on-premise private cloud infrastructure used to orchestrate and manage application workloads.
+
+=== Target Audience
+This Reference Configuration is intended for IT decision makers, architects, system administrators and technicians who are implementing the {IHVPartner} {IHVPlatform} platform and need a flexible, software-defined, Infrastructure-as-a-Service platform. The reader should be familiar with all of the traditional pillars of IT infrastructures -- networking, computing and storage -- along with their local use cases for sizing, scaling and limitations within their environments.
+
+== Introduction
+This Reference Configuration describes a {CompanyName} {ProductName} deployment on {IHVPartner} {IHVPlatform} composable infrastructure and includes details on how the environment was configured. When combined with the accompanying [https://documentation.suse.com/soc/9/single-html/suse-openstack-cloud-deployment/#book-deployment [Deployment Guide], it provides a comprehensive example demonstrating how the OpenStack technology can be set up to take advantage of the {IHVPartner} {IHVPlatform} composable architecture.
+
+The sample configuration resides all within a single {IHVPartner} {IHVPlatform} Frame consists of three control nodes, arranged in a high-availability fashion to host the required OpenStack services and at least a single compute node to host virtualized workloads on the KVM hypervisor. Additional, shared storage elements for the necessary services are provided by the {IHVPartner} {IHVPlatformStorageModule} Storage Module. The number and type of nodes can easily be expanded to scale out the {CompanyName} {ProductName} cluster, even across multiple IHVPartner} {IHVPlatform} Frames by leveraging the integration with IHVPartner} {IHVPlatformComposerTech}.
+
+The {IHVPartner} {IHVPlatform} platform is designed to bridge traditional and cloud-native applications with the implementation of composable infrastructure. Composable infrastructure combines the use of fluid resource pools, made up of compute, storage, and fabric with software-defined intelligence. Composable pools of compute, storage, and fabric can be intelligently and automatically combined to support any workload. The resource pools can be flexed to meet the needs of any business applications including containerized workloads.
+
+
+== Solution Overview
+Private cloud delivers access to pools of compute, storage, networking functionality and other resources over a network. The deployment abstracts the complex, internal infrastructures from end users. It allows individual compute nodes and workloads to be provisioned on demand from predefined templates with little concern about the underlying infrastructure or resources. Services, consisting of many such orchestrated workloads can be provisioned for use in minutes and then scaled appropriately to meet service demands for use by multiple tenants.
+
+NOTE: As a further reference, the National Institute of Standards and Technology's (NIST) https://csrc.nist.gov/publications/detail/sp/800-145/final[Definition of Cloud Computing] describes the important characteristics of cloud computing. 
+
+These resources are integrated through private cloud software to provide the robust foundation for applications and services before adding deployed workloads. Networking is the unifying component tying computing and storage resources together. Given the complexity of such an infrastructure, the network must be fully configurable and adapt to change requests upon demand. Compute resources are provided via physical nodes or virtual machines running atop a hypervisor. Storage resources can be provided through either dedicated storage elements or resilient, distributed storage solutions. Modern, industry-leading x86-based servers like the {IHVPartner} {IHVPlatform} servers provide an ideal platform for private clouds because they balance performance and efficiency. Finally, it is the private cloud software that provides the user interface for setup, configuration, maintenance, and long term operation of these three core components bonding them into a cohesive service offering.
+
+== Solution Components
+
+=== Facility
+While beyond the scope of this Reference Configuration, the heating, ventilation, air conditioning (HVAC) requirements of hosting such a private cloud solution should be carefully considered and planned. To aid in determining the power requirements for system deployment, use the https://h20195.www2.hpe.com/v2/GetPDF.aspx/4AA6-2925ENW.pdf[{IHVPartner} Power Advisor] as either an on-line version or a downloadable application. Using this tool, you can plan the needs for your solution and order the correct Power Distribution Unit (PDU) to account for the local power conditions and connections in the final installation location.
+
+=== Network
+Networking is the technology component which typically requires the most advance planning. Requirements for a private cloud instance have a fair amount of network complexity, especially when integrated with an existing IT infrastructure. For the physical level, using pairs of {IHVPartner} network switch devices as top-of-rack (ToR) switches allows all servers, each having multiple 10GbE, or higher speed, NIC ports, to form a link aggregation group (LAG) across the ports with at least one NIC port on each switch in the stack. When using network interface bonding on the resource nodes, the LAG ideally offers switch redundancy within the rack and enables high availability throughout the infrastructure.
+
+With {IHVPartner} {IHVPlatform}'s inherent features and composability, much of the configuration complexity for network interconnects can easily be codified into a template for each target resource node. This includes mapping specific network interfaces to specific network fabrics within a collection of managed {IHVPartner} {IHVPlatform} frames. The baseline network bandwidth provided by {IHVPartner} {IHVPlatform} is sufficient for a basic deployment -- for each resource node and collectively within the frame. To address management functions, the {IHVPlatformBMC}, out-of-band interface can be connected to the same or another network switch infrastructure, but are fundamentally required to be accessible for the deployment.
+
+NOTE: Given the available options for {IHVPartner} {IHVPlatform} Interconnect Link Modules with 10, 20, or 40 GbE speeds, you are encouraged to utilize the higher speed ones to help address the access of many clients and to deal with intra-cluster networking requirements, especially as the usage and scale increases.
+
+The following considerations for the network switching configuration should be attended to:
+
+* Configure 802.3ad for system port bonding to get the maximum performance of bonded network interfaces
+* Ensure that all similar switching devices are consistent and up-to-date with regard to firmware versions to reduce potential troubleshooting issues later.
+* While a bit beyond the scope of this Reference Configuration, the only remaining consideration is for capacity and bandwidth for the interconnecting Top-of-Rack switches to ensure that client systems operate in a shared fashion.
+
+=== Computing
+
+ifeval::["{IHVPlatform}" == "Synergy"]
+
+include::../../../../_includes/IHV/{IHVPartner}-{IHVPlatform}.adoc[]
+
+endif::[]
+
+ifeval::["{IHVPlatform}" == "Synergy"]
+
+include::../../../../_includes/IHV/{IHVPartner}-{IHVPlatform}-Frame.adoc[]
+
+endif::[]
+
+ifeval::["{IHVPlatform}" == "Synergy"]
+
+include::../../../../_includes/IHV/{IHVPartner}-{IHVPlatform}-{IHVPlatformComposer}.adoc[]
+
+endif::[]
+
+TIP: Using this combination of {CompanyName} {ProductName} and {IHVPartner} {IHVPlatform} {IHVPlatformComposer}, an in-product integration exists for these two technologies to communicate and ease deployment processes. By accessing the discovery APIs of {IHVPartner} {IHVPlatform} {IHVPlatformComposer}, the administrator can find, target, and incorporate resource nodes as needed to expand or modify the nodes within the deployed cluster. More details will be described in the deployment process steps.
+
+ifeval::["{IHVPlatform}" == "Synergy"]
+
+include::./{IHVPartner}-{IHVPlatform}-{IHVPlatformImager}.adoc[]
+
+endif::[]
+
+TIP: Using {IHVPartner} {IHVPlatform} {IHVPlatformImager} represents an efficient choice to deploy the base operating systems of the resource nodes, including all of the disk partitioning requirements. More details, including other installation options, will be described in the deployment process steps.
+
+ifeval::["{IHVPlatform}" == "Synergy"]
+
+include::../../../../_includes/IHV/{IHVPartner}-{IHVPlatform}-SY480Gen10.adoc[]
+include::../../../../_includes/IHV/{IHVPartner}-{IHVPlatform}-SY660Gen10.adoc[]
+
+endif::[]
+
+For this the implementation, either model of the {IHVPartner} {IHVPlatform} Compute Module servers could have been utilized for any of the node roles. Example configurations are included in the "Resources and Additional Links" section.
+
+NOTE: Further, any https://www.suse.com/yessearch/[{CompanyName} YES] certified {IHVPartner} platform can be used for the physical nodes of this deployment, as long as the certification refers to the major version of the underlying {CompanyName} operating system required by the {CompanyName} {ProductName} release.
+
+The following considerations for the system configuration should be attended to:
+
+* Ensure that all similar system devices are consistent and up-to-date with regard to BIOS/uEFI/device firmware versions to reduce potential troubleshooting issues later
+* Reset the BIOS setup configuration to the default setting to have a known baseline configuration to provide consistency.
+* Ensure, for resource nodes being targeted as hypervisor nodes, that virtualization features are enabled.
+* If possible, setup RAID1 mirroring on the storage controller across a pair of drives for the operating system installation
+
+TIP: {IHVPartner} {IHVPlatform} {IHVPartnerComposer} can be setup with Server Profile Templates to apply to the various node roles and consistently deliver platform systems into a known state, adhering to the above considerations.
+
+=== Storage
+The various OpenStack services have differing storage access needs -- object for workload images, block for persistent data volumes, and file for shared applications and data. In addition, each of the resource nodes is also expected to have local, direct-attach storage, which is used for the node's operating system. Each of these requirements can be provided in a scalable fashion, utilizing the Compute Module resources, plus the
+
+ifeval::["{IHVPlatform}" == "Synergy"]
+
+include::../../../../_includes/IHV/{IHVPartner}-{IHVPlatform}-StorageModule.adoc[]
+
+endif::[]
+
+For this deployment, a pair of internal {IHVPartner} {IHVPlatform} Compute Module disk drives are configured as a RAID1 volume (via the {IHVPartner} {IHVPlatform} {IHVPlatformComposer} Server Profile Templates for the operating system) helps to provide fewer points of failure.
+* Of course these could have also been provided by the {IHVPartner} {IHVPlatform} {IHVPlatformStorageModule} Storage Module.
+
+For some of the core OpenStack services, like Glance (object) and Cinder (block), a Server Profile Template mapped additional drives from the {IHVPartner} {IHVPlatform} {IHVPlatformStorageModule} Storage Module. Likewise for the OpenStack Nova compute nodes, mapped drives from the Storage Module, were used to increase the capacity for the ephemeral volumes of the running workloads.
+* Of course all of these storage needs could have have instead been provided by the more popular approach of utilizing a Ceph-based storage cluster. By integrating such a solution, like {CompanyName} Enterprise Storage, all of these access modes can be satisfied in a resilient, highly-available and scalable fashion across all the resource nodes, services and roles.  This could be an entirely, external resource, managed distinctly and grown as needed even with tiered performance levels yet still comply with the multi-tenancy benefits of OpenStack.  A variety of reference configurations exist for {CompanyName} Enterprise Storage including on {IHVPartner} {IHVPlatform}. Such a deployment could exist in the same {IHVPartner} {IHVPlatform} Frame, leverage much of the same Compute Module types and storage elements.
+NOTE: To integrate with Ceph-based, {CompanyName} Enterprise Storage, refer to https://documentation.suse.com/soc/9/single-html/suse-openstack-cloud-deployment/#book-deployment[Deployment Guide using Cloud Lifecycle Manager]. Several steps are needed before the cloud deployment has begun and a few configuration values must be included into the deployment model.
+
+
+=== Software
+{CompanyName} {ProductName} provides an easy to deploy and manage heterogeneous cloud infrastructure for provisioning your development, test and production workloads in a way that is supportable, compliant and secure. With a focus on ease of deployment, the solution also provides a wide choice of hypervisors, one of the broadest range of hardware certification and the ability monitor, manage and optimize your private cloud environment. {CompanyName} {ProductName} provides the enterprise-grade implementation of OpenStack components abstracts the network, computing, and storage resources. Underlying these OpenStack services is an enterprise-grade distribution of {CompanyName} Linux Enterprise Server that provides a stable, secure and performant foundation.
+
+NOTE: Information on the OpenStack version and projects or features included can be found in the https://documentation.suse.com/soc/9/single-html/suse-openstack-cloud-deployment/#book-deployment[Deployment Guide using Cloud Lifecycle Manager]
+
+{CompanyName} {ProductName} enables organizations to set-up and manage their own private clouds and comprises the following components:
+
+Cloud Lifecycle Management (CLM) Deployment Server:: sets up the cloud and configures and provisions the remaining resource nodes and roles. It provides the services and tools needed to quickly and easily deploy all the resource nodes in your private cloud instance. This is implemented on a Deployer Node which can be a physical server, a virtual machine or simply a service on one of the OpenStack Control Nodes. Either a web interface or command-line interface is used during the installation process.
+
+* For provisioning and configuration management, technology based upon Ansible is used for repeatable deployment of the remaining software components to the resource nodes
+
+Control Node(s):: host the cloud's self-service portal, providing an image repository and other core OpenStack services. They also automatically track resource state within the Network, Compute and Storage nodes, evaluating available capacity for scheduling and deploying workloads. These functions are delivered in an active-active, high-availability configuration and run on {CompanyName} Linux Enterprise Server.
+
+Compute Node(s):: are the physical servers, typically running {CompanyName} Linux Enterprise Server with the KVM hypervisor to host virtual machine workloads, optionally integrate with VMware vCenter to host ESXi workloads, or host bare-metal workloads leveraging OpenStack Ironic.
+
+NOTE: Information on the supported hypervisors can be found in the https://documentation.suse.com/soc/9/single-html/suse-openstack-cloud-deployment/#book-deployment[Deployment Guide using Cloud Lifecycle Manager]
+
+Storage Nodes:: are the physical servers used to host object storage using either Swift or can be provided via an external {CompanyName} Enterprise Storage cluster, based upon Ceph, to deliver object, block and file access methods. For this smaller implementation, local storage elements connected from the {IHVPartner} {IHVPlatformStorageModule} Storage Module were used across the control and compute nodes to provide this functionality, hence no distinct storage node roles were deployed.
+
+Miscellaneous Services:: a cloud administrator also leverages the following services:
+* Network Time Protocol (NTP) to keep system clocks in sync and provide consistent timestamps for all resource nodes, logs and actions
+* Domain Name Service (DNS) to provide mapping of hostname to IP from both external sources for the workloads public visibility and internally for the resource nodes within the private cloud.
+* Software repositories of all of the needed components to initially install the resource nodes, plus allow updates to be applied to the nodes over time
+
+As preparation, obtain the following software media and documentation artifacts:
+
+* From the https://www.suse.com/products/server/download/[{CompanyName} download site], obtain the following:
+** {CompanyName} {ProductName} (DVD1) install media.
+** {CompanyName} Linux Enterprise Server 12-SP4 operating system (DVD1) install media.
+** the {CompanyName} Linux Enterprise Server Software Development Kit (SDK) 12-SP4 (DVD1) install media.
+* Utilize either trial or purchased subscriptions for the all the resource nodes to ensure access to support and software updates. The bill of materials section in the appendices outlines the type and quantity of subscriptions needed.
+* In addition, obtain and preview the https://documentation.suse.com/soc/9/[{CompanyName} {ProductName}] documentation, focusing on the:
+** Deployment Guide using Cloud Lifecycle Manager
+** Operations Guide CLM
+** Security Guide
+
+== Capacity and Sizing
+For a {CompanyName} {ProductName} deployment, starting with any of the available input models, the minimum hardware requirements are available in https://documentation.suse.com/soc/9/single-html/suse-openstack-cloud-deployment/#book-deployment[Deployment Guide using Cloud Lifecycle Manager]. In this same reference, scaling limits of the overall cluster node and workloads are also provided. To further refine the needed resource nodes for roles like the compute nodes, some guidelines are available in the community documentation at https://wiki.openstack.org/wiki/OpsGuide-Capacity-Planning-Scaling[OpsGuide-Capacity-Planning-Scaling].
+
+== Solution Details
+
+This Reference Configuration focuses on a new {CompanyName} {ProductName} deployment which can be scaled over time, utilizing an Entry-scale KVM configuration with the core OpenStack services. This input model template is included in {CompanyName} {ProductName} and described in the respective section of the https://documentation.suse.com/soc/9/single-html/suse-openstack-cloud-deployment/#book-deployment[Deployment Guide using Cloud Lifecycle Manager]. It serves as a convenient starting point and includes recommended minimum values for node count and resources.
+
+[[img-DeployLV]]
+.Deployment Logical View
+image::HPE-SOC_RC.png[Deployment-Logical-View, 640, 480]
+
+=== Deployment Flow
+
+This section is meant as a companion guide to the official network, system and software product deployment documentation, citing specific settings as needed for this reference implementation. Default settings are assumed to be in use unless otherwise cited to accomplish the respective best practices and design decisions herein.
+
+Given the very detailed information contained in the https://documentation.suse.com/soc/9/single-html/suse-openstack-cloud-deployment/#book-deployment[Deployment Guide using Cloud Lifecycle Manager], only the following additional, incremental and modifications are described below:
+
+* Pre-Installation Checklist
+** The network topology shown in the following figure was utilized
+
+[[img-DeployNW]]
+.Deployment Network Topology
+image::Network.png[Deployment-Network-Topology, 640, 480]
+
+* Installing the Cloud Lifecycle Manager server
+** To keep the node count small, this functionality was installed and co-resides on one of the Control Node target systems.
+** In this implementation, an existing https://www.suse.com/documentation/sles-12/index.html[Subscription Management Tool] (SMT) server was available in the environment and already mirrored all the necessary product and update channels.
+* Cloud Installation
+** To simplify the process, the Install UI approach was utilized for the initial deployment. As noted in the {CompanyName} {ProductName} documentation, some physical hardware details will be needed as inputs to the web-interface forms as you step through the various stages. However, given the integration with {IHVPartner} {IHVPlatformComposerTech}, many of these attributes will be discovered, once a node is selected for inclusion into the deployment.
+
+NOTE: Since there are many possible cloud configurations, the remaining steps may differ in content and scope from this Entry-scale KVM sample.
+
+*** The following is a summary of actions performed across the workflow process to complete the installation:
+
+. Welcome
++
+[[img-Welcome]]
+.Install UI Welcome
+image::Welcome.png[CLM-Welcome, 640, 480]
+
+. Choose an OpenStack Cloud Model - Entry Scale KVM
+. Cloud Model to Deploy - 3 Controller Nodes, 1 Compute Nodes
+* Once a model has been selected, review the documentation for each node role around minimal resources required, the disk layout and the networking setup. At this point, you can effectively setup the necessary items in the {IHVPartner} {IHVPlatformComposerTech}, including:
+** Settings -> Addresses and Identifiers (Subnets and Address Ranges)
+** Networks -> Create (associate subnets and designate bandwidths)
+** Network Sets -> Create (aggregate all the necessary Networks)
+** Logical Interconnects -> Edit (include the respective Network Sets)
+** Logical Interconnect Groups -> Edit (include the respective Network Sets)
+** Server Profile Templates -> Create
+** OS Deployment mode -> could be configured to boot from PXE, local storage, shared storage or from an {IHVPartner} {IHVPlatformImager} mount point
+** Firmware (upgrade to the latest and strive for consistency across node types)
+** Manage Connections (assign the Network Set to be bonded across NICs)
+** Local Storage (create the internal RAID1 set and request additional drives for the respective roles)
+** Manage Boot/BIOS/iLO Settings
+** Server Profile -> Create (assign the role template to the target model)
++
+. Add Servers and Assign Server Roles
+* Utilize the Discover function to link {CompanyName} {ProductName} and {IHVPartner} {IHVPlatformComposerTech} to see all of the available nodes that can be assigned to to their respective roles:
++
+[[img-OVIntegration]]
+.Install UI - Integration with {IHVPartner} {IHVPlatformComposerTech}
+image::InstallUI-OVIntegration.png[CLM-Welcome, 640, 480]
+* Then drag and drop the nodes into the roles and ensure there is no missing configuration information, by reviewing and editing each node's server details
+* Manage Cloud Settings - setup DNS/NTP, designate Disk Models/NIC Mappings/Interface Model/Networks
+* Manage Subnet and Netmask - edit Management Network information, ensuring a match exists to those setup in {IHVPartner} {IHVPlatformComposerTech}
+. Choose servers on which the {CompanyName} Linux Enterprise Server operating system will be installed.  Given the small number of initial nodes in this deployment, each was installed with the {CompanyName} Linux Enterprise Server operating system using the ISO media and the {IHVPartner} {IHVPlatformBMC} virtual media methodology. However, two other alternatives exist:
+* Use the supplied PXE/Cobbler approach - which is made available by the setup configuration of {CompanyName} {ProductName}. To utilize this, you would need to setup one of the NICs as a PXE device in the IHVPartner} {IHVPlatformComposerTech} Server Profile Template.
+* Use {IHVPartner} {IHVPlatform} {IHVPlatformImager} to create and leverage an initial golden, base image. If this option is used, you can change the Local Storage configuration in the Server Profile Template to either not exist or to provide storage elements for a given role instead.
+NOTE: So, if the nodes are already pre-installed or utilize {IHVPartner} {IHVPlatform} {IHVPlatformImager}, this step can effectively be skipped.
++
+. Server and Server Role Summary - confirm settings for each node's role and Manage Cloud Settings
+. Review Configuration Files - adjust as needed, until the "Validate" operation completes successfully and then "Deploy" and you can view the process steps in the log viewer.
++
+[[img-Deploy]]
+.Install UI Deploy
+image::Deploy.png[CLM-Deploy, 640, 480]
+
+TIP: If issues arise at any of the above steps, you can simply use the "Back" button to address them and continue to iterate through the process until completed.
+
+When all of these steps complete successfully, the next screen will provide links to the relevant interfaces used to administer the deployed cluster and utilize all of the available services:
+
+CLM Admin Console:: A consolidated graphical view of the services, roles, topology and servers that are included in this deployed instance. This day two administrative interface also continues to integrates with {IHVPartner} {IHVPlatformComposerTech} to discover, display and assigned roles to available {IHVPartner} {IHVPlatform} Compute Modules. In this fashion, the cluster can scaled up or down over time, taking advantage of the composable features of both the hardware and software defined infrastructure components.
+[[img-CLMAdminConsole]]
+.CLM Admin Console
+image::CLMAdminConsole.png[CLM-Deploy, 640, 480]
+
+NOTE: For more details on using and accessing this interface, refer to https://documentation.suse.com/soc/9/single-html/suse-openstack-cloud-operations/#book-operations[Operations Guide CLM].
+
+OpenStack Horizon:: The default graphical interface for users to access, launch and maintain workloads on the OpenStack deployment. Of course you can also completely manage your workloads via command-line API calls as well.
+[[img-Horizon]]
+.OpenStack Horizon User Interface
+image::Horizon.png[CLM-Deploy, 640, 480]
+NOTE: For more details on using and accessing this interface, refer to https://documentation.suse.com/external-tree/en-us/soc/9/openstack/user/html/horizon/user/index.html[OpenStack Dashboard User Documentation] and https://documentation.suse.com/soc/9/single-html/suse-openstack-cloud-supplement/#book-supplement[Supplement to Administrator Guide and User Guide]
+
+Ops Console:: A console to view data about your cloud infrastructure in a web-based graphical user interface (GUI) to make sure your cloud is operating correctly.
+[[img-OpsConsole]]
+.Ops Console User Interface
+image::OpsConsole.png[CLM-Deploy, 640, 480]
+NOTE: For more details on using and accessing this interface, refer to https://documentation.suse.com/soc/9/single-html/suse-openstack-cloud-operations/#book-operations[Operations Guide CLM]
+
+=== Additional Considerations
+
+As a verification of your {CompanyName} {ProductName} deployment, it is common to utilize Tempest to ensure the APIs are present and functioning as expected (refer to the https://documentation.suse.com/soc/9/single-html/suse-openstack-cloud-deployment/#book-deployment[Deployment Guide using Cloud Lifecycle Manager]. Individual, interactive user-interface tasks are also detailed in that guide as well.
+
+While this minimal deployment does provide most of the OpenStack functionality, you can scale the cloud instance as needed to meet your demands (refer to the https://documentation.suse.com/soc/9/[{CompanyName} {ProductName}] documents). As a reminder, multiple input model templates are available in {CompanyName} {ProductName}, which can be used as a starting point or just to leverage approaches for your specific private cloud needs. In addition, there are also comprehensive documents in this same location for:
+* Release Notes
+* Operations Guide CLM
+* Security Guide
+* Supplement to Administrator Guide and User Guide
+* Upstream Administration and User Guides
+
+Further, if one wishes to provide functionality to host containerized workloads in a Kubernetes-orchestrated environment, you should ensure the OpenStack Heat service was deployed and then utilize the Heat Template for {CompanyName} CaaS Platform as noted in the https://documentation.suse.com/soc/9/single-html/suse-openstack-cloud-deployment/#book-deployment[Deployment Guide using Cloud Lifecycle Manager].
+
+If you happened to be using an earlier version of Helion OpenStack or {CompanyName} {ProductName} instance, instructions are available to linearly upgrade or migrate to this newer release, even from the early http://hos.suse.com/[Helion OpenStack] releases in the form of specific tasks.
+
+== Conclusions
+After understanding and working through the steps described in this Reference Configuration, you should have a working cloud that is scalable through the addition of even more compute and storage nodes, as needed. {CompanyName} {ProductName} is a complete suite of software and may be configured in many different ways. This solution architecture provides a baseline for a private cloud implementation with highly available control plane services, leveraging the excellent, composable nature of {IHVPartner} {IHVPlatform} and the coupled integration with {IHVPlatform} {IHVPlatformComposertech} to ease the discovery and mapping of servers to roles. It provides powerful, dense compute, and storage capabilities via the servers selected for this solution architecture. Leveraging the {IHVPlatform} {IHVPlatformBMC} management capability is indispensable in deploying and managing a cloud cluster of this kind. The combination of this hardware and software platform is an ideal infrastructure environment for many types of bare-metal, virtualized or containerized workloads.
+
+== Resources and additional links
+
+{IHVPartner} {IHVPlatform}::
+* Product Documentation - https://www.hpe.com/us/en/integrated-systems/synergy.html
+* {IHVPartner} {IHVPlatform} {IHVPlatformModel} System - https://www.hpe.com/us/en/product-catalog/synergy/synergy-compute/pip.hpe-synergy-480-gen10-compute-module.1010025863.html
+* {IHVPartner} {IHVPlatform} {IHVPlatformModel2} System - https://buy.hpe.com/us/en/synergy/synergy-compute/synergy-compute-modules/synergy-compute-modules/hpe-synergy-660-gen10-compute-module/p/1010025844
+
+FixMe (include Synergy/Frame, SY480/SY660 plus D3940 expected)
+[cols=",,,,", options="header"]
+.Bill of Materials - {IHVPartner} {IHVPlatform}
+|===
+|*_Role_*|*_Quantity_*|*_Product Number_*|*_Description_*|*_Notes_*
+|||||
+|===
+
+{CompanyName} {ProductName}::
+* Product Documentation - https://documentation.suse.com/soc/9/
+* Migration Documentation - http://hos.suse.com/
+
+[cols=",,,,", options="header"]
+.Bill of Materials - Software
+|===
+|*_Role_*|*_Quantity_*|*_Product Number_*|*_Description_*|*_Notes_*
+|*Software* | 1 | Q9K45AAE | {CompanyName} {ProductName} Control Node and Admin Server, x86-64, 1 Instance, 24x7, 3 Year | for both Deployer and first Control Node, includes {CompanyName} Linux Enteprise Server
+| | 1 | Q9K41AEE | {CompanyName} {ProductName} Control Node, x86-64, 1 Instance, 24x7, 3 Year | for each remaining Control Node, includes {CompanyName} Linux Enteprise Server
+| | 1 | Q9K39AAE | {CompanyName} {ProductName} Compute Node, x86-64, 1-2 Sockets, 24x7, 3 Year | for each Compute Node, stackable for higher socket-pair systems
+| | 1 | M6K29AAE | {CompanyName} Linux Enterprise Server, 1-2 Sockets/KVMXen+Unlimited VMs, 24x7, 3 Year | for each KVM-based Compute Node
+|===

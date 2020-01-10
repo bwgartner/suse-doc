@@ -1,0 +1,14 @@
+
+{IHVPartner} {IHVPlatform} {IHVPlatformModel} Compute Module::
+* Delivers an efficient and flexible two-socket workhorse to support the most demanding workloads. Powered by Intel® Xeon® Scalable Family of processors, up to 3TB DDR4, and large storage capacity within a composable architecture. {IHVPartner} {IHVPlatform} {IHVPlatformModel} Compute Module:
+** Is the most secure server with exclusive {IHVPartner} Silicon Root of Trust. Protect your applications and assets against downtime associated with hacks and viruses.
+** Offers customer choice for greater performance and flexibility with Intel Xeon Scalable Family of processors on the {IHVPlatform} {IHVPlatformModel} architecture.
+** Offers Intelligent System Tuning with processor smoothing and workloads matching to improve processor throughput/overall performance up to 8% over previous generation.
+** Features a maximum memory footprint of 3TB for large in-memory database and analytic applications.
+** Features a hybrid {IHVPartner} Smart Array for both RAID and HBA zoning in a single controller.
+** Is more performant (over previous generation) with:
+*** A 25% performance increase with 1 or 2 processors (up to 205W).
+*** An 11% increase in memory speeds with a wide range of memory sizes.
+*** A 2.5x increase in compute and network connectivity speed gets your data where it's needed faster.
+*** Up to 50% performance improvement in random read IOPs in storage controllers.
+

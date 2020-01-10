@@ -1,0 +1,88 @@
+
+include::../vars.adoc[]
+
+= Virtual Machine Setup Process
+{Author}, {CompanyName} < {AuthorEMail} >
+
+This process outlines how to setup and prepare virtual machines to run the various {CompanyName} solutions in the {IHVPartner} {IHVPartnerEnv}.
+
+== Create and prepare necessary VM settings
+
+After connecting via the VPN and logging into the jumphost, visit the vSphere Web Client, then follow the steps below:
+
+. Via _Hosts and Clusters_
+* Select *_{CompanyName}_* then right click, select _New Virtual Machine_
++
+[[img-prep-Hosts_and_Clusters]]
+.Hosts and Clusters
+image::prep-Hosts_and_Clusters.png[prep-Hosts_and_Clusters, 640, 480]
++
+. On _New Virtual Machine_ dialog
+* Select _Create a new virtual machine_ then *NEXT*
++
+[[img-prep-NVM_Creation]]
+.Select a creation type
+image::prep-NVM_Creation.png[prep-NVM_Creation, 640, 480]
++
+* Provide an appropriate, distinct Virtual machine name in the text field
+* Expand folder location tree, selecting *_{CompanyName}_* then *NEXT*
++
+[[img-prep-NVM_Name]]
+.Select a name and folder
+image::prep-NVM_Name.png[prep-NVM_Name, 640, 480]
++
+* For destination compute resource, expand tree and select *_{CompanyName}_* then *NEXT*
++
+[[img-prep-NVM_Compute_Resource]]
+.Select a compute resource
+image::prep-NVM_Compute_Resource.png[prep-NVM_Compute_Resource, 640, 480]
++
+* For datastore, validate default value of *_{IHVPartnerEnvDS}_* then *NEXT*
++
+[[img-prep-NVM_Storage]]
+.Select storage
+image::prep-NVM_Storage.png[prep-NVM_Storage, 640, 480]
++
+* For compatibility, leave default value of *_ESXi 6.5 and later_* then *NEXT*
++
+[[img-prep-NVM_Compatibility]]
+.Select compatibility
+image::prep-NVM_Compatibility.png[prep-NVM_Compatibility, 640, 480]
++
+* For guest OS
+** Change _Guest OS Family_ to *_Linux_*
+** Change _Guest OS Version_ to *_{CompanyName} openSUSE (64 bit)_* then *NEXT*
++
+[[img-prep-NVM_OS]]
+.Select a guest OS
+image::prep-NVM_OS.png[prep-NVM_OS, 640, 480]
++
+* To customize virtual hardware, adjust _CPU_, _Memory_, _New Hard Size_ values to match at least the minimum requirement quantity/sizes of the target solution role
++
+NOTE: Refer to respective https://documentation.suse.com/[{CompanyName} product documentation] for details on the node requirements
++
+** Adjust _New Network_ via _Browse_ to *_{IHVPartnerEnvNW}_* then *OK*
++
+[[img-prep-NVM_Select_Network]]
+.Select network
+image::prep-NVM_Select_Network.png[prep-NVM_Select_Network, 640, 480]
++
+** Then *NEXT* and *FINISH*
+. Right click on the new "Virtual Machine Name", then _Edit Settings_
++
+[[img-prep-VM_Edit_Settings]]
+.Edit settings
+image::prep-NVM_Edit_Settings.png[prep-NVM_Edit_Settings, 640, 480]
++
+** Expand _CD/DVD Drive 1_ and adjust settings
+*** To _Datastore ISO File_ 
+*** Select _Datastores_ item *_{IHVPartnerEnvDS}_* 
+*** Select _Contents_ item *_SLE-15-SP1-Installer-DVD-x86_64-GM-DVD1.iso_* then *OK*
+*** Check _Connect At Power On_ then *OK*
++
+[[img-prep-VM_CD]]
+.Edit settings CD/DVD drive
+image::prep-NVM_CD.png[prep-NVM_CD, 640, 480]
++
+
+At this point you are ready to _Launch Remote Console_ and power on and install the VM

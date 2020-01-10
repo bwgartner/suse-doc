@@ -1,0 +1,15 @@
+:Author: Bryan Gartner
+:AuthorEMail: Bryan.Gartner@SUSE.com
+
+:CompanyName: SUSE
+:ProductNameOS: Linux Enterpise Server
+:ProductNameContainer: CaaS Platform
+:ProductNameStorage: Enterprise Storage
+:ProductNamePaaS: Cloud Application Platform
+
+:IHVPartner: HPE
+:IHVPartnerEnv: Customer Innovation Center
+:IHVPlatformEnvPlatform: VMware
+:IHVPartnerEnvVMCluster: SUSE
+:IHVPartnerEnvDS: P20800-HIT-SUSE1064-D
+:IHVPartnerEnvNW: DPortGroup_PR_1053_HIT

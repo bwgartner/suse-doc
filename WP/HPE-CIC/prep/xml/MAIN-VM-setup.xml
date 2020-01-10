@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN" "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd">
+<?asciidoc-toc?>
+<?asciidoc-numbered?>
+
+<book lang="en">
+<bookinfo>
+    <title>Virtual Machine Setup Process</title>
+    <author>
+        <firstname>Bryan Gartner, SUSE &lt; Bryan.Gartner@SUSE.com &gt;</firstname>
+    </author>
+    <authorinitials>{</authorinitials>
+<orgname>SUSE</orgname>
+</bookinfo>
+<preface>
+<title></title>
+<simpara>This process outlines how to setup and prepare virtual machines to run the various SUSE solutions in the HPE Customer Innovation Center.</simpara>
+</preface>
+<chapter id="_create_and_prepare_necessary_vm_settings">
+<title>Create and prepare necessary VM settings</title>
+<simpara>After connecting via the VPN and logging into the jumphost, visit the vSphere Web Client, then follow the steps below:</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>
+Via <emphasis>Hosts and Clusters</emphasis>
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+Select <emphasis role="strong"><emphasis>SUSE</emphasis></emphasis> then right click, select <emphasis>New Virtual Machine</emphasis>
+</simpara>
+<figure id="img-prep-Hosts_and_Clusters"><title>Hosts and Clusters</title>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="prep-Hosts_and_Clusters.png"/>
+  </imageobject>
+  <textobject><phrase>prep-Hosts_and_Clusters</phrase></textobject>
+</mediaobject>
+</figure>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara>
+On <emphasis>New Virtual Machine</emphasis> dialog
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+Select <emphasis>Create a new virtual machine</emphasis> then <emphasis role="strong">NEXT</emphasis>
+</simpara>
+<figure id="img-prep-NVM_Creation"><title>Select a creation type</title>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="prep-NVM_Creation.png"/>
+  </imageobject>
+  <textobject><phrase>prep-NVM_Creation</phrase></textobject>
+</mediaobject>
+</figure>
+</listitem>
+<listitem>
+<simpara>
+Provide an appropriate, distinct Virtual machine name in the text field
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+Expand folder location tree, selecting <emphasis role="strong"><emphasis>SUSE</emphasis></emphasis> then <emphasis role="strong">NEXT</emphasis>
+</simpara>
+<figure id="img-prep-NVM_Name"><title>Select a name and folder</title>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="prep-NVM_Name.png"/>
+  </imageobject>
+  <textobject><phrase>prep-NVM_Name</phrase></textobject>
+</mediaobject>
+</figure>
+</listitem>
+<listitem>
+<simpara>
+For destination compute resource, expand tree and select <emphasis role="strong"><emphasis>SUSE</emphasis></emphasis> then <emphasis role="strong">NEXT</emphasis>
+</simpara>
+<figure id="img-prep-NVM_Compute_Resource"><title>Select a compute resource</title>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="prep-NVM_Compute_Resource.png"/>
+  </imageobject>
+  <textobject><phrase>prep-NVM_Compute_Resource</phrase></textobject>
+</mediaobject>
+</figure>
+</listitem>
+<listitem>
+<simpara>
+For datastore, validate default value of <emphasis role="strong"><emphasis>P20800-HIT-SUSE1064-D</emphasis></emphasis> then <emphasis role="strong">NEXT</emphasis>
+</simpara>
+<figure id="img-prep-NVM_Storage"><title>Select storage</title>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="prep-NVM_Storage.png"/>
+  </imageobject>
+  <textobject><phrase>prep-NVM_Storage</phrase></textobject>
+</mediaobject>
+</figure>
+</listitem>
+<listitem>
+<simpara>
+For compatibility, leave default value of <emphasis role="strong"><emphasis>ESXi 6.5 and later</emphasis></emphasis> then <emphasis role="strong">NEXT</emphasis>
+</simpara>
+<figure id="img-prep-NVM_Compatibility"><title>Select compatibility</title>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="prep-NVM_Compatibility.png"/>
+  </imageobject>
+  <textobject><phrase>prep-NVM_Compatibility</phrase></textobject>
+</mediaobject>
+</figure>
+</listitem>
+<listitem>
+<simpara>
+For guest OS
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+Change <emphasis>Guest OS Family</emphasis> to <emphasis role="strong"><emphasis>Linux</emphasis></emphasis>
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+Change <emphasis>Guest OS Version</emphasis> to <emphasis role="strong"><emphasis>SUSE openSUSE (64 bit)</emphasis></emphasis> then <emphasis role="strong">NEXT</emphasis>
+</simpara>
+<figure id="img-prep-NVM_OS"><title>Select a guest OS</title>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="prep-NVM_OS.png"/>
+  </imageobject>
+  <textobject><phrase>prep-NVM_OS</phrase></textobject>
+</mediaobject>
+</figure>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara>
+To customize virtual hardware, adjust <emphasis>CPU</emphasis>, <emphasis>Memory</emphasis>, <emphasis>New Hard Size</emphasis> values to match at least the minimum requirement quantity/sizes of the target solution role
+</simpara>
+<note><simpara>Refer to respective <ulink url="https://documentation.suse.com/">SUSE product documentation</ulink> for details on the node requirements</simpara></note>
+<itemizedlist>
+<listitem>
+<simpara>
+Adjust <emphasis>New Network</emphasis> via <emphasis>Browse</emphasis> to <emphasis role="strong"><emphasis>DPortGroup_PR_1053_HIT</emphasis></emphasis> then <emphasis role="strong">OK</emphasis>
+</simpara>
+<figure id="img-prep-NVM_Select_Network"><title>Select network</title>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="prep-NVM_Select_Network.png"/>
+  </imageobject>
+  <textobject><phrase>prep-NVM_Select_Network</phrase></textobject>
+</mediaobject>
+</figure>
+</listitem>
+<listitem>
+<simpara>
+Then <emphasis role="strong">NEXT</emphasis> and <emphasis role="strong">FINISH</emphasis>
+</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara>
+Right click on the new "Virtual Machine Name", then <emphasis>Edit Settings</emphasis>
+</simpara>
+<figure id="img-prep-VM_Edit_Settings"><title>Edit settings</title>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="prep-NVM_Edit_Settings.png"/>
+  </imageobject>
+  <textobject><phrase>prep-NVM_Edit_Settings</phrase></textobject>
+</mediaobject>
+</figure>
+<itemizedlist>
+<listitem>
+<simpara>
+Expand <emphasis>CD/DVD Drive 1</emphasis> and adjust settings
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+To <emphasis>Datastore ISO File</emphasis>
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+Select <emphasis>Datastores</emphasis> item <emphasis role="strong"><emphasis>P20800-HIT-SUSE1064-D</emphasis></emphasis>
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+Select <emphasis>Contents</emphasis> item <emphasis role="strong"><emphasis>SLE-15-SP1-Installer-DVD-x86_64-GM-DVD1.iso</emphasis></emphasis> then <emphasis role="strong">OK</emphasis>
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+Check <emphasis>Connect At Power On</emphasis> then <emphasis role="strong">OK</emphasis>
+</simpara>
+<figure id="img-prep-VM_CD"><title>Edit settings CD/DVD drive</title>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="prep-NVM_CD.png"/>
+  </imageobject>
+  <textobject><phrase>prep-NVM_CD</phrase></textobject>
+</mediaobject>
+</figure>
+<simpara>At this point you are ready to <emphasis>Launch Remote Console</emphasis> and power on and install the VM</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+</itemizedlist>
+</listitem>
+</orderedlist>
+</chapter>
+</book>

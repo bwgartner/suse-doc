@@ -156,7 +156,7 @@ rowsep="1" colsep="1"
 <entry align="left" valign="top"><simpara>LB</simpara></entry>
 <entry align="left" valign="top"><simpara>mstr.k8s.suse.cic</simpara></entry>
 <entry align="left" valign="top"><simpara>10.6.64.65</simpara></entry>
-<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>co-located on RMT</simpara></entry>
 </row>
 <row>
 <entry align="left" valign="top"><simpara></simpara></entry>

@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN" "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd">
+<?asciidoc-toc?>
+<?asciidoc-numbered?>
+
+<book lang="en">
+<bookinfo>
+    <title>Infrastructure Setup Process</title>
+    <author>
+        <firstname>Bryan Gartner, SUSE &lt; Bryan.Gartner@SUSE.com &gt;</firstname>
+    </author>
+    <authorinitials>{</authorinitials>
+<orgname>SUSE</orgname>
+</bookinfo>
+<preface>
+<title></title>
+<simpara>This process outlines how to setup and prepare the required infrastructures services to run the various SUSE solutions in the HPE Customer Innovation Center.</simpara>
+</preface>
+<chapter id="_infrastructure_services">
+<title>Infrastructure Services</title>
+<simpara>The following infrastructure services are needed to have a complete environment for deployment of other solutions:
+* Environment Parameters
+* IP Subnet Layout
+* Repository Mirroring Tool</simpara>
+<section id="_environment_parameters">
+<title>Environment Parameters</title>
+<table
+frame="all"
+rowsep="1" colsep="1"
+>
+<title>General Network Services</title>
+<tgroup cols="3">
+<colspec colname="col_1" colwidth="33*"/>
+<colspec colname="col_2" colwidth="33*"/>
+<colspec colname="col_3" colwidth="33*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Role      </entry>
+<entry align="left" valign="top">Description</entry>
+<entry align="left" valign="top">Value</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara>DNS</simpara></entry>
+<entry align="left" valign="top"><simpara>Primary</simpara></entry>
+<entry align="left" valign="top"><simpara>10.3.61.31</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>Secondary</simpara></entry>
+<entry align="left" valign="top"><simpara>10.11.0.13</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>NTP</simpara></entry>
+<entry align="left" valign="top"><simpara>Primary</simpara></entry>
+<entry align="left" valign="top"><simpara>10.11.0.10</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>vCenter</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>10.3.61.10</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+</section>
+<section id="_ip_subnet_layout">
+<title>IP Subnet Layout</title>
+<table
+frame="all"
+rowsep="1" colsep="1"
+>
+<title>Class C Range</title>
+<tgroup cols="5">
+<colspec colname="col_1" colwidth="20*"/>
+<colspec colname="col_2" colwidth="20*"/>
+<colspec colname="col_3" colwidth="20*"/>
+<colspec colname="col_4" colwidth="20*"/>
+<colspec colname="col_5" colwidth="20*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Function       </entry>
+<entry align="left" valign="top">Role      </entry>
+<entry align="left" valign="top">Hostname             </entry>
+<entry align="left" valign="top">IPAddress    </entry>
+<entry align="left" valign="top"> Notes</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara>Infrastructure</simpara></entry>
+<entry align="left" valign="top"><simpara>subnet</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>10.6.64.0/24</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>gateway</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>10.6.64.1</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>jumphost</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>10.6.64.2</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>RMT</simpara></entry>
+<entry align="left" valign="top"><simpara>rmt.suse.cic</simpara></entry>
+<entry align="left" valign="top"><simpara>10.6.64.15</simpara></entry>
+<entry align="left" valign="top"><simpara>local DNS for *.suse.cic domain(s)</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>SUSE Enterprise Storage</simpara></entry>
+<entry align="left" valign="top"><simpara>Admin</simpara></entry>
+<entry align="left" valign="top"><simpara>admin.ceph.suse.cic</simpara></entry>
+<entry align="left" valign="top"><simpara>10.6.64.32</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>OSD</simpara></entry>
+<entry align="left" valign="top"><simpara>osd1.ceph.suse.cic</simpara></entry>
+<entry align="left" valign="top"><simpara>10.6.64.36</simpara></entry>
+<entry align="left" valign="top"><simpara>co-located MON</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>osd2.ceph.suse.cic</simpara></entry>
+<entry align="left" valign="top"><simpara>10.6.64.37</simpara></entry>
+<entry align="left" valign="top"><simpara>co-located MON</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>osd3.ceph.suse.cic</simpara></entry>
+<entry align="left" valign="top"><simpara>10.6.64.38</simpara></entry>
+<entry align="left" valign="top"><simpara>co-located MON</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>SUSE CaaS Platform</simpara></entry>
+<entry align="left" valign="top"><simpara>Admin</simpara></entry>
+<entry align="left" valign="top"><simpara>kubeadm.k8s.suse.cic</simpara></entry>
+<entry align="left" valign="top"><simpara>10.6.64.64</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>LB</simpara></entry>
+<entry align="left" valign="top"><simpara>mstr.k8s.suse.cic</simpara></entry>
+<entry align="left" valign="top"><simpara>10.6.64.65</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>Master</simpara></entry>
+<entry align="left" valign="top"><simpara>mstr1.k8s.suse.cic</simpara></entry>
+<entry align="left" valign="top"><simpara>10.6.64.65</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>Worker</simpara></entry>
+<entry align="left" valign="top"><simpara>wrkr1.k8s.suse.cic</simpara></entry>
+<entry align="left" valign="top"><simpara>10.6.64.68</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>wrkr2.k8s.suse.cic</simpara></entry>
+<entry align="left" valign="top"><simpara>10.6.64.69</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>wrkr3.k8s.suse.cic</simpara></entry>
+<entry align="left" valign="top"><simpara>10.6.64.70</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+</section>
+<section id="_repository_mirroring_tool_rmt">
+<title>Repository Mirroring Tool [RMT]</title>
+<simpara>In order to have a local, synced repository of the required SUSE Customer Center [SCC] content (for quick/easy access), the best practice is to have an RMT server running.</simpara>
+<simpara>After connecting via the VPN and logging into the jumphost, visit the vSphere Web Client, then follow the steps below:</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>
+follow the Virtual Machine Setup Process, adjusting these virtual hardware settings:
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+name = RMT
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+CPU = 1
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+Memory = 1GB
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+Hard disk = 48GB
+</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara>
+Follow the SLE Setup Process to install the operating system, with the following adjusted parameter values
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+<emphasis>Network Card Setup</emphasis> for (eth0)
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+refer to general <xref linkend="_environment_parameters"/> and RMT-specific values in <xref linkend="_ip_subnet_layout"/>
+</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara>
+Registration
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+Register System to scc.suse.com
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+using a suitable email address and registration code
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+enable update repositories
+</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara>
+After the installation completes, the VM reboots, then login
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+Follow the <ulink url="https://documentation.suse.com/sles/15-SP1/single-html/SLES-rmt/#book-rmt">Repository Mirroring Tool Guide</ulink> to complete the installation and configuration
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+Once this setup is complete, enable the mirroring of the following content:
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+<literal>rmt-cli product list --all | grep "{ProductNameOSVer}"</literal> to obtain a list of available products
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<literal>rmt-cli product enable &lt;ID&gt;</literal> for each of those returned by the previous command
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+then search the output of <literal>rmt-cli product list --all</literal> and enable the following products
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+SUSE CaaS Platform (Version 4.0)
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+SUSE Enterprise Storage (Version 6)
+</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara>
+Then mirror all of the content with <literal>rmt-cli mirror</literal>
+</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+</itemizedlist>
+</listitem>
+</orderedlist>
+<simpara>At this point you are ready to utilize the RMT node as a registration server for all other SUSE product deployments</simpara>
+</section>
+</chapter>
+</book>

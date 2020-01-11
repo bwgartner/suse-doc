@@ -1,0 +1,96 @@
+
+include::../vars.adoc[]
+
+= Virtual Machine Operating System Installation Process
+{Author}, {CompanyName} < {AuthorEMail} >
+
+This process outlines how to install {CompanyName} {ProductNameOS} {ProductNameOSVer} on an available virtual manachine as a base for the various {CompanyName} solutions in the {IHVPartner} {IHVPartnerEnv}.
+
+NOTE: This document only cites values or inputs which need to be changed from the defaults. Refer to the node roles of {CompanyName} solutions, as that respective document calls out further exceptions to this process. 
+
+TIP: Refer to respective https://documentation.suse.com/sles/15-SP1/single-html/SLES-deployment/#book-sle-deployment[{CompanyName} {ProductNameOS} {ProductNameOSVer} Deployment Guide] for further details. 
+
+== Create and prepare necessary VM settings
+
+After connecting via the VPN and logging into the jumphost, visit the vSphere Web Client, then follow the steps below:
+
+. Right click on the desired VM and _Open Remote Console_
+. Power On the VM, walk through the following screens
++
+NOTE: Refer to specific networking settings in link:../infra/infra-setup.adoc[Infrastructure Setup]
++
+. On the boot screen, select _Installation_ on the boot screen, then *Enter*
+. On the _Language, Keyboard and Product Selection_, select _{CompanyName} {ProductNameOS} {ProductNameOSVer}_ then *Next*
++
+[[img-SLE-Product]]
+.SLE Product Selection
+image::SLE-Product.png[SLE-Product, 640, 480]
++
+. On _{CompanyName} {ProductNameOS} {ProductNameOSVer} License Agreement_, scroll through and read the agreement, select _I Agree to the License terms_ then *Next*
++
+[[img-SLE-License]]
+.SLE License Agreement
+image::SLE-License.png[SLE-License, 640, 480]
++
+. On the _Network Settings Overview_
+* Adjust parameters on _Edit_ Ethernet Card 0 then *Next*
++
+[[img-SLE-Net-Edit]]
+.SLE Network Card Setup
+image::SLE-Net-Edit.png[SLE-Net-Edit, 640, 480]
++
+* Adjust parameters on _Hostname/DNS_
++
+[[img-SLE-Net-Hostname]]
+.SLE Network Settings - Hostname/DNS
+image::SLE-Net-Hostname.png[SLE-Net-Hostname, 640, 480]
++
+* Adjust parameters on _Routing_ then *Next*
++
+[[img-SLE-Net-Routing]]
+.SLE Network Settings - Routing
+image::SLE-Net-Routing.png[SLE-Net-Routing, 640, 480]
++
+. On the _Registration_, select _Register System via local SMT Server_ and add the appropriate _URL_ then *Next*
++
+[[img-SLE-Registration]]
+.SLE Registration
+image::SLE-Registration.png[SLE-Registration, 640, 480]
++
+. Accept defaults on the
+* _Extension and Module Selection_ then *Next*
+* _Add On Product_ then *Next*
+* _System Role_ then *Next*
+. On the _Suggested Partitioning_, use the _Guided Setup_ to adjust the values then *Next*
++
+[[img-SLE-Filesystem]]
+.SLE Filesystem Options
+image::SLE-Filesystem.png[SLE-Filesystem, 640, 480]
++
+. On the _Clock and Time Zone_
+* Adjust values for the Region / Timezone
++
+[[img-SLE-Timezone]]
+.SLE Clock and Time Zone
+image::SLE-Timezone.png[SLE-Timezone, 640, 480]
++
+* Setup NTP in _Other Settings_ then *Accept* and *Next*
++
+[[img-SLE-NTP]]
+.SLE NTP
+image::SLE-NTP.png[SLE-NTP, 640, 480]
++
+. On the _Local User_ provide user and system administrator credentials then *Next
++
+[[img-SLE-User]]
+.SLE User
+image::SLE-User.png[SLE-User, 640, 480]
++
+. One the _Installation Settings_ disable the Firewall then *Install*
++
+[[img-SLE-Install]]
+.SLE Installation Settings
+image::SLE-Install.png[SLE-Install, 640, 480]
++
+
+Once the installation completes, the VM will reboot and you can login with the provided user credentials.

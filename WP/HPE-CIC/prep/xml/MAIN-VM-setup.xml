@@ -148,7 +148,6 @@ To customize virtual hardware, adjust <emphasis>CPU</emphasis>, <emphasis>Memory
 <itemizedlist>
 <listitem>
 <simpara>
-Adjust <emphasis>New Network</emphasis> via <emphasis>Browse</emphasis> to <emphasis role="strong"><emphasis>DPortGroup_PR_1053_HIT</emphasis></emphasis> then <emphasis role="strong">OK</emphasis>
 </simpara>
 <figure id="img-prep-NVM_Select_Network"><title>Select network</title>
 <mediaobject>

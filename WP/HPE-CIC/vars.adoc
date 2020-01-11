@@ -3,13 +3,16 @@
 
 :CompanyName: SUSE
 :ProductNameOS: Linux Enterpise Server
+:ProductNameOSVer: 15 SP1
 :ProductNameContainer: CaaS Platform
+:ProductNameContainerVer: 4.0
 :ProductNameStorage: Enterprise Storage
+:ProductNameStorageVer: 6
 :ProductNamePaaS: Cloud Application Platform
+:ProductNamePaaSVer: 1.5.1
 
 :IHVPartner: HPE
 :IHVPartnerEnv: Customer Innovation Center
-:IHVPlatformEnvPlatform: VMware
 :IHVPartnerEnvVMCluster: SUSE
 :IHVPartnerEnvDS: P20800-HIT-SUSE1064-D
-:IHVPartnerEnvNW: DPortGroup_PR_1053_HIT
+

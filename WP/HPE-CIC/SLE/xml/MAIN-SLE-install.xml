@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN" "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd">
+<?asciidoc-toc?>
+<?asciidoc-numbered?>
+
+<book lang="en">
+<bookinfo>
+    <title>Virtual Machine Operating System Installation Process</title>
+    <author>
+        <firstname>Bryan Gartner, SUSE &lt; Bryan.Gartner@SUSE.com &gt;</firstname>
+    </author>
+    <authorinitials>{</authorinitials>
+<orgname>SUSE</orgname>
+</bookinfo>
+<preface>
+<title></title>
+<simpara>This process outlines how to install SUSE Linux Enterpise Server 15 SP1 on an available virtual manachine as a base for the various SUSE solutions in the HPE Customer Innovation Center.</simpara>
+<note><simpara>This document only cites values or inputs which need to be changed from the defaults. Refer to the node roles of SUSE solutions, as that respective document calls out further exceptions to this process.</simpara></note>
+<tip><simpara>Refer to respective <ulink url="https://documentation.suse.com/sles/15-SP1/single-html/SLES-deployment/#book-sle-deployment">SUSE Linux Enterpise Server 15 SP1 Deployment Guide</ulink> for further details.</simpara></tip>
+</preface>
+<chapter id="_create_and_prepare_necessary_vm_settings">
+<title>Create and prepare necessary VM settings</title>
+<simpara>After connecting via the VPN and logging into the jumphost, visit the vSphere Web Client, then follow the steps below:</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>
+Right click on the desired VM and <emphasis>Open Remote Console</emphasis>
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+Power On the VM, walk through the following screens
+</simpara>
+<note><simpara>Refer to specific networking settings in <ulink url="../infra/infra-setup.adoc">Infrastructure Setup</ulink></simpara></note>
+</listitem>
+<listitem>
+<simpara>
+On the boot screen, select <emphasis>Installation</emphasis> on the boot screen, then <emphasis role="strong">Enter</emphasis>
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+On the <emphasis>Language, Keyboard and Product Selection</emphasis>, select <emphasis>SUSE Linux Enterpise Server 15 SP1</emphasis> then <emphasis role="strong">Next</emphasis>
+</simpara>
+<figure id="img-SLE-Product"><title>SLE Product Selection</title>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="SLE-Product.png"/>
+  </imageobject>
+  <textobject><phrase>SLE-Product</phrase></textobject>
+</mediaobject>
+</figure>
+</listitem>
+<listitem>
+<simpara>
+On <emphasis>SUSE Linux Enterpise Server 15 SP1 License Agreement</emphasis>, scroll through and read the agreement, select <emphasis>I Agree to the License terms</emphasis> then <emphasis role="strong">Next</emphasis>
+</simpara>
+<figure id="img-SLE-License"><title>SLE License Agreement</title>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="SLE-License.png"/>
+  </imageobject>
+  <textobject><phrase>SLE-License</phrase></textobject>
+</mediaobject>
+</figure>
+</listitem>
+<listitem>
+<simpara>
+On the <emphasis>Network Settings Overview</emphasis>
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+Adjust parameters on <emphasis>Edit</emphasis> Ethernet Card 0 then <emphasis role="strong">Next</emphasis>
+</simpara>
+<figure id="img-SLE-Net-Edit"><title>SLE Network Card Setup</title>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="SLE-Net-Edit.png"/>
+  </imageobject>
+  <textobject><phrase>SLE-Net-Edit</phrase></textobject>
+</mediaobject>
+</figure>
+</listitem>
+<listitem>
+<simpara>
+Adjust parameters on <emphasis>Hostname/DNS</emphasis>
+</simpara>
+<figure id="img-SLE-Net-Hostname"><title>SLE Network Settings - Hostname/DNS</title>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="SLE-Net-Hostname.png"/>
+  </imageobject>
+  <textobject><phrase>SLE-Net-Hostname</phrase></textobject>
+</mediaobject>
+</figure>
+</listitem>
+<listitem>
+<simpara>
+Adjust parameters on <emphasis>Routing</emphasis> then <emphasis role="strong">Next</emphasis>
+</simpara>
+<figure id="img-SLE-Net-Routing"><title>SLE Network Settings - Routing</title>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="SLE-Net-Routing.png"/>
+  </imageobject>
+  <textobject><phrase>SLE-Net-Routing</phrase></textobject>
+</mediaobject>
+</figure>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara>
+On the <emphasis>Registration</emphasis>, select <emphasis>Register System via local SMT Server</emphasis> and add the appropriate <emphasis>URL</emphasis> then <emphasis role="strong">Next</emphasis>
+</simpara>
+<figure id="img-SLE-Registration"><title>SLE Registration</title>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="SLE-Registration.png"/>
+  </imageobject>
+  <textobject><phrase>SLE-Registration</phrase></textobject>
+</mediaobject>
+</figure>
+</listitem>
+<listitem>
+<simpara>
+Accept defaults on the
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+<emphasis>Extension and Module Selection</emphasis> then <emphasis role="strong">Next</emphasis>
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis>Add On Product</emphasis> then <emphasis role="strong">Next</emphasis>
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis>System Role</emphasis> then <emphasis role="strong">Next</emphasis>
+</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara>
+On the <emphasis>Suggested Partitioning</emphasis>, use the <emphasis>Guided Setup</emphasis> to adjust the values then <emphasis role="strong">Next</emphasis>
+</simpara>
+<figure id="img-SLE-Filesystem"><title>SLE Filesystem Options</title>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="SLE-Filesystem.png"/>
+  </imageobject>
+  <textobject><phrase>SLE-Filesystem</phrase></textobject>
+</mediaobject>
+</figure>
+</listitem>
+<listitem>
+<simpara>
+On the <emphasis>Clock and Time Zone</emphasis>
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+Adjust values for the Region / Timezone
+</simpara>
+<figure id="img-SLE-Timezone"><title>SLE Clock and Time Zone</title>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="SLE-Timezone.png"/>
+  </imageobject>
+  <textobject><phrase>SLE-Timezone</phrase></textobject>
+</mediaobject>
+</figure>
+</listitem>
+<listitem>
+<simpara>
+Setup NTP in <emphasis>Other Settings</emphasis> then <emphasis role="strong">Accept</emphasis> and <emphasis role="strong">Next</emphasis>
+</simpara>
+<figure id="img-SLE-NTP"><title>SLE NTP</title>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="SLE-NTP.png"/>
+  </imageobject>
+  <textobject><phrase>SLE-NTP</phrase></textobject>
+</mediaobject>
+</figure>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara>
+On the <emphasis>Local User</emphasis> provide user and system administrator credentials then *Next
+</simpara>
+<figure id="img-SLE-User"><title>SLE User</title>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="SLE-User.png"/>
+  </imageobject>
+  <textobject><phrase>SLE-User</phrase></textobject>
+</mediaobject>
+</figure>
+</listitem>
+<listitem>
+<simpara>
+One the <emphasis>Installation Settings</emphasis> disable the Firewall then <emphasis role="strong">Install</emphasis>
+</simpara>
+<figure id="img-SLE-Install"><title>SLE Installation Settings</title>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="SLE-Install.png"/>
+  </imageobject>
+  <textobject><phrase>SLE-Install</phrase></textobject>
+</mediaobject>
+</figure>
+<simpara>Once the installation completes, the VM will reboot and you can login with the provided user credentials.</simpara>
+</listitem>
+</orderedlist>
+</chapter>
+</book>

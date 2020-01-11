@@ -1,0 +1,80 @@
+
+include::../vars.adoc[]
+
+= Infrastructure Setup Process
+{Author}, {CompanyName} < {AuthorEMail} >
+
+This process outlines how to setup and prepare the required infrastructures services to run the various {CompanyName} solutions in the {IHVPartner} {IHVPartnerEnv}.
+
+== Infrastructure Services
+The following infrastructure services are needed to have a complete environment for deployment of other solutions:
+* Environment Parameters
+* IP Subnet Layout
+* Repository Mirroring Tool
+
+=== Environment Parameters
+
+.General Network Services
+[options="header",cols=",,"]
+|===
+|Role      |Description|Value
+| DNS      |Primary    |10.3.61.31
+|          |Secondary  |10.11.0.13
+| NTP      |Primary    |10.11.0.10
+| vCenter  |           |10.3.61.10
+|===
+
+=== IP Subnet Layout
+
+.Class C Range
+[options="header",cols=",,,,"]
+|===
+|Function       |Role      |Hostname             |IPAddress    | Notes
+|Infrastructure |subnet    |                     |10.6.64.0/24 | 
+|               | gateway  |                     |10.6.64.1    |
+|               | jumphost |                     |10.6.64.2    |
+|               | RMT      |rmt.suse.cic         | 10.6.64.15  | local DNS for *.suse.cic domain(s)
+| {CompanyName} {ProductNameStorage}
+                | Admin    |admin.ceph.suse.cic  | 10.6.64.32  | 
+|               | OSD      |osd1.ceph.suse.cic   | 10.6.64.36  | co-located MON
+|               |          |osd2.ceph.suse.cic   | 10.6.64.37  | co-located MON
+|               |          |osd3.ceph.suse.cic   | 10.6.64.38  | co-located MON
+| {CompanyName} {ProductNameContainer}
+                | Admin    |kubeadm.k8s.suse.cic | 10.6.64.64  | 
+|               | LB       |mstr.k8s.suse.cic    | 10.6.64.65  | co-located on RMT
+|               | Master   |mstr1.k8s.suse.cic   | 10.6.64.65  | 
+|               | Worker   |wrkr1.k8s.suse.cic   | 10.6.64.68  | 
+|               |          |wrkr2.k8s.suse.cic   | 10.6.64.69  | 
+|               |          |wrkr3.k8s.suse.cic   | 10.6.64.70  | 
+|===
+
+=== Repository Mirroring Tool [RMT]
+In order to have a local, synced repository of the required {CompanyName} Customer Center [SCC] content (for quick/easy access), the best practice is to have an RMT server running.
+
+After connecting via the VPN and logging into the jumphost, visit the vSphere Web Client, then follow the steps below:
+
+. follow the Virtual Machine Setup Process, adjusting these virtual hardware settings:
+* name = RMT
+* CPU = 1
+* Memory = 1GB
+* Hard disk = 48GB
+
+. Follow the SLE Setup Process to install the operating system, with the following adjusted parameter values
+* _Network Card Setup_ for (eth0)
+** refer to general <<_environment_parameters>> and RMT-specific values in <<_ip_subnet_layout>>
+* Registration
+** Register System to scc.suse.com
+** using a suitable email address and registration code
+** enable update repositories
+
+. After the installation completes, the VM reboots, then login
+* Follow the https://documentation.suse.com/sles/15-SP1/single-html/SLES-rmt/#book-rmt[Repository Mirroring Tool Guide] to complete the installation and configuration
+* Once this setup is complete, enable the mirroring of the following content:
+** `rmt-cli product list --all | grep "{ProductNameOSVer}"` to obtain a list of available products
+** `rmt-cli product enable <ID>` for each of those returned by the previous command
+** then search the output of `rmt-cli product list --all` and enable the following products
+*** {CompanyName} {ProductNameContainer} (Version {ProductNameContainerVer})
+*** {CompanyName} {ProductNameStorage} (Version {ProductNameStorageVer})
+** Then mirror all of the content with `rmt-cli mirror`
+
+At this point you are ready to utilize the RMT node as a registration server for all other {CompanyName} product deployments

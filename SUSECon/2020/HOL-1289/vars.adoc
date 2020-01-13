@@ -1,0 +1,19 @@
+:Author: TBD
+:AuthorEmail: TBD
+
+:AuthorA: Alex Arnoldy
+:AuthorAEMail: Alex.Arnoldy@SUSE.com
+
+:AuthorB: Bryan Gartner
+:AuthorBEMail: Bryan.Gartner@SUSE.com
+
+:CompanyName: SUSE
+:ProductNameOS: Linux Enterpise Server
+:ProductNameOSVer: 15 SP1
+:ProductNameContainer: CaaS Platform
+:ProductNameContainerVer: 4.0
+:ProductNameStorage: Enterprise Storage
+:ProductNameStorageVer: 6
+:ProductNamePaaS: Cloud Application Platform
+:ProductNamePaaSVer: 1.5.1
+

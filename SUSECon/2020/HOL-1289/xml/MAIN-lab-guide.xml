@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN" "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd">
+<?asciidoc-toc?>
+<?asciidoc-numbered?>
+
+<book lang="en">
+<bookinfo>
+    <title>Introduction to Kubernetes HOL-1289</title>
+    <author>
+        <firstname>TBD, SUSE &lt; TBD &gt;</firstname>
+    </author>
+    <authorinitials>{</authorinitials>
+<orgname>SUSE</orgname>
+</bookinfo>
+<chapter id="_ramping_up_to_the_fastlane_a_beginner_8217_s_guide_to_learning_and_using_kubernetes">
+<title>Ramping up to the Fastlane: A Beginner&#8217;s Guide to Learning and Using Kubernetes</title>
+<itemizedlist>
+<listitem>
+<simpara>
+Emerging as the defacto standard of orchestrating containerized, microservice workloads, Kubernetes is quickly becoming a fundamental training goala. In this hands-on session, you will learn how to effectively utilize the Kubernetes technology across the various Dev, Security, Data, and Ops perspectives. Starting with a single workload and then working towards a complete, containerized service deployment, you will interact with and explore the features provided by Kubernetes to leverage the scalable, resilient, manageable environment for the workloads.
+</simpara>
+</listitem>
+</itemizedlist>
+<section id="_start_your_engines">
+<title>Start Your Engines</title>
+<itemizedlist>
+<listitem>
+<simpara>
+Let us get started with a quick, simple interaction with Kubernetes
+</simpara>
+</listitem>
+</itemizedlist>
+</section>
+<section id="_turn_signal_on_getting_ready_to_merge">
+<title>Turn Signal On, Getting Ready to Merge</title>
+<itemizedlist>
+<listitem>
+<simpara>
+Understanding the basics of how to interact
+</simpara>
+</listitem>
+</itemizedlist>
+</section>
+<section id="_heading_down_the_highway">
+<title>Heading Down the Highway</title>
+<itemizedlist>
+<listitem>
+<simpara>
+Becoming aware of all the aspects around you
+</simpara>
+</listitem>
+</itemizedlist>
+</section>
+</chapter>
+<chapter id="_summary">
+<title>Summary</title>
+<simpara>At this point you should now feel like you have enough experience with Kubernetes to share with your peers, begin using it on-premise, in managed services or in public cloud providers.</simpara>
+</chapter>
+</book>

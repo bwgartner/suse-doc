@@ -1,7 +1,7 @@
 
 include::../vars.adoc[]
 
-= Virtual Machine Operating System Installation Process
+= Virtual Machine Base Operating System Installation Process
 {Author}, {CompanyName} < {AuthorEMail} >
 
 This process outlines how to install {CompanyName} {ProductNameOS} {ProductNameOSVer} on an available virtual manachine as a base for the various {CompanyName} solutions in the {IHVPartner} {IHVPartnerEnv}.

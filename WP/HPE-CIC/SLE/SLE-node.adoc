@@ -1,0 +1,81 @@
+
+include::../vars.adoc[]
+
+= Virtual Machine Automated Operating System Installation Process
+{Author}, {CompanyName} < {AuthorEMail} >
+
+This process outlines how to install {CompanyName} {ProductNameOS} {ProductNameOSVer} on an available virtual machine in a more automated fashion for the various roles of the {CompanyName} solutions in the {IHVPartner} {IHVPartnerEnv}.
+
+NOTE: This document only cites values or inputs which need to be changed from the defaults. Refer to the node roles of {CompanyName} solutions, as that respective document calls out further exceptions to this process. 
+
+TIP: Refer to respective https://documentation.suse.com/sles/15-SP1/single-html/SLES-deployment/#book-sle-deployment[{CompanyName} {ProductNameOS} {ProductNameOSVer} Deployment Guide] for further details. 
+
+== Prepare the necessary node role VM settings
+The following minimum, suggested resource settings for the VM setup in the {IHVPartner} {IHVPartnerEnv} environment are denoted for each of the {CompanyName} solution roles:
+
+.Minimum VM Resource Settings
+[options="header",cols=",,,,,,"]
+|===
+| Solution | Quantity | Role      | vCPU | Memory (GB) | Disk (GB) | Network
+|{CompanyName} {ProductNameOS}
+           | tbd      |sle        | 1    | 1           | 16        | 1
+|{CompanyName} {ProductNameHA}
+           | >=2      |ha         | tbd  | tbd         | tbd       | tbd
+|{CompanyName} {ProductNameHPC}
+           | 1        |head       | tbd  | tbd         | tbd       | tbd
+|          | >=2      |cmpt       | tbd  | tbd         | tbd       | tbd
+|{CompanyName} {ProductNameSAP}
+           | tbd      |sap        | tbd  | tbd         | tbd       | tbd
+|{CompanyName} {ProductNameSUma}
+           | 1        |manager    | tbd  | tbd         | tbd       | tbd
+|{CompanyName} {ProductNameContainer}
+           |1         |adm        | 2    | 2           | 24        | 1
+|          |>=1       |master     | 2    | 4           | 48        | 1
+|          |>=2       |worker     | 4    | 8           | 64        | 1
+|{CompanyName} {ProductNameStorage}
+           |1         |adm        | 2    | 4           | 32        | 1
+|          |>=3       |osd       | 4    | 4           | 32,4x64   | 2
+|===
+
+== Install the VM operating system
+After connecting via the VPN and logging into the jumphost, visit the vSphere Web Client, then follow the steps below:
+
+. Right click on the respective VM and _Open Remote Console_
+. Power On the VM, walk through the following screens
++
+TIP: If this is a re-install of the given VM, you likely need to hit `ESC` during the boot startup to ensure you can boot from _CD-ROM Drive_ media.
++
+. On the boot screen, use the arrow key to select _Installation_ on the boot screen
++
+NOTE: Refer to specific IP Subnet Layout networking settings from the link:../infra/infra-setup.adoc[Infrastructure Setup], 
++
+* In the _Boot Options_ input field, type
+** `ifcfg=eth0=<AvailableSparesIP>,<gatewayIPAddress/CIDR>,<localenvDNSIPAddress>,<hostDomainName> autoyast=http://<RMTIPAddress>/repo/autoYast/<nodeRole>.xml`
+*** As an example to deploy a basic _{CompanyName} {ProductNameOS} {ProductNameOSVer}_ VM, use ifcfg=eth0=10.6.64.208/24,10.6.64.1,10.6.64.15,suse.cic autoyast=http://10.6.64.15/repo/autoYast/sle.xml`
++
+NOTE: You can view the content of the autoYaST file via a web browser to review what configuration is being setup and installed.
++
+. Once the operating system install has finished, the VM reboots and the automated post-install configuration completes, then:
+* Login, via root, to the VM and perform these few validations and adjustments:
+** Check the output of
+*** `ip a` for matching setup of network interface IPAddress
+*** `ip r` for matching setup of network routing
+*** `host rmt.suse.cic` to ensure functional DNS
+** Check the contents of the file
+*** /etc/hostname to make sure it matches the intended fully-qualified node's Hostname
+*** Modify, if needed, /etc/hosts to add an entry for the fully-qualified node's hostname
+** Run `yast2`, selecting _Software_
+*** Then _Product Registration_
+**** Select _Register System via local SMT Server_
+**** Input the appropriate _Local Registration Server URL_ to the RMT server (e.g. http://rmt.suse.cic/) then *Next*
+**** Add the respective _Extensions and Modules_ for the desired role, may need to uncheck the _Hide Development Versions_ then *Next*
++
+NOTE: Refer to the respective https://documentation.suse.com[{CompanyName} Solution Deployment Guides] for the required extensions/modules.
++
+**** Read and _Accept_ any designated license agreements, then *Next*
+**** _Accept_, _Ok_ and _Finish_ any recommended package installations
+*** Then _Software Management_
+**** Change _Filter_ to _Patterns_ and verify the respective ones for the target role are installed, then _Accept_ and _OK_ and _Finish_
+***
+
+At this point, the VM should be ready for operational usage and you can login with the provided user credentials.

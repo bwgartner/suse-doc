@@ -5,7 +5,7 @@
 
 <book lang="en">
 <bookinfo>
-    <title>Virtual Machine Operating System Installation Process</title>
+    <title>Virtual Machine Base Operating System Installation Process</title>
     <author>
         <firstname>Bryan Gartner, SUSE &lt; Bryan.Gartner@SUSE.com &gt;</firstname>
     </author>
@@ -14,9 +14,9 @@
 </bookinfo>
 <preface>
 <title></title>
-<simpara>This process outlines how to install SUSE Linux Enterpise Server 15 SP1 on an available virtual manachine as a base for the various SUSE solutions in the HPE Customer Innovation Center.</simpara>
+<simpara>This process outlines how to install SUSE Linux Enterprise Server 15 SP1 on an available virtual manachine as a base for the various SUSE solutions in the HPE Customer Innovation Center.</simpara>
 <note><simpara>This document only cites values or inputs which need to be changed from the defaults. Refer to the node roles of SUSE solutions, as that respective document calls out further exceptions to this process.</simpara></note>
-<tip><simpara>Refer to respective <ulink url="https://documentation.suse.com/sles/15-SP1/single-html/SLES-deployment/#book-sle-deployment">SUSE Linux Enterpise Server 15 SP1 Deployment Guide</ulink> for further details.</simpara></tip>
+<tip><simpara>Refer to respective <ulink url="https://documentation.suse.com/sles/15-SP1/single-html/SLES-deployment/#book-sle-deployment">SUSE Linux Enterprise Server 15 SP1 Deployment Guide</ulink> for further details.</simpara></tip>
 </preface>
 <chapter id="_create_and_prepare_necessary_vm_settings">
 <title>Create and prepare necessary VM settings</title>
@@ -40,7 +40,7 @@ On the boot screen, select <emphasis>Installation</emphasis> on the boot screen,
 </listitem>
 <listitem>
 <simpara>
-On the <emphasis>Language, Keyboard and Product Selection</emphasis>, select <emphasis>SUSE Linux Enterpise Server 15 SP1</emphasis> then <emphasis role="strong">Next</emphasis>
+On the <emphasis>Language, Keyboard and Product Selection</emphasis>, select <emphasis>SUSE Linux Enterprise Server 15 SP1</emphasis> then <emphasis role="strong">Next</emphasis>
 </simpara>
 <figure id="img-SLE-Product"><title>SLE Product Selection</title>
 <mediaobject>
@@ -53,7 +53,7 @@ On the <emphasis>Language, Keyboard and Product Selection</emphasis>, select <em
 </listitem>
 <listitem>
 <simpara>
-On <emphasis>SUSE Linux Enterpise Server 15 SP1 License Agreement</emphasis>, scroll through and read the agreement, select <emphasis>I Agree to the License terms</emphasis> then <emphasis role="strong">Next</emphasis>
+On <emphasis>SUSE Linux Enterprise Server 15 SP1 License Agreement</emphasis>, scroll through and read the agreement, select <emphasis>I Agree to the License terms</emphasis> then <emphasis role="strong">Next</emphasis>
 </simpara>
 <figure id="img-SLE-License"><title>SLE License Agreement</title>
 <mediaobject>

@@ -5,5 +5,5 @@ type daps || {
 	exit 1
 }
 
-MyDC=$(ls DC* | head -1)
+MyDC=DC-${1%.adoc}
 daps --verbosity=3 -d ${MyDC} pdf

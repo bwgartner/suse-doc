@@ -11,17 +11,20 @@ The following infrastructure services are needed to have a complete environment 
 * Environment Parameters
 * IP Subnet Layout
 * Repository Mirroring Tool
+* Domain Name Service (local environment)
+* Load Balancer (local environment)
 
 === Environment Parameters
 
 .General Network Services
-[options="header",cols=",,"]
+[options="header",cols=",,,"]
 |===
-|Role      |Description|Value
-| DNS      |Primary    |10.3.61.31
-|          |Secondary  |10.11.0.13
-| NTP      |Primary    |10.11.0.10
-| vCenter  |           |10.3.61.10
+|Role      | Description | Value     | Notes
+| DNS      | Primary     |10.3.61.31 |
+|          | Secondary   |10.11.0.13 |
+|          | LocalEnv    |10.6.64.15 | provided by RMT (see below)
+| NTP      | Primary     |10.11.0.10 |
+| vCenter  |             |10.3.61.10 |
 |===
 
 === IP Subnet Layout
@@ -33,23 +36,49 @@ The following infrastructure services are needed to have a complete environment 
 |Infrastructure |subnet    |                     |10.6.64.0/24 | 
 |               | gateway  |                     |10.6.64.1    |
 |               | jumphost |                     |10.6.64.2    |
-|               | RMT      |rmt.suse.cic         | 10.6.64.15  | local DNS for *.suse.cic domain(s)
+|               | RMT      |rmt.suse.cic         | 10.6.64.15  | co-located LocalEnv DNS for *.suse.cic domain(s)
+| {CompanyName} {ProductNameOS} 
+                | SLE      |sle.suse.cic         | 10.6.64.16  | 
+| {CompanyName} {ProductNameHA}
+                | TBD      |sle-ha1.suse.cic     | 10.6.64.21  | 
+|               |          |sle-ha2.suse.cic     | 10.6.64.21  |
+| {CompanyName} {ProductNameSUMa}
+                | TBD      |suma.suse.cic        | 10.6.64.24  | 
+| {CompanyName} {ProductNameSAP}
+                | TBD      |sap.suse.cic         | 10.6.64.28  | 
 | {CompanyName} {ProductNameStorage}
-                | Admin    |admin.ceph.suse.cic  | 10.6.64.32  | 
-|               | OSD      |osd1.ceph.suse.cic   | 10.6.64.36  | co-located MON
-|               |          |osd2.ceph.suse.cic   | 10.6.64.37  | co-located MON
-|               |          |osd3.ceph.suse.cic   | 10.6.64.38  | co-located MON
+                | Admin    |adm.ceph.suse.cic    | 10.6.64.32  | 
+|               | OSD      |osd1.ceph.suse.cic   | 10.6.64.36  | co-located MON functionality
+|               |          |osd2.ceph.suse.cic   | 10.6.64.37  | co-located MON functionality
+|               |          |osd3.ceph.suse.cic   | 10.6.64.38  | co-located MON functionality
 | {CompanyName} {ProductNameContainer}
-                | Admin    |kubeadm.k8s.suse.cic | 10.6.64.64  | 
-|               | LB       |mstr.k8s.suse.cic    | 10.6.64.65  | co-located on RMT
+                | Admin    |adm.k8s.suse.cic     | 10.6.64.64  | 
+|               | LB       |mstr.k8s.suse.cic    | 10.6.64.65  | co-located VIP on RMT
 |               | Master   |mstr1.k8s.suse.cic   | 10.6.64.65  | 
 |               | Worker   |wrkr1.k8s.suse.cic   | 10.6.64.68  | 
 |               |          |wrkr2.k8s.suse.cic   | 10.6.64.69  | 
 |               |          |wrkr3.k8s.suse.cic   | 10.6.64.70  | 
+| {CompanyName} {ProductNamePaaS}
+                | TBD      |tbd.cf.suse.cic      | 10.6.64.64  | 
+| {CompanyName} {ProductNameHPC}
+                | TBD      |head.hpc.suse.cic    | 10.6.64.80  | 
+                |          |cmpt1.hpc.suse.cic   | 10.6.64.81  | 
+                |          |cmpt2.hpc.suse.cic   | 10.6.64.82  | 
+                |          |cmpt3.hpc.suse.cic   | 10.6.64.83  | 
+| spares        |          |n/a                  | 10.6.64.201 | 
+|               |          |n/a                  | 10.6.64.202 | 
+|               |          |n/a                  | 10.6.64.203 | 
+|               |          |n/a                  | 10.6.64.204 | 
+|               |          |n/a                  | 10.6.64.205 | 
+|               |          |n/a                  | 10.6.64.206 | 
+|               |          |n/a                  | 10.6.64.207 | 
+|               |          |n/a                  | 10.6.64.208 | 
 |===
 
-=== Repository Mirroring Tool [RMT]
+=== Repository Mirroring Tool [RMT] Service
 In order to have a local, synced repository of the required {CompanyName} Customer Center [SCC] content (for quick/easy access), the best practice is to have an RMT server running.
+
+IMPORTANT: This node and service should be left running at all times, to provide the repository contents for both installs and updates of all the onter nodes. By default, it mirrors the content each night to stay current.
 
 After connecting via the VPN and logging into the jumphost, visit the vSphere Web Client, then follow the steps below:
 
@@ -57,7 +86,7 @@ After connecting via the VPN and logging into the jumphost, visit the vSphere We
 * name = RMT
 * CPU = 1
 * Memory = 1GB
-* Hard disk = 48GB
+* Hard disk >= 48GB
 
 . Follow the SLE Setup Process to install the operating system, with the following adjusted parameter values
 * _Network Card Setup_ for (eth0)
@@ -77,4 +106,38 @@ After connecting via the VPN and logging into the jumphost, visit the vSphere We
 *** {CompanyName} {ProductNameStorage} (Version {ProductNameStorageVer})
 ** Then mirror all of the content with `rmt-cli mirror`
 
-At this point you are ready to utilize the RMT node as a registration server for all other {CompanyName} product deployments
+At this point you are ready to utilize the RMT node as a repository for installs, access to updates and later registration for additional components for all other {CompanyName} product deployments
+
+=== Domain Name Service [DNS]
+In order to have a name service for the local environment, this service is hosted on the RMT server.
+
+IMPORTANT: This node and service should be left running at all times, to provide the name to IP resolution installs, updates, and runtime operation of all the other nodes.
+
+After connecting via the VPN and logging into the jumphost, either visit the vSphere Web Client to access the RMT VM's Virtual Console or use Putty to ssh directly into the VM.
+
+. Login as "root" then refer to the setup and configuration of DNS in the https://documentation.suse.com/sles/15-SP1/single-html/SLES-admin/#cha-dns[{CompanyName} {ProductNameOS} Administration Guide]
+* During the Wizard Setup or later invocations of `yast2 dns-server`
+** Ensure the Primary and Secondary DNS servers from the <<_environment_parameters>> are configured as the _Forwarders_
+** Add the domain/zones cited in the <<_ip_subnet_layout>> table
+** Add the required _Hostname_ and _IPAddresses_ paired values for each zone
++
+NOTE: This server will be the configured DNS resolver for all VM-based node roles in this local environment
++
+. Validate the setup using the `host <Hostname>` command
+
+=== Load Balancer Service [LB]
+In order to provide resiliency for a given service in the local environment, this service is hosted on the RMT server
+
+IMPORTANT: This node and service should be left running at all times, to provide the required API ports for some key services during installs, updates, and runtime operation of all the other nodes.
+
+After connecting via the VPN and logging into the jumphost, either visit the vSphere Web Client to access the RMT VM's Virtual Console or use Putty to ssh directly into the VM.
+
+. Login as "root" then refer to the setup and configuration of the Load Balancer, using HAProxy, in the https://documentation.suse.com/suse-caasp/4.0/single-html/caasp-deployment/#deployment.preparations[{CompanyName} {ProductNameContainer} Deployment Guide]
++
+NOTE: Despite only have a single CompanyName} {ProductNameContainer} Kubernetes Master Node, this provides a webUI to show the status of the backing nodes.
++
+. Validate the setup by visiting http://10.6.64.65:9000/stats[HAProxy Statistics Report]
+
+== Summary
+While most of this infrastructure setup needs to be only done once for this environment, this document just attempts to capture all the required configurations. Most all of these services should remain running at all times and values configuration values should remain static so as not to impact the deployments or operational aspects.
+

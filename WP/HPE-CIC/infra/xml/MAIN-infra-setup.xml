@@ -21,7 +21,9 @@
 <simpara>The following infrastructure services are needed to have a complete environment for deployment of other solutions:
 * Environment Parameters
 * IP Subnet Layout
-* Repository Mirroring Tool</simpara>
+* Repository Mirroring Tool
+* Domain Name Service (local environment)
+* Load Balancer (local environment)</simpara>
 <section id="_environment_parameters">
 <title>Environment Parameters</title>
 <table
@@ -29,15 +31,17 @@ frame="all"
 rowsep="1" colsep="1"
 >
 <title>General Network Services</title>
-<tgroup cols="3">
-<colspec colname="col_1" colwidth="33*"/>
-<colspec colname="col_2" colwidth="33*"/>
-<colspec colname="col_3" colwidth="33*"/>
+<tgroup cols="4">
+<colspec colname="col_1" colwidth="25*"/>
+<colspec colname="col_2" colwidth="25*"/>
+<colspec colname="col_3" colwidth="25*"/>
+<colspec colname="col_4" colwidth="25*"/>
 <thead>
 <row>
 <entry align="left" valign="top">Role      </entry>
-<entry align="left" valign="top">Description</entry>
-<entry align="left" valign="top">Value</entry>
+<entry align="left" valign="top"> Description </entry>
+<entry align="left" valign="top"> Value     </entry>
+<entry align="left" valign="top"> Notes</entry>
 </row>
 </thead>
 <tbody>
@@ -45,21 +49,31 @@ rowsep="1" colsep="1"
 <entry align="left" valign="top"><simpara>DNS</simpara></entry>
 <entry align="left" valign="top"><simpara>Primary</simpara></entry>
 <entry align="left" valign="top"><simpara>10.3.61.31</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
 </row>
 <row>
 <entry align="left" valign="top"><simpara></simpara></entry>
 <entry align="left" valign="top"><simpara>Secondary</simpara></entry>
 <entry align="left" valign="top"><simpara>10.11.0.13</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>LocalEnv</simpara></entry>
+<entry align="left" valign="top"><simpara>10.6.64.15</simpara></entry>
+<entry align="left" valign="top"><simpara>provided by RMT (see below)</simpara></entry>
 </row>
 <row>
 <entry align="left" valign="top"><simpara>NTP</simpara></entry>
 <entry align="left" valign="top"><simpara>Primary</simpara></entry>
 <entry align="left" valign="top"><simpara>10.11.0.10</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
 </row>
 <row>
 <entry align="left" valign="top"><simpara>vCenter</simpara></entry>
 <entry align="left" valign="top"><simpara></simpara></entry>
 <entry align="left" valign="top"><simpara>10.3.61.10</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
 </row>
 </tbody>
 </tgroup>
@@ -114,12 +128,47 @@ rowsep="1" colsep="1"
 <entry align="left" valign="top"><simpara>RMT</simpara></entry>
 <entry align="left" valign="top"><simpara>rmt.suse.cic</simpara></entry>
 <entry align="left" valign="top"><simpara>10.6.64.15</simpara></entry>
-<entry align="left" valign="top"><simpara>local DNS for *.suse.cic domain(s)</simpara></entry>
+<entry align="left" valign="top"><simpara>co-located LocalEnv DNS for *.suse.cic domain(s)</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>SUSE Linux Enterprise Server</simpara></entry>
+<entry align="left" valign="top"><simpara>SLE</simpara></entry>
+<entry align="left" valign="top"><simpara>sle.suse.cic</simpara></entry>
+<entry align="left" valign="top"><simpara>10.6.64.16</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>SUSE High Availability Extension</simpara></entry>
+<entry align="left" valign="top"><simpara>TBD</simpara></entry>
+<entry align="left" valign="top"><simpara>sle-ha1.suse.cic</simpara></entry>
+<entry align="left" valign="top"><simpara>10.6.64.21</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>sle-ha2.suse.cic</simpara></entry>
+<entry align="left" valign="top"><simpara>10.6.64.21</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>SUSE Manager</simpara></entry>
+<entry align="left" valign="top"><simpara>TBD</simpara></entry>
+<entry align="left" valign="top"><simpara>suma.suse.cic</simpara></entry>
+<entry align="left" valign="top"><simpara>10.6.64.24</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>SUSE Enterprise Storage for SAP Applications</simpara></entry>
+<entry align="left" valign="top"><simpara>TBD</simpara></entry>
+<entry align="left" valign="top"><simpara>sap.suse.cic</simpara></entry>
+<entry align="left" valign="top"><simpara>10.6.64.28</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
 </row>
 <row>
 <entry align="left" valign="top"><simpara>SUSE Enterprise Storage</simpara></entry>
 <entry align="left" valign="top"><simpara>Admin</simpara></entry>
-<entry align="left" valign="top"><simpara>admin.ceph.suse.cic</simpara></entry>
+<entry align="left" valign="top"><simpara>adm.ceph.suse.cic</simpara></entry>
 <entry align="left" valign="top"><simpara>10.6.64.32</simpara></entry>
 <entry align="left" valign="top"><simpara></simpara></entry>
 </row>
@@ -128,26 +177,26 @@ rowsep="1" colsep="1"
 <entry align="left" valign="top"><simpara>OSD</simpara></entry>
 <entry align="left" valign="top"><simpara>osd1.ceph.suse.cic</simpara></entry>
 <entry align="left" valign="top"><simpara>10.6.64.36</simpara></entry>
-<entry align="left" valign="top"><simpara>co-located MON</simpara></entry>
+<entry align="left" valign="top"><simpara>co-located MON functionality</simpara></entry>
 </row>
 <row>
 <entry align="left" valign="top"><simpara></simpara></entry>
 <entry align="left" valign="top"><simpara></simpara></entry>
 <entry align="left" valign="top"><simpara>osd2.ceph.suse.cic</simpara></entry>
 <entry align="left" valign="top"><simpara>10.6.64.37</simpara></entry>
-<entry align="left" valign="top"><simpara>co-located MON</simpara></entry>
+<entry align="left" valign="top"><simpara>co-located MON functionality</simpara></entry>
 </row>
 <row>
 <entry align="left" valign="top"><simpara></simpara></entry>
 <entry align="left" valign="top"><simpara></simpara></entry>
 <entry align="left" valign="top"><simpara>osd3.ceph.suse.cic</simpara></entry>
 <entry align="left" valign="top"><simpara>10.6.64.38</simpara></entry>
-<entry align="left" valign="top"><simpara>co-located MON</simpara></entry>
+<entry align="left" valign="top"><simpara>co-located MON functionality</simpara></entry>
 </row>
 <row>
 <entry align="left" valign="top"><simpara>SUSE CaaS Platform</simpara></entry>
 <entry align="left" valign="top"><simpara>Admin</simpara></entry>
-<entry align="left" valign="top"><simpara>kubeadm.k8s.suse.cic</simpara></entry>
+<entry align="left" valign="top"><simpara>adm.k8s.suse.cic</simpara></entry>
 <entry align="left" valign="top"><simpara>10.6.64.64</simpara></entry>
 <entry align="left" valign="top"><simpara></simpara></entry>
 </row>
@@ -156,7 +205,7 @@ rowsep="1" colsep="1"
 <entry align="left" valign="top"><simpara>LB</simpara></entry>
 <entry align="left" valign="top"><simpara>mstr.k8s.suse.cic</simpara></entry>
 <entry align="left" valign="top"><simpara>10.6.64.65</simpara></entry>
-<entry align="left" valign="top"><simpara>co-located on RMT</simpara></entry>
+<entry align="left" valign="top"><simpara>co-located VIP on RMT</simpara></entry>
 </row>
 <row>
 <entry align="left" valign="top"><simpara></simpara></entry>
@@ -186,13 +235,98 @@ rowsep="1" colsep="1"
 <entry align="left" valign="top"><simpara>10.6.64.70</simpara></entry>
 <entry align="left" valign="top"><simpara></simpara></entry>
 </row>
+<row>
+<entry align="left" valign="top"><simpara>SUSE Cloud Application Platform</simpara></entry>
+<entry align="left" valign="top"><simpara>TBD</simpara></entry>
+<entry align="left" valign="top"><simpara>tbd.cf.suse.cic</simpara></entry>
+<entry align="left" valign="top"><simpara>10.6.64.64</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>SUSE Linux Enterprise High Performance Computing</simpara></entry>
+<entry align="left" valign="top"><simpara>TBD</simpara></entry>
+<entry align="left" valign="top"><simpara>head.hpc.suse.cic</simpara></entry>
+<entry align="left" valign="top"><simpara>10.6.64.80</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>cmpt1.hpc.suse.cic</simpara></entry>
+<entry align="left" valign="top"><simpara>10.6.64.81</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>cmpt2.hpc.suse.cic</simpara></entry>
+<entry align="left" valign="top"><simpara>10.6.64.82</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>cmpt3.hpc.suse.cic</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>10.6.64.83</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>spares</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>n/a</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>10.6.64.201</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>n/a</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>10.6.64.202</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>n/a</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>10.6.64.203</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>n/a</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>10.6.64.204</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>n/a</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>10.6.64.205</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>n/a</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>10.6.64.206</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>n/a</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>10.6.64.207</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>n/a</simpara></entry>
+</row>
 </tbody>
 </tgroup>
 </table>
 </section>
-<section id="_repository_mirroring_tool_rmt">
-<title>Repository Mirroring Tool [RMT]</title>
+<section id="_repository_mirroring_tool_rmt_service">
+<title>Repository Mirroring Tool [RMT] Service</title>
 <simpara>In order to have a local, synced repository of the required SUSE Customer Center [SCC] content (for quick/easy access), the best practice is to have an RMT server running.</simpara>
+<important><simpara>This node and service should be left running at all times, to provide the repository contents for both installs and updates of all the onter nodes. By default, it mirrors the content each night to stay current.</simpara></important>
 <simpara>After connecting via the VPN and logging into the jumphost, visit the vSphere Web Client, then follow the steps below:</simpara>
 <orderedlist numeration="arabic">
 <listitem>
@@ -217,7 +351,7 @@ Memory = 1GB
 </listitem>
 <listitem>
 <simpara>
-Hard disk = 48GB
+Hard disk &gt;= 48GB
 </simpara>
 </listitem>
 </itemizedlist>
@@ -315,7 +449,73 @@ Then mirror all of the content with <literal>rmt-cli mirror</literal>
 </itemizedlist>
 </listitem>
 </orderedlist>
-<simpara>At this point you are ready to utilize the RMT node as a registration server for all other SUSE product deployments</simpara>
+<simpara>At this point you are ready to utilize the RMT node as a repository for installs, access to updates and later registration for additional components for all other SUSE product deployments</simpara>
 </section>
+<section id="_domain_name_service_dns">
+<title>Domain Name Service [DNS]</title>
+<simpara>In order to have a name service for the local environment, this service is hosted on the RMT server.</simpara>
+<important><simpara>This node and service should be left running at all times, to provide the name to IP resolution installs, updates, and runtime operation of all the other nodes.</simpara></important>
+<simpara>After connecting via the VPN and logging into the jumphost, either visit the vSphere Web Client to access the RMT VM&#8217;s Virtual Console or use Putty to ssh directly into the VM.</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>
+Login as "root" then refer to the setup and configuration of DNS in the <ulink url="https://documentation.suse.com/sles/15-SP1/single-html/SLES-admin/#cha-dns">SUSE Linux Enterprise Server Administration Guide</ulink>
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+During the Wizard Setup or later invocations of <literal>yast2 dns-server</literal>
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+Ensure the Primary and Secondary DNS servers from the <xref linkend="_environment_parameters"/> are configured as the <emphasis>Forwarders</emphasis>
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+Add the domain/zones cited in the <xref linkend="_ip_subnet_layout"/> table
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+Add the required <emphasis>Hostname</emphasis> and <emphasis>IPAddresses</emphasis> paired values for each zone
+</simpara>
+<note><simpara>This server will be the configured DNS resolver for all VM-based node roles in this local environment</simpara></note>
+</listitem>
+</itemizedlist>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara>
+Validate the setup using the <literal>host &lt;Hostname&gt;</literal> command
+</simpara>
+</listitem>
+</orderedlist>
+</section>
+<section id="_load_balancer_service_lb">
+<title>Load Balancer Service [LB]</title>
+<simpara>In order to provide resiliency for a given service in the local environment, this service is hosted on the RMT server</simpara>
+<important><simpara>This node and service should be left running at all times, to provide the required API ports for some key services during installs, updates, and runtime operation of all the other nodes.</simpara></important>
+<simpara>After connecting via the VPN and logging into the jumphost, either visit the vSphere Web Client to access the RMT VM&#8217;s Virtual Console or use Putty to ssh directly into the VM.</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>
+Login as "root" then refer to the setup and configuration of the Load Balancer, using HAProxy, in the <ulink url="https://documentation.suse.com/suse-caasp/4.0/single-html/caasp-deployment/#deployment.preparations">SUSE CaaS Platform Deployment Guide</ulink>
+</simpara>
+<note><simpara>Despite only have a single CompanyName} CaaS Platform Kubernetes Master Node, this provides a webUI to show the status of the backing nodes.</simpara></note>
+</listitem>
+<listitem>
+<simpara>
+Validate the setup by visiting <ulink url="http://10.6.64.65:9000/stats">HAProxy Statistics Report</ulink>
+</simpara>
+</listitem>
+</orderedlist>
+</section>
+</chapter>
+<chapter id="_summary">
+<title>Summary</title>
+<simpara>While most of this infrastructure setup needs to be only done once for this environment, this document just attempts to capture all the required configurations. Most all of these services should remain running at all times and values configuration values should remain static so as not to impact the deployments or operational aspects.</simpara>
 </chapter>
 </book>

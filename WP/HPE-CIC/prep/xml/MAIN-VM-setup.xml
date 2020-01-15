@@ -142,12 +142,14 @@ Change <emphasis>Guest OS Version</emphasis> to <emphasis role="strong"><emphasi
 </listitem>
 <listitem>
 <simpara>
-To customize virtual hardware, adjust <emphasis>CPU</emphasis>, <emphasis>Memory</emphasis>, <emphasis>New Hard Size</emphasis> values to match at least the minimum requirement quantity/sizes of the target solution role
+To customize virtual hardware, adjust <emphasis>CPU</emphasis>, <emphasis>Memory</emphasis>, <emphasis>New Hard Disk Size</emphasis> values to match at least the minimum requirement quantity/sizes of the target solution role.
 </simpara>
-<note><simpara>Refer to respective <ulink url="https://documentation.suse.com/">SUSE product documentation</ulink> for details on the node requirements</simpara></note>
+<note><simpara>Refer to respective <ulink url="https://documentation.suse.com/">SUSE product documentation</ulink> for guidelines on the node requirements</simpara></note>
+<tip><simpara>Refer to this environment&#8217;s "Minimum VM Resource Settings" document for the suggested values and quantities of each of the various SUSE solution node roles.</simpara></tip>
 <itemizedlist>
 <listitem>
 <simpara>
+Adjust <emphasis>New Network</emphasis> via <emphasis>Browse</emphasis> to <emphasis role="strong"><emphasis>DPortGroup_PR_1064_HIT</emphasis></emphasis> then <emphasis role="strong">OK</emphasis>
 </simpara>
 <figure id="img-prep-NVM_Select_Network"><title>Select network</title>
 <mediaobject>
@@ -182,7 +184,7 @@ Right click on the new "Virtual Machine Name", then <emphasis>Edit Settings</emp
 <itemizedlist>
 <listitem>
 <simpara>
-Expand <emphasis>CD/DVD Drive 1</emphasis> and adjust settings
+On <emphasis>Virtual Hardware</emphasis> tab, expand <emphasis>CD/DVD Drive 1</emphasis> and adjust settings
 </simpara>
 <itemizedlist>
 <listitem>
@@ -202,7 +204,7 @@ Select <emphasis>Contents</emphasis> item <emphasis role="strong"><emphasis>SLE-
 </listitem>
 <listitem>
 <simpara>
-Check <emphasis>Connect At Power On</emphasis> then <emphasis role="strong">OK</emphasis>
+Check <emphasis>Connect At Power On</emphasis>
 </simpara>
 <figure id="img-prep-VM_CD"><title>Edit settings CD/DVD drive</title>
 <mediaobject>
@@ -212,9 +214,15 @@ Check <emphasis>Connect At Power On</emphasis> then <emphasis role="strong">OK</
   <textobject><phrase>prep-NVM_CD</phrase></textobject>
 </mediaobject>
 </figure>
-<simpara>At this point you are ready to <emphasis>Launch Remote Console</emphasis> and power on and install the VM</simpara>
 </listitem>
 </itemizedlist>
+</listitem>
+<listitem>
+<simpara>
+On <emphasis>VM Options</emphasis> tab, expand <emphasis>Boot Options</emphasis> and adjust <emphasis>Boot Delay</emphasis> to at least <emphasis role="strong">2000</emphasis> milliseconds then <emphasis>OK</emphasis>
+</simpara>
+<tip><simpara>This adjustment is to allow the ability to interrupt the boot process, with the <emphasis role="strong">ESC</emphasis> key to select the <emphasis>CD/DVD drive</emphasis> media for re-installs.</simpara></tip>
+<simpara>At this point you are ready to <emphasis>Launch Remote Console</emphasis> and power on and install the VM</simpara>
 </listitem>
 </itemizedlist>
 </listitem>

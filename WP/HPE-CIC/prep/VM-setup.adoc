@@ -57,9 +57,11 @@ image::prep-NVM_Compatibility.png[prep-NVM_Compatibility, 640, 480]
 .Select a guest OS
 image::prep-NVM_OS.png[prep-NVM_OS, 640, 480]
 +
-* To customize virtual hardware, adjust _CPU_, _Memory_, _New Hard Size_ values to match at least the minimum requirement quantity/sizes of the target solution role
+* To customize virtual hardware, adjust _CPU_, _Memory_, _New Hard Disk Size_ values to match at least the minimum requirement quantity/sizes of the target solution role.
 +
-NOTE: Refer to respective https://documentation.suse.com/[{CompanyName} product documentation] for details on the node requirements
+NOTE: Refer to respective https://documentation.suse.com/[{CompanyName} product documentation] for guidelines on the node requirements
++
+TIP: Refer to this environment's "Minimum VM Resource Settings" document for the suggested values and quantities of each of the various {CompanyName} solution node roles.
 +
 ** Adjust _New Network_ via _Browse_ to *_{IHVPartnerEnvNW}_* then *OK*
 +
@@ -74,15 +76,19 @@ image::prep-NVM_Select_Network.png[prep-NVM_Select_Network, 640, 480]
 .Edit settings
 image::prep-NVM_Edit_Settings.png[prep-NVM_Edit_Settings, 640, 480]
 +
-** Expand _CD/DVD Drive 1_ and adjust settings
+** On _Virtual Hardware_ tab, expand _CD/DVD Drive 1_ and adjust settings
 *** To _Datastore ISO File_ 
 *** Select _Datastores_ item *_{IHVPartnerEnvDS}_* 
 *** Select _Contents_ item *_SLE-15-SP1-Installer-DVD-x86_64-GM-DVD1.iso_* then *OK*
-*** Check _Connect At Power On_ then *OK*
+*** Check _Connect At Power On_
 +
 [[img-prep-VM_CD]]
 .Edit settings CD/DVD drive
 image::prep-NVM_CD.png[prep-NVM_CD, 640, 480]
++
+** On _VM Options_ tab, expand _Boot Options_ and adjust _Boot Delay_ to at least *2000* milliseconds then _OK_
++
+TIP: This adjustment is to allow the ability to interrupt the boot process, with the *ESC* key to select the _CD/DVD drive_ media for re-installs.
 +
 
 At this point you are ready to _Launch Remote Console_ and power on and install the VM

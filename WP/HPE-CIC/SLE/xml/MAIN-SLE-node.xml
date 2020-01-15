@@ -287,7 +287,18 @@ Then <emphasis>Software Management</emphasis>
 <listitem>
 <simpara>
 Change <emphasis>Filter</emphasis> to <emphasis>Patterns</emphasis> and verify the respective ones for the target role are installed, then <emphasis>Accept</emphasis> and <emphasis>OK</emphasis> and <emphasis>Finish</emphasis>
-<emphasis role="strong">*</emphasis>
+</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara>
+Then <emphasis>Online Update</emphasis>
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+Peruse all available updates then <emphasis>Accept</emphasis> and <emphasis>OK</emphasis> and <emphasis>Finish</emphasis> and <emphasis>Close</emphasis> and <emphasis>OK</emphasis>
 </simpara>
 </listitem>
 </itemizedlist>
@@ -299,6 +310,6 @@ Change <emphasis>Filter</emphasis> to <emphasis>Patterns</emphasis> and verify t
 </itemizedlist>
 </listitem>
 </orderedlist>
-<simpara>At this point, the VM should be ready for operational usage and you can login with the provided user credentials.</simpara>
+<simpara>At this point, the VM should be rebooted to ensure application of all the updates.  Afer that the VM should be ready for operational usage and you can login with the provided user credentials.</simpara>
 </chapter>
 </book>

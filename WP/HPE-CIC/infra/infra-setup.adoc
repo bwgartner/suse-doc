@@ -41,7 +41,7 @@ The following infrastructure services are needed to have a complete environment 
                 | SLE      |sle.suse.cic         | 10.6.64.16  | 
 | {CompanyName} {ProductNameHA}
                 | TBD      |sle-ha1.suse.cic     | 10.6.64.21  | 
-|               |          |sle-ha2.suse.cic     | 10.6.64.21  |
+|               |          |sle-ha2.suse.cic     | 10.6.64.22  |
 | {CompanyName} {ProductNameSUMa}
                 | TBD      |suma.suse.cic        | 10.6.64.24  | 
 | {CompanyName} {ProductNameSAP}
@@ -54,17 +54,17 @@ The following infrastructure services are needed to have a complete environment 
 | {CompanyName} {ProductNameContainer}
                 | Admin    |adm.k8s.suse.cic     | 10.6.64.64  | 
 |               | LB       |mstr.k8s.suse.cic    | 10.6.64.65  | co-located VIP on RMT
-|               | Master   |mstr1.k8s.suse.cic   | 10.6.64.65  | 
-|               | Worker   |wrkr1.k8s.suse.cic   | 10.6.64.68  | 
-|               |          |wrkr2.k8s.suse.cic   | 10.6.64.69  | 
-|               |          |wrkr3.k8s.suse.cic   | 10.6.64.70  | 
+|               | Master   |mstr1.k8s.suse.cic   | 10.6.64.66  | 
+|               | Worker   |wrkr1.k8s.suse.cic   | 10.6.64.69  | 
+|               |          |wrkr2.k8s.suse.cic   | 10.6.64.70  | 
+|               |          |wrkr3.k8s.suse.cic   | 10.6.64.71  | 
 | {CompanyName} {ProductNamePaaS}
                 | TBD      |tbd.cf.suse.cic      | 10.6.64.64  | 
 | {CompanyName} {ProductNameHPC}
                 | TBD      |head.hpc.suse.cic    | 10.6.64.80  | 
-                |          |cmpt1.hpc.suse.cic   | 10.6.64.81  | 
-                |          |cmpt2.hpc.suse.cic   | 10.6.64.82  | 
-                |          |cmpt3.hpc.suse.cic   | 10.6.64.83  | 
+|               |          |cmpt1.hpc.suse.cic   | 10.6.64.81  | 
+|               |          |cmpt2.hpc.suse.cic   | 10.6.64.82  | 
+|               |          |cmpt3.hpc.suse.cic   | 10.6.64.83  | 
 | spares        |          |n/a                  | 10.6.64.201 | 
 |               |          |n/a                  | 10.6.64.202 | 
 |               |          |n/a                  | 10.6.64.203 | 

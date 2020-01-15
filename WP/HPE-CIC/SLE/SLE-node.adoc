@@ -76,6 +76,7 @@ NOTE: Refer to the respective https://documentation.suse.com[{CompanyName} Solut
 **** _Accept_, _Ok_ and _Finish_ any recommended package installations
 *** Then _Software Management_
 **** Change _Filter_ to _Patterns_ and verify the respective ones for the target role are installed, then _Accept_ and _OK_ and _Finish_
-***
+*** Then _Online Update_
+**** Peruse all available updates then _Accept_ and _OK_ and _Finish_ and _Close_ and _OK_
 
-At this point, the VM should be ready for operational usage and you can login with the provided user credentials.
+At this point, the VM should be rebooted to ensure application of all the updates.  Afer that the VM should be ready for operational usage and you can login with the provided user credentials.

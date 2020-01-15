@@ -148,7 +148,7 @@ rowsep="1" colsep="1"
 <entry align="left" valign="top"><simpara></simpara></entry>
 <entry align="left" valign="top"><simpara></simpara></entry>
 <entry align="left" valign="top"><simpara>sle-ha2.suse.cic</simpara></entry>
-<entry align="left" valign="top"><simpara>10.6.64.21</simpara></entry>
+<entry align="left" valign="top"><simpara>10.6.64.22</simpara></entry>
 <entry align="left" valign="top"><simpara></simpara></entry>
 </row>
 <row>
@@ -211,28 +211,28 @@ rowsep="1" colsep="1"
 <entry align="left" valign="top"><simpara></simpara></entry>
 <entry align="left" valign="top"><simpara>Master</simpara></entry>
 <entry align="left" valign="top"><simpara>mstr1.k8s.suse.cic</simpara></entry>
-<entry align="left" valign="top"><simpara>10.6.64.65</simpara></entry>
+<entry align="left" valign="top"><simpara>10.6.64.66</simpara></entry>
 <entry align="left" valign="top"><simpara></simpara></entry>
 </row>
 <row>
 <entry align="left" valign="top"><simpara></simpara></entry>
 <entry align="left" valign="top"><simpara>Worker</simpara></entry>
 <entry align="left" valign="top"><simpara>wrkr1.k8s.suse.cic</simpara></entry>
-<entry align="left" valign="top"><simpara>10.6.64.68</simpara></entry>
-<entry align="left" valign="top"><simpara></simpara></entry>
-</row>
-<row>
-<entry align="left" valign="top"><simpara></simpara></entry>
-<entry align="left" valign="top"><simpara></simpara></entry>
-<entry align="left" valign="top"><simpara>wrkr2.k8s.suse.cic</simpara></entry>
 <entry align="left" valign="top"><simpara>10.6.64.69</simpara></entry>
 <entry align="left" valign="top"><simpara></simpara></entry>
 </row>
 <row>
 <entry align="left" valign="top"><simpara></simpara></entry>
 <entry align="left" valign="top"><simpara></simpara></entry>
-<entry align="left" valign="top"><simpara>wrkr3.k8s.suse.cic</simpara></entry>
+<entry align="left" valign="top"><simpara>wrkr2.k8s.suse.cic</simpara></entry>
 <entry align="left" valign="top"><simpara>10.6.64.70</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>wrkr3.k8s.suse.cic</simpara></entry>
+<entry align="left" valign="top"><simpara>10.6.64.71</simpara></entry>
 <entry align="left" valign="top"><simpara></simpara></entry>
 </row>
 <row>
@@ -251,73 +251,80 @@ rowsep="1" colsep="1"
 </row>
 <row>
 <entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
 <entry align="left" valign="top"><simpara>cmpt1.hpc.suse.cic</simpara></entry>
 <entry align="left" valign="top"><simpara>10.6.64.81</simpara></entry>
 <entry align="left" valign="top"><simpara></simpara></entry>
-<entry align="left" valign="top"><simpara></simpara></entry>
 </row>
 <row>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
 <entry align="left" valign="top"><simpara>cmpt2.hpc.suse.cic</simpara></entry>
 <entry align="left" valign="top"><simpara>10.6.64.82</simpara></entry>
 <entry align="left" valign="top"><simpara></simpara></entry>
-<entry align="left" valign="top"><simpara></simpara></entry>
-<entry align="left" valign="top"><simpara>cmpt3.hpc.suse.cic</simpara></entry>
 </row>
 <row>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>cmpt3.hpc.suse.cic</simpara></entry>
 <entry align="left" valign="top"><simpara>10.6.64.83</simpara></entry>
 <entry align="left" valign="top"><simpara></simpara></entry>
+</row>
+<row>
 <entry align="left" valign="top"><simpara>spares</simpara></entry>
 <entry align="left" valign="top"><simpara></simpara></entry>
 <entry align="left" valign="top"><simpara>n/a</simpara></entry>
-</row>
-<row>
 <entry align="left" valign="top"><simpara>10.6.64.201</simpara></entry>
 <entry align="left" valign="top"><simpara></simpara></entry>
+</row>
+<row>
 <entry align="left" valign="top"><simpara></simpara></entry>
 <entry align="left" valign="top"><simpara></simpara></entry>
 <entry align="left" valign="top"><simpara>n/a</simpara></entry>
-</row>
-<row>
 <entry align="left" valign="top"><simpara>10.6.64.202</simpara></entry>
 <entry align="left" valign="top"><simpara></simpara></entry>
+</row>
+<row>
 <entry align="left" valign="top"><simpara></simpara></entry>
 <entry align="left" valign="top"><simpara></simpara></entry>
 <entry align="left" valign="top"><simpara>n/a</simpara></entry>
-</row>
-<row>
 <entry align="left" valign="top"><simpara>10.6.64.203</simpara></entry>
 <entry align="left" valign="top"><simpara></simpara></entry>
+</row>
+<row>
 <entry align="left" valign="top"><simpara></simpara></entry>
 <entry align="left" valign="top"><simpara></simpara></entry>
 <entry align="left" valign="top"><simpara>n/a</simpara></entry>
-</row>
-<row>
 <entry align="left" valign="top"><simpara>10.6.64.204</simpara></entry>
 <entry align="left" valign="top"><simpara></simpara></entry>
+</row>
+<row>
 <entry align="left" valign="top"><simpara></simpara></entry>
 <entry align="left" valign="top"><simpara></simpara></entry>
 <entry align="left" valign="top"><simpara>n/a</simpara></entry>
-</row>
-<row>
 <entry align="left" valign="top"><simpara>10.6.64.205</simpara></entry>
 <entry align="left" valign="top"><simpara></simpara></entry>
+</row>
+<row>
 <entry align="left" valign="top"><simpara></simpara></entry>
 <entry align="left" valign="top"><simpara></simpara></entry>
 <entry align="left" valign="top"><simpara>n/a</simpara></entry>
-</row>
-<row>
 <entry align="left" valign="top"><simpara>10.6.64.206</simpara></entry>
 <entry align="left" valign="top"><simpara></simpara></entry>
-<entry align="left" valign="top"><simpara></simpara></entry>
-<entry align="left" valign="top"><simpara></simpara></entry>
-<entry align="left" valign="top"><simpara>n/a</simpara></entry>
 </row>
 <row>
-<entry align="left" valign="top"><simpara>10.6.64.207</simpara></entry>
-<entry align="left" valign="top"><simpara></simpara></entry>
 <entry align="left" valign="top"><simpara></simpara></entry>
 <entry align="left" valign="top"><simpara></simpara></entry>
 <entry align="left" valign="top"><simpara>n/a</simpara></entry>
+<entry align="left" valign="top"><simpara>10.6.64.207</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>n/a</simpara></entry>
+<entry align="left" valign="top"><simpara>10.6.64.208</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
 </row>
 </tbody>
 </tgroup>

@@ -6,6 +6,7 @@
 :ProductNameOSVer: 15 SP1
 :ProductNameContainer: CaaS Platform
 :ProductNameContainerVer: 4.0
+:ProductNameContainerUser: geeko
 :ProductNameHA: High Availability Extension
 :ProductNameHAVer: 15 SP1
 :ProductNameHPC: Linux Enterprise High Performance Computing

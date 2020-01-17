@@ -1,5 +1,6 @@
 :Author: Bryan Gartner
 :AuthorEMail: Bryan.Gartner@SUSE.com
+:AuthorGHURL: https://github.com/bwgartner/suse-doc/blob/master/WP/HPE-CIC
 
 :CompanyName: SUSE
 :ProductNameOS: Linux Enterprise Server
@@ -22,7 +23,13 @@
 :ProductNameSUMa: Manager
 :ProductNameSUMaVer: 4.0
 
-:IHVPartner: HPE
+:rmtIP: 10.6.64.15
+:lbIP: 10.6.64.65
+:domainName: suse.cic
+:domainNameContainer: k8s
+:domainNameStorage: ceph
+
+:IHVPartner: Hewlett Packard Enterprise
 :IHVPartnerEnv: Customer Innovation Center
 :IHVPartnerEnvVMCluster: SUSE
 :IHVPartnerEnvDS: P20800-HIT-SUSE1064-D

@@ -1,0 +1,81 @@
+:DemoTarget: CaaSPlatform
+
+include::../vars.adoc[]
+
+ifdef::env-github[]
+:imagesdir: {AuthorGHURL}/images/src/png/
+endif::[]
+
+= Demo : {CompanyName} {ProductNameContainer} Installation
+{Author}, {CompanyName} < {AuthorEMail} >
+
+This document outlines the process to install {CompanyName} {ProductNameContainer} {ProductNameContainerVer} on a set of available virtual machines as a solution cluster in the {IHVPartner} {IHVPartnerEnv}. While citing steps, values or inputs which need to be changed from the default, documented process in this environment, you can refer to respective https://documentation.suse.com/suse-caasp/{ProductNameContainerVer}/single-html/caasp-deployment/[{CompanyName} {ProductNameContainer} {ProductNameContainerVer} Deployment Guide] for more complete solution overview and details. 
+
+// FixMe
+TIP: Supplementary Videos - A condensed video version of this end-to-end process is available, within the {IHVPartner} {IHVPartnerEnv} at
+video::https://www.youtube.com/watch?v=4VrhlyIgo3M[FixMe].  Likewise, there are full-length videos of the important process sections referenced throughout this document.
+
+include::env-access.adoc[]
+
+include::demo-infra.adoc[]
+
+== Solution Cluster Deployment
+
+Overview::
+The following process encompasses an end-to-end deployment on Virtual Machines (VM), installation of the operating system and then creation of the cluster to provide the {CompanyName} {ProductNameContainer} solutin cluster. While many alternatives exist to create such a working solution cluster, the process outlined below is closely parallel to accomplishing the same thing on a set of baremetal nodes.
+
+Important: Given the {IHVPartner} {IHVPartnerEnv} is potentially a shared demo environment, ensure these nodes are not in active use before recreating the solution from scratch!
+
+include::vm-allocate.adoc[]
+
+include::node-os.adoc[]
+
+=== Deploying the Solution
+
+After connecting via the VPN and logging into the jumphost, visit the vSphere Web Client, then follow the steps below:
+
+TIP: For a recorded example video representative of this process, view video::https://drive.google.com/open?id=1T1L6W1HysW-qVGR2QmwLof6NDlBlOiS0[{CompanyName} {ProductNameContainer} Cluster Deployment].
+
+. Right click on the respective virtual machine _{ProductNameContainer}-adm.k8s_ and _Open Remote Console_
+. Login to the node as the "{ProductNameContainerUser}" user
+* Setup the necessary https://https://documentation.suse.com/suse-caasp/4.0/single-html/caasp-deployment/#deployment.preparations[Basic SSH Key Configuration]
+* Ensure the "{ProductNameContainerUser}" user has https://https://documentation.suse.com/suse-caasp/4.0/single-html/caasp-deployment/#_[sudo access] on all the cluster ndoes
+* Then proceed with:
+** "Intializing the Cluster" process via
++
+----
+skuba cluster init --control-plane mstr.k8s.suse.cic my-cluster
+----
+*** "Cluster Bootstrap" via
++
+[subs="attributes"]
+----
+cd my-cluster
+
+skuba node bootstrap --user {ProductNameContainerUser} --sudo --target mstr1.k8s.suse.cic mstr1.k8s
+
+skuba node join --role worker --user {ProductNameContainerUser} --sudo --target wrkr1.k8s.suse.cic wrkr1.k8s
+skuba node join --role worker --user {ProductNameContainerUser} --sudo --target wrkr2.k8s.suse.cic wrkr2.k8s
+skuba node join --role worker --user {ProductNameContainerUser} --sudo --target wrkr3.k8s.suse.cic wrkr3.k8s
+----
+*** Verify the cluster, via
++
+----
+skuba cluster status
+----
++
+And with the steps in https://documentation.suse.com/suse-caasp/4.0/single-html/caasp-deployment/#_using_kubectl["Using kubectl"].
+
+== Summary
+At this point, the {CompanyName} {ProductNameContainer} solution cluster should be up, running and functional.  
+
+//FixMe
+TBD - Only included base solution deployment so far, so may add additional sections over time.
+NOTE: In the interim, refer to https://documentation.suse.com/suse-caasp/{ProductNameContainerVer}/single-html/caasp-admin/[{CompanyName} {ProductNameContainer} Administration Guide] for operational aspects and guidance.
+
+== Appendices
+TBD - Will link to other content over time
+//FixMe
+// * RMT Setup
+// * DNS Setup
+// * LB Setup

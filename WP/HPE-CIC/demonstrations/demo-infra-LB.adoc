@@ -1,0 +1,46 @@
+=== Load Balancer (LB) Service
+
+In order to provide resiliency for a given set of APIs of the local {CompanyName} {ProductNameContainer} solution, this service must be configured and running. It is hosted on the RMT server with a secondary IP address.
+
+IMPORTANT: This node (virtual machine) and service should be set up and running prior to deployment of the {CompanyName} {ProductNameContainer} instance and available during runtime of the solution.
+
+Verify Functionality::
+Once connected to the {IHVPartner} {IHVPartnerEnv} environment via the VPN, RDP and logged into the JumpHost
+. Launch a web browser and visit the LB URL:
++
+[subs="attributes"]
+----
+http://{lbIP}:9000/stats
+----
++
+[[img-demo-infra-LB]]
+.Verifying RMT functionality
+image::demo-infra-LB.png[demo-infra-LB, 640, 480]
++
+NOTE: This URL is based upon the designated, reserved IP address of the respective LB service and it's internal configuration. By default the JumpHost does not utilize the local demo DNS service to resolve to the hostname. Beyond the "stats" output, this web page shows the status for the three necessary API services, pointing to mstr1.{domainNameContainer}.{domainName}. Before the solution deployment is completed, that status will be designated as "down" and will show as "active UP" when the solution is successfully installed.
++
+If this appears to be functioning, skip to the next section.
+
+Troubleshooting::
+If the previous access does not work, try the following additional checks:
++
+* Launch a command prompt from the JumpHost _Start_ menu and type
++
+[subs="attributes"]
+----
+ping {rmtIP}
+----
++
+* Launch the `putty` SSH client from the JumpHost _Start_ menu and try connect to the RMT IP address {rmtIP}. Once logged in as root, try:
++
+[subs="attributes"]
+----
+systemctl status haproxy
+----
++
+* Using the Google Chrome web browser, connect to the vSphere HTML5 client interface, log in and make sure the RMT virtual machine is powered on. The virtual remote console can also be launched to assess the state and potentially remedy any operational issues on the node. Refer to the 
++
+TIP: Review the https://documentation.suse.com/suse-caasp/4.0/single-html/caasp-deployment/#deployment.preparations[Load Balancer] section of the {CompanyName} {ProductNameContainer} Deployment Guide.
++
+If the above attempts fails, an LB service function can be recreated per the process mentioned in the <<_appendices>>
+

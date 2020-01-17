@@ -1,0 +1,37 @@
+
+== {IHVPartner} {IHVPartnerEnv}
+Through a corporate sponsorship between {CompanyName} and {IHVPartner}, the resources provided for this solution demo are located in the https://www.hpe.com/us/en/about/executive-briefing-centers/geneva.html[{IHVPartnerEnv}] facility. Joint sales teams and customers are encouraged to interact and engage in this environment to understand the joint value proposition.
+
+Environment Access::
+This section outlines how to access the {IHVPartner} {IHVPartnerEnv} environment and what core functionality is present to leverage.
+
+=== Virtual Private Network (VPN)
+The following preparatory actions are required
+
+. Request a set of VPN user credentials
+. Request a copy of the {IHVPartner} {IHVPartnerEnv} Remote Access document to learn how to
+* Download and Install OpenVPN client
+* Configure the client
+* Start the VPN tunnel, connecting via your VPN user credentials
+
+=== Environment Core Functionality 
+Next, request a copy of the environment service's login credentials.  Once connected via the VPN, you can now access the following infrastructure
+
+include::env-access-infra.adoc[]
+
+Via the Remote Desktop Protocol (RDP), login to the provided JumpHost to utilize as desktop environment.
+[[img-env-access-JumpHost]]
+.Environment JumpHost Access
+image::env-access-JumpHost.png[env-access-JumpHost, 640, 480]
+
+You should be able to
+
+. Access copies of this and other demonstration documents from the _SUSE-CIC_ Desktop Folder
+. Use a web browser to access
+* the Internet (via any of the browsers types, Chrome, Edge, Firefox)
+* vSphere HTML client for VMware(R) host (recommend using Chrome, using HTML5 access)
++
+[[img-env-access-vSphere]]
+.Environment vSphere Access
+image::env-access-vSphere-HTML5.png[env-access-vSphere-HTML5, 640, 480]
+

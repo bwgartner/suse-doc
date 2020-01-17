@@ -1,0 +1,129 @@
+=== Allocation of Target Virtual Machines
+
+Purpose::
+This section outlines how to allocate, prepare and setup the virtual machines to run the various roles of the {CompanyName} solution in the {IHVPartner} {IHVPartnerEnv}.
+
+NOTE: If the required Virtual Machines already exist, review their settings and modify as needed to make sure they match the configurations below. 
+
+==== Create and prepare virtual machine settings
+
+From the JumpHost, launch the Google Chrome browser to connect to the vSphere HTML5 Web Client, then follow the steps below:
+
+. Via _Hosts and Clusters_ context
+* Expand _hitvcenter6.hybritit_hpecic.net_ > _HIT_Solutions_ > _{CompanyName}_ and select _New Virtual Machine_
++
+[[img-vm-allocate-Hosts_and_Clusters]]
+.Add a new virtual machine
+image::vm-allocate-Hosts_and_Clusters.png[vm-allocate-Hosts_and_Clusters, 640, 480]
++
+. Using _New Virtual Machine_ dialog
+* Select _Create a new virtual machine_ then *NEXT*
++
+[[img-vm-allocate-NVM_Creation]]
+.Create a new virtual machine
+image::vm-allocate-NVM_Creation.png[vm-allocate-NVM_Creation, 640, 480]
++
+* Provide an appropriate, distinct Virtual machine name in the text field. A suggested naming scheme is "<solution>-<role>"
++
+ifeval::["{DemoTarget}" == "CaaSPlatform"]
+** For example - {ProductNameContainer}-<role>.{domainNameContainer}
+endif::[]
+ifeval::["{DemoTarget}" == "EnterpriseStorage"]
+** For example - {ProductNameStorage}-<role>.{domainNameStorage}
+endif::[]
++
+* Expand folder location _hitvcenter6.hybritit_hpecic.net_ > _HIT_Solutions_ select _{CompanyName}_ then *NEXT*
++
+[[img-vm-allocate-NVM_Name]]
+.Virtual machine name and location
+image::vm-allocate-NVM_Name.png[vm-allocate-NVM_Name, 640, 480]
++
+* For destination compute resource, expand _hitvcenter6.hybritit_hpecic.net_ > _HIT_Solutions_ select _{CompanyName}_ then *NEXT*
++
+[[img-vm-allocate-NVM_Compute_Resource]]
+.Select a compute resource
+image::vm-allocate-NVM_Compute_Resource.png[vm-allocate-NVM_Compute_Resource, 640, 480]
++
+* For datastore, validate default value of _{IHVPartnerEnvDS}_ then *NEXT*
++
+[[img-vm-allocate-NVM_Storage]]
+.Select storage
+image::vm-allocate-NVM_Storage.png[vm-allocate-NVM_Storage, 640, 480]
++
+* For compatibility, leave default value of _ESXi 6.5 and later_ then *NEXT*
++
+[[img-vm-allocate-NVM_Compatibility]]
+.Select compatibility
+image::vm-allocate-NVM_Compatibility.png[vm-allocate-NVM_Compatibility, 640, 480]
++
+* For guest OS
+** Change _Guest OS Family_ to _Linux_
+** Change _Guest OS Version_ to _{CompanyName} openSUSE (64 bit)_ then *NEXT*
++
+[[img-vm-allocate-NVM_OS]]
+.Select a guest OS
+image::vm-allocate-NVM_OS.png[vm-allocate-NVM_OS, 640, 480]
++
+* Customize the virtual hardware resources, adjusting the quantity and capacity of _CPU_, _Memory_, _New Hard Disk Size_ values to match at least the minimum requirement quantity/sizes of the target solution role.
++ 
+.Solution VM Resource Settings (minimums)
+[options="header",cols=",,,,,,"]
+|===
+| Solution | Quantity | Role      | vCPU | Memory (GB) | Disk (GB) | Network
+ifeval::["{DemoTarget}" == "TBD"]
+|{CompanyName} {ProductNameOS}
+           | tbd      |sle        | 1    | 1           | 16        | 1
+|{CompanyName} {ProductNameHA}
+           | >=2      |ha         | tbd  | tbd         | tbd       | tbd
+|{CompanyName} {ProductNameHPC}
+           | 1        |head       | tbd  | tbd         | tbd       | tbd
+|          | >=2      |cmpt       | tbd  | tbd         | tbd       | tbd
+|{CompanyName} {ProductNameSAP}
+           | tbd      |sap        | tbd  | tbd         | tbd       | tbd
+|{CompanyName} {ProductNameSUma}
+           | 1        |manager    | tbd  | tbd         | tbd       | tbd
+endif::[]
+ifeval::["{DemoTarget}" == "CaaSPlatform"]
+|{CompanyName} {ProductNameContainer}
+           |1         |adm.k8s    | 2    | 2           | 24        | 1
+|          |>=1       |master.k8s | 2    | 4           | 48        | 1
+|          |>=2       |worker.k8s | 4    | 8           | 64        | 1
+endif::[]
+ifeval::["{DemoTarget}" == "EnterpriseStorage"]
+|{CompanyName} {ProductNameStorage}
+           |1         |adm        | 2    | 4           | 32        | 1
+|          |>=3       |osd       | 4    | 4           | 32,4x64   | 2
+endif::[]
+|===
++
+NOTE: Refer to respective https://documentation.suse.com/[{CompanyName} product documentation] for more details on the node resource requirements.
++
+** Adjust _New Network_ via _Browse_ to _{IHVPartnerEnvNW}_, providing the recommended quantity of network interfaces then *OK*
++
+[[img-vm-allocate-NVM_Select_Network]]
+.Select network
+image::vm-allocate-NVM_Select_Network.png[vm-allocate-NVM_Select_Network, 640, 480]
++
+** Then *NEXT* and *FINISH*
+. Right click on the newly created "Virtual Machine Name", then _Edit Settings_
++
+[[img-vm-allocate-VM_Edit_Settings]]
+.Edit settings
+image::vm-allocate-NVM_Edit_Settings.png[vm-allocate-NVM_Edit_Settings, 640, 480]
++
+** On _Virtual Hardware_ tab, expand _CD/DVD Drive 1_ and adjust settings
+*** To _Datastore ISO File_ 
+*** Select _Datastores_ item _{IHVPartnerEnvDS}_
+*** Select _Contents_ item _SLE-15-SP1-Installer-DVD-x86_64-GM-DVD1.iso_ then *OK*
+*** Check _Connect At Power On_
++
+[[img-vm-allocate-VM_CD]]
+.Edit settings for CD/DVD drive 1
+image::vm-allocate-NVM_CD.png[vm-allocate-NVM_CD, 640, 480]
++
+** On _VM Options_ tab, expand _Boot Options_ and adjust _Boot Delay_ to at least *2000* milliseconds then *OK*
++
+TIP: This adjustment is to allow the ability to interrupt the boot process, with the *ESC* key to select the _CD/DVD drive_ media for re-installs.
+
+At this point you are ready to _Launch Remote Console_ to power on and install the operating system on the virtual machine.
+

@@ -1,0 +1,1140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN" "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd">
+<?asciidoc-toc?>
+<?asciidoc-numbered?>
+
+<book lang="en">
+<bookinfo>
+    <title>Demo : SUSE CaaS Platform Installation</title>
+    <author>
+        <firstname>Bryan Gartner, SUSE &lt; Bryan.Gartner@SUSE.com &gt;</firstname>
+    </author>
+    <authorinitials>{</authorinitials>
+<orgname>SUSE</orgname>
+</bookinfo>
+<preface>
+<title></title>
+<simpara>This document outlines the process to install SUSE CaaS Platform 4.0 on a set of available virtual machines as a solution cluster in the Hewlett Packard Enterprise Customer Innovation Center. While citing steps, values or inputs which need to be changed from the default, documented process in this environment, you can refer to respective <ulink url="https://documentation.suse.com/suse-caasp/4.0/single-html/caasp-deployment/">SUSE CaaS Platform 4.0 Deployment Guide</ulink> for more complete solution overview and details.</simpara>
+<tip><simpara>Supplementary Videos - A condensed video version of this end-to-end process is available, within the Hewlett Packard Enterprise Customer Innovation Center at
+video::<ulink url="https://www.youtube.com/watch?v=4VrhlyIgo3M">FixMe</ulink>.  Likewise, there are full-length videos of the important process sections referenced throughout this document.</simpara></tip>
+</preface>
+<chapter id="_hewlett_packard_enterprise_customer_innovation_center">
+<title>Hewlett Packard Enterprise Customer Innovation Center</title>
+<simpara>Through a corporate sponsorship between SUSE and Hewlett Packard Enterprise, the resources provided for this solution demo are located in the <ulink url="https://www.hpe.com/us/en/about/executive-briefing-centers/geneva.html">Customer Innovation Center</ulink> facility. Joint sales teams and customers are encouraged to interact and engage in this environment to understand the joint value proposition.</simpara>
+<variablelist>
+<varlistentry>
+<term>
+Environment Access
+</term>
+<listitem>
+<simpara>
+This section outlines how to access the Hewlett Packard Enterprise Customer Innovation Center environment and what core functionality is present to leverage.
+</simpara>
+</listitem>
+</varlistentry>
+</variablelist>
+<section id="_virtual_private_network_vpn">
+<title>Virtual Private Network (VPN)</title>
+<simpara>The following preparatory actions are required</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>
+Request a set of VPN user credentials
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+Request a copy of the Hewlett Packard Enterprise Customer Innovation Center Remote Access document to learn how to
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+Download and Install OpenVPN client
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+Configure the client
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+Start the VPN tunnel, connecting via your VPN user credentials
+</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+</orderedlist>
+</section>
+<section id="_environment_core_functionality">
+<title>Environment Core Functionality</title>
+<simpara>Next, request a copy of the environment service&#8217;s login credentials.  Once connected via the VPN, you can now access the following infrastructure</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+The following table lists the various network parameters and services:
+</simpara>
+<table
+frame="all"
+rowsep="1" colsep="1"
+>
+<title>Environment Access - General Networking /  Services</title>
+<tgroup cols="4">
+<colspec colname="col_1" colwidth="25*"/>
+<colspec colname="col_2" colwidth="25*"/>
+<colspec colname="col_3" colwidth="25*"/>
+<colspec colname="col_4" colwidth="25*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Role         </entry>
+<entry align="left" valign="top">Description   </entry>
+<entry align="left" valign="top">Value         </entry>
+<entry align="left" valign="top">Notes</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara>Demo Subnet</simpara></entry>
+<entry align="left" valign="top"><simpara>IPRange/CIDR</simpara></entry>
+<entry align="left" valign="top"><simpara>10.6.64.0/24</simpara></entry>
+<entry align="left" valign="top"><simpara>Class C</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>Router</simpara></entry>
+<entry align="left" valign="top"><simpara>10.6.64.1</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>DNS</simpara></entry>
+<entry align="left" valign="top"><simpara>Primary</simpara></entry>
+<entry align="left" valign="top"><simpara>10.3.61.31</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>Secondary</simpara></entry>
+<entry align="left" valign="top"><simpara>10.11.0.13</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>NTP</simpara></entry>
+<entry align="left" valign="top"><simpara>Primary</simpara></entry>
+<entry align="left" valign="top"><simpara>10.11.0.10</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+</listitem>
+<listitem>
+<simpara>
+The following table lists the relevant infrastructure hosts to interact with:
+</simpara>
+<table
+frame="all"
+rowsep="1" colsep="1"
+>
+<title>Environment Access - Infrastructure Hosts</title>
+<tgroup cols="4">
+<colspec colname="col_1" colwidth="25*"/>
+<colspec colname="col_2" colwidth="25*"/>
+<colspec colname="col_3" colwidth="25*"/>
+<colspec colname="col_4" colwidth="25*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Function             </entry>
+<entry align="left" valign="top">Role      </entry>
+<entry align="left" valign="top">IPAddress   </entry>
+<entry align="left" valign="top">Notes</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara>Desktop Environment</simpara></entry>
+<entry align="left" valign="top"><simpara>JumpHost</simpara></entry>
+<entry align="left" valign="top"><simpara>10.6.64.2</simpara></entry>
+<entry align="left" valign="top"><simpara>Windows</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Virtualization Host</simpara></entry>
+<entry align="left" valign="top"><simpara>VMware</simpara></entry>
+<entry align="left" valign="top"><simpara>10.3.61.10</simpara></entry>
+<entry align="left" valign="top"><simpara>vSphere</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+</listitem>
+</itemizedlist>
+<simpara>Via the Remote Desktop Protocol (RDP), login to the provided JumpHost to utilize as desktop environment.</simpara>
+<figure id="img-env-access-JumpHost"><title>Environment JumpHost Access</title>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="env-access-JumpHost.png"/>
+  </imageobject>
+  <textobject><phrase>env-access-JumpHost</phrase></textobject>
+</mediaobject>
+</figure>
+<simpara>You should be able to</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>
+Access copies of this and other demonstration documents from the <emphasis>SUSE-CIC</emphasis> Desktop Folder
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+Use a web browser to access
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+the Internet (via any of the browsers types, Chrome, Edge, Firefox)
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+vSphere HTML client for VMware&#174; host (recommend using Chrome, using HTML5 access)
+</simpara>
+<figure id="img-env-access-vSphere"><title>Environment vSphere Access</title>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="env-access-vSphere-HTML5.png"/>
+  </imageobject>
+  <textobject><phrase>env-access-vSphere-HTML5</phrase></textobject>
+</mediaobject>
+</figure>
+</listitem>
+</itemizedlist>
+</listitem>
+</orderedlist>
+</section>
+</chapter>
+<chapter id="_required_demo_infrastructure">
+<title>Required Demo Infrastructure</title>
+<simpara>These necessary infrastructure service components have been previously setup and should be operational. Most all of these services should remain running at all times and configuration values should remain static so as not to impact the deployments or operational aspects.</simpara>
+<variablelist>
+<varlistentry>
+<term>
+Prerequisite Services
+</term>
+<listitem>
+<simpara>
+This section outlines required background services for this document&#8217;s SUSE solution within the Hewlett Packard Enterprise Customer Innovation Center environment. It also provides rudimentary checks to verify the services and some simple troubleshooting examples.
+</simpara>
+</listitem>
+</varlistentry>
+</variablelist>
+<section id="_repository_mirroring_tool_rmt_service">
+<title>Repository Mirroring Tool [RMT] Service</title>
+<simpara>In order to have a local, synchronized repository of the required <ulink url="https://scc.suse.com/">SUSE Customer Center</ulink> [SCC] content (for quick/easy access), the best practice is to have a local RMT server running in the demo environment.</simpara>
+<important><simpara>This node (virtual machine) and service should be up and running at all times, to provide the repository contents for both installs and updates of all the other solution nodes and servcies. By default, it automatically mirrors the content each night to stay current.</simpara></important>
+<variablelist>
+<varlistentry>
+<term>
+Verify Functionality
+</term>
+<listitem>
+<simpara>
+Once connected to the Hewlett Packard Enterprise Customer Innovation Center environment via the VPN, RDP and logged into the JumpHost
+</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>
+Launch a web browser and visit the RMT URL:
+</simpara>
+<screen>http://10.6.64.15/repo/SUSE</screen>
+<simpara>Browsing the underlying <emphasis>Products</emphasis> and <emphasis>Updates</emphasis> links will show what content is available.</simpara>
+<figure id="img-demo-infra-RMT"><title>Verifying RMT functionality</title>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="demo-infra-RMT.png"/>
+  </imageobject>
+  <textobject><phrase>demo-infra-RMT</phrase></textobject>
+</mediaobject>
+</figure>
+<note><simpara>This URL is based upon the designated,reserved IP address of the respective RMT server. By default the JumpHost does not utilize the local demo environment&#8217;s DNS service to resolve to the hostname.</simpara></note>
+<simpara>If this appears to be functioning, skip to the next section.</simpara>
+</listitem>
+</orderedlist>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>
+Troubleshooting
+</term>
+<listitem>
+<simpara>
+If the previous access does not work, try the following additional checks:
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+Launch a command prompt from the JumpHost <emphasis>Start</emphasis> menu and type
+</simpara>
+<screen>ping 10.6.64.15</screen>
+</listitem>
+<listitem>
+<simpara>
+Launch the <literal>putty</literal> SSH client from the JumpHost <emphasis>Start</emphasis> menu and try connecting, logging in to the RMT IP address 10.6.64.15, then
+</simpara>
+<screen>systemctl status rmt-server</screen>
+</listitem>
+<listitem>
+<simpara>
+Using the Google Chrome web browser, connect to the vSphere HTML5 client interface, log in and make sure the RMT virtual machine is powered on. The virtual remote console can also be launched to assess the state and potentially remedy any operational issues on the node. Refer to the
+</simpara>
+<tip><simpara>Review the <ulink url="https://documentation.suse.com/sles/15-SP1/single-html/SLES-rmt/">SUSE Linux Enterprise Server RMT Guide</ulink></simpara></tip>
+<simpara>If any of the above attempts fails, an RMT virtual machine can be recreated per the process mentioned in the <xref linkend="_appendices"/>.</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+</varlistentry>
+</variablelist>
+</section>
+<section id="_domain_name_service_dns">
+<title>Domain Name Service [DNS]</title>
+<simpara>To have a coherent, self-contained name service for elements of the SUSE solution in the local environment, mapping IP addresses to hostnames, this service is co-located on the RMT server.</simpara>
+<important><simpara>This service should be left running at all times, to provide the name to IP resolution installs, updates, and runtime operation of all the other nodes.</simpara></important>
+<variablelist>
+<varlistentry>
+<term>
+Verify Functionality
+</term>
+<listitem>
+<simpara>
+Once connected to the Hewlett Packard Enterprise Customer Innovation Center environment via the VPN, RDP and logged into the JumpHost
+</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>
+Launch a command prompt from the JumpHost <emphasis>Start</emphasis> menu and type
+</simpara>
+<screen>nslookup rmt.suse.cic 10.6.64.15</screen>
+<figure id="img-demo-infra-DNS"><title>Verifying DNS functionality</title>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="demo-infra-DNS.png"/>
+  </imageobject>
+  <textobject><phrase>demo-infra-DNS</phrase></textobject>
+</mediaobject>
+</figure>
+<simpara>If this appears to be functioning, also ensure the other relevant solution&#8217;s Hostname to IPAddress mappings are configured and available:</simpara>
+<table
+frame="all"
+rowsep="1" colsep="1"
+>
+<title>Demonstration Environment Subnet Mapping</title>
+<tgroup cols="5">
+<colspec colname="col_1" colwidth="20*"/>
+<colspec colname="col_2" colwidth="20*"/>
+<colspec colname="col_3" colwidth="20*"/>
+<colspec colname="col_4" colwidth="20*"/>
+<colspec colname="col_5" colwidth="20*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Function        </entry>
+<entry align="left" valign="top">Role        </entry>
+<entry align="left" valign="top">Hostname             </entry>
+<entry align="left" valign="top">IPAddress    </entry>
+<entry align="left" valign="top"> Notes</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara>Infrastructure</simpara></entry>
+<entry align="left" valign="top"><simpara>RMT</simpara></entry>
+<entry align="left" valign="top"><simpara>rmt.suse.cic</simpara></entry>
+<entry align="left" valign="top"><simpara>10.6.64.15</simpara></entry>
+<entry align="left" valign="top"><simpara>hosts local DNS</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>SUSE CaaS Platform</simpara></entry>
+<entry align="left" valign="top"><simpara>Admin/Mgmt</simpara></entry>
+<entry align="left" valign="top"><simpara>adm.k8s.suse.cic</simpara></entry>
+<entry align="left" valign="top"><simpara>10.6.64.64</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>LB</simpara></entry>
+<entry align="left" valign="top"><simpara>mstr.k8s.suse.cic</simpara></entry>
+<entry align="left" valign="top"><simpara>10.6.64.65</simpara></entry>
+<entry align="left" valign="top"><simpara>co-located VIP on RMT</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>Master</simpara></entry>
+<entry align="left" valign="top"><simpara>mstr1.k8s.suse.cic</simpara></entry>
+<entry align="left" valign="top"><simpara>10.6.64.66</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>Worker</simpara></entry>
+<entry align="left" valign="top"><simpara>wrkr1.k8s.suse.cic</simpara></entry>
+<entry align="left" valign="top"><simpara>10.6.64.69</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>wrkr2.k8s.suse.cic</simpara></entry>
+<entry align="left" valign="top"><simpara>10.6.64.70</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>wrkr3.k8s.suse.cic</simpara></entry>
+<entry align="left" valign="top"><simpara>10.6.64.71</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>spares</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>n/a</simpara></entry>
+<entry align="left" valign="top"><simpara>10.6.64.201</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>n/a</simpara></entry>
+<entry align="left" valign="top"><simpara>10.6.64.202</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>n/a</simpara></entry>
+<entry align="left" valign="top"><simpara>10.6.64.203</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>n/a</simpara></entry>
+<entry align="left" valign="top"><simpara>10.6.64.204</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>n/a</simpara></entry>
+<entry align="left" valign="top"><simpara>10.6.64.205</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>n/a</simpara></entry>
+<entry align="left" valign="top"><simpara>10.6.64.206</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>n/a</simpara></entry>
+<entry align="left" valign="top"><simpara>10.6.64.207</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>n/a</simpara></entry>
+<entry align="left" valign="top"><simpara>10.6.64.208</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+<note><simpara>The entries denotes as spare do not have specific hostname mappings and are just intended as available addresses for initial operating system installations on the virtual machines.</simpara></note>
+</listitem>
+</orderedlist>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>
+Troubleshooting
+</term>
+<listitem>
+<simpara>
+If the previous access does not work, try the following additional checks:
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+Launch a command prompt from the JumpHost <emphasis>Start</emphasis> menu and type
+</simpara>
+<screen>ping 10.6.64.15</screen>
+</listitem>
+<listitem>
+<simpara>
+Launch the <literal>putty</literal> SSH client from the JumpHost <emphasis>Start</emphasis> menu and try connect to the RMT IP address 10.6.64.15. Once logged in as root, try:
+</simpara>
+<screen>systemctl status named</screen>
+</listitem>
+<listitem>
+<simpara>
+Using the Google Chrome web browser, connect to the vSphere HTML5 client interface, log in and make sure the RMT virtual machine is powered on. The virtual remote console can also be launched to assess the state and potentially remedy any operational issues on the node.
+</simpara>
+<tip><simpara>Review the <ulink url="https://documentation.suse.com/sles/15-SP1/single-html/SLES-admin/#cha-dns/">DNS Chapter</ulink> of the SUSE Linux Enterprise Server Administration Guide.</simpara></tip>
+<simpara>If any of the above attempts fails, a DNS function can be recreated per the process mentioned in the <xref linkend="_appendices"/>.</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+</varlistentry>
+</variablelist>
+</section>
+<section id="_load_balancer_lb_service">
+<title>Load Balancer (LB) Service</title>
+<simpara>In order to provide resiliency for a given set of APIs of the local SUSE CaaS Platform solution, this service must be configured and running. It is hosted on the RMT server with a secondary IP address.</simpara>
+<important><simpara>This node (virtual machine) and service should be set up and running prior to deployment of the SUSE CaaS Platform instance and available during runtime of the solution.</simpara></important>
+<variablelist>
+<varlistentry>
+<term>
+Verify Functionality
+</term>
+<listitem>
+<simpara>
+Once connected to the Hewlett Packard Enterprise Customer Innovation Center environment via the VPN, RDP and logged into the JumpHost
+</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>
+Launch a web browser and visit the LB URL:
+</simpara>
+<screen>http://10.6.64.65:9000/stats</screen>
+<figure id="img-demo-infra-LB"><title>Verifying RMT functionality</title>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="demo-infra-LB.png"/>
+  </imageobject>
+  <textobject><phrase>demo-infra-LB</phrase></textobject>
+</mediaobject>
+</figure>
+<note><simpara>This URL is based upon the designated, reserved IP address of the respective LB service and it&#8217;s internal configuration. By default the JumpHost does not utilize the local demo DNS service to resolve to the hostname. Beyond the "stats" output, this web page shows the status for the three necessary API services, pointing to mstr1.k8s.suse.cic. Before the solution deployment is completed, that status will be designated as "down" and will show as "active UP" when the solution is successfully installed.</simpara></note>
+<simpara>If this appears to be functioning, skip to the next section.</simpara>
+</listitem>
+</orderedlist>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>
+Troubleshooting
+</term>
+<listitem>
+<simpara>
+If the previous access does not work, try the following additional checks:
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+Launch a command prompt from the JumpHost <emphasis>Start</emphasis> menu and type
+</simpara>
+<screen>ping 10.6.64.15</screen>
+</listitem>
+<listitem>
+<simpara>
+Launch the <literal>putty</literal> SSH client from the JumpHost <emphasis>Start</emphasis> menu and try connect to the RMT IP address 10.6.64.15. Once logged in as root, try:
+</simpara>
+<screen>systemctl status haproxy</screen>
+</listitem>
+<listitem>
+<simpara>
+Using the Google Chrome web browser, connect to the vSphere HTML5 client interface, log in and make sure the RMT virtual machine is powered on. The virtual remote console can also be launched to assess the state and potentially remedy any operational issues on the node. Refer to the
+</simpara>
+<tip><simpara>Review the <ulink url="https://documentation.suse.com/suse-caasp/4.0/single-html/caasp-deployment/#deployment.preparations">Load Balancer</ulink> section of the SUSE CaaS Platform Deployment Guide.</simpara></tip>
+<simpara>If the above attempts fails, an LB service function can be recreated per the process mentioned in the <xref linkend="_appendices"/></simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+</varlistentry>
+</variablelist>
+</section>
+</chapter>
+<chapter id="_solution_cluster_deployment">
+<title>Solution Cluster Deployment</title>
+<variablelist>
+<varlistentry>
+<term>
+Overview
+</term>
+<listitem>
+<simpara>
+The following process encompasses an end-to-end deployment on Virtual Machines (VM), installation of the operating system and then creation of the cluster to provide the SUSE CaaS Platform solutin cluster. While many alternatives exist to create such a working solution cluster, the process outlined below is closely parallel to accomplishing the same thing on a set of baremetal nodes.
+</simpara>
+</listitem>
+</varlistentry>
+</variablelist>
+<simpara>Important: Given the Hewlett Packard Enterprise Customer Innovation Center is potentially a shared demo environment, ensure these nodes are not in active use before recreating the solution from scratch!</simpara>
+<section id="_allocation_of_target_virtual_machines">
+<title>Allocation of Target Virtual Machines</title>
+<variablelist>
+<varlistentry>
+<term>
+Purpose
+</term>
+<listitem>
+<simpara>
+This section outlines how to allocate, prepare and setup the virtual machines to run the various roles of the SUSE solution in the Hewlett Packard Enterprise Customer Innovation Center.
+</simpara>
+</listitem>
+</varlistentry>
+</variablelist>
+<note><simpara>If the required Virtual Machines already exist, review their settings and modify as needed to make sure they match the configurations below.</simpara></note>
+<section id="_create_and_prepare_virtual_machine_settings">
+<title>Create and prepare virtual machine settings</title>
+<simpara>From the JumpHost, launch the Google Chrome browser to connect to the vSphere HTML5 Web Client, then follow the steps below:</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>
+Via <emphasis>Hosts and Clusters</emphasis> context
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+Expand <emphasis>hitvcenter6.hybritit_hpecic.net</emphasis> &gt; <emphasis>HIT_Solutions</emphasis> &gt; <emphasis>SUSE</emphasis> and select <emphasis>New Virtual Machine</emphasis>
+</simpara>
+<figure id="img-vm-allocate-Hosts_and_Clusters"><title>Add a new virtual machine</title>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="vm-allocate-Hosts_and_Clusters.png"/>
+  </imageobject>
+  <textobject><phrase>vm-allocate-Hosts_and_Clusters</phrase></textobject>
+</mediaobject>
+</figure>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara>
+Using <emphasis>New Virtual Machine</emphasis> dialog
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+Select <emphasis>Create a new virtual machine</emphasis> then <emphasis role="strong">NEXT</emphasis>
+</simpara>
+<figure id="img-vm-allocate-NVM_Creation"><title>Create a new virtual machine</title>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="vm-allocate-NVM_Creation.png"/>
+  </imageobject>
+  <textobject><phrase>vm-allocate-NVM_Creation</phrase></textobject>
+</mediaobject>
+</figure>
+</listitem>
+<listitem>
+<simpara>
+Provide an appropriate, distinct Virtual machine name in the text field. A suggested naming scheme is "&lt;solution&gt;-&lt;role&gt;"
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+For example - CaaS Platform-&lt;role&gt;.k8s
+</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara>
+Expand folder location <emphasis>hitvcenter6.hybritit_hpecic.net</emphasis> &gt; <emphasis>HIT_Solutions</emphasis> select <emphasis>SUSE</emphasis> then <emphasis role="strong">NEXT</emphasis>
+</simpara>
+<figure id="img-vm-allocate-NVM_Name"><title>Virtual machine name and location</title>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="vm-allocate-NVM_Name.png"/>
+  </imageobject>
+  <textobject><phrase>vm-allocate-NVM_Name</phrase></textobject>
+</mediaobject>
+</figure>
+</listitem>
+<listitem>
+<simpara>
+For destination compute resource, expand <emphasis>hitvcenter6.hybritit_hpecic.net</emphasis> &gt; <emphasis>HIT_Solutions</emphasis> select <emphasis>SUSE</emphasis> then <emphasis role="strong">NEXT</emphasis>
+</simpara>
+<figure id="img-vm-allocate-NVM_Compute_Resource"><title>Select a compute resource</title>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="vm-allocate-NVM_Compute_Resource.png"/>
+  </imageobject>
+  <textobject><phrase>vm-allocate-NVM_Compute_Resource</phrase></textobject>
+</mediaobject>
+</figure>
+</listitem>
+<listitem>
+<simpara>
+For datastore, validate default value of <emphasis>P20800-HIT-SUSE1064-D</emphasis> then <emphasis role="strong">NEXT</emphasis>
+</simpara>
+<figure id="img-vm-allocate-NVM_Storage"><title>Select storage</title>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="vm-allocate-NVM_Storage.png"/>
+  </imageobject>
+  <textobject><phrase>vm-allocate-NVM_Storage</phrase></textobject>
+</mediaobject>
+</figure>
+</listitem>
+<listitem>
+<simpara>
+For compatibility, leave default value of <emphasis>ESXi 6.5 and later</emphasis> then <emphasis role="strong">NEXT</emphasis>
+</simpara>
+<figure id="img-vm-allocate-NVM_Compatibility"><title>Select compatibility</title>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="vm-allocate-NVM_Compatibility.png"/>
+  </imageobject>
+  <textobject><phrase>vm-allocate-NVM_Compatibility</phrase></textobject>
+</mediaobject>
+</figure>
+</listitem>
+<listitem>
+<simpara>
+For guest OS
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+Change <emphasis>Guest OS Family</emphasis> to <emphasis>Linux</emphasis>
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+Change <emphasis>Guest OS Version</emphasis> to <emphasis>SUSE openSUSE (64 bit)</emphasis> then <emphasis role="strong">NEXT</emphasis>
+</simpara>
+<figure id="img-vm-allocate-NVM_OS"><title>Select a guest OS</title>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="vm-allocate-NVM_OS.png"/>
+  </imageobject>
+  <textobject><phrase>vm-allocate-NVM_OS</phrase></textobject>
+</mediaobject>
+</figure>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara>
+Customize the virtual hardware resources, adjusting the quantity and capacity of <emphasis>CPU</emphasis>, <emphasis>Memory</emphasis>, <emphasis>New Hard Disk Size</emphasis> values to match at least the minimum requirement quantity/sizes of the target solution role.
+</simpara>
+<table
+frame="all"
+rowsep="1" colsep="1"
+>
+<title>Solution VM Resource Settings (minimums)</title>
+<tgroup cols="7">
+<colspec colname="col_1" colwidth="14*"/>
+<colspec colname="col_2" colwidth="14*"/>
+<colspec colname="col_3" colwidth="14*"/>
+<colspec colname="col_4" colwidth="14*"/>
+<colspec colname="col_5" colwidth="14*"/>
+<colspec colname="col_6" colwidth="14*"/>
+<colspec colname="col_7" colwidth="14*"/>
+<thead>
+<row>
+<entry align="left" valign="top"> Solution </entry>
+<entry align="left" valign="top"> Quantity </entry>
+<entry align="left" valign="top"> Role      </entry>
+<entry align="left" valign="top"> vCPU </entry>
+<entry align="left" valign="top"> Memory (GB) </entry>
+<entry align="left" valign="top"> Disk (GB) </entry>
+<entry align="left" valign="top"> Network</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara>SUSE CaaS Platform</simpara></entry>
+<entry align="left" valign="top"><simpara>1</simpara></entry>
+<entry align="left" valign="top"><simpara>adm.k8s</simpara></entry>
+<entry align="left" valign="top"><simpara>2</simpara></entry>
+<entry align="left" valign="top"><simpara>2</simpara></entry>
+<entry align="left" valign="top"><simpara>24</simpara></entry>
+<entry align="left" valign="top"><simpara>1</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>&gt;=1</simpara></entry>
+<entry align="left" valign="top"><simpara>master.k8s</simpara></entry>
+<entry align="left" valign="top"><simpara>2</simpara></entry>
+<entry align="left" valign="top"><simpara>4</simpara></entry>
+<entry align="left" valign="top"><simpara>48</simpara></entry>
+<entry align="left" valign="top"><simpara>1</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>&gt;=2</simpara></entry>
+<entry align="left" valign="top"><simpara>worker.k8s</simpara></entry>
+<entry align="left" valign="top"><simpara>4</simpara></entry>
+<entry align="left" valign="top"><simpara>8</simpara></entry>
+<entry align="left" valign="top"><simpara>64</simpara></entry>
+<entry align="left" valign="top"><simpara>1</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+<note><simpara>Refer to respective <ulink url="https://documentation.suse.com/">SUSE product documentation</ulink> for more details on the node resource requirements.</simpara></note>
+<itemizedlist>
+<listitem>
+<simpara>
+Adjust <emphasis>New Network</emphasis> via <emphasis>Browse</emphasis> to <emphasis>DPortGroup_PR_1064_HIT</emphasis>, providing the recommended quantity of network interfaces then <emphasis role="strong">OK</emphasis>
+</simpara>
+<figure id="img-vm-allocate-NVM_Select_Network"><title>Select network</title>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="vm-allocate-NVM_Select_Network.png"/>
+  </imageobject>
+  <textobject><phrase>vm-allocate-NVM_Select_Network</phrase></textobject>
+</mediaobject>
+</figure>
+</listitem>
+<listitem>
+<simpara>
+Then <emphasis role="strong">NEXT</emphasis> and <emphasis role="strong">FINISH</emphasis>
+</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara>
+Right click on the newly created "Virtual Machine Name", then <emphasis>Edit Settings</emphasis>
+</simpara>
+<figure id="img-vm-allocate-VM_Edit_Settings"><title>Edit settings</title>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="vm-allocate-NVM_Edit_Settings.png"/>
+  </imageobject>
+  <textobject><phrase>vm-allocate-NVM_Edit_Settings</phrase></textobject>
+</mediaobject>
+</figure>
+<itemizedlist>
+<listitem>
+<simpara>
+On <emphasis>Virtual Hardware</emphasis> tab, expand <emphasis>CD/DVD Drive 1</emphasis> and adjust settings
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+To <emphasis>Datastore ISO File</emphasis>
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+Select <emphasis>Datastores</emphasis> item <emphasis>P20800-HIT-SUSE1064-D</emphasis>
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+Select <emphasis>Contents</emphasis> item <emphasis>SLE-15-SP1-Installer-DVD-x86_64-GM-DVD1.iso</emphasis> then <emphasis role="strong">OK</emphasis>
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+Check <emphasis>Connect At Power On</emphasis>
+</simpara>
+<figure id="img-vm-allocate-VM_CD"><title>Edit settings for CD/DVD drive 1</title>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="vm-allocate-NVM_CD.png"/>
+  </imageobject>
+  <textobject><phrase>vm-allocate-NVM_CD</phrase></textobject>
+</mediaobject>
+</figure>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara>
+On <emphasis>VM Options</emphasis> tab, expand <emphasis>Boot Options</emphasis> and adjust <emphasis>Boot Delay</emphasis> to at least <emphasis role="strong">2000</emphasis> milliseconds then <emphasis role="strong">OK</emphasis>
+</simpara>
+<tip><simpara>This adjustment is to allow the ability to interrupt the boot process, with the <emphasis role="strong">ESC</emphasis> key to select the <emphasis>CD/DVD drive</emphasis> media for re-installs.</simpara></tip>
+</listitem>
+</itemizedlist>
+</listitem>
+</orderedlist>
+<simpara>At this point you are ready to <emphasis>Launch Remote Console</emphasis> to power on and install the operating system on the virtual machine.</simpara>
+</section>
+</section>
+<section id="_node_operating_system_install">
+<title>Node Operating System Install</title>
+<variablelist>
+<varlistentry>
+<term>
+Purpose
+</term>
+<listitem>
+<simpara>
+This section outlines how to install the base SUSE Linux Enterprise Server 15 SP1 on an available virtual machine node in a fairly automated fashion for the various roles of the SUSE solutions in the Hewlett Packard Enterprise Customer Innovation Center.
+</simpara>
+</listitem>
+</varlistentry>
+</variablelist>
+<note><simpara>This document only cites values or inputs which need to be changed from the defaults. Refer to the node roles of SUSE solutions, as that respective document calls out further exceptions to this process.</simpara></note>
+<tip><simpara>Refer to the respective <ulink url="https://documentation.suse.com/sles/15-SP1/single-html/SLES-deployment/#book-sle-deployment">SUSE Linux Enterprise Server 15 SP1 Deployment Guide</ulink> for further details.</simpara></tip>
+<section id="_install_the_base_operating_system">
+<title>Install the base operating system</title>
+<simpara>From the JumpHost, launch the Google Chrome browser to connect to the vSphere HT
+ML5 Web Client, then follow the steps below:</simpara>
+<tip><simpara>For a recorded example video representative of this process, view video::<ulink url="https://drive.google.com/open?id=1bi4S6KtxAHgSRH0DHbQ2Jpyk3apBJ2a8">SUSE CaaS Platform Management Workstation Operating System Install</ulink>. Of course, all of the cluster nodes can be installed in parallel as well.</simpara></tip>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>
+Right click on the respective virtual machine and <emphasis>Open Remote Console</emphasis>
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+Power On the virtual machine
+</simpara>
+<tip><simpara>If this is a re-install of the given virtual machine, you likely need to hit <emphasis role="strong">ESC</emphasis> during the boot startup to ensure you can boot from <emphasis>CD-ROM Drive</emphasis> media.</simpara></tip>
+<itemizedlist>
+<listitem>
+<simpara>
+On the install boot screen, use the arrow key to select <emphasis>Installation</emphasis> on the boot screen
+</simpara>
+<note><simpara>Refer to specific DNS IP Subnet networking settings from the <xref linkend="_domain_name_service_dns"/></simpara></note>
+</listitem>
+<listitem>
+<simpara>
+In the <emphasis>Boot Options</emphasis> input field, create a temporary network configuration to access the unattended installation (autoYaST) file
+</simpara>
+<note><simpara>Within the Hewlett Packard Enterprise Customer Innovation Center you can view the contents of the respective solution node role&#8217;s autoYaST file via a web browser to review what configuration is being setup and installed by accessing the URL - <ulink url="http://rmt.suse.cic/repo/autoYaST/">http://rmt.suse.cic/repo/autoYaST/</ulink>.</simpara></note>
+<itemizedlist>
+<listitem>
+<simpara>
+ifcfg=INTERFACE=IP_LIST,GATEWAY_LIST,NAMESERVER_LIST,DOMAINSEARCH_LIST autoyast=URL/PathToFile.xml
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+As an example, for this solution, use of the spare IPs and enter
+</simpara>
+<screen>ifcfg=eth=10.6.64.208/24,10.6.64.1/10.6.64.15,suse.cic autoyast=http://10.6.64.15/repo/autoYaST/role.k8s.xml</screen>
+<simpara>At this point, the operating system will install has finished, the node will reboot and the automated post-install configuration will be applied.</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+</itemizedlist>
+</listitem>
+</orderedlist>
+</section>
+<section id="_verify_the_operating_system_installation">
+<title>Verify the operating system installation</title>
+<simpara>From the JumpHost, launch the Google Chrome browser to connect to the vSphere HT
+ML5 Web Client, then follow the steps below:</simpara>
+<tip><simpara>For a recorded video of the post-install process, view video::<ulink url="https://drive.google.com/open?id=1T-AzT1Nz4Jx4sW8P-1Q4wm43tEB_kA8I">SUSE CaaS Platform Master Node Post-Install</ulink>.</simpara></tip>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>
+Right click on the respective virtual machine and <emphasis>Open Remote Console</emphasis>
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+Login, via root, to the node and perform these few verifications and adjustments:
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+Check the output of
+</simpara>
+<screen>ip a</screen>
+<itemizedlist>
+<listitem>
+<simpara>
+To ensure a match with the expected network interface IPAddress
+</simpara>
+<screen>ip r</screen>
+</listitem>
+<listitem>
+<simpara>
+To ensure a matching setup for the network routing
+</simpara>
+<screen>host rmt.suse.cic</screen>
+</listitem>
+<listitem>
+<simpara>
+To access to the local DNS mapping service
+</simpara>
+<screen>hostname -f</screen>
+</listitem>
+<listitem>
+<simpara>
+To ensure a matching setup for the fully-qualified domain name of this host
+</simpara>
+<note><simpara>This can be remedied by check the contents of the file(s): <literal>/etc/hostname</literal> to make sure it matches the intended fully-qualified node&#8217;s Hostname and <literal>/etc/hosts</literal> which can have an entry added for the fully-qualified node&#8217;s hostname</simpara></note>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara>
+Run
+</simpara>
+<screen>yast2</screen>
+</listitem>
+<listitem>
+<simpara>
+Selecting <emphasis>Software</emphasis>
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+Then <emphasis>Product Registration</emphasis>
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+Select <emphasis>Register System via local SMT Server</emphasis>
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+Input the appropriate <emphasis>Local Registration Server URL</emphasis> to the RMT server (e.g. <ulink url="http://rmt.suse.cic/">http://rmt.suse.cic/</ulink>) then <emphasis role="strong">Next</emphasis>
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+Add the respective <emphasis>Extensions and Modules</emphasis> for the desired role - may need to uncheck the <emphasis>Hide Development Versions</emphasis>
+</simpara>
+<simpara>SUSE CaaS Platform 4.0 x86_64</simpara>
+<simpara>then <emphasis role="strong">Next</emphasis></simpara>
+<note><simpara>Refer to the respective <ulink url="https://documentation.suse.com">SUSE Solution Deployment Guides</ulink> for the required extensions/modules.</simpara></note>
+</listitem>
+<listitem>
+<simpara>
+Read and <emphasis>Accept</emphasis> any additional license agreements, then <emphasis role="strong">Next</emphasis>
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis>Accept</emphasis>, <emphasis>Ok</emphasis> and <emphasis>Finish</emphasis> any recommended package installations
+</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara>
+Then <emphasis>Software Management</emphasis>
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+Change <emphasis>Filter</emphasis> to <emphasis>Patterns</emphasis> search for and verify the respective ones for the target role are installed
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+for adm role - <emphasis>SUSE CaaS Platform Management</emphasis>
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+for other roles - <emphasis>SUSE CaaS Platform Node</emphasis>
+</simpara>
+<simpara>Then <emphasis>Accept</emphasis> and <emphasis>OK</emphasis> and <emphasis>Finish</emphasis></simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara>
+Then <emphasis>Online Update</emphasis>
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+Peruse all available updates then <emphasis>Accept</emphasis> and <emphasis>OK</emphasis> and <emphasis>Finish</emphasis> and <emphasis>Close</emphasis> and <emphasis>OK</emphasis> and <emphasis>Quit</emphasis>
+</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+</itemizedlist>
+</listitem>
+</itemizedlist>
+</listitem>
+</itemizedlist>
+</listitem>
+</orderedlist>
+<simpara>At this point, the node should be manually rebooted to ensure application of all the updates.  After that the node should be ready for operational usage and inclusion into the solution cluster.</simpara>
+</section>
+</section>
+<section id="_deploying_the_solution">
+<title>Deploying the Solution</title>
+<simpara>After connecting via the VPN and logging into the jumphost, visit the vSphere Web Client, then follow the steps below:</simpara>
+<tip><simpara>For a recorded example video representative of this process, view video::<ulink url="https://drive.google.com/open?id=1T1L6W1HysW-qVGR2QmwLof6NDlBlOiS0">SUSE CaaS Platform Cluster Deployment</ulink>.</simpara></tip>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>
+Right click on the respective virtual machine <emphasis>CaaS Platform-adm.k8s</emphasis> and <emphasis>Open Remote Console</emphasis>
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+Login to the node as the "geeko" user
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+Setup the necessary <ulink url="https://https://documentation.suse.com/suse-caasp/4.0/single-html/caasp-deployment/#deployment.preparations">Basic SSH Key Configuration</ulink>
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+Ensure the "geeko" user has <ulink url="https://https://documentation.suse.com/suse-caasp/4.0/single-html/caasp-deployment/#_">sudo access</ulink> on all the cluster ndoes
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+Then proceed with:
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+"Intializing the Cluster" process via
+</simpara>
+<screen>skuba cluster init --control-plane mstr.k8s.suse.cic my-cluster</screen>
+<itemizedlist>
+<listitem>
+<simpara>
+"Cluster Bootstrap" via
+</simpara>
+<screen>cd my-cluster
+
+skuba node bootstrap --user geeko --sudo --target mstr1.k8s.suse.cic mstr1.k8s
+
+skuba node join --role worker --user geeko --sudo --target wrkr1.k8s.suse.cic wrkr1.k8s
+skuba node join --role worker --user geeko --sudo --target wrkr2.k8s.suse.cic wrkr2.k8s
+skuba node join --role worker --user geeko --sudo --target wrkr3.k8s.suse.cic wrkr3.k8s</screen>
+</listitem>
+<listitem>
+<simpara>
+Verify the cluster, via
+</simpara>
+<screen>skuba cluster status</screen>
+<simpara>And with the steps in <ulink url="https://documentation.suse.com/suse-caasp/4.0/single-html/caasp-deployment/#_using_kubectl">"Using kubectl"</ulink>.</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+</itemizedlist>
+</listitem>
+</itemizedlist>
+</listitem>
+</orderedlist>
+</section>
+</chapter>
+<chapter id="_summary">
+<title>Summary</title>
+<simpara>At this point, the SUSE CaaS Platform solution cluster should be up, running and functional.</simpara>
+<simpara>TBD - Only included base solution deployment so far, so may add additional sections over time.
+NOTE: In the interim, refer to <ulink url="https://documentation.suse.com/suse-caasp/4.0/single-html/caasp-admin/">SUSE CaaS Platform Administration Guide</ulink> for operational aspects and guidance.</simpara>
+</chapter>
+<chapter id="_appendices">
+<title>Appendices</title>
+<simpara>TBD - Will link to other content over time</simpara>
+</chapter>
+</book>

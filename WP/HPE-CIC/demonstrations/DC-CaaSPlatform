@@ -9,7 +9,7 @@
 ## ~/.config/daps/dapsrc
 
 ## Mandatory Parameter
-MAIN="MAIN-CaaSPlatform-install.xml"
+MAIN="MAIN-CaaSPlatform.xml"
 
 ##--------------------
 ## Optional Parameters

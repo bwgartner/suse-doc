@@ -1,0 +1,24 @@
+
+* The following table lists the various network parameters and services:
++
+.Environment Access - General Networking /  Services
+[options="header",cols=",,,"]
+|===
+|Role         |Description   |Value         |Notes
+| Demo Subnet | IPRange/CIDR | 10.6.64.0/24 | Class C
+|             | Router       | 10.6.64.1    |
+| DNS         | Primary      | 10.3.61.31   |
+|             | Secondary    | 10.11.0.13   |
+| NTP         | Primary      | 10.11.0.10   |
+|===
+
+* The following table lists the relevant infrastructure hosts to interact with:
++
+.Environment Access - Infrastructure Hosts
+[options="header",cols=",,,"]
+|===
+|Function             |Role      |IPAddress   |Notes
+| Desktop Environment | JumpHost | 10.6.64.2  | Windows
+| Virtualization Host | VMware   | 10.3.61.10 | vSphere
+|===
+

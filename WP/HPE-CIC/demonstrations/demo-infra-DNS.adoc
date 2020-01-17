@@ -1,0 +1,94 @@
+
+=== Domain Name Service [DNS]
+To have a coherent, self-contained name service for elements of the {CompanyName} solution in the local environment, mapping IP addresses to hostnames, this service is co-located on the RMT server.
+
+IMPORTANT: This service should be left running at all times, to provide the name to IP resolution installs, updates, and runtime operation of all the other nodes.
+
+Verify Functionality::
+Once connected to the {IHVPartner} {IHVPartnerEnv} environment via the VPN, RDP and logged into the JumpHost
+. Launch a command prompt from the JumpHost _Start_ menu and type
++
+[subs="attributes"]
+----
+nslookup rmt.{domainName} {rmtIP}
+----
++
+[[img-demo-infra-DNS]]
+.Verifying DNS functionality
+image::demo-infra-DNS.png[demo-infra-DNS, 640, 480]
++
+If this appears to be functioning, also ensure the other relevant solution's Hostname to IPAddress mappings are configured and available:
++
+.Demonstration Environment Subnet Mapping
+[options="header",cols=",,,,"]
+|===
+|Function        |Role        |Hostname             |IPAddress    | Notes
+| Infrastructure | RMT        | rmt.{domainName}    | {rmtIP}     | hosts local DNS
+ifeval::["{DemoTarget}" == "EnterpriseStorage"]
+| {CompanyName} {ProductNameStorage}
+                | Admin    |adm.{domainNameStorage}.{domainName}  | 10.6.64.32  | 
+|               | OSD      |osd1.{domainNameStorage}.{domainName} | 10.6.64.36  | co-located MON functionality
+|               |          |osd2.{domainNameStorage}.{domainName} | 10.6.64.37  | co-located MON functionality
+|               |          |osd3.{domainNameStorage}.{domainName} | 10.6.64.38  | co-located MON functionality
+endif::[]
+ifeval::["{DemoTarget}" == "CaaSPlatform"]
+| {CompanyName} {ProductNameContainer}
+                 | Admin/Mgmt |adm.{domainNameContainer}.{domainName}   | 10.6.64.64  | 
+|                | LB         |mstr.{domainNameContainer}.{domainName}  | 10.6.64.65  | co-located VIP on RMT
+|                | Master     |mstr1.{domainNameContainer}.{domainName} | 10.6.64.66  | 
+|                | Worker     |wrkr1.{domainNameContainer}.{domainName} | 10.6.64.69  | 
+|                |            |wrkr2.{domainNameContainer}.{domainName} | 10.6.64.70  | 
+|                |            |wrkr3.{domainNameContainer}.{domainName} | 10.6.64.71  | 
+endif::[]
+ifeval::["{DemoTarget}" == "TBD"]
+| {CompanyName} {ProductNameOS} 
+                | SLE      |sle.{domainName}         | 10.6.64.16  | 
+| {CompanyName} {ProductNameHA}
+                | TBD      |sle-ha1.{domainName}     | 10.6.64.21  | 
+|               |          |sle-ha2.{domainName}     | 10.6.64.22  |
+| {CompanyName} {ProductNameSUMa}
+                | TBD      |suma.{domainName}        | 10.6.64.24  | 
+| {CompanyName} {ProductNameSAP}
+                | TBD      |sap.{domainName}         | 10.6.64.28  | 
+| {CompanyName} {ProductNamePaaS}
+                | TBD      |tbd.cf.{domainName}      | 10.6.64.64  | 
+| {CompanyName} {ProductNameHPC}
+                | TBD      |head.hpc.{domainName}    | 10.6.64.80  | 
+|               |          |cmpt1.hpc.{domainName}   | 10.6.64.81  | 
+|               |          |cmpt2.hpc.{domainName}   | 10.6.64.82  | 
+|               |          |cmpt3.hpc.{domainName}   | 10.6.64.83  | 
+endif::[]
+| spares        |          |n/a                  | 10.6.64.201 | 
+|               |          |n/a                  | 10.6.64.202 | 
+|               |          |n/a                  | 10.6.64.203 | 
+|               |          |n/a                  | 10.6.64.204 | 
+|               |          |n/a                  | 10.6.64.205 | 
+|               |          |n/a                  | 10.6.64.206 | 
+|               |          |n/a                  | 10.6.64.207 | 
+|               |          |n/a                  | 10.6.64.208 | 
+|===
++
+NOTE: The entries denotes as spare do not have specific hostname mappings and are just intended as available addresses for initial operating system installations on the virtual machines.
+
+Troubleshooting::
+If the previous access does not work, try the following additional checks:
+* Launch a command prompt from the JumpHost _Start_ menu and type
++
+[subs="attributes"]
+----
+ping {rmtIP}
+----
++
+* Launch the `putty` SSH client from the JumpHost _Start_ menu and try connect to the RMT IP address {rmtIP}. Once logged in as root, try:
++
+[subs="attributes"]
+----
+systemctl status named
+----
++
+* Using the Google Chrome web browser, connect to the vSphere HTML5 client interface, log in and make sure the RMT virtual machine is powered on. The virtual remote console can also be launched to assess the state and potentially remedy any operational issues on the node.
++
+TIP: Review the https://documentation.suse.com/sles/15-SP1/single-html/SLES-admin/#cha-dns/[DNS Chapter] of the {CompanyName} {ProductNameOS} Administration Guide.
++
+If any of the above attempts fails, a DNS function can be recreated per the process mentioned in the <<_appendices>>.
+

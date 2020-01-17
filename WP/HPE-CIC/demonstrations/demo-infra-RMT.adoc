@@ -1,0 +1,46 @@
+=== Repository Mirroring Tool [RMT] Service
+In order to have a local, synchronized repository of the required https://scc.suse.com/[{CompanyName} Customer Center] [SCC] content (for quick/easy access), the best practice is to have a local RMT server running in the demo environment.
+
+IMPORTANT: This node (virtual machine) and service should be up and running at all times, to provide the repository contents for both installs and updates of all the other solution nodes and servcies. By default, it automatically mirrors the content each night to stay current.
+
+Verify Functionality::
+Once connected to the {IHVPartner} {IHVPartnerEnv} environment via the VPN, RDP and logged into the JumpHost
+. Launch a web browser and visit the RMT URL:
++
+[subs="attributes"]
+----
+http://{rmtIP}/repo/{CompanyName}
+----
++
+Browsing the underlying _Products_ and _Updates_ links will show what content is available.
++
+[[img-demo-infra-RMT]]
+.Verifying RMT functionality
+image::demo-infra-RMT.png[demo-infra-RMT, 640, 480]
++
+NOTE: This URL is based upon the designated,reserved IP address of the respective RMT server. By default the JumpHost does not utilize the local demo environment's DNS service to resolve to the hostname.
++
+If this appears to be functioning, skip to the next section.
+
+Troubleshooting::
+If the previous access does not work, try the following additional checks:
+* Launch a command prompt from the JumpHost _Start_ menu and type
++
+[subs="attributes"]
+----
+ping {rmtIP}
+----
++
+* Launch the `putty` SSH client from the JumpHost _Start_ menu and try connecting, logging in to the RMT IP address {rmtIP}, then
++
+[subs="attributes"]
+----
+systemctl status rmt-server
+----
++
+* Using the Google Chrome web browser, connect to the vSphere HTML5 client interface, log in and make sure the RMT virtual machine is powered on. The virtual remote console can also be launched to assess the state and potentially remedy any operational issues on the node. Refer to the 
++
+TIP: Review the https://documentation.suse.com/sles/15-SP1/single-html/SLES-rmt/[{CompanyName} {ProductNameOS} RMT Guide]
++
+If any of the above attempts fails, an RMT virtual machine can be recreated per the process mentioned in the <<_appendices>>.
+

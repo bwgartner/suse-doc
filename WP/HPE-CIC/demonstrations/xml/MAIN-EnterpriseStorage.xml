@@ -5,7 +5,7 @@
 
 <book lang="en">
 <bookinfo>
-    <title>Demo : SUSE CaaS Platform</title>
+    <title>Demo : SUSE Enterprise Storage</title>
     <author>
         <firstname>Bryan Gartner, SUSE &lt; Bryan.Gartner@SUSE.com &gt;</firstname>
     </author>
@@ -14,7 +14,7 @@
 </bookinfo>
 <preface>
 <title></title>
-<simpara>This document outlines the process to install SUSE CaaS Platform 4.0 on a set of available virtual machines as a solution cluster in the Hewlett Packard Enterprise Customer Innovation Center. While citing steps, values or inputs which need to be changed from the default, documented process in this environment, you can refer to respective <ulink url="https://documentation.suse.com/suse-caasp/4.0/single-html/caasp-deployment/">SUSE CaaS Platform 4.0 Deployment Guide</ulink> for more complete solution overview and details.</simpara>
+<simpara>This document outlines the process to install SUSE Enterprise Storage 6 on a set of available virtual machines as a solution cluster in the Hewlett Packard Enterprise Customer Innovation Center. While citing steps, values or inputs which need to be changed from the default, documented process in this environment, you can refer to respective <ulink url="https://documentation.suse.com/ses/6/single-html/ses-deployment/">SUSE Enterprise Storage 6 Deployment Guide</ulink> for more complete solution overview and details.</simpara>
 <tip><simpara>Supplementary Videos - A condensed video version of this end-to-end process is available, within the Hewlett Packard Enterprise Customer Innovation Center at
 video::<ulink url="https://www.youtube.com/watch?v=4VrhlyIgo3M">FixMe</ulink>.  Likewise, there are full-length videos of the important process sections referenced throughout this document.</simpara></tip>
 </preface>
@@ -350,46 +350,32 @@ rowsep="1" colsep="1"
 <entry align="left" valign="top"><simpara>hosts local DNS</simpara></entry>
 </row>
 <row>
-<entry align="left" valign="top"><simpara>SUSE CaaS Platform</simpara></entry>
-<entry align="left" valign="top"><simpara>Admin/Mgmt</simpara></entry>
-<entry align="left" valign="top"><simpara>adm.k8s.suse.cic</simpara></entry>
-<entry align="left" valign="top"><simpara>10.6.64.64</simpara></entry>
+<entry align="left" valign="top"><simpara>SUSE Enterprise Storage</simpara></entry>
+<entry align="left" valign="top"><simpara>Admin</simpara></entry>
+<entry align="left" valign="top"><simpara>adm.ceph.suse.cic</simpara></entry>
+<entry align="left" valign="top"><simpara>10.6.64.32</simpara></entry>
 <entry align="left" valign="top"><simpara></simpara></entry>
 </row>
 <row>
 <entry align="left" valign="top"><simpara></simpara></entry>
-<entry align="left" valign="top"><simpara>LB</simpara></entry>
-<entry align="left" valign="top"><simpara>mstr.k8s.suse.cic</simpara></entry>
-<entry align="left" valign="top"><simpara>10.6.64.65</simpara></entry>
-<entry align="left" valign="top"><simpara>co-located VIP on RMT</simpara></entry>
-</row>
-<row>
-<entry align="left" valign="top"><simpara></simpara></entry>
-<entry align="left" valign="top"><simpara>Master</simpara></entry>
-<entry align="left" valign="top"><simpara>mstr1.k8s.suse.cic</simpara></entry>
-<entry align="left" valign="top"><simpara>10.6.64.66</simpara></entry>
-<entry align="left" valign="top"><simpara></simpara></entry>
-</row>
-<row>
-<entry align="left" valign="top"><simpara></simpara></entry>
-<entry align="left" valign="top"><simpara>Worker</simpara></entry>
-<entry align="left" valign="top"><simpara>wrkr1.k8s.suse.cic</simpara></entry>
-<entry align="left" valign="top"><simpara>10.6.64.69</simpara></entry>
-<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>OSD</simpara></entry>
+<entry align="left" valign="top"><simpara>osd1.ceph.suse.cic</simpara></entry>
+<entry align="left" valign="top"><simpara>10.6.64.36</simpara></entry>
+<entry align="left" valign="top"><simpara>co-located MON functionality</simpara></entry>
 </row>
 <row>
 <entry align="left" valign="top"><simpara></simpara></entry>
 <entry align="left" valign="top"><simpara></simpara></entry>
-<entry align="left" valign="top"><simpara>wrkr2.k8s.suse.cic</simpara></entry>
-<entry align="left" valign="top"><simpara>10.6.64.70</simpara></entry>
-<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>osd2.ceph.suse.cic</simpara></entry>
+<entry align="left" valign="top"><simpara>10.6.64.37</simpara></entry>
+<entry align="left" valign="top"><simpara>co-located MON functionality</simpara></entry>
 </row>
 <row>
 <entry align="left" valign="top"><simpara></simpara></entry>
 <entry align="left" valign="top"><simpara></simpara></entry>
-<entry align="left" valign="top"><simpara>wrkr3.k8s.suse.cic</simpara></entry>
-<entry align="left" valign="top"><simpara>10.6.64.71</simpara></entry>
-<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>osd3.ceph.suse.cic</simpara></entry>
+<entry align="left" valign="top"><simpara>10.6.64.38</simpara></entry>
+<entry align="left" valign="top"><simpara>co-located MON functionality</simpara></entry>
 </row>
 <row>
 <entry align="left" valign="top"><simpara>spares</simpara></entry>
@@ -488,72 +474,6 @@ Using the Google Chrome web browser, connect to the vSphere HTML5 client interfa
 </varlistentry>
 </variablelist>
 </section>
-<section id="_load_balancer_lb_service">
-<title>Load Balancer (LB) Service</title>
-<simpara>In order to provide resiliency for a given set of APIs of the local SUSE CaaS Platform solution, this service must be configured and running. It is hosted on the RMT server with a secondary IP address.</simpara>
-<important><simpara>This node (virtual machine) and service should be set up and running prior to deployment of the SUSE CaaS Platform instance and available during runtime of the solution.</simpara></important>
-<variablelist>
-<varlistentry>
-<term>
-Verify Functionality
-</term>
-<listitem>
-<simpara>
-Once connected to the Hewlett Packard Enterprise Customer Innovation Center environment via the VPN, RDP and logged into the JumpHost
-</simpara>
-<orderedlist numeration="arabic">
-<listitem>
-<simpara>
-Launch a web browser and visit the LB URL:
-</simpara>
-<screen>http://10.6.64.65:9000/stats</screen>
-<figure id="img-demo-infra-LB"><title>Verifying RMT functionality</title>
-<mediaobject>
-  <imageobject>
-  <imagedata fileref="demo-infra-LB.png"/>
-  </imageobject>
-  <textobject><phrase>demo-infra-LB</phrase></textobject>
-</mediaobject>
-</figure>
-<note><simpara>This URL is based upon the designated, reserved IP address of the respective LB service and it&#8217;s internal configuration. By default the JumpHost does not utilize the local demo DNS service to resolve to the hostname. Beyond the "stats" output, this web page shows the status for the three necessary API services, pointing to mstr1.k8s.suse.cic. Before the solution deployment is completed, that status will be designated as "down" and will show as "active UP" when the solution is successfully installed.</simpara></note>
-<simpara>If this appears to be functioning, skip to the next section.</simpara>
-</listitem>
-</orderedlist>
-</listitem>
-</varlistentry>
-<varlistentry>
-<term>
-Troubleshooting
-</term>
-<listitem>
-<simpara>
-If the previous access does not work, try the following additional checks:
-</simpara>
-<itemizedlist>
-<listitem>
-<simpara>
-Launch a command prompt from the JumpHost <emphasis>Start</emphasis> menu and type
-</simpara>
-<screen>ping 10.6.64.15</screen>
-</listitem>
-<listitem>
-<simpara>
-Launch the <literal>putty</literal> SSH client from the JumpHost <emphasis>Start</emphasis> menu and try connect to the RMT IP address 10.6.64.15. Once logged in as root, try:
-</simpara>
-<screen>systemctl status haproxy</screen>
-</listitem>
-<listitem>
-<simpara>
-Using the Google Chrome web browser, connect to the vSphere HTML5 client interface, log in and make sure the RMT virtual machine is powered on. The virtual remote console can also be launched to assess the state and potentially remedy any operational issues on the node. Refer to the
-</simpara>
-<tip><simpara>Review the <ulink url="https://documentation.suse.com/suse-caasp/4.0/single-html/caasp-deployment/#deployment.preparations">Load Balancer</ulink> section of the SUSE CaaS Platform Deployment Guide.</simpara></tip>
-<simpara>If the above attempts fails, an LB service function can be recreated per the process mentioned in the <xref linkend="_appendices"/></simpara>
-</listitem>
-</itemizedlist>
-</listitem>
-</varlistentry>
-</variablelist>
-</section>
 </chapter>
 <chapter id="_solution_cluster_deployment">
 <title>Solution Cluster Deployment</title>
@@ -564,7 +484,7 @@ Overview
 </term>
 <listitem>
 <simpara>
-The following process encompasses an end-to-end deployment on Virtual Machines (VM), installation of the operating system and then creation of the cluster to provide the SUSE CaaS Platform solutin cluster. While many alternatives exist to create such a working solution cluster, the process outlined below is closely parallel to accomplishing the same thing on a set of baremetal nodes.
+The following process encompasses an end-to-end deployment on Virtual Machines (VM), installation of the operating system and then creation of the cluster to provide the SUSE Enterprise Storage solutin cluster. While many alternatives exist to create such a working solution cluster, the process outlined below is closely parallel to accomplishing the same thing on a set of baremetal nodes.
 </simpara>
 </listitem>
 </varlistentry>
@@ -634,7 +554,7 @@ Provide an appropriate, distinct Virtual machine name in the text field. A sugge
 <itemizedlist>
 <listitem>
 <simpara>
-For example - CaaS Platform-&lt;role&gt;.k8s
+For example - Enterprise Storage-&lt;role&gt;.ceph
 </simpara>
 </listitem>
 </itemizedlist>
@@ -746,31 +666,22 @@ rowsep="1" colsep="1"
 </thead>
 <tbody>
 <row>
-<entry align="left" valign="top"><simpara>SUSE CaaS Platform</simpara></entry>
+<entry align="left" valign="top"><simpara>SUSE Enterprise Storage</simpara></entry>
 <entry align="left" valign="top"><simpara>1</simpara></entry>
-<entry align="left" valign="top"><simpara>adm.k8s</simpara></entry>
+<entry align="left" valign="top"><simpara>adm.ceph</simpara></entry>
 <entry align="left" valign="top"><simpara>2</simpara></entry>
-<entry align="left" valign="top"><simpara>2</simpara></entry>
-<entry align="left" valign="top"><simpara>24</simpara></entry>
+<entry align="left" valign="top"><simpara>4</simpara></entry>
+<entry align="left" valign="top"><simpara>32</simpara></entry>
 <entry align="left" valign="top"><simpara>1</simpara></entry>
 </row>
 <row>
 <entry align="left" valign="top"><simpara></simpara></entry>
-<entry align="left" valign="top"><simpara>&gt;=1</simpara></entry>
-<entry align="left" valign="top"><simpara>master.k8s</simpara></entry>
+<entry align="left" valign="top"><simpara>&gt;=3</simpara></entry>
+<entry align="left" valign="top"><simpara>osd.ceph</simpara></entry>
+<entry align="left" valign="top"><simpara>4</simpara></entry>
+<entry align="left" valign="top"><simpara>4</simpara></entry>
+<entry align="left" valign="top"><simpara>32,4x64</simpara></entry>
 <entry align="left" valign="top"><simpara>2</simpara></entry>
-<entry align="left" valign="top"><simpara>4</simpara></entry>
-<entry align="left" valign="top"><simpara>48</simpara></entry>
-<entry align="left" valign="top"><simpara>1</simpara></entry>
-</row>
-<row>
-<entry align="left" valign="top"><simpara></simpara></entry>
-<entry align="left" valign="top"><simpara>&gt;=2</simpara></entry>
-<entry align="left" valign="top"><simpara>worker.k8s</simpara></entry>
-<entry align="left" valign="top"><simpara>4</simpara></entry>
-<entry align="left" valign="top"><simpara>8</simpara></entry>
-<entry align="left" valign="top"><simpara>64</simpara></entry>
-<entry align="left" valign="top"><simpara>1</simpara></entry>
 </row>
 </tbody>
 </tgroup>
@@ -874,7 +785,7 @@ This section outlines how to install the base SUSE Linux Enterprise Server 15 SP
 </varlistentry>
 </variablelist>
 <note><simpara>For cluster-based solutions, each node can be done sequentially, yet all of the cluster nodes can be installed in parallel as well.</simpara></note>
-<tip><simpara>For a recorded, example video representative of this section&#8217;s process, view video::<ulink url="https://drive.google.com/open?id=1nX6y8Rv0wFK-T9YE6EUzn3ldijXm1D1_">SUSE CaaS Platform Node Operating System Install</ulink>.</simpara></tip>
+<tip><simpara>For a recorded, example video representative of this section&#8217;s process, view video::<ulink url="https://drive.google.com/open?id=1xg-FQSdJAGYXpXW-x2buxRilJywLun_v">SUSE Enterprise Storage Node Operating System Install</ulink>.</simpara></tip>
 <section id="_install_the_base_operating_system">
 <title>Install the base operating system</title>
 <simpara>From the JumpHost, launch the Google Chrome browser to connect to the vSphere HT
@@ -912,9 +823,9 @@ ifcfg=INTERFACE=IP_LIST,GATEWAY_LIST,NAMESERVER_LIST,DOMAINSEARCH_LIST autoyast=
 </listitem>
 <listitem>
 <simpara>
-As an example, for this solution, use a spare IP for the node and enter
+As an example, for this solution, use a IP for the node and enter
 </simpara>
-<screen>ifcfg=eth=10.6.64.208/24,10.6.64.1/10.6.64.15,suse.cic autoyast=http://10.6.64.15/repo/autoYaST/role.k8s.xml</screen>
+<screen>ifcfg=eth=10.6.64.208/24,10.6.64.1/10.6.64.15,suse.cic autoyast=http://10.6.64.15/repo/autoYaST/role.ceph.xml</screen>
 </listitem>
 </itemizedlist>
 </listitem>
@@ -948,7 +859,77 @@ Check the output of
 <simpara>
 To ensure a match with the expected network interface IPAddress
 </simpara>
-<simpara>+</simpara>
+<note><simpara>For the "osd" role nodes, a pair of network interfaces were made available from the virtual machine allocations and the corresponding autoYaST file configures these as a bonded pair with the designated IP address.</simpara></note>
+<screen>ip r</screen>
+</listitem>
+<listitem>
+<simpara>
+To ensure a matching setup for the network routing
+</simpara>
+<screen>host rmt.suse.cic</screen>
+</listitem>
+<listitem>
+<simpara>
+To access to the local DNS mapping service
+</simpara>
+<screen>hostname -f</screen>
+</listitem>
+<listitem>
+<simpara>
+To ensure a matching setup for the fully-qualified domain name of this host
+</simpara>
+<note><simpara>This can be remedied by check the contents of the file(s): <literal>/etc/hostname</literal> to make sure it matches the intended fully-qualified node&#8217;s Hostname and <literal>/etc/hosts</literal> which can have an entry added for the fully-qualified node&#8217;s hostname</simpara></note>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara>
+Run
+</simpara>
+<screen>yast2</screen>
+</listitem>
+<listitem>
+<simpara>
+Selecting <emphasis>Software</emphasis>
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+Then <emphasis>Product Registration</emphasis>
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+Select <emphasis>Register System via local SMT Server</emphasis>
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+Input the appropriate <emphasis>Local Registration Server URL</emphasis> to the RMT server (e.g. <ulink url="http://rmt.suse.cic/">http://rmt.suse.cic/</ulink>) then <emphasis role="strong">Next</emphasis>
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+Add the respective <emphasis>Extensions and Modules</emphasis> for the desired role - may need to uncheck the <emphasis>Hide Development Versions</emphasis>
+</simpara>
+<simpara>selecting <emphasis>SUSE Enterprise Storage Enterprise Storage x86_64</emphasis></simpara>
+<simpara>then <emphasis role="strong">Next</emphasis></simpara>
+<note><simpara>Refer to the respective <ulink url="https://documentation.suse.com">SUSE Solution Deployment Guides</ulink> for the required extensions/modules.</simpara></note>
+</listitem>
+<listitem>
+<simpara>
+Read and <emphasis>Accept</emphasis> any additional license agreements, then <emphasis role="strong">Next</emphasis>
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<emphasis>Accept</emphasis>, <emphasis>Ok</emphasis> and <emphasis>Finish</emphasis> any recommended package installations
+</simpara>
+<simpara>+
+<emphasis role="strong">* Then <emphasis>Online Update</emphasis>
+</emphasis>** Peruse all available updates then <emphasis>Accept</emphasis> and <emphasis>OK</emphasis> and <emphasis>Finish</emphasis> and <emphasis>Close</emphasis> and <emphasis>OK</emphasis> and <emphasis>Quit</emphasis></simpara>
+</listitem>
+</itemizedlist>
 </listitem>
 </itemizedlist>
 </listitem>
@@ -957,105 +938,95 @@ To ensure a match with the expected network interface IPAddress
 </itemizedlist>
 </listitem>
 </orderedlist>
-<screen>ip r</screen>
-<simpara>+
-<emphasis role="strong">*</emphasis> To ensure a matching setup for the network routing</simpara>
-<simpara>+</simpara>
-<screen>host rmt.suse.cic</screen>
-<simpara>+
-<emphasis role="strong">*</emphasis> To access to the local DNS mapping service</simpara>
-<simpara>+</simpara>
-<screen>hostname -f</screen>
-<simpara>+
-<emphasis role="strong">*</emphasis> To ensure a matching setup for the fully-qualified domain name of this host</simpara>
-<simpara>+
-NOTE: This can be remedied by check the contents of the file(s): <literal>/etc/hostname</literal> to make sure it matches the intended fully-qualified node&#8217;s Hostname and <literal>/etc/hosts</literal> which can have an entry added for the fully-qualified node&#8217;s hostname</simpara>
-<simpara>+
-** Run</simpara>
-<simpara>+</simpara>
-<screen>yast2</screen>
-<simpara>+
-<emphasis role="strong"> Selecting <emphasis>Software</emphasis>
-</emphasis>* Then <emphasis>Product Registration</emphasis>
-<emphasis role="strong"><emphasis role="strong">* Select <emphasis>Register System via local SMT Server</emphasis>
-</emphasis></emphasis>* Input the appropriate <emphasis>Local Registration Server URL</emphasis> to the RMT server (e.g. <ulink url="http://rmt.suse.cic/">http://rmt.suse.cic/</ulink>) then <emphasis role="strong">Next</emphasis>
-<emphasis role="strong">*</emphasis>* Add the respective <emphasis>Extensions and Modules</emphasis> for the desired role - may need to uncheck the <emphasis>Hide Development Versions</emphasis></simpara>
-<simpara>+
-selecting <emphasis>SUSE CaaS Platform 4.0 x86_64</emphasis></simpara>
-<simpara>+
-then <emphasis role="strong">Next</emphasis></simpara>
-<simpara>+
-NOTE: Refer to the respective <ulink url="https://documentation.suse.com">SUSE Solution Deployment Guides</ulink> for the required extensions/modules.</simpara>
-<simpara>+
-<emphasis role="strong"><emphasis role="strong">* Read and <emphasis>Accept</emphasis> any additional license agreements, then *Next</emphasis>
-</emphasis>** <emphasis>Accept</emphasis>, <emphasis>Ok</emphasis> and <emphasis>Finish</emphasis> any recommended package installations</simpara>
-<simpara>+
-<emphasis role="strong">* For each of the cluster nodes, visit <emphasis>Software Management</emphasis>
-</emphasis><emphasis role="strong">* Change <emphasis>Filter</emphasis> to <emphasis>Patterns</emphasis>, search for and verify the respective ones for the target role are installed
-<emphasis role="strong"></emphasis></emphasis> for adm role, select <emphasis>SUSE CaaS Platform Management</emphasis>
-<emphasis role="strong">*</emphasis> for other nodes, select <emphasis>SUSE CaaS Platform Node</emphasis></simpara>
-<simpara>+
-Then <emphasis>Accept</emphasis> and <emphasis>OK</emphasis> and <emphasis>Finish</emphasis></simpara>
-<simpara>+
-<emphasis role="strong">* Then <emphasis>Online Update</emphasis>
-</emphasis>** Peruse all available updates then <emphasis>Accept</emphasis> and <emphasis>OK</emphasis> and <emphasis>Finish</emphasis> and <emphasis>Close</emphasis> and <emphasis>OK</emphasis> and <emphasis>Quit</emphasis></simpara>
 <simpara>At this point, the node should be manually rebooted to ensure application of all the updates.  After that the node should be ready for operational usage and inclusion into the solution cluster.</simpara>
 </section>
 </section>
 <section id="_deploying_the_solution">
 <title>Deploying the Solution</title>
 <simpara>After connecting via the VPN and logging into the jumphost, visit the vSphere Web Client, then follow the steps below:</simpara>
-<tip><simpara>For a recorded example video representative of this process, view video::<ulink url="https://drive.google.com/open?id=1KGwymW2SRukk_aG-XGDqYbMMKSFItGkz">SUSE CaaS Platform Cluster Deployment</ulink>.</simpara></tip>
+<tip><simpara>For a recorded example video representative of this section&#8217;s process, view video::<ulink url="https://drive.google.com/open?id=1AfpCwpbQnEL2IWlIGcKQW1ogqk7EnIHv">SUSE Enterprise Storage Cluster Deployment</ulink>.</simpara></tip>
 <orderedlist numeration="arabic">
 <listitem>
 <simpara>
-Right click on the respective virtual machine <emphasis>CaaS Platform-adm.k8s</emphasis> and <emphasis>Open Remote Console</emphasis>
+Right click on the respective virtual machine <emphasis>Enterprise Storage-adm.ceph</emphasis> and <emphasis>Open Remote Console</emphasis>
 </simpara>
 </listitem>
 <listitem>
 <simpara>
-Login to the node as the "geeko" user
+Login to the node as the "root" user
 </simpara>
 <itemizedlist>
 <listitem>
 <simpara>
-Setup the necessary <ulink url="https://https://documentation.suse.com/suse-caasp/4.0/single-html/caasp-deployment/#deployment.preparations">Basic SSH Key Configuration</ulink>
-</simpara>
-</listitem>
-<listitem>
-<simpara>
-Ensure the "geeko" user has <ulink url="https://https://documentation.suse.com/suse-caasp/4.0/single-html/caasp-deployment/#_">sudo access</ulink> on all the cluster ndoes
-</simpara>
-</listitem>
-<listitem>
-<simpara>
-Then proceed with:
+Per the <ulink url="https://documentation.suse.com/ses/6/single-html/ses-deployment/#ceph-install-stack">Cluster Deployment</ulink> from the SUSE Enterprise Storage Deployment Guide:
 </simpara>
 <itemizedlist>
 <listitem>
 <simpara>
-"Intializing the Cluster" process via
+Setup Salt configuration - master on "adm" node, minions on all solution cluster nodes
 </simpara>
-<screen>skuba cluster init --control-plane mstr.k8s.suse.cic my-cluster</screen>
-<itemizedlist>
-<listitem>
-<simpara>
-"Cluster Bootstrap" via
-</simpara>
-<screen>cd my-cluster
-
-skuba node bootstrap --user geeko --sudo --target mstr1.k8s.suse.cic mstr1.k8s
-
-skuba node join --role worker --user geeko --sudo --target wrkr1.k8s.suse.cic wrkr1.k8s
-skuba node join --role worker --user geeko --sudo --target wrkr2.k8s.suse.cic wrkr2.k8s
-skuba node join --role worker --user geeko --sudo --target wrkr3.k8s.suse.cic wrkr3.k8s</screen>
+<note><simpara>Before accepting the minion keys, ensure the fully-qualified host names are represented by the values provided by each of the the salt-minions.</simpara></note>
 </listitem>
 <listitem>
 <simpara>
-Verify the cluster, via
+On each of the "osd" nodes, zap all the non-operating system disk drives.
 </simpara>
-<screen>skuba cluster status</screen>
-<simpara>And with the steps in <ulink url="https://documentation.suse.com/suse-caasp/4.0/single-html/caasp-deployment/#_using_kubectl">"Using kubectl"</ulink>.</simpara>
+<tip><simpara>An example script to perform this action is available at: <ulink url="http://rmt.suse.cic/repo/EnterpriseStorage-deploy/">diskzap.sh</ulink>.</simpara></tip>
+</listitem>
+<listitem>
+<simpara>
+On the "adm" node, install "DeepSea"
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+On each of the cluster nodes, create the Btrfs sub-volumes for /var/lib/ceph, since each of the "osd" nodes also have the "mon" functionality co-located on them.
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+On the "adm" node, modify the <emphasis>DriveGroups</emphasis> file to use all available drives on the "osd" nodes.
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+Begin the cluster deployment, invoking the "preparation" and "discovery" stages:
+</simpara>
+<screen>deepsea stage run ceph.stage.0
+deepsea stage run ceph.stage.1</screen>
+</listitem>
+<listitem>
+<simpara>
+Given the rather minimal cluster node setup, adjust the following configurations:
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+Allow a cluster with only 3 "osd" nodes, by modifying a line on the "adm" node in the /srv/modules/runners/validate.py to:
+</simpara>
+<screen>if (not self.in_dev_env and len(storage) &lt; 3) or (self.in_dev_env and len(storage) &lt; 1)</screen>
+</listitem>
+<listitem>
+<simpara>
+Create a "/srv/pillar/ceph/proposals/policy.cfg" file to deploy the minimal functions.
+</simpara>
+<tip><simpara>An example configuration file is available at: <ulink url="http://rmt.suse.cic/repo/EnterpriseStorage-deploy/">policy.cfg</ulink>.</simpara></tip>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara>
+Finish the remaining stages of solution cluster deployment with:
+</simpara>
+<screen>deepsea stage run ceph.stage.2
+deepsea stage run ceph.stage.3
+deepsea stage run ceph.stage.4</screen>
+<itemizedlist>
+<listitem>
+<simpara>
+Then verify the cluster, via
+</simpara>
+<screen>ceph status</screen>
 </listitem>
 </itemizedlist>
 </listitem>
@@ -1068,16 +1039,12 @@ Verify the cluster, via
 </chapter>
 <chapter id="_summary">
 <title>Summary</title>
-<simpara>At this point, the SUSE CaaS Platform solution cluster should be up, running and functional.</simpara>
+<simpara>At this point, the SUSE Enterprise Storage solution cluster should be up, running and functional.</simpara>
 <simpara>TBD - Only included base solution deployment so far, so may add additional sections over time.
-NOTE: In the interim, refer to <ulink url="https://documentation.suse.com/suse-caasp/4.0/single-html/caasp-admin/">SUSE CaaS Platform Administration Guide</ulink> for operational aspects and guidance.</simpara>
+NOTE: In the interim, refer to <ulink url="https://documentation.suse.com/ses/6/single-html/ses-admin">SUSE Enterprise Storage Administration Guide</ulink> for operational aspects and guidance.</simpara>
 </chapter>
 <chapter id="_appendices">
 <title>Appendices</title>
-<simpara>TBD - Will link to other content over time
-////FixMe
-//// * RMT Setup
-//// * DNS Setup
-//// * LB Setup</simpara>
+<simpara>TBD - Will link to other content over time</simpara>
 </chapter>
 </book>

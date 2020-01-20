@@ -85,14 +85,14 @@ ifeval::["{DemoTarget}" == "TBD"]
 endif::[]
 ifeval::["{DemoTarget}" == "CaaSPlatform"]
 |{CompanyName} {ProductNameContainer}
-           |1         |adm.k8s    | 2    | 2           | 24        | 1
-|          |>=1       |master.k8s | 2    | 4           | 48        | 1
-|          |>=2       |worker.k8s | 4    | 8           | 64        | 1
+           |1         |adm.{domainNameContainer}    | 2    | 2           | 24        | 1
+|          |>=1       |master.{domainNameContainer} | 2    | 4           | 48        | 1
+|          |>=2       |worker.{domainNameContainer} | 4    | 8           | 64        | 1
 endif::[]
 ifeval::["{DemoTarget}" == "EnterpriseStorage"]
 |{CompanyName} {ProductNameStorage}
-           |1         |adm        | 2    | 4           | 32        | 1
-|          |>=3       |osd       | 4    | 4           | 32,4x64   | 2
+           |1         |adm.{domainNameStorage}   | 2    | 4           | 32        | 1
+|          |>=3       |osd.{domainNameStorage}  | 4    | 4           | 32,4x64   | 2
 endif::[]
 |===
 +

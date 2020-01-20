@@ -20,6 +20,7 @@
 :ProductNameStorageVer: 15 SP1
 :ProductNameStorage: Enterprise Storage
 :ProductNameStorageVer: 6
+:ProductNameStorageUser: geeko
 :ProductNameSUMa: Manager
 :ProductNameSUMaVer: 4.0
 

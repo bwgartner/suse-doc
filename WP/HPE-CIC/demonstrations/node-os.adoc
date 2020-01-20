@@ -3,16 +3,23 @@
 Purpose::
 This section outlines how to install the base {CompanyName} {ProductNameOS} {ProductNameOSVer} on an available virtual machine node in a fairly automated fashion for the various roles of the {CompanyName} solutions in the {IHVPartner} {IHVPartnerEnv}.
 
-NOTE: This document only cites values or inputs which need to be changed from the defaults. Refer to the node roles of {CompanyName} solutions, as that respective document calls out further exceptions to this process. 
+NOTE: For cluster-based solutions, each node can be done sequentially, yet all of the cluster nodes can be installed in parallel as well.
 
-TIP: Refer to the respective https://documentation.suse.com/sles/15-SP1/single-html/SLES-deployment/#book-sle-deployment[{CompanyName} {ProductNameOS} {ProductNameOSVer} Deployment Guide] for further details. 
+ifeval::["{DemoTarget}" == "CaaSPlatform"]
+TIP: For a recorded, example video representative of this section's process, view video::https://drive.google.com/open?id=1nX6y8Rv0wFK-T9YE6EUzn3ldijXm1D1_[{CompanyName} {ProductNameContainer} Node Operating System Install].
+endif::[]
+ifeval::["{DemoTarget}" == "EnterpriseStorage"]
+TIP: For a recorded, example video representative of this section's process, view video::https://drive.google.com/open?id=1xg-FQSdJAGYXpXW-x2buxRilJywLun_v[{CompanyName} {ProductNameStorage} Node Operating System Install].
+endif::[]
 
 ==== Install the base operating system
 
 From the JumpHost, launch the Google Chrome browser to connect to the vSphere HT
 ML5 Web Client, then follow the steps below:
 
-TIP: For a recorded example video representative of this process, view video::https://drive.google.com/open?id=1bi4S6KtxAHgSRH0DHbQ2Jpyk3apBJ2a8[{CompanyName} {ProductNameContainer} Management Workstation Operating System Install]. Of course, all of the cluster nodes can be installed in parallel as well.
+NOTE: This document only cites values or inputs which need to be changed from the defaults. Refer to the node roles of {CompanyName} solutions, as that respective document calls out further exceptions to this process. 
+
+TIP: Refer to the respective https://documentation.suse.com/sles/15-SP1/single-html/SLES-deployment/#book-sle-deployment[{CompanyName} {ProductNameOS} {ProductNameOSVer} Deployment Guide] for further details. 
 
 . Right click on the respective virtual machine and _Open Remote Console_
 . Power On the virtual machine
@@ -25,19 +32,27 @@ NOTE: Refer to specific DNS IP Subnet networking settings from the <<_domain_nam
 +
 * In the _Boot Options_ input field, create a temporary network configuration to access the unattended installation (autoYaST) file
 +
-NOTE: Within the {IHVPartner} {IHVPartnerEnv} you can view the contents of the respective solution node role's autoYaST file via a web browser to review what configuration is being setup and installed by accessing the URL - http://rmt.suse.cic/repo/autoYaST/.
+NOTE: Within the {IHVPartner} {IHVPartnerEnv} you can view the contents of the respective solution node role's autoYaST file via a web browser to review what configuration is being setup and installed by accessing the URL - http://rmt.{domainName}/repo/autoYaST/.
 +
 ** ifcfg=INTERFACE=IP_LIST,GATEWAY_LIST,NAMESERVER_LIST,DOMAINSEARCH_LIST autoyast=URL/PathToFile.xml
 +
 ifeval::["{DemoTarget}" == "CaaSPlatform"]
-** As an example, for this solution, use of the spare IPs and enter
+** As an example, for this solution, use a spare IP for the node and enter
 +
 [subs="attributes"]
 ----
-ifcfg=eth=10.6.64.208/24,10.6.64.1/{rmtIP},suse.cic autoyast=http://{rmtIP}/repo/autoYaST/role.{domainNameContainer}.xml
+ifcfg=eth=10.6.64.208/24,10.6.64.1/{rmtIP},{domainName} autoyast=http://{rmtIP}/repo/autoYaST/role.{domainNameContainer}.xml
 ----
-+
 endif::[]
+ifeval::["{DemoTarget}" == "EnterpriseStorage"]
+** As an example, for this solution, use a IP for the node and enter
++
+[subs="attributes"]
+----
+ifcfg=eth=10.6.64.208/24,10.6.64.1/{rmtIP},{domainName} autoyast=http://{rmtIP}/repo/autoYaST/role.{domainNameStorage}.xml
+----
+endif::[]
+
 
 At this point, the operating system will install has finished, the node will reboot and the automated post-install configuration will be applied.
 
@@ -45,8 +60,6 @@ At this point, the operating system will install has finished, the node will reb
 
 From the JumpHost, launch the Google Chrome browser to connect to the vSphere HT
 ML5 Web Client, then follow the steps below:
-
-TIP: For a recorded video of the post-install process, view video::https://drive.google.com/open?id=1T-AzT1Nz4Jx4sW8P-1Q4wm43tEB_kA8I[{CompanyName} {ProductNameContainer} Master Node Post-Install].
 
 . Right click on the respective virtual machine and _Open Remote Console_
 * Login, via root, to the node and perform these few verifications and adjustments:
@@ -58,6 +71,10 @@ ip a
 ----
 +
 *** To ensure a match with the expected network interface IPAddress
++
+ifeval::["{DemoTarget}" == "EnterpriseStorage"]
+NOTE: For the "osd" role nodes, a pair of network interfaces were made available from the virtual machine allocations and the corresponding autoYaST file configures these as a bonded pair with the designated IP address.
+endif::[]
 +
 [subs="attributes"]
 ----
@@ -96,10 +113,10 @@ yast2
 **** Add the respective _Extensions and Modules_ for the desired role - may need to uncheck the _Hide Development Versions_
 +
 ifeval::["{DemoTarget}" == "CaaSPlatform"]
-{CompanyName} {ProductNameContainer} {ProductNameContainerVer} x86_64
+selecting _{CompanyName} {ProductNameContainer} {ProductNameContainerVer} x86_64_
 endif::[]
 ifeval::["{DemoTarget}" == "EnterpriseStorage"]
-{CompanyName} {ProductNameStorage} {ProductNameStorage} x86_64
+selecting _{CompanyName} {ProductNameStorage} {ProductNameStorage} x86_64_
 endif::[]
 +
 then *Next*
@@ -108,11 +125,12 @@ NOTE: Refer to the respective https://documentation.suse.com[{CompanyName} Solut
 +
 **** Read and _Accept_ any additional license agreements, then *Next*
 **** _Accept_, _Ok_ and _Finish_ any recommended package installations
++
 ifeval::["{DemoTarget}" == "CaaSPlatform"]
-*** Then _Software Management_
-**** Change _Filter_ to _Patterns_ search for and verify the respective ones for the target role are installed
-***** for adm role - _{CompanyName} {ProductNameContainer} Management_
-***** for other roles - _{CompanyName} {ProductNameContainer} Node_
+*** For each of the cluster nodes, visit _Software Management_
+**** Change _Filter_ to _Patterns_, search for and verify the respective ones for the target role are installed
+***** for adm role, select _{CompanyName} {ProductNameContainer} Management_
+***** for other nodes, select _{CompanyName} {ProductNameContainer} Node_
 +
 Then _Accept_ and _OK_ and _Finish_
 endif::[]
@@ -121,3 +139,4 @@ endif::[]
 **** Peruse all available updates then _Accept_ and _OK_ and _Finish_ and _Close_ and _OK_ and _Quit_
 
 At this point, the node should be manually rebooted to ensure application of all the updates.  After that the node should be ready for operational usage and inclusion into the solution cluster.
+

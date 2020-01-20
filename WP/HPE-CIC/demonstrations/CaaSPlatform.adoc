@@ -3,10 +3,10 @@
 include::../vars.adoc[]
 
 ifdef::env-github[]
-:imagesdir: {AuthorGHURL}/images/src/png/
+:imagesdir: {AuthorGHURL}/demonstrations/images/src/png/
 endif::[]
 
-= Demo : {CompanyName} {ProductNameContainer} Installation
+= Demo : {CompanyName} {ProductNameContainer}
 {Author}, {CompanyName} < {AuthorEMail} >
 
 This document outlines the process to install {CompanyName} {ProductNameContainer} {ProductNameContainerVer} on a set of available virtual machines as a solution cluster in the {IHVPartner} {IHVPartnerEnv}. While citing steps, values or inputs which need to be changed from the default, documented process in this environment, you can refer to respective https://documentation.suse.com/suse-caasp/{ProductNameContainerVer}/single-html/caasp-deployment/[{CompanyName} {ProductNameContainer} {ProductNameContainerVer} Deployment Guide] for more complete solution overview and details. 
@@ -34,17 +34,19 @@ include::node-os.adoc[]
 
 After connecting via the VPN and logging into the jumphost, visit the vSphere Web Client, then follow the steps below:
 
-TIP: For a recorded example video representative of this process, view video::https://drive.google.com/open?id=1T1L6W1HysW-qVGR2QmwLof6NDlBlOiS0[{CompanyName} {ProductNameContainer} Cluster Deployment].
+//FixMe
+TIP: For a recorded example video representative of this process, view video::https://drive.google.com/open?id=1KGwymW2SRukk_aG-XGDqYbMMKSFItGkz[{CompanyName} {ProductNameContainer} Cluster Deployment].
 
-. Right click on the respective virtual machine _{ProductNameContainer}-adm.k8s_ and _Open Remote Console_
+. Right click on the respective virtual machine _{ProductNameContainer}-adm.{domainNameContainer}_ and _Open Remote Console_
 . Login to the node as the "{ProductNameContainerUser}" user
 * Setup the necessary https://https://documentation.suse.com/suse-caasp/4.0/single-html/caasp-deployment/#deployment.preparations[Basic SSH Key Configuration]
 * Ensure the "{ProductNameContainerUser}" user has https://https://documentation.suse.com/suse-caasp/4.0/single-html/caasp-deployment/#_[sudo access] on all the cluster ndoes
 * Then proceed with:
 ** "Intializing the Cluster" process via
 +
+[subs="attributes"]
 ----
-skuba cluster init --control-plane mstr.k8s.suse.cic my-cluster
+skuba cluster init --control-plane mstr.{domainNameContainer}.{domainName} my-cluster
 ----
 *** "Cluster Bootstrap" via
 +
@@ -52,11 +54,11 @@ skuba cluster init --control-plane mstr.k8s.suse.cic my-cluster
 ----
 cd my-cluster
 
-skuba node bootstrap --user {ProductNameContainerUser} --sudo --target mstr1.k8s.suse.cic mstr1.k8s
+skuba node bootstrap --user {ProductNameContainerUser} --sudo --target mstr1.{domainNameContainer}.{domainName} mstr1.{domainNameContainer}
 
-skuba node join --role worker --user {ProductNameContainerUser} --sudo --target wrkr1.k8s.suse.cic wrkr1.k8s
-skuba node join --role worker --user {ProductNameContainerUser} --sudo --target wrkr2.k8s.suse.cic wrkr2.k8s
-skuba node join --role worker --user {ProductNameContainerUser} --sudo --target wrkr3.k8s.suse.cic wrkr3.k8s
+skuba node join --role worker --user {ProductNameContainerUser} --sudo --target wrkr1.{domainNameContainer}.{domainName} wrkr1.{domainNameContainer}
+skuba node join --role worker --user {ProductNameContainerUser} --sudo --target wrkr2.{domainNameContainer}.{domainName} wrkr2.{domainNameContainer}
+skuba node join --role worker --user {ProductNameContainerUser} --sudo --target wrkr3.{domainNameContainer}.{domainName} wrkr3.{domainNameContainer}
 ----
 *** Verify the cluster, via
 +
@@ -75,7 +77,7 @@ NOTE: In the interim, refer to https://documentation.suse.com/suse-caasp/{Produc
 
 == Appendices
 TBD - Will link to other content over time
-//FixMe
-// * RMT Setup
-// * DNS Setup
-// * LB Setup
+////FixMe
+//// * RMT Setup
+//// * DNS Setup
+//// * LB Setup

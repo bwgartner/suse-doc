@@ -7,5 +7,6 @@ FYI, the majority of the document source in this repository is in Asciidoc forma
 Overall Process / Table of Contents
 
 1. [demonstrations](.demonstrations)
-   * SUSE CaaS Platform Installation
+   * SUSE CaaS Platform
+   * SUSE Enterprise Storage
 

@@ -14,24 +14,95 @@
 </bookinfo>
 <chapter id="_ramping_up_to_the_fastlane_a_beginner_8217_s_guide_to_learning_and_using_kubernetes">
 <title>Ramping up to the Fastlane: A Beginner&#8217;s Guide to Learning and Using Kubernetes</title>
-<itemizedlist>
-<listitem>
-<simpara>
-Emerging as the defacto standard of orchestrating containerized, microservice workloads, Kubernetes is quickly becoming a fundamental training goala. In this hands-on session, you will learn how to effectively utilize the Kubernetes technology across the various Dev, Security, Data, and Ops perspectives. Starting with a single workload and then working towards a complete, containerized service deployment, you will interact with and explore the features provided by Kubernetes to leverage the scalable, resilient, manageable environment for the workloads.
-</simpara>
-</listitem>
-</itemizedlist>
-<section id="_start_your_engines">
+<simpara>Emerging as the defacto standard of orchestrating containerized, microservice workloads, Kubernetes is quickly becoming a fundamental training goala. In this hands-on session, you will learn how to effectively utilize the Kubernetes technology across the various Dev, Security, Data, and Ops perspectives. Starting with a single workload and then working towards a complete, containerized service deployment, you will interact with and explore the features provided by Kubernetes to leverage the scalable, resilient, manageable environment for the workloads.</simpara>
+</chapter>
+<chapter id="_start_your_engines">
 <title>Start Your Engines</title>
+<simpara>A simple deployment of a set of containers to show the value of Kubernetes orchestration.</simpara>
 <itemizedlist>
 <listitem>
 <simpara>
-Let us get started with a quick, simple interaction with Kubernetes
+Goal / Objectives - Launch a complete Wordpress containerized, set of services
+</simpara>
+<variablelist>
+<varlistentry>
+<term>
+Process
+</term>
+<listitem>
+<simpara>
+Follow these steps:
+</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>
+Login to your system ( user : geeko , password: linux )
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+Launch a terminal, then from the command prompt, type
+</simpara>
+<screen>kubectl apply --filename="./Lab1/sample.yml"</screen>
+<tip><simpara>as a reference, see <ulink url="https://kubernetes.io/docs/tutorials/stateful-application/mysql-wordpress-persistent-volume/">Sample</ulink>.</simpara></tip>
+</listitem>
+<listitem>
+<simpara>
+Then get a glimpse of what you just launched, via
+</simpara>
+<screen>kubectl get pods --namespace="vroom" -o wide</screen>
+<note><simpara>In later exercises, we will show other ways to interact with and view what is running.</simpara></note>
+</listitem>
+<listitem>
+<simpara>
+You can now stop all of these deployed microservices, via
+</simpara>
+<screen>kubectl delete --filename="./Lab1/sample.yml"</screen>
+<simpara>and check that they are gone, via</simpara>
+<screen>kubectl get pods --namespace="vroom"</screen>
+</listitem>
+<listitem>
+<simpara>
+As bonus exercises, try
+</simpara>
+<screen>man kubectl
+kubectl --help
+man kubectl-get</screen>
+</listitem>
+</orderedlist>
+</listitem>
+</varlistentry>
+</variablelist>
+</listitem>
+</itemizedlist>
+<simpara><emphasis role="strong"><emphasis>Woohoo !</emphasis></emphasis> Now you can see the initial appeal of what Kubernetes offers, leveraging the predominant CLI tool, <literal>kubectl</literal> ( controls the Kubernetes cluster manager ).</simpara>
+<note><simpara>The example commands provided in this exercise used the full syntax and option names. In later exercises we will show the alternatives.</simpara></note>
+<itemizedlist>
+<listitem>
+<simpara>
+Knowledge Check:
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+ability to deploy multiple microservices with a single command
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+getting the status of those microservices, using a variation of that single command
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+destroy the set of microservices, again using a variation of that single command
 </simpara>
 </listitem>
 </itemizedlist>
-</section>
-<section id="_turn_signal_on_getting_ready_to_merge">
+</listitem>
+</itemizedlist>
+</chapter>
+<chapter id="_turn_signal_on_getting_ready_to_merge">
 <title>Turn Signal On, Getting Ready to Merge</title>
 <itemizedlist>
 <listitem>
@@ -40,8 +111,8 @@ Understanding the basics of how to interact
 </simpara>
 </listitem>
 </itemizedlist>
-</section>
-<section id="_heading_down_the_highway">
+</chapter>
+<chapter id="_heading_down_the_highway">
 <title>Heading Down the Highway</title>
 <itemizedlist>
 <listitem>
@@ -50,10 +121,13 @@ Becoming aware of all the aspects around you
 </simpara>
 </listitem>
 </itemizedlist>
-</section>
 </chapter>
 <chapter id="_summary">
 <title>Summary</title>
 <simpara>At this point you should now feel like you have enough experience with Kubernetes to share with your peers, begin using it on-premise, in managed services or in public cloud providers.</simpara>
+</chapter>
+<chapter id="_homework">
+<title>Homework</title>
+<simpara>If this enticed you to further investigate this technology, feel free to grab all of the lab exercises, plus the technology to deploy your own Kubernetes cluster.</simpara>
 </chapter>
 </book>

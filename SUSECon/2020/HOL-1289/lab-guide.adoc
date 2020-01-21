@@ -1,25 +1,87 @@
 
 include::./vars.adoc[]
 
+ifdef::env-github[]
+:imagesdir: {AuthorGHURL}/images/src/png/
+endif::[]
+
 = Introduction to Kubernetes HOL-1289
 {Author}, {CompanyName} < {AuthorEMail} >
 
 == Ramping up to the Fastlane: A Beginner's Guide to Learning and Using Kubernetes
 
-* Emerging as the defacto standard of orchestrating containerized, microservice workloads, Kubernetes is quickly becoming a fundamental training goala. In this hands-on session, you will learn how to effectively utilize the Kubernetes technology across the various Dev, Security, Data, and Ops perspectives. Starting with a single workload and then working towards a complete, containerized service deployment, you will interact with and explore the features provided by Kubernetes to leverage the scalable, resilient, manageable environment for the workloads.
+Emerging as the defacto standard of orchestrating containerized, microservice workloads, Kubernetes is quickly becoming a fundamental training goala. In this hands-on session, you will learn how to effectively utilize the Kubernetes technology across the various Dev, Security, Data, and Ops perspectives. Starting with a single workload and then working towards a complete, containerized service deployment, you will interact with and explore the features provided by Kubernetes to leverage the scalable, resilient, manageable environment for the workloads.
 
-=== Start Your Engines
+== Start Your Engines
+A simple deployment of a set of containers to show the value of Kubernetes orchestration.
 
-* Let us get started with a quick, simple interaction with Kubernetes
+* Goal / Objectives - Launch a complete Wordpress containerized, set of services
 
-=== Turn Signal On, Getting Ready to Merge
+Process::
+Follow these steps:
+. Login to your system ( user : {UID} , password: {PW} )
+. Launch a terminal, then from the command prompt, type
++
+[subs="attributes"]
+----
+kubectl apply --filename="{L1dir}/{L1e1}"
+----
++
+TIP: as a reference, see https://kubernetes.io/docs/tutorials/stateful-application/mysql-wordpress-persistent-volume/[Sample].
++
+. Then get a glimpse of what you just launched, via
++
+[subs="attributes"]
+----
+kubectl get pods --namespace="{L1e1-ns}" -o wide
+----
++
+NOTE: In later exercises, we will show other ways to interact with and view what is running.
++
+. You can now stop all of these deployed microservices, via
++
+[subs="attributes"]
+----
+kubectl delete --filename="{L1dir}/{L1e1}"
+----
++
+and check that they are gone, via
++
+[subs="attributes"]
+----
+kubectl get pods --namespace="{L1e1-ns}"
+----
++
+. As bonus exercises, try
++
+[subs="attributes"]
+----
+man kubectl
+kubectl --help
+man kubectl-get
+----
+
+*_Woohoo !_* Now you can see the initial appeal of what Kubernetes offers, leveraging the predominant CLI tool, `kubectl` ( controls the Kubernetes cluster manager ).
+
+NOTE: The example commands provided in this exercise used the full syntax and option names. In later exercises we will show the alternatives.
+
+* Knowledge Check:
+** ability to deploy multiple microservices with a single command
+** getting the status of those microservices, using a variation of that single command
+** destroy the set of microservices, again using a variation of that single command
+
+== Turn Signal On, Getting Ready to Merge
 
 * Understanding the basics of how to interact
 
-=== Heading Down the Highway
+== Heading Down the Highway
 
 * Becoming aware of all the aspects around you
 
 == Summary
 
 At this point you should now feel like you have enough experience with Kubernetes to share with your peers, begin using it on-premise, in managed services or in public cloud providers.
+
+== Homework
+
+If this enticed you to further investigate this technology, feel free to grab all of the lab exercises, plus the technology to deploy your own Kubernetes cluster.

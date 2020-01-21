@@ -1,5 +1,6 @@
 :Author: TBD
 :AuthorEmail: TBD
+:AuthorGHURL: https://github.com/bwgartner/suse-doc/raw/master/SUSECon/2020/HOL-1289
 
 :AuthorA: Alex Arnoldy
 :AuthorAEMail: Alex.Arnoldy@SUSE.com
@@ -16,4 +17,11 @@
 :ProductNameStorageVer: 6
 :ProductNamePaaS: Cloud Application Platform
 :ProductNamePaaSVer: 1.5.1
+
+:UID: geeko
+:PW: linux
+
+:L1dir: ./Lab1
+:L1e1: sample.yml
+:L1e1-ns: vroom
 

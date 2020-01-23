@@ -5,24 +5,35 @@
 
 <book lang="en">
 <bookinfo>
-    <title>Introduction to Kubernetes HOL-1289</title>
+    <title>HOL-1289 : Introduction to Kubernetes</title>
     <author>
         <firstname>TBD, SUSE &lt; TBD &gt;</firstname>
     </author>
     <authorinitials>{</authorinitials>
 <orgname>SUSE</orgname>
 </bookinfo>
-<chapter id="_ramping_up_to_the_fastlane_a_beginner_8217_s_guide_to_learning_and_using_kubernetes">
-<title>Ramping up to the Fastlane: A Beginner&#8217;s Guide to Learning and Using Kubernetes</title>
-<simpara>Emerging as the defacto standard of orchestrating containerized, microservice workloads, Kubernetes is quickly becoming a fundamental training goala. In this hands-on session, you will learn how to effectively utilize the Kubernetes technology across the various Dev, Security, Data, and Ops perspectives. Starting with a single workload and then working towards a complete, containerized service deployment, you will interact with and explore the features provided by Kubernetes to leverage the scalable, resilient, manageable environment for the workloads.</simpara>
-</chapter>
-<chapter id="_start_your_engines">
-<title>Start Your Engines</title>
+<preface id="_preface">
+<title>Preface</title>
+<variablelist>
+<varlistentry>
+<term>
+Ramping up to the Fastlane: A Beginner&#8217;s Guide to Learning and Using Kubernetes
+</term>
+<listitem>
+<simpara>
+Emerging as the defacto standard of orchestrating containerized, microservice workloads, Kubernetes is quickly becoming a fundamental training goala. In this hands-on session, you will learn how to effectively utilize the Kubernetes technology across the various Dev, Security, Data, and Ops perspectives. Starting with a single workload and then working towards a complete, containerized service deployment, you will interact with and explore the features provided by Kubernetes to leverage the scalable, resilient, manageable environment for the workloads.
+</simpara>
+</listitem>
+</varlistentry>
+</variablelist>
+</preface>
+<chapter id="_start_your_engines_precede_with_slides_5_minutes">
+<title>Start Your Engines (precede with slides, 5 minutes)</title>
 <simpara>A simple deployment of a set of containers to show the value of Kubernetes orchestration.</simpara>
 <itemizedlist>
 <listitem>
 <simpara>
-Goal / Objectives - Launch a complete Wordpress containerized, set of services
+Goal / Objectives - Launch a complete Wordpress containerized, set of services ( 5-15 minutes)
 </simpara>
 <variablelist>
 <varlistentry>
@@ -102,29 +113,134 @@ destroy the set of microservices, again using a variation of that single command
 </listitem>
 </itemizedlist>
 </chapter>
-<chapter id="_turn_signal_on_getting_ready_to_merge">
-<title>Turn Signal On, Getting Ready to Merge</title>
+<chapter id="_turn_signal_on_getting_ready_to_merge_precede_with_slides_5_minutes">
+<title>Turn Signal On, Getting Ready to Merge (precede with slides, 5 minutes)</title>
 <itemizedlist>
 <listitem>
 <simpara>
-Understanding the basics of how to interact
+Understanding the basics of how to interact ( 35-45 minutes )
 </simpara>
 </listitem>
-</itemizedlist>
-</chapter>
-<chapter id="_heading_down_the_highway">
-<title>Heading Down the Highway</title>
+<listitem>
+<simpara>
+Leveraging - <ulink url="https://kubernetes.io/docs/tutorials/kubernetes-basics/">Kubernetes Basics</ulink>
+</simpara>
 <itemizedlist>
 <listitem>
 <simpara>
-Becoming aware of all the aspects around you
+Deploy an app
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+Explore your app
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+Expose your app publicly
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+Scale up your app
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+Update your app
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+Cleanup your cluster
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+As bonus exercises, try&#8201;&#8212;&#8201;using K8s dashboard&#8201;&#8212;&#8201;explore K9s&#8201;&#8212;&#8201;launch via helm
 </simpara>
 </listitem>
 </itemizedlist>
+</listitem>
+</itemizedlist>
 </chapter>
-<chapter id="_summary">
-<title>Summary</title>
+<chapter id="_heading_down_the_highway_precede_with_slides_5_minutes">
+<title>Heading Down the Highway (precede with slides, 5 minutes)</title>
+<itemizedlist>
+<listitem>
+<simpara>
+Becoming aware of all the aspects around you ( 45 - 55 minutes )
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+Leveraging - <ulink url="https://courses.edx.org/courses/course-v1:LinuxFoundationX+LFS158x+2T2019/course/">LFS158x Introduction to Kubernetes</ulink>
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+Cluster Node Elements / Resources
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+Namespaces
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+Authentication, Authorization, Admission Control
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+Services
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+Labels and Selectors
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+Liveness
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+DaemonSets
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+Volumes
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+Monitoring and Logging
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+Cleanup your cluster
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+As bonus exercises, try&#8201;&#8212;&#8201;using Stratos to view multi-cluster&#8201;&#8212;&#8201;reviewing how to deploy a K8s cluster
+</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+</itemizedlist>
+</chapter>
+<chapter id="_summary_wrap_up_with_slides_5_minutes">
+<title>Summary (wrap-up with slides, 5 minutes)</title>
 <simpara>At this point you should now feel like you have enough experience with Kubernetes to share with your peers, begin using it on-premise, in managed services or in public cloud providers.</simpara>
+<important><simpara>help us cleanup the lab environment before you leave</simpara></important>
 </chapter>
 <chapter id="_homework">
 <title>Homework</title>

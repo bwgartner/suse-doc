@@ -1,21 +1,25 @@
 
-include::./vars.adoc[]
+include::./global-vars.adoc[]
 
 ifdef::env-github[]
 :imagesdir: {AuthorGHURL}/images/src/png/
 endif::[]
 
-= Introduction to Kubernetes HOL-1289
+= HOL-1289 : Introduction to Kubernetes
 {Author}, {CompanyName} < {AuthorEMail} >
 
-== Ramping up to the Fastlane: A Beginner's Guide to Learning and Using Kubernetes
+[preface]
+== Preface
 
+Ramping up to the Fastlane: A Beginner's Guide to Learning and Using Kubernetes::
 Emerging as the defacto standard of orchestrating containerized, microservice workloads, Kubernetes is quickly becoming a fundamental training goala. In this hands-on session, you will learn how to effectively utilize the Kubernetes technology across the various Dev, Security, Data, and Ops perspectives. Starting with a single workload and then working towards a complete, containerized service deployment, you will interact with and explore the features provided by Kubernetes to leverage the scalable, resilient, manageable environment for the workloads.
 
-== Start Your Engines
+
+include::./L1-vars.adoc[]
+== Start Your Engines (precede with slides, 5 minutes)
 A simple deployment of a set of containers to show the value of Kubernetes orchestration.
 
-* Goal / Objectives - Launch a complete Wordpress containerized, set of services
+* Goal / Objectives - Launch a complete Wordpress containerized, set of services ( 5-15 minutes)
 
 Process::
 Follow these steps:
@@ -70,17 +74,50 @@ NOTE: The example commands provided in this exercise used the full syntax and op
 ** getting the status of those microservices, using a variation of that single command
 ** destroy the set of microservices, again using a variation of that single command
 
-== Turn Signal On, Getting Ready to Merge
+// include::./L2-vars.adoc[]
+== Turn Signal On, Getting Ready to Merge (precede with slides, 5 minutes)
 
-* Understanding the basics of how to interact
+* Understanding the basics of how to interact ( 35-45 minutes )
 
-== Heading Down the Highway
+* Leveraging - https://kubernetes.io/docs/tutorials/kubernetes-basics/[Kubernetes Basics]
 
-* Becoming aware of all the aspects around you
+- Deploy an app
+- Explore your app
+- Expose your app publicly
+- Scale up your app
+- Update your app
+- Cleanup your cluster
+- As bonus exercises, try
+-- using K8s dashboard
+-- explore K9s
+-- launch via helm
 
-== Summary
+
+// include::./L3-vars.adoc[]
+== Heading Down the Highway (precede with slides, 5 minutes)
+
+* Becoming aware of all the aspects around you ( 45 - 55 minutes )
+* Leveraging - https://courses.edx.org/courses/course-v1:LinuxFoundationX+LFS158x+2T2019/course/[LFS158x Introduction to Kubernetes]
+
+- Cluster Node Elements / Resources
+- Namespaces
+- Authentication, Authorization, Admission Control
+- Services
+- Labels and Selectors
+- Liveness
+- DaemonSets
+- Volumes
+- Monitoring and Logging
+- Cleanup your cluster
+- As bonus exercises, try
+-- using Stratos to view multi-cluster
+-- reviewing how to deploy a K8s cluster
+
+== Summary (wrap-up with slides, 5 minutes)
 
 At this point you should now feel like you have enough experience with Kubernetes to share with your peers, begin using it on-premise, in managed services or in public cloud providers.
+
+IMPORTANT: help us cleanup the lab environment before you leave
 
 == Homework
 

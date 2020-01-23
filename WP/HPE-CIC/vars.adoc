@@ -1,6 +1,6 @@
 :Author: Bryan Gartner
 :AuthorEMail: Bryan.Gartner@SUSE.com
-:AuthorGHURL: https://github.com/bwgartner/suse-doc/blob/master/WP/HPE-CIC
+:AuthorGHURL: https://github.com/bwgartner/suse-doc/raw/master/WP/HPE-CIC
 
 :CompanyName: SUSE
 :ProductNameOS: Linux Enterprise Server

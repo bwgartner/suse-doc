@@ -10,14 +10,14 @@ Once connected to the {IHVPartner} {IHVPartnerEnv} environment via the VPN, RDP 
 +
 [subs="attributes"]
 ----
-http://{lbIP}:9000/stats
+http://mstr.{domainNameContainer}.{domainName}:9000/stats
 ----
 +
 [[img-demo-infra-LB]]
 .Verifying RMT functionality
 image::demo-infra-LB.png[demo-infra-LB, 640, 480]
 +
-NOTE: This URL is based upon the designated, reserved IP address of the respective LB service and it's internal configuration. By default the JumpHost does not utilize the local demo DNS service to resolve to the hostname. Beyond the "stats" output, this web page shows the status for the three necessary API services, pointing to mstr1.{domainNameContainer}.{domainName}. Before the solution deployment is completed, that status will be designated as "down" and will show as "active UP" when the solution is successfully installed.
+NOTE: This URL is based upon the designated, reserved IP address of the respective LB service and it's internal configuration. Beyond the "stats" output, this web page shows the status for the three necessary API services, pointing to mstr1.{domainNameContainer}.{domainName}. Before the solution deployment is completed, that status will be designated as "down" and will show as "active UP" when the solution is successfully installed.
 +
 If this appears to be functioning, skip to the next section.
 

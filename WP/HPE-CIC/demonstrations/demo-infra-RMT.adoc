@@ -9,7 +9,7 @@ Once connected to the {IHVPartner} {IHVPartnerEnv} environment via the VPN, RDP 
 +
 [subs="attributes"]
 ----
-http://{rmtIP}/repo/{CompanyName}
+http://rmt.{domainName}/repo/{CompanyName}
 ----
 +
 Browsing the underlying _Products_ and _Updates_ links will show what content is available.

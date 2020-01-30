@@ -165,7 +165,24 @@ There are more very flexible and other possibilities for tables
 
 
 
-==  Thats it - you do not need more - really simple
+==  That is it for the source - you do not need more - really simple
+
+Then to convert to XML (which is the base for DAPS)
+../bin/adoc2xml.sh quickstart.adoc
+
+To create common output formats
+
+HTML (and review via browser ./build/quickstart/single-html/quickstart/
+../bin/xml2daps-single-html.sh quickstart.adoc
+
+PDF (and review via evince ./build/quickstart/quickstart_color_en.pdf)
+../bin/xml2daps-pdf.sh quickstart.adoc
+
+Common editors:
+vi / vim / gvim
+GUI - atom ... and many more
+ 
+== References
 
 maybe have a look at
 http://asciidoctor.org/docs/asciidoc-syntax-quick-reference/

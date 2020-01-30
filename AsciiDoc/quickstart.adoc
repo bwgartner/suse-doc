@@ -1,4 +1,8 @@
-= Best Practice Tips for using asciidoc with DAPS
+ifdef::env-github[]
+:imagesdir: https://github.com/bwgartner/suse-doc/blob/master/AsciiDoc/images/src/png/
+endif::[]
+
+= QuickStart for using AsciiDoc with DAPS
 
 == Use comments
 

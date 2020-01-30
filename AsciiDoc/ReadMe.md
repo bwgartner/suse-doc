@@ -7,5 +7,5 @@ Walking the path from:
 - leveraging DAPS ( https://github.com/openSUSE/daps )
 - then rendering your choice of multiple output formats
 
-- ./quickstart.adoc
+- [quickstart](./quickstart.adoc)
 

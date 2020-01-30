@@ -1,0 +1,212 @@
+= Best Practice Tips for using asciidoc with DAPS
+
+== Use comments
+
+ // One Line
+
+ ////
+ Block
+ ////
+
+
+
+== Headlines
+
+Use = for the headlines, because you see easily the structure
+
+----
+= Document Title
+== 1 headline for Chapter
+=== 2 headline for Subchapter
+==== 3 headline
+----
+
+
+
+== Variables
+
+Make use of variables if it is useful
+
+Declaration
+
+ :myVariable: ThisIsTheContent
+
+Usage
+
+ {myVariable}
+
+Usage within listing blocks needs to be allowed as normally listing provides text "as it is"
+
+ [subs="attributes"]
+ ----
+ {myVariable}
+ ----
+
+or if you want also formatting
+
+ [subs="attributes,quotes"]
+ ----
+ this is some text and **{myVariable}**
+ ----
+
+Sometimes you need double formatting characters:
+double asterisks around one or more **l**etters in a word make those letters bold which you also need inside of blocks
+
+
+
+== Listing Block for commands within the text
+
+ONLY use the style of "listing" block, NO OTHER
+
+ ----
+ example command
+ ----
+
+as OTHERS style destroy all other formatting with DAPS even if the work well in asciidoc direct output
+
+Do NOT use the optional title for the block.
+
+
+
+== Include of other documents 
+
+Usage
+
+ include::common.adoc[]
+
+include::common.adoc[]
+
+DON'T use headlines in these include files, leave the headline placeholders in your main document
+
+// There is a command for that , but i did not tried it out :leveloffset: 1   -> pushes titles down one level
+
+
+
+== Include of images
+
+ image::suse_logo_w-tag_black.png[]
+
+image::suse_logo_w-tag_black.png[]
+
+Images needs to be in the subdirectory ./images if you would like to use DAPS relative to your document
+
+
+
+== html links are automatic
+
+Follow me to http://www.suse.com[] Or to http://www.suse.com[SUSE Homepage]
+
+
+
+== Do not use the . style for Paragraphs
+.text text
+
+as it destroys all other formatting with DAPS
+even if they work well in asciidoc direct output
+
+
+
+== Useful paragraphs with icons
+   which could also as mulit-line block
+   NOTE:
+   TIP: 
+   IMPORTANT:
+   WARNING:
+   CAUTION:
+
+
+
+== Text styles
+ normal, _italic_, *bold*, +mono+.
+ ``double quoted'', `single quoted'.
+ ^super^, ~sub~.
+
+
+
+== special characters
+
+ (C) (R) (TM)
+
+
+
+== Lists
+ 
+Bulleted
+
+* asdfasdf
+** asdfsadf
+*** asdfsadf
+
+Ordered
+
+. number    1
+. number    2 
+.. letter   a
+.. letter   b 
+. number    3
+
+
+
+== Tables
+
+[options="header,footer"]
+|=======================
+|Col 1|Col 2      |Col 3
+|1    |Item 1     |a
+|2    |Item 2     |b
+|======================  
+
+There are more very flexible and other possibilities for tables
+
+
+
+==  Thats it - you do not need more - really simple
+
+maybe have a look at
+http://asciidoctor.org/docs/asciidoc-syntax-quick-reference/
+
+
+////
+=== TIPS
+
+DAPS build structure:
+ +<--- dir with the documents
+ |
+ |quickstart.adoc  -> main document
+ |
+ |common_copyright_gfdl.adoc              -> includes
+ |common_intro_feedback.adoc
+ |common_intro_typografie.adoc
+ |
+ |DC-quickstart    -> DAPS jobs files
+ |
+ +- images
+ |    +-src
+ |      +-dia
+ |      +-eps
+ |      +-fig
+ |      +-pdf
+ |      +-png
+ |      +-svg                            -> pictures (best only use svg)
+ |
+ |
+ + xml   <- dir with the docbook xml 
+ |
+ + build  <- final output file
+
+To convert to XML (which is the base for DAPS)
+../bin/adoc2xml.sh quickstart.adoc
+
+To create common output formats
+
+HTML (and review via browser ./build/quickstart/single-html/quickstart/
+../bin/xml2daps-single-html.sh quickstart.adoc
+
+PDF (and review via evince ./build/quickstart/quickstart_color_en.pdf)
+../bin/xml2daps-pdf.sh quickstart.adoc
+
+Common editors:
+vi / vim / gvim
+atom ... and tons more
+ 
+////

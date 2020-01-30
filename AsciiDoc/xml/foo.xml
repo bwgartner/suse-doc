@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN" "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd">
+<?asciidoc-toc?>
+<?asciidoc-numbered?>
+
+<book lang="en">
+<bookinfo>
+    <title>Best Practice Tips for using asciidoc with DAPS</title>
+</bookinfo>
+<chapter id="_use_comments">
+<title>Use comments</title>
+<literallayout class="monospaced">// One Line</literallayout>
+<literallayout class="monospaced">////
+Block
+////</literallayout>
+</chapter>
+<chapter id="_headlines">
+<title>Headlines</title>
+<simpara>Use = for the headlines, because you see easily the structure</simpara>
+<screen>= Document Title
+== 1 headline for Chapter
+=== 2 headline for Subchapter
+==== 3 headline</screen>
+</chapter>
+<chapter id="_variables">
+<title>Variables</title>
+<simpara>Make use of variables if it is useful</simpara>
+<simpara>Declaration</simpara>
+<literallayout class="monospaced">:myVariable: ThisIsTheContent</literallayout>
+<simpara>Usage</simpara>
+<literallayout class="monospaced">{myVariable}</literallayout>
+<simpara>Usage within listing blocks needs to be allowed as normally listing provides text "as it is"</simpara>
+<literallayout class="monospaced">[subs="attributes"]
+----
+{myVariable}
+----</literallayout>
+<simpara>or if you want also formatting</simpara>
+<literallayout class="monospaced">[subs="attributes,quotes"]
+----
+this is some text and **{myVariable}**
+----</literallayout>
+<simpara>Sometimes you need double formatting characters:
+double asterisks around one or more <emphasis role="strong">l</emphasis>etters in a word make those letters bold which you also need inside of blocks</simpara>
+</chapter>
+<chapter id="_listing_block_for_commands_within_the_text">
+<title>Listing Block for commands within the text</title>
+<simpara>ONLY use the style of "listing" block, NO OTHER</simpara>
+<literallayout class="monospaced">----
+example command
+----</literallayout>
+<simpara>as OTHERS style destroy all other formatting with DAPS even if the work well in asciidoc direct output</simpara>
+<simpara>Do NOT use the optional title for the block.</simpara>
+</chapter>
+<chapter id="_include_of_other_documents">
+<title>Include of other documents</title>
+<simpara>Usage</simpara>
+<literallayout class="monospaced">include::common.adoc[]</literallayout>
+<tip><simpara>Easy to leverage other content with includes</simpara></tip>
+<simpara>DON&#8217;T use headlines in these include files, leave the headline placeholders in your main document</simpara>
+</chapter>
+<chapter id="_include_of_images">
+<title>Include of images</title>
+<literallayout class="monospaced">image::suse_logo_w-tag_black.png[]</literallayout>
+<informalfigure>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="suse_logo_w-tag_black.png"/>
+  </imageobject>
+  <textobject><phrase>suse_logo_w-tag_black.png</phrase></textobject>
+</mediaobject>
+</informalfigure>
+<simpara>Images needs to be in the subdirectory ./images if you would like to use DAPS relative to your document</simpara>
+</chapter>
+<chapter id="_html_links_are_automatic">
+<title>html links are automatic</title>
+<simpara>Follow me to <ulink url="http://www.suse.com">http://www.suse.com</ulink> Or to <ulink url="http://www.suse.com">SUSE Homepage</ulink></simpara>
+</chapter>
+<chapter id="_do_not_use_the_style_for_paragraphs">
+<title>Do not use the . style for Paragraphs</title>
+<formalpara><title>text text</title><para>as it destroys all other formatting with DAPS
+even if they work well in asciidoc direct output</para></formalpara>
+</chapter>
+<chapter id="_useful_paragraphs_with_icons">
+<title>Useful paragraphs with icons</title>
+<literallayout class="monospaced">which could also as mulit-line block
+NOTE:
+TIP:
+IMPORTANT:
+WARNING:
+CAUTION:</literallayout>
+</chapter>
+<chapter id="_text_styles">
+<title>Text styles</title>
+<literallayout class="monospaced">normal, _italic_, *bold*, +mono+.
+``double quoted'', `single quoted'.
+^super^, ~sub~.</literallayout>
+</chapter>
+<chapter id="_special_characters">
+<title>special characters</title>
+<literallayout class="monospaced">(C) (R) (TM)</literallayout>
+</chapter>
+<chapter id="_lists">
+<title>Lists</title>
+<simpara>Bulleted</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+asdfasdf
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+asdfsadf
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+asdfsadf
+</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+</itemizedlist>
+</listitem>
+</itemizedlist>
+<simpara>Ordered</simpara>
+<orderedlist numeration="arabic">
+<listitem>
+<simpara>
+number    1
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+number    2
+</simpara>
+<orderedlist numeration="loweralpha">
+<listitem>
+<simpara>
+letter   a
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+letter   b
+</simpara>
+</listitem>
+</orderedlist>
+</listitem>
+<listitem>
+<simpara>
+number    3
+</simpara>
+</listitem>
+</orderedlist>
+</chapter>
+<chapter id="_tables">
+<title>Tables</title>
+<informaltable
+frame="all"
+rowsep="1" colsep="1"
+>
+<tgroup cols="3">
+<colspec colname="col_1" colwidth="33*"/>
+<colspec colname="col_2" colwidth="33*"/>
+<colspec colname="col_3" colwidth="33*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Col 1</entry>
+<entry align="left" valign="top">Col 2      </entry>
+<entry align="left" valign="top">Col 3</entry>
+</row>
+</thead>
+<tfoot>
+<row>
+<entry align="left" valign="top"><simpara>2</simpara></entry>
+<entry align="left" valign="top"><simpara>Item 2</simpara></entry>
+<entry align="left" valign="top"><simpara>b</simpara></entry>
+</row>
+</tfoot>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara>1</simpara></entry>
+<entry align="left" valign="top"><simpara>Item 1</simpara></entry>
+<entry align="left" valign="top"><simpara>a</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+<simpara>There are more very flexible and other possibilities for tables</simpara>
+</chapter>
+<chapter id="_thats_it_you_do_not_need_more_really_simple">
+<title>Thats it - you do not need more - really simple</title>
+<simpara>maybe have a look at
+<ulink url="http://asciidoctor.org/docs/asciidoc-syntax-quick-reference/">http://asciidoctor.org/docs/asciidoc-syntax-quick-reference/</ulink></simpara>
+</chapter>
+</book>

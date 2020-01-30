@@ -9,7 +9,9 @@ endif::[]
  // One Line
 
  ////
- Block
+ Lots
+ of
+ Comments
  ////
 
 
@@ -27,37 +29,6 @@ Use = for the headlines, because you see easily the structure
 
 
 
-== Variables
-
-Make use of variables if it is useful
-
-Declaration
-
- :myVariable: ThisIsTheContent
-
-Usage
-
- {myVariable}
-
-Usage within listing blocks needs to be allowed as normally listing provides text "as it is"
-
- [subs="attributes"]
- ----
- {myVariable}
- ----
-
-or if you want also formatting
-
- [subs="attributes,quotes"]
- ----
- this is some text and **{myVariable}**
- ----
-
-Sometimes you need double formatting characters:
-double asterisks around one or more **l**etters in a word make those letters bold which you also need inside of blocks
-
-
-
 == Listing Block for commands within the text
 
 ONLY use the style of "listing" block, NO OTHER
@@ -66,13 +37,57 @@ ONLY use the style of "listing" block, NO OTHER
  example command
  ----
 
-as OTHERS style destroy all other formatting with DAPS even if the work well in asciidoc direct output
+----
+example command
+----
 
-Do NOT use the optional title for the block.
+Do NOT use the optional title for the block, nor styles to conflict with DAPS.
+
+== Variables
+
+Make use of variables if it is useful
+
+:myVariable: ThisIsTheContent
+Declaration
+
+ :myVariable: ThisIsTheContent
+
+Usage
+
+ {myVariable}
+
+{myVariable}
+
+Usage within listing blocks needs to be allowed as normally listing provides text "as it is"
+
+ [subs="attributes"]
+ ----
+ {myVariable}
+ ----
+
+[subs="attributes"]
+----
+{myVariable}
+----
+
+or if you want also formatting
+
+ [subs="attributes,quotes"]
+ ----
+ this is some text and **{myVariable}**
+ ----
+
+[subs="attributes,quotes"]
+----
+this is some text and **{myVariable}**
+----
+
+Sometimes you need double formatting characters:
+double asterisks around one or more **l**etters in a word make those letters bold which you also need inside of blocks
 
 
 
-== Include of other documents 
+== Inclusion of other documents 
 
 Usage
 
@@ -86,7 +101,7 @@ DON'T use headlines in these include files, leave the headline placeholders in y
 
 
 
-== Include of images
+== Inclusion of images
 
  image::suse_logo_w-tag_black.png[]
 
@@ -94,29 +109,60 @@ image::suse_logo_w-tag_black.png[]
 
 Images needs to be in the subdirectory ./images if you would like to use DAPS relative to your document
 
+== Conditional 
+
+Ability to adjust content based upon
+
+* a defined variable, like providing paths to view images on line if using GitHub via browser (can also do the contrary via ifndef)
+
+ ifdef::env-github[]
+ :imagesdir: https://github.com/bwgartner/suse-doc/blob/master/AsciiDoc/images/src/png/
+ endif::[]
+
+* or based upon their values
+
+ ifeval::["{myVariable}" == "ThisIsTheContent"]
+ TaDa !
+ endif::[]
+
+ifeval::["{myVariable}" == "ThisIsTheContent"]
+Tada !
+endif::[]
 
 
-== html links are automatic
+
+== HTML links are automatic
 
 Follow me to http://www.suse.com[] Or to http://www.suse.com[SUSE Homepage]
 
 
 
-== Do not use the . style for Paragraphs
-.text text
+// == Do not use the . style for Paragraphs
+// .text text
 
-as it destroys all other formatting with DAPS
-even if they work well in asciidoc direct output
+// as it destroys all other formatting with DAPS
+// even if they work well in asciidoc direct output
 
 
 
 == Useful paragraphs with icons
-   which could also as mulit-line block
-   NOTE:
-   TIP: 
-   IMPORTANT:
-   WARNING:
-   CAUTION:
+Which could also as multi-line block
+
+ NOTE:
+ TIP: 
+ IMPORTANT:
+ WARNING:
+ CAUTION:
+
+NOTE: note
+
+TIP: tip
+
+IMPORTANT: important
+
+WARNING: warning
+
+CAUTION: caution
 
 
 
@@ -125,23 +171,40 @@ even if they work well in asciidoc direct output
  ``double quoted'', `single quoted'.
  ^super^, ~sub~.
 
-
+normal, _italic_, *bold*, +mono+.
+``double quoted'', `single quoted'.
+^super^, ~sub~.
 
 == special characters
 
  (C) (R) (TM)
 
+(C) (R) (TM)
 
 
 == Lists
  
 Bulleted
 
+----
+* asdfasdf
+** asdfsadf
+*** asdfsadf
+----
+
 * asdfasdf
 ** asdfsadf
 *** asdfsadf
 
 Ordered
+
+----
+. number    1
+. number    2 
+.. letter   a
+.. letter   b 
+. number    3
+----
 
 . number    1
 . number    2 
@@ -150,8 +213,16 @@ Ordered
 . number    3
 
 
-
 == Tables
+
+ ----
+ [options="header,footer"]
+ |===
+ |Col 1|Col 2      |Col 3
+ |1    |Item 1     |a
+ |2    |Item 2     |b
+ |===
+ ----
 
 [options="header,footer"]
 |===
@@ -160,32 +231,34 @@ Ordered
 |2    |Item 2     |b
 |===
 
-
 There are more very flexible and other possibilities for tables
 
 
 
-==  That is it for the source - you do not need more - really simple
+== That is it for the content AsciiDoc-based source - you do not need more - really simple
 
 Then to convert to XML (which is the base for DAPS)
-../bin/adoc2xml.sh quickstart.adoc
+`../bin/adoc2xml.sh quickstart.adoc`
 
 To create common output formats
 
-HTML (and review via browser ./build/quickstart/single-html/quickstart/
-../bin/xml2daps-single-html.sh quickstart.adoc
+HTML (and review via browser ./build/quickstart/single-html/quickstart/)
+`../bin/xml2daps-single-html.sh quickstart.adoc`
 
 PDF (and review via evince ./build/quickstart/quickstart_color_en.pdf)
-../bin/xml2daps-pdf.sh quickstart.adoc
+`../bin/xml2daps-pdf.sh quickstart.adoc`
 
-Common editors:
-vi / vim / gvim
-GUI - atom ... and many more
+Common editors (plus many more):
+vi / vim / gvim / atom
  
-== References
+== More information
 
-maybe have a look at
-http://asciidoctor.org/docs/asciidoc-syntax-quick-reference/
+https://github.com/asciidoc/asciidoc[AsciiDoc]
+
+* and at more detailed syntax options and examples - http://asciidoctor.org/docs/asciidoc-syntax-quick-reference/
+
+https://github.com/openSUSE/daps[DocBook Authoring and Publishing Suite (DAPS)]
+
 
 
 ////

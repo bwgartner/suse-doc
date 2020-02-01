@@ -13,15 +13,10 @@
 :ProductNameOSVer: 15 SP1
 :ProductNameContainer: CaaS Platform
 :ProductNameContainerVer: 4.0
-:ProductNameStorage: Enterprise Storage
-:ProductNameStorageVer: 6
-:ProductNamePaaS: Cloud Application Platform
-:ProductNamePaaSVer: 1.5.1
 
-:UID: geeko
-:PW: linux
+:hostUID: tux
+:hostPW: linux
 
-:L1dir: ./Lab1
-:L1e1: sample.yml
-:L1e1-ns: vroom
-
+:clusterUID: sles
+:clusterPW: linux
+:clusterAdmIP: 10.110.1.10

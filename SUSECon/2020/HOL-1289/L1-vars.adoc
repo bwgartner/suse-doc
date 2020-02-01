@@ -1,8 +1,0 @@
-
-:UID: geeko
-:PW: linux
-
-:L1dir: ./Lab1
-:L1e1: sample.yml
-:L1e1-ns: vroom
-

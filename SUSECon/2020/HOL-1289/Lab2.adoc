@@ -1,0 +1,165 @@
+
+include::./varsLab2.adoc[]
+
+== Turn Signal On, Getting Ready to Merge (precede with slides, 5 minutes)
+Understand the basics of how to efficiently interact with Kubernetes over the lifecycle of an application.
+
+TIP: For a brief overview of the architectural components being leveraged in these lab exercises, refer to the provided presentation and the FixMe document.
+
+* Goal / Objectives - Learn how to launch, inspect, scale and update a Kubernetes Deployment object ( 35-45 minutes)
+
+* Leveraging - https://kubernetes.io/docs/tutorials/kubernetes-basics/[Kubernetes Basics]
+
+WARNING: To reduce confusion, the assumption is that the respective Kubernetes cluster being used does not have any extraneous microservices running. So please cleanup previous or other lab exercise attempts before proceeding.
+
+* Process::
+Login to your system ( user : {hostUID} , password: {hostPW} )
++
+** Launch a terminal from the application dock
+** From the prompt in the terminal window, login to the demo environment
++
+[subs="attributes"]
+----
+ssh {clusterUID}@{clusterAdmIP}
+----
++
+using the password "*{clusterPW}*"
++
+NOTE: All of the following exercises should be completed while logged into this demo environment as noted above!
++
+** Exercise - Launch an application deployment
+. Preview the Kubernetes manifest for the application that is going to be deployed
++
+[subs="attributes"]
+----
+cat {Lab2-dir}/{Lab2Launch-manifest}
+----
++
+ **QUIZ**
+ What is the name of the deployment?
+ How many replica sets will be running?
+ Which container image:version will be used for the pods?
++
+. Launch the application deployment
++
+[subs="attributes"]
+----
+kubectl apply --filename="{Lab2-dir}/{Lab2Launch-manifest}"
+----
++
+. Check your answers to the *QUIZ* above, for your active deployment
++
+[subs="attributes"]
+----
+kubectl get deployments
+kubectl get replicasets
+kubectl get pods
+----
++
+** Exercise - Explore details of your application deployment components
+. Continuing with the previous application deployment, obtain a more detailed view of the components
++
+[subs="attributes"]
+----
+kubectl describe deployments
+kubectl describe replicasets
+kubectl describe pods
+----
++
+ **QUIZ**
+ Have any replicaset pods failed?
+ What container port and IP address are associated with one of the pods?
++
+** Exercise - Expose and use the application 
+. next
+** Exercise - Scale your application deployment
+. View changes in proposed deployment manifest, compared to the original one
++
+[subs="attributes"]
+----
+diff {Lab2-dir}/{Lab2Launch-manifest} {Lab2-dir}/{Lab2Scale-manifest}
+----
++
+ **QUIZ**
+ Which attribute is being modified?
++
+. Check the current state
++
+[subs="attributes"]
+----
+kubectl get replicasets
+kubectl get pods
+----
++
+. Scale the application deployment's replicasets
++
+[subs="attributes"]
+----
+kubectl apply --filename="{Lab2-dir}/{Lab2Scale-manifest}"
+----
++
+. Confirm the expected results
++
+[subs="attributes"]
+----
+kubectl get replicasets
+kubectl get pods
+----
++
+ **QUIZ**
+ How could you scale the deployment back down to the original configuration?
++
+** Exercise - Update your application using a new container image version
+. View changes in proposed deployment manifest, compared to the original one
++
+[subs="attributes"]
+----
+diff {Lab2-dir}/{Lab2Launch-manifest} {Lab2-dir}/{Lab2Update-manifest}
+----
++
+ **QUIZ**
+ Which attribute is being modified?
++
+. Check the current state
++
+[subs="attributes"]
+----
+kubectl describe deployments
+----
++
+. Update the application container image with a newer version
++
+[subs="attributes"]
+----
+kubectl apply --filename="{Lab2-dir}/{Lab2Update-manifest}"
+----
++
+. Confirm the expected results
++
+[subs="attributes"]
+----
+kubectl describe deployments
+----
++
+ **QUIZ**
+ How could you downgrade the container image version back down to the original configuration?
++
+NOTE: One can also accomplish such updates with `kubectl set` or with `kubectl edit`. For those approaches, refer to https://kubernetes.io/docs/concepts/workloads/controllers/deployment/#updating-a-deployment[Kubernetes-Workloads-Controllers-Deployments] documentation.
++
+** Additional / Advanced Exercises
+. K9s
+. K8s Dashboard
+
+IMPORTANT: Ensure that you clean up all your application deployments to return to a known state. Based upon the last successful `kubectl apply`, delete the running deployment.
+
+[subs="attributes"]
+----
+kubectl delete --filename="LastCompletedDeployment"
+----
+
+* Knowledge Check: 
+** Initial introduction to the Kubernetes Deployment object
+*** launching and exploring the deployment components
+*** exposing the application to users
+*** scaling and updating selected deployment components
+*** deleting the deployment

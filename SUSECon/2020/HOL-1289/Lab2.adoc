@@ -1,7 +1,7 @@
 
 include::./varsLab2.adoc[]
 
-== Turn Signal On, Getting Ready to Merge (precede with slides, 5 minutes)
+== Turn Signal On, Ready to Merge (precede with slides, 5 minutes)
 Understand the basics of how to efficiently interact with Kubernetes over the lifecycle of an application.
 
 TIP: For a brief overview of the architectural components being leveraged in these lab exercises, refer to the provided presentation and the FixMe document.

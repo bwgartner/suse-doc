@@ -1,0 +1,22 @@
+
+include::./varsLab3.adoc[]
+
+== Heading Down the Highway (precede with slides, 5 minutes)
+
+* Becoming aware of all the aspects around you ( 45 - 55 minutes )
+// * Leveraging - https://courses.edx.org/courses/course-v1:LinuxFoundationX+LFS158x+2T2019/course/[LFS158x Introduction to Kubernetes]
+
+- Cluster Node Elements / Resources
+- Namespaces
+- Authentication, Authorization, Admission Control
+- Services
+- Labels and Selectors
+- Liveness
+- DaemonSets
+- Volumes
+- Monitoring and Logging
+- Cleanup your cluster
+- As bonus exercises, try
+-- using Stratos to view multi-cluster
+-- reviewing how to deploy a K8s cluster
+

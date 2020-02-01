@@ -16,46 +16,7 @@ Emerging as the defacto standard of orchestrating containerized, microservice wo
 
 include::./Lab1.adoc[]
 include::./Lab2.adoc[]
-
-// include::./L2.adoc[]
-////
-== Turn Signal On, Getting Ready to Merge (precede with slides, 5 minutes)
-
-* Understanding the basics of how to interact ( 35-45 minutes )
-
-* Leveraging - https://kubernetes.io/docs/tutorials/kubernetes-basics/[Kubernetes Basics]
-
-- Deploy an app
-- Explore your app
-- Expose your app publicly
-- Scale up your app
-- Update your app
-- Cleanup your cluster
-- As bonus exercises, try
--- using K8s dashboard
--- explore K9s
--- launch via helm
-
-
-// include::./L3.adoc[]
-== Heading Down the Highway (precede with slides, 5 minutes)
-
-* Becoming aware of all the aspects around you ( 45 - 55 minutes )
-* Leveraging - https://courses.edx.org/courses/course-v1:LinuxFoundationX+LFS158x+2T2019/course/[LFS158x Introduction to Kubernetes]
-
-- Cluster Node Elements / Resources
-- Namespaces
-- Authentication, Authorization, Admission Control
-- Services
-- Labels and Selectors
-- Liveness
-- DaemonSets
-- Volumes
-- Monitoring and Logging
-- Cleanup your cluster
-- As bonus exercises, try
--- using Stratos to view multi-cluster
--- reviewing how to deploy a K8s cluster
+include::./Lab3.adoc[]
 
 == Summary (wrap-up with slides, 5 minutes)
 
@@ -66,4 +27,3 @@ IMPORTANT: help us cleanup the lab environment before you leave
 == Homework
 
 If this enticed you to further investigate this technology, feel free to grab all of the lab exercises, plus the technology to deploy your own Kubernetes cluster.
-////

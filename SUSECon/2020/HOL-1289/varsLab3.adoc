@@ -1,0 +1,6 @@
+:L3-Dir: ./Lab3
+
+:L3E1-Manifest: sample.yml
+:L3E1-NameSpace: vroom
+:L3E1-URL: http://FixMe
+

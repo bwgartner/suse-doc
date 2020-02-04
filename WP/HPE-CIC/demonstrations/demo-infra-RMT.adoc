@@ -9,16 +9,47 @@ Once connected to the {IHVPartner} {IHVPartnerEnv} environment via the VPN, RDP 
 +
 [subs="attributes"]
 ----
+http://10.6.64.15/repo/{CompanyName}
+----
++
+or
++
+[subs="attributes"]
+----
 http://rmt.{domainName}/repo/{CompanyName}
 ----
 +
 Browsing the underlying _Products_ and _Updates_ links will show what content is available.
 +
+NOTE: The IP-based URL is based upon the designated, reserved IP address of the respective RMT server. By default the JumpHost does not utilize the local demo environment's DNS service but can have this hostname entry added to it's local host file.
++
+.Demonstration Environment Suggested Repository Content
+[options="header",cols=",,,,"]
+|===
+|Function        |Product                      | Version | Architecture |Notes
+| Infrastructure | Basesystem Module           | 15 SP1  | x86_64       |
+|                | Desktop Applications Module | 15 SP1  | x86_64       |
+|                | Server Applications Module  | 15 SP1  | x86_64       |
+|                | SLES                        | 15 SP1  | x86_64       |
+
+ifeval::["{DemoTarget}" == "EnterpriseStorage"]
+| {CompanyName} {ProductNameStorage}
+                 | Storage                     | 6       | x86_64       |
+endif::[]
+ifeval::["{DemoTarget}" == "CaaSPlatform"]
+| {CompanyName} {ProductNameContainer}
+                 | {CompanyName}-CAASP         | 4.0     | x86_64       |
+|                | Containers Module           | 15 SP1  | x86_64       |
+endif::[]
+ifeval::["{DemoTarget}" == "CloudApplicationPlatform"]
+| {CompanyName} {ProductNamePaaS}
+                 | {CompanyName} CAP Tools     | 15 SP1  | x86_64       |
+endif::[]
+|===
++
 [[img-demo-infra-RMT]]
 .Verifying RMT functionality
 image::demo-infra-RMT.png[demo-infra-RMT, 640, 480]
-+
-NOTE: This URL is based upon the designated,reserved IP address of the respective RMT server. By default the JumpHost does not utilize the local demo environment's DNS service to resolve to the hostname.
 +
 If this appears to be functioning, skip to the next section.
 

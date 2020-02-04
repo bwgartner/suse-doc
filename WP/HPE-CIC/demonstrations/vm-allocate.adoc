@@ -70,6 +70,7 @@ image::vm-allocate-NVM_OS.png[vm-allocate-NVM_OS, 640, 480]
 [options="header",cols=",,,,,,"]
 |===
 | Solution | Quantity | Role      | vCPU | Memory (GB) | Disk (GB) | Network
+| Infra    | 1        | JumpHost  | 8    | 16          | 128       | 1
 ifeval::["{DemoTarget}" == "TBD"]
 |{CompanyName} {ProductNameOS}
            | tbd      |sle        | 1    | 1           | 16        | 1

@@ -27,6 +27,9 @@ image::env-access-JumpHost.png[env-access-JumpHost, 640, 480]
 You should be able to
 
 . Access copies of this and other demonstration documents from the _SUSE-CIC_ Desktop Folder
+ifeval::["{DemoTarget}" == "CloudApplicationPlatform"]
+* use `kubectl` and `helm` from Command Prompt
+endif::[]
 . Use a web browser to access
 * the Internet (via any of the browsers types, Chrome, Edge, Firefox)
 * vSphere HTML client for VMware(R) host (recommend using Chrome, using HTML5 access)
@@ -34,4 +37,6 @@ You should be able to
 [[img-env-access-vSphere]]
 .Environment vSphere Access
 image::env-access-vSphere-HTML5.png[env-access-vSphere-HTML5, 640, 480]
+
+
 

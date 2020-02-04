@@ -1,12 +1,12 @@
 
 === Domain Name Service [DNS]
-To have a coherent, self-contained name service for elements of the {CompanyName} solution in the local environment, mapping IP addresses to hostnames, this service is co-located on the RMT server.
+To have a coherent, self-contained name service for elements of the {CompanyName} solution in the local environment, mapping IP addresses to hostnames, this service is co-located on the RMT server virtual machine.
 
 IMPORTANT: This service should be left running at all times, to provide the name to IP resolution installs, updates, and runtime operation of all the other nodes.
 
 Verify Functionality::
 Once connected to the {IHVPartner} {IHVPartnerEnv} environment via the VPN, RDP and logged into the JumpHost
-. Launch a command prompt from the JumpHost _Start_ menu and type
+. Launch a Command Prompt from the JumpHost _Start_ menu and type
 +
 [subs="attributes"]
 ----
@@ -23,17 +23,17 @@ If this appears to be functioning, also ensure the other relevant solution's Hos
 [options="header",cols=",,,,"]
 |===
 |Function        |Role        |Hostname             |IPAddress    | Notes
-| Infrastructure | RMT        | rmt.{domainName}    | {rmtIP}     | hosts local DNS
-ifeval::["{DemoTarget}" == "EnterpriseStorage"]
+| Infrastructure | RMT        | rmt.{domainName}    | {rmtIP}     | local solution DNS, also referenced in JumpHost _hosts_ file
 | {CompanyName} {ProductNameStorage}
-                | Admin    |adm.{domainNameStorage}.{domainName}  | 10.6.64.32  | 
+                | Admin    |adm.{domainNameStorage}.{domainName}  | 10.6.64.32  | also referenced in JumpHost _hosts_ file
+ifeval::["{DemoTarget}" == "EnterpriseStorage"]
 |               | OSD      |osd1.{domainNameStorage}.{domainName} | 10.6.64.36  | co-located MON functionality
 |               |          |osd2.{domainNameStorage}.{domainName} | 10.6.64.37  | co-located MON functionality
 |               |          |osd3.{domainNameStorage}.{domainName} | 10.6.64.38  | co-located MON functionality
 endif::[]
-ifeval::["{DemoTarget}" == "CaaSPlatform"]
 | {CompanyName} {ProductNameContainer}
-                 | Admin/Mgmt |adm.{domainNameContainer}.{domainName}   | 10.6.64.64  | 
+                 | Admin/Mgmt |adm.{domainNameContainer}.{domainName}   | 10.6.64.64  | also referenced in JumpHost _hosts_ file
+ifeval::["{DemoTarget}" == "CaaSPlatform"]
 |                | LB         |mstr.{domainNameContainer}.{domainName}  | 10.6.64.65  | co-located VIP on RMT
 |                | Master     |mstr1.{domainNameContainer}.{domainName} | 10.6.64.66  | 
 |                | Worker     |wrkr1.{domainNameContainer}.{domainName} | 10.6.64.69  | 
@@ -68,11 +68,11 @@ endif::[]
 |               |          |n/a                  | 10.6.64.208 | 
 |===
 +
-NOTE: The entries denotes as spare do not have specific hostname mappings and are just intended as available addresses for initial operating system installations on the virtual machines.
+NOTE: The entries denoted as "spares" do not have specific hostname mappings and are just intended as available addresses for initial operating system installations on the virtual machines.
 
 Troubleshooting::
 If the previous access does not work, try the following additional checks:
-* Launch a command prompt from the JumpHost _Start_ menu and type
+* Launch a Command Prompt from the JumpHost _Start_ menu and type
 +
 [subs="attributes"]
 ----

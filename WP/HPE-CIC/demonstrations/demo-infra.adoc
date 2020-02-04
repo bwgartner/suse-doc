@@ -6,6 +6,9 @@ These necessary infrastructure service components have been previously setup and
 Prerequisite Services::
 This section outlines required background services for this document's {CompanyName} solution within the {IHVPartner} {IHVPartnerEnv} environment. It also provides rudimentary checks to verify the services and some simple troubleshooting examples.
 
+=== Internet Access
+In order to access components and downloads from ouside the {IHVPartner} {IHVPartnerEnv} environment, it is assumed that outbound Internet access is available, likely through the Demo Subnet Router.
+
 include::demo-infra-RMT.adoc[]
 include::demo-infra-DNS.adoc[]
 ifeval::["{DemoTarget}" == "CaaSPlatform"]

@@ -22,3 +22,14 @@
 | Virtualization Host | VMware   | 10.3.61.10 | vSphere
 |===
 
+* The following additional command line interfaces, accessible from the JumpHost, may be relevant to interact with a Kubernete infrastructure, like {CompanyName} {ProductNameContainer}:
+** `kubectl`
+*** An example invocation via _Start_ -> _Command Prompt_ -> `Downloads\kubectl.exe version`
++
+TIP: If this is not available, refer to https://kubernetes.io/docs/tasks/tools/install-kubectl/#install-kubectl-on-windows[Install kubectl on Windows].
++
+** `helm` FixME
+*** An example invocation via _Start_ -> _Command Prompt_ -> `Downloads\helm.exe version`
++
+TIP: If this is not available, refer to https://helm.sh/docs/intro/install/[Installing Helm].
+

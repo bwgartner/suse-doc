@@ -1,0 +1,109 @@
+:DemoTarget: CloudApplicationPlatform
+
+include::../vars.adoc[]
+
+ifdef::env-github[]
+:imagesdir: {AuthorGHURL}/demonstrations/images/src/png/
+endif::[]
+
+= Demo : {CompanyName} {ProductNamePaaS}
+{Author}, {CompanyName} < {AuthorEMail} >
+
+This document outlines the process to install {CompanyName} {ProductNamePaaS} {ProductNamePaaSVer}, leveraging an underlying Kubernetes solution cluster, in this case deployed as a set of virtual machines in the {IHVPartner} {IHVPartnerEnv}. While citing steps, values or inputs which need to be changed from the default, documented process in this environment, you can refer to respective https://documentation.suse.com/suse-cap/1.5.1/single-html/cap-guides/#book-cap-guides[{CompanyName} {ProductNamePaaS} {ProductNamePaaSVer} Deployment, User, Administration Guides] for more complete solution overview and details. 
+
+// FixMe
+TIP: Supplementary Videos - A condensed video version of this end-to-end process is available, within the {IHVPartner} {IHVPartnerEnv} at
+video::https://www.youtube.com/watch?v=4VrhlyIgo3M[FixMe].  Likewise, there are full-length videos of the important process sections referenced throughout this document.
+
+include::env-access.adoc[]
+
+include::demo-infra.adoc[]
+
+== Solution Deployment
+
+Overview::
+The following process encompasses an end-to-end deployment on Virtual Machines (VM), installation of the operating system and then creation of the cluster to provide the {CompanyName} {ProductNamePaaS} solutin cluster. While many alternatives exist to create such a working solution cluster, the process outlined below is closely parallel to accomplishing the same thing on a set of baremetal nodes.
+
+Important: Given the {IHVPartner} {IHVPartnerEnv} is potentially a shared demo environment, ensure the underlying platform nodes are available, configured and not in active with this solution's deployment before recreating the solution from scratch!
+
+=== Deploying the Solution
+
+After connecting via the VPN and logging into the jumphost, follow the steps below:
+
+//FixMe
+TIP: For a recorded example video representative of this process, view video::https://FixMe[{CompanyName} {ProductNamePaaS} Deployment].
+
+. Validate the required infrastructure platforms are available and ready for usage:
++
+* {CompanyName} {ProductNameStorage} is deployed by performing the following checks to ensure the prerequisite functions are working:
+** Check solution health
+*** From JumpHost, _Start_ -> _Putty_ then connect to adm.{domainNameStorage}.{domainName} with user={ProductNameStorageUser} / password="suse". After login, check the cluster status (looking for health: HEALTH_OK) via
++
+[subs="attributes"]
+----
+sudo ceph status
+----
++
+IMPORTANT: {CompanyName} {ProductNamePaaS} suggests at least 100GB of available storage capacity on {CompanyName} {ProductNameStorageUser} to later assign as a storage class for persistent/dynamic volument claims on {CompanyName} {ProductNameContainer}. For more information, refer to the https://documentation.suse.com/suse-cap/1.5.1/single-html/cap-guides/#sec-cap-requirements[Minimum Requirements] document.
++
+Also obtain the access URL and credentials for the https://documentation.suse.com/ses/6/single-html/ses-admin/#ceph-dashboard[Ceph Management Dashboard] via
++
+[subs="attributes"]
+----
+sudo ceph mgr services | grep dashboard
+sudo salt-call grains.get dashboard_creds
+----
++
+*** Launch a web browser, suggest Firefox, then access the Ceph Management Dashboard from the previous step's output for the URL and login/password.
++
+NOTE: If either of the above have issue, consult https://documentation.suse.com/ses/6/single-html/ses-admin/#part-troubleshooting[FAQs, Tips and Troubleshooting] section of the Administration Guide.
++
+** If not deployed, create this required infrastructure solution by following the "Demo : {CompanyName} {ProductNameStorage}" document in the SUSE-CIC Desktop folder. Then perform the above checks.
++
+* {CompanyName} {ProductNameContainer} is deployed by performing the following checks to ensure the prerequisite functions are working:
+** If so, perform the following checks to ensure the prerequisite functions are working:
+*** From JumpHost, _Start_ -> _Putty_ then connect to adm.{domainNameContainer}.{domainName} with user={ProductNameContainerUser} / password="suse". After login, check the cluster status via
++
+[subs="attributes"]
+----
+cd my-cluster 
+skuba cluster status
+kubectl get nodes
+kubectl get all
+----
++
+TIP: The Kubernetes kubeconfig configuration, for the "admin" user can be found in the file `my-cluster/admin.conf`. This content is should also be present the {ProductNameContainerUser}/.kube/config directory and optionally could be present in the JumpHost user's `C:\Users\Administrator\.kube` sub-directory for remote access from the JumpHost.
++
+IMPORTANT: {CompanyName} {ProductNamePaaS} requires at least 1 "Master" and 3 "Worker" nodes with the resources cited in the https://documentation.suse.com/suse-cap/1.5.1/single-html/cap-guides/#sec-cap-requirements[Minimum Requirements] document.
++
+** If not deployed, create this required infrastructure solution by following the "Demo : {CompanyName} {ProductNameContainer}" document in the SUSE-CIC Desktop folder. Then perform the above checks.
++
+* Integration of {CompanyName} {ProductNameStorage} with {CompanyName} {ProductNameContainer} to provide storage for containerized workloads.
+** If so, perform the following checks to ensure the prerequisite functions are working:
+*** From JumpHost, _Start_ -> _Putty_ then connect to adm.{domainNameContainer}.{domainName} with user={ProductNameContainerUser} / password="suse". After login, check the cluster status via
++
+[subs="attributes"]
+----
+kubectl get storageclasses
+kubectl get persistenvolumeclaims
+kubectl get persistenvolumes
+----
++
+** If the integration is not configured, create this coupling of the infrastructure platforms by referring to the https://documentation.suse.com/suse-caasp/4.0/single-html/caasp-admin/#ses-integration[Integration {CompanyName} {ProductNameStorage}] section of the https://documentation.suse.com/suse-caasp/4.0/single-html/caasp-admin/[{CompanyName} {ProductNameContainer} Administration Guide]. Then perform the above checks.
++
+. Then from the JumpHost,  _Start_ -> _Putty_ then connect to adm.{domainNameContainer}.{domainName} with user={ProductNameContainerUser} / password="suse". After login, follow the process steps denoted in the https://documentation.suse.com/suse-cap/1.5.1/single-html/cap-guides/#cha-cap-depl-caasp[Deploying {CompanyName} {ProductNamePaaS} on {CompanyName} {ProductNameContainer}] section of the https://documentation.suse.com/suse-cap/1.5.1/single-html/cap-guides/[Deployment Guide]
+. Verify the deployment, via
+
+== Summary
+At this point, the {CompanyName} {ProductNamePaaS} solution should be up, running and functional.  
+
+//FixMe
+TBD - Only included base solution deployment so far, so may add additional sections over time.
+NOTE: In the interim, refer to https://documentation.suse.com/suse-cap/1.5.1/single-html/cap-guides/#part-cap-administration[{CompanyName} {ProductNamePaaS} Administration Guide] for operational aspects and guidance.
+
+== Appendices
+TBD - Will link to other content over time
+////FixMe
+//// * RMT Setup
+//// * DNS Setup
+//// * LB Setup

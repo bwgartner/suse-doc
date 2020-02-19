@@ -1,6 +1,6 @@
 :Author: TBD
 :AuthorEmail: TBD
-:AuthorGHURL: https://github.com/bwgartner/suse-doc/blob/master/SUSECon/2020/HOL-1289
+:AuthorGHURL: https://github.com/bwgartner/suse-doc/raw/master/SUSECon/2020/HOL-1289
 
 :AuthorA: Alex Arnoldy
 :AuthorAEMail: Alex.Arnoldy@SUSE.com

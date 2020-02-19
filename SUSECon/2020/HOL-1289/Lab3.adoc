@@ -1,7 +1,8 @@
+<<<
 
 include::./varsLab3.adoc[]
 
-== Heading Down the Highway (precede with slides, 5 minutes)
+== Cruising Down the Highway (precede with slides, 5 minutes)
 
 * Becoming aware of all the aspects around you ( 45 - 55 minutes )
 // * Leveraging - https://courses.edx.org/courses/course-v1:LinuxFoundationX+LFS158x+2T2019/course/[LFS158x Introduction to Kubernetes]

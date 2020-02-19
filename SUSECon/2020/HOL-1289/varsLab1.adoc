@@ -1,5 +1,7 @@
 :Lab1-dir: ./Lab1
 
-:Lab1-manifest: FixMe.yml
-:Lab1-URL: http://FixMe
+:Lab1-service: wordpress
+:Lab1-portLocal: 8080
+:Lab1-portPod: 80
+:Lab1-URL: http://127.0.0.1
 

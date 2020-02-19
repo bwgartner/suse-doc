@@ -52,10 +52,14 @@ kubectl get secrets
 kubectl get services
 kubectl get deployments
 kubectl get persistentvolumeclaims
+kubectl get pods
 ----
 +
  **QUIZ**
  a) How many services are running (besides kubernetes)? 
+ b) How many pods are running ? 
++
+TIP: As a reference for what you just deployed, visit https://kubernetes.io/docs/tutorials/stateful-application/mysql-wordpress-persistent-volume/[Deploying WordPress and MySQL with Persistent Volumes].
 +
 . Interact with your deployed service, via
 +
@@ -67,7 +71,7 @@ bg
 w3m {Lab1-URL}:{Lab1-portLocal}/
 ----
 +
-. Now, stop all of these deployed components, via
+. Now you can now quit "q" the text-based `w3m` browser and stop all of these deployed components, via
 +
 [subs="attributes"]
 ----
@@ -104,5 +108,4 @@ Initial introduction to `kubectl` and leveraging it to
 * deploy multiple microservices with a single command
 * get the status of those microservices, using a variation of that single command
 * destroy the running set of microservices, again using a variation of that single command
-// <1> As a reference, see https://kubernetes.io/docs/tutorials/stateful-application/mysql-wordpress-persistent-volume/[Sample].
 

@@ -2,105 +2,149 @@
 
 include::./varsLab1.adoc[]
 
-== Start Your Engines (precede with slides, 5 minutes)
-Create a simple application deployment (with multiple containers) providing an end-to-end service to show the value of Kubernetes orchestration.
+== Start Your Engines
+Deploy a complete, microservices-based application providing an end-to-end service to show the value of Kubernetes orchestration.
 
 Goals / Objectives::
-Launch a complete Wordpress instantiation ( 5-15 minutes)
+Easily launch, query, use and shutdown a complete set of containerized services implementing a full Wordpress instantiation ( Estimated time 10-15 minutes)
+
+Assumptions::
+The example commands provided in this exercise use the full syntax and option names. In later exercises we will begin to show the alternatives and other ways to launch, interact with and view what is running.
+
+Environment::
+The following diagram shows the infrastructure components of the lab environment that you will interact with.
++
+[[img-Lab1-launch-app]]
+.Application Launch Environment
+image::Lab1-launch-app.png[Lab1-launch-app, 640, 480]
 
 Process::
-Login to your system ( user : {hostUID} , password: {hostPW} )
+Login to your student workstation ( user : {hostUID} , password : {hostPW} )
 +
-* From the graphical user interface application dock, launch a Terminal
+* From the graphical user interface application dock at the bottom of your screen, launch a Terminal
 +
 [[img-env-terminal]]
 .Environment Terminal Launch
 image::env-terminal.png[env-terminal, 640, 480]
 +
-* In the terminal window, login to the demo environment by typing
+* In the terminal window, login to the lab environment's "Access Node" using secure shell by typing
 +
 [subs="attributes"]
 ----
 ssh {clusterUID}@{clusterAdmIP}
 ----
 +
-using the password "*{clusterPW}*"
+using the password *{clusterPW}*
 +
-NOTE: All of the following process steps should be completed while logged into this demo environment as noted above!
+NOTE: All of the following process steps should be completed while logged into this lab environment's "Access Node" as mentioned above!
 +
-* Exercise - Launch a complete application
+* Exercise - Launch a complete application set
 +
-[[img-Lab1-launch-app]]
-.Application Launch Environment
-image::Lab1-launch-app.png[Lab1-launch-app, 640, 480]
+. From the "Access Node" command prompt, launch the application deployment by entering the following command
 +
-. From the command prompt, type
+[subs="attributes,verbatim"]
+----
+kubectl apply -k {Lab1-dir} <1>
+----
+<1> https://kubernetes.io/docs/reference/kubectl/overview/[Overiew of kubectl]
++
+ **QUIZ**
+ How many lines of output resulted from this command?
++
+. Let's do a quick discovery of each of the component types within your application deployment that you just launched
++
+TIP: As a reference for what you just deployed, refer to https://kubernetes.io/docs/tutorials/stateful-application/mysql-wordpress-persistent-volume/[Deploying WordPress and MySQL with Persistent Volumes].
++
+[subs="attributes,verbatim"]
+----
+kubectl get secrets <1>
+kubectl get services <2>
+kubectl get deployments <3>
+kubectl get persistentvolumeclaims <4>
+kubectl get persistentvolumes <4>
+kubectl get pods <5>
+----
+<1> https://kubernetes.io/docs/concepts/configuration/secret/[Kubernetes Secrets]
+<2> https://kubernetes.io/docs/concepts/services-networking/service/[Kubernetes Services]
+<3> https://kubernetes.io/docs/concepts/workloads/controllers/deployment/[Kubernetes Deployments]
+<4> https://kubernetes.io/docs/concepts/storage/persistent-volumes/[Kubernetes Volumes]
+<5> https://kubernetes.io/docs/concepts/workloads/pods/pod/[Kubernetes Pods]
++
+ **QUIZ**
+ a) How many "services" are running (besides kubernetes)? 
+ b) How many "pods" are running ? 
++
+** At this point you should begin to realize that have deployed several components, with a single command, across most of the traditional IT pillars:
+*** Network - a front-end loadbalancer
+*** Compute - a web application (https://wordpress.org/[WordPress]) and a backing database (https://dev.mysql.com/[MySQL])
+*** Storage - a backing volume store for each of your compute components
++
+NOTE: These components are summarized in the figure below:
++
+[[img-L1-application-deployment]]
+.Application Deployment
+image::WordPress-MySQL-Deployment.png[WordPress-MySQL-Deployment, 640, 480]
++
+. Next, let's ensure that the necessary components are available and running
 +
 [subs="attributes"]
 ----
-kubectl apply -k "{Lab1-dir}"
+FixMe
 ----
 +
- **QUIZ**
- a) How many lines of output resulted from this command?
-+
-. Get a glimpse of some of each of the components that you just launched, via
-+
-[subs="attributes"]
-----
-kubectl get secrets
-kubectl get services
-kubectl get deployments
-kubectl get persistentvolumeclaims
-kubectl get pods
-----
-+
- **QUIZ**
- a) How many services are running (besides kubernetes)? 
- b) How many pods are running ? 
-+
-TIP: As a reference for what you just deployed, visit https://kubernetes.io/docs/tutorials/stateful-application/mysql-wordpress-persistent-volume/[Deploying WordPress and MySQL with Persistent Volumes].
-+
-. Interact with your deployed service, via
+Then you can configure access to the deployment from the "Access Node" outside the Kubernetes environment with a simple port forward command ( and leave it running in the background )
 +
 [subs="attributes"]
 ----
 kubectl port-forward service/{Lab1-service} {Lab1-portLocal}:{Lab1-portPod}
 Ctrl-z
 bg
+----
++
+And you can now access and interact with your deployed service
++
+[subs="attributes"]
+----
 w3m {Lab1-URL}:{Lab1-portLocal}/
 ----
 +
-. Now you can now quit "q" the text-based `w3m` browser and stop all of these deployed components, via
+Which should land you on the WordPress setup page.
++
+. Now you can now quit "q" the text-based `w3m` browser, shutdown the port forward, and stop all of these deployed components
 +
 [subs="attributes"]
 ----
 fg
 Ctrl-c
-kubectl delete -k "{Lab1-dir}"
+kubectl delete -k {Lab1-dir}
 ----
 +
-And validate that they are gone, via
+Then validate that the main components are gone (beyond the core Kubernetes service)
 +
 [subs="attributes"]
 ----
 kubectl get services
 ----
 +
-IMPORTANT: *_Congratulations !_* Now you can see the initial appeal of what Kubernetes offers, by simply leveraging the predominant CLI tool, `kubectl` ( which interfaces the Kubernetes cluster manager ).
+IMPORTANT: *_Congratulations !_* Now you can see the initial appeal of what Kubernetes offers, by simply leveraging the predominant CLI tool, `kubectl` ( which interfaces with the Kubernetes cluster manager ).
 +
-// NOTE: The example commands provided in this exercise used the full syntax and option names. In later exercises we will show the alternatives and other ways to launch, interact with and view what is running.
+* *_Optional / Advanced Exercises_* - If you have some spare time, or are curious about the commands used or what was deployed, try:
 +
-* Optional / Advanced Exercise - If you have some spare time, or are curious about the commands used or what was deployed, try:
+** Explore the 'kubectl' command used for almost all the relevant interactions with Kubernetes
 +
 [subs="attributes"]
 ----
-man kubectl
-kubectl --help
-man kubectl-apply
-man kubectl-get
+kubectl help | more
+----
++
+** Review the manifest content and format used to descriptively manage the resources you need deployed in Kubernetes
++
+[subs="attributes"]
+----
 more {Lab1-dir}/*.yaml
 ----
++
+** Learn more about the '-k' option leveraging Kubernetes https://kustomize.io/[kustomize]
 
 Knowledge Check::
 Initial introduction to `kubectl` and leveraging it to

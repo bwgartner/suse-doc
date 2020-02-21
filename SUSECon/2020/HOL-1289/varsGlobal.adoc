@@ -20,3 +20,4 @@
 :clusterUID: sles
 :clusterPW: linux
 :clusterAdmIP: 10.110.1.10
+:clusterPrompt: sles@caasp-admin:~{gt}

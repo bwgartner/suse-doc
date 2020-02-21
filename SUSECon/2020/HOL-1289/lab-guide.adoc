@@ -12,7 +12,11 @@ endif::[]
 == Preface
 
 Ramping up to the Fastlane: A Beginner's Guide to Learning and Using Kubernetes::
-Emerging as the defacto standard of orchestrating containerized, microservice workloads, Kubernetes is quickly becoming a fundamental training goala. In this hands-on session, you will learn how to effectively utilize the Kubernetes technology across the various Dev, Security, Data, and Ops perspectives. Starting with a single workload and then working towards a complete, containerized service deployment, you will interact with and explore the features provided by Kubernetes to leverage the scalable, resilient, manageable environment for the workloads.
+Emerging as the defacto standard of orchestrating containerized, microservice workloads, Kubernetes is quickly becoming a fundamental training objective. In this hands-on session, you will learn how to effectively utilize the Kubernetes technology across the various Dev, Security, Data, and Ops perspectives to leverage the scalable, resilient, manageable environment for the workloads.
++
+* In the first lab session, we will start with a single, yet complete containerized service deployment to give you the attraction of using Kubernetes. In essence, you will learn how to start and destroy the deployment with ease.
+* In the next lab section, you will learn how to interact with several of these components to address scale, upgrades, and manage the running deployment through its lifecycle stages.
+* In the final lab section you will discover many of the traditional IT pillar aspects of Kubernete to help organize, monitor and effectively operate your workload deployments.
 
 include::./Lab1.adoc[]
 include::./Lab2.adoc[]

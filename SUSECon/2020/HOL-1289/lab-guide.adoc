@@ -1,3 +1,4 @@
+:experimental:
 
 include::./varsGlobal.adoc[]
 
@@ -17,6 +18,8 @@ Emerging as the defacto standard of orchestrating containerized, microservice wo
 * In the first lab session, we will start with a single, yet complete containerized service deployment to give you the attraction of using Kubernetes. In essence, you will learn how to start and destroy the deployment with ease.
 * In the next lab section, you will learn how to interact with several of these components to address scale, upgrades, and manage the running deployment through its lifecycle stages.
 * In the final lab section you will discover many of the traditional IT pillar aspects of Kubernete to help organize, monitor and effectively operate your workload deployments.
+
+include::./conventions.adoc[]
 
 include::./Lab1.adoc[]
 include::./Lab2.adoc[]

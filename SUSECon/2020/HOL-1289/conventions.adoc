@@ -1,0 +1,42 @@
+
+== Document Conventions
+The following notices and typographical conventions are used in this documentation:
+
+* '/etc/passwd' : directory names and file names
+* *<PLACEHOLDER>* : replace <PLACEHOLDER> with the actual value
+* "PATH" : the environment variable PATH
+* `ls`, `--help` : commands, options, and parameters
+* _user_ : users or groups
+* '_package name_' : name of a package
+// * kbd:[Alt], kbd:[Alt+F1] : a key to press or a key combination; keys are shown in uppercase as on a keyboard
+* *_File › Save As_* : menu items, buttons
+* https://www.google.com/[FollowMe] : link to an external resource
+* <<_preface>> : link to an internal resource in this document
+* Commands that can be run by non-privileged users.
++
+[subs="attributes"]
+----
+command
+----
++
+Commands that must be run with root privileges. Often you can also prefix these commands with the sudo command to run them as non-privileged user.
++
+[subs="attributes"]
+----
+sudo command
+----
+* In-line, self-study quiz questions
++
+ **QUIZ**
+ What is the Answer to the Ultimate Question of Life, the Universe, and Everything ?
++
+* Notices:
++
+WARNING: Vital information you must be aware of before proceeding. Warns you about security issues, potential loss of data, damage to hardware, or physical hazards.
++
+IMPORTANT: Important information you should be aware of before proceeding.
++
+NOTE: Additional information, for example about differences in software versions.
++
+TIP: Helpful information, like a guideline or a piece of practical advice.
+

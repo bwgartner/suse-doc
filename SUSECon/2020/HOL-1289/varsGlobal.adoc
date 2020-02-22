@@ -5,8 +5,8 @@
 :AuthorA: Alex Arnoldy
 :AuthorAEMail: Alex.Arnoldy@SUSE.com
 
-:AuthorB: Bryan Gartner
-:AuthorBEMail: Bryan.Gartner@SUSE.com
+:Author: Bryan Gartner
+:AuthorEMail: Bryan.Gartner@SUSE.com
 
 :CompanyName: SUSE
 :ProductNameOS: Linux Enterpise Server

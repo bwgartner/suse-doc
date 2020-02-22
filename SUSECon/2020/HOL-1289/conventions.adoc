@@ -1,5 +1,5 @@
 
-== Document Conventions
+Document Conventions::
 The following notices and typographical conventions are used in this documentation:
 
 * '/etc/passwd' : directory names and file names

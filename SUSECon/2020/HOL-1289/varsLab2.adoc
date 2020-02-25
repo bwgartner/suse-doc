@@ -8,3 +8,5 @@
 
 :Lab2Update-manifest: deployment-update.yaml
 
+:Lab2k9s-package: k9s-0.11.2-bp151.4.1.x86_64.rpm
+

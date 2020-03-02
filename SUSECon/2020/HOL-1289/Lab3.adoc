@@ -2,22 +2,274 @@
 
 include::./varsLab3.adoc[]
 
-== Cruising Down the Highway (precede with slides, 5 minutes)
+== Cruising Down the Highway
 
-* Becoming aware of all the aspects around you ( 45 - 55 minutes )
+* Become aware of more Kubernetes aspects
 // * Leveraging - https://courses.edx.org/courses/course-v1:LinuxFoundationX+LFS158x+2T2019/course/[LFS158x Introduction to Kubernetes]
 
-- Cluster Node Elements / Resources
-- Namespaces
-- Authentication, Authorization, Admission Control
-- Services
-- Labels and Selectors
-- Liveness
-- DaemonSets
-- Volumes
-- Monitoring and Logging
-- Cleanup your cluster
-- As bonus exercises, try
--- using Stratos to view multi-cluster
--- reviewing how to deploy a K8s cluster
+Goals / Objectives ( Estimated time 40 - 50 minutes )::
+Drill down through more layers of Kubernetes functionality to understand sharing of resources, operational interfaces and aspects of workloads, and what the underlying cluster contains and provides.
++
+WARNING: Again, to reduce confusion, the assumption is that the respective Kubernetes cluster being used does not have any extraneous, non-core microservices running. So please cleanup previous or other lab exercise attempts before proceeding.
+
+Assumptions::
+The example commands provided in this exercise still use the full syntax and option names. However, alternative ways with abbreviated syntax options are listed below the main command line entries, if you'd like to try those.
+
+Environment::
+Coverage of the respective environment you are interacting with will be provided towards the end of this lab section.
+
+Process::
+Login to your student workstation ( *<user>* : _{hostUID}_ , *<password>* : _{hostPW}_ )
++
+* From the graphical user interface application dock at the bottom of your screen, launch a Terminal.
+* In the terminal window, login to the lab environment's "Access Node" using secure shell (`ssh`) by typing
++
+[subs="attributes"]
+----
+ssh {clusterUID}@{clusterAdmIP}
+----
++
+using the *<password>* _{clusterPW}_
++
+NOTE: Most all of the following process steps should be completed while logged into this lab environment's "Access Node" as mentioned above! Exceptions will be noted and called out.
++
+* Exercise - A simplistic way to provide "virtual cluster spaces" to divide cluster resources via https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/[Kubernetes Namespaces]
+. From the shell prompt, view the current state of namespaces on your target cluster
++
+[subs="attributes"]
+----
+kubectl get namespace
+----
++
+ **QUIZ**
+ a) In all the previous exercises, what namespace did your workloads land in?
+ b) Any guesses on what might exist in the "kube-system" namespace?
++
+. View the manifest for the application that is going to be deployed
++
+[subs="attributes"]
+----
+cat {Lab3-dir}/{Lab3Launch-manifest}
+----
++
+ **QUIZ**
+ a) What namespace is being targeted for this deployment?
++
+. Create a new namespace and launch the application deployment to specifically reside there
++
+[subs="attributes"]
+----
+kubectl create namespace {Lab3Launch-namespace}
+kubectl apply --filename={Lab3-dir}/{Lab3Launch-manifest} --namespace={Lab3Launch-namespace}
+----
++
+TIP: An abbreviated, general version of the latter command would be `kubectl create -f <manifestFilename> -n<nameSpace>`
++
+[subs="attributes,verbatim"]
+----
+kubectl get namespaces <1>
+kubectl get deployment --namespace={Lab3Launch-namespace} <2>
+kubectl get replicasets --namespace={Lab3Launch-namespace} <3>
+kubectl get pods --namespace={Lab3Launch-namespace} <4>
+----
+<1> https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/[Kubernetes Namespaces]
+<2> https://kubernetes.io/docs/concepts/workloads/controllers/deployment/[Kubernetes Deployments]
+<3> https://kubernetes.io/docs/concepts/workloads/controllers/replicaset/[Kubernetes ReplicaSet].
+<4> https://kubernetes.io/docs/concepts/workloads/pods/pod/[Kubernetes Pods]
++
+. And just to validate your new deployment is only part of this new, parallel world (aka namespace you just created), "{Lab3Launch-namespace}", try to look for the same deployments without the namespace designation (which implies just looking in the "default" namespace"
++
+NOTE: Expecting a return from the command below of "Error from server (NotFound): deployments.apps "nginx-deployment" not found", assuming you had cleaned up your previous deployments from the last lab.
++
+[subs="attributes,verbatim"]
+----
+kubectl get deployment nginx-deployment
+----
++
+TIP: In case you weren't aware, for all of the exercises in this hands-on lab, you have been given the "admin" privileges for the Kubernetes cluster. Kubernetes provides a very granular set of https://kubernetes.io/docs/reference/access-authn-authz/rbac/[role-based access control] (RBAC) methods to permit who can do what and with how much (quota extent). A namespace is just one of typical attribute resources given to individuals or groups to confine their view of the world and potential impact to other users and workloads.
++
+Next, cleanup this deployment and namespace, then validate they are gone
++
+[subs="attributes"]
+----
+kubectl delete --filename={Lab3-dir}/{Lab3Launch-manifest} --namespace={Lab3Launch-namespace}
+kubectl get deployment --namespace={Lab3Launch-namespace}
+kubectl delete namespace {Lab3Launch-namespace}
+kubectl get namespaces
+----
++
+* Exercise - Leverage storage volumes for sharing data across containerized workloads
++
+NOTE: While some of the initial attraction and focus for containerized workloads was their stateless, ephemeral approach, many applications want to start from a known state and rely upon existing data or even populate more content for other workloads. Kubernetes https://kubernetes-csi.github.io/docs/drivers.html[Container Storage Interface] (CSI) provides many options to provide such https://kubernetes.io/docs/concepts/storage/persistent-volumes/[Volumes].
++
+. View the https://kubernetes.io/docs/concepts/storage/storage-classes/[Kubernetes Storage Class] configured on this implementation
++
+[subs="attributes"]
+----
+kubectl get storageclasses
+----
++
+ **QUIZ**
+ a) Based on the naming, what provisioner protocol do you expect provides this backing store?
++
+TIP: This "Storage Class" was pre-deployed for you, via a https://helm.sh/[Helm] https://github.com/helm/charts/tree/master/stable/nfs-client-provisioner[chart] (which can be explored in some of the "Optional / Advanced" exercises later. In this very self-contained Kubernetes instance, you can actaully find the directory on the "Access Node" at '{Lab3Volume-scSubdir}' where the storage location is offered from and any resulting data resides.
++
+. Launch a set of components and workloads that leverage this backing store and each other's actions
++
+[subs="attributes"]
+----
+kubectl apply -k {Lab3-dir}/{Lab3Volume-kustomize}
+----
++
+. Verify each of the component types, starting with https://kubernetes.io/docs/concepts/storage/persistent-volumes/[Kubernetes Persistent Volumes]
++
+[subs="attributes"]
+----
+kubectl get persistentvolumeclaims
+----
++
+TIP: An abbreviated version of this command would be `kubectl get pvc`
++
+Plus check to see that a new directory "default-*" has appeared in the underlying filesystem directory on the "Access Node" providing the storage class
++
+[subs="attributes"]
+----
+ls {Lab3Volume-scSubdir}
+----
++
+. Now find the pods "nfs-busybox-*" which are utilizing the volumes and responsible for writing data entries there
++
+[subs="attributes"]
+----
+kubectl get pods
+----
++
+You can either review the data writing function by looking at the manifest
++
+[subs="attributes"]
+----
+cat  {Lab3-dir}/{Lab3Volume-kustomize}/nfs-busybox*
+----
++
+or by querying the running pod directly (pick either of the launched pod "NAME" from the previous `kubectl` command, substituting the *<nfs-busybox-ID>* in the `kubectl` command below
++
+[subs="attributes,verbatim"]
+----
+kubectl describe <nfs-busybox-ID>
+----
++
+ **QUIZ**
+ a) Which "Command:" is being run in this pod?
+ a) What "Mounts:" point inside the pod is associated with the persistent volume claim?
++
+Of course, another application could have been launched to utilize the ever-changing content, yet a simple way to watch the changes (given the mostly self-contained instance used in this lab) is
++
+[subs="attributes"]
+----
+watch cat {Lab3Volume-scSubdir}/default*{Lab3Volume-pvcFile}
+----
++
+After you see some updates (a timestamp change and possibly even the pod name responsible for writing the data change), you can exit the `watch` with 'Ctrl-c'. You can also enter the running pod (briefly) to see the actual mount (again substituting the respective pod *<nfs-busybox-ID>*
++
+[subs="attributes,verbatim"]
+----
+kubectl exec -it <nfs-busybox-ID> /bin/df
+----
++
+TIP: In general, for applications running in a Kubernetes pod that support some userspace utilities (including this particular pod), you may be able to enter and interact from the internal shell by calling `kubectl exec -it <podID> /bin/sh` (or "/bin/bash")
++
+. From an operational standpoint, often it is valuable to view the logs from a given pod (beyond the "Events:" returned by `kubectl describe`). Upon review of the `kubectl get pods` command below, substitute the respective name of the NFS storage class pod for *<nfs-client-ID>* in the `kubectl logs <nfs-client>` command
++
+[subs="attributes,verbatim"]
+----
+kubectl get pods
+kubectl logs <nfs-client-ID> | more
+----
++
+. Finally, cleanup these components from this exercise
++
+[subs="attributes"]
+----
+kubectl delete -k {Lab3-dir}/{Lab3Volume-kustomize}
+----
++
+* Exercise - Explore the underlying Kubernetes infrastructure that you have been utilizing throughout this hands-on lab session
+. Start with a simple listing of the nodes and roles in this Kubernetes instance
++
+[subs="attributes"]
+----
+kubectl get nodes
+----
++
+ **QUIZ**
+ a) How many "nodes" are in this Kubernetes cluster instance?
+ b) Are all the "nodes" in a "Ready" STATUS?
+ c) What version of Kubernetes is being used?
++
+TIP: A more comprehensive listing can be obtained via `kubectl get nodes -o wide`
++
+. Let's find more details about the node providing the Kubernetes "ROLE" of "master"
++
+[subs="attributes"]
+----
+kubectl describe node {Lab3K8s-master}
+----
++
+ **QUIZ**
+ a) What "Kernel Version:" does this node have?
+ b) What "Container Runtime Version:" does this node utilize?
+ c) How many "Non-terminated Pods:" are running on this node? And in what namespace?
++
+. And review the details for one of the nodes providing the Kubernetes "ROLE" of "worker"
++
+[subs="attributes"]
+----
+kubectl describe node {Lab3K8s-worker}
+----
++
+ **QUIZ**
+ a) From a "Capacity:" perspective
+ - how many "cpu:" cores are available?
+ - how much "ephemeral-storage:"?
+ - how much "memory:"?
+ b) From an "Allocated resources:" standpoint,  the current "Requests" for
+ - "cpu" and what are the units of measure
+ - "memory"
+ - "ephemeral storage"?
+ c) Are the same number/type of "Non-terminated Pods:" running on this "worker" role as on the "master"?
++
+. The following diagram shows a general overview of Kubernetes infrastructure components (refer to https://kubernetes.io/docs/concepts/overview/components/[Kubernetes Components])
++
+[[img-Lab3-k8s-components]]
+.Kubernetes Components (FixMe)
+image::Lab3-k8s-components.png[Lab3-k8s-components, 640, 480]
++
+Throughout this hand-on lab session, you have interacted with many of these components, as denoted in the following diagram
++
+[[img-Lab3-k8s-architecture]]
+.Kubernetes Architecture (FixMe)
+image::Lab3-k8s-architecture.png[Lab3-k8s-architecture, 640, 480]
++
+And from your "Student Workstation" graphical user interface dock, if you launch"Virtual Machine Manager" you will see that all of the needed Kubernetes "nodes" providing the "ROLES" are running as virtual machines
++
+[[img-Lab3-virt-manager]]
+.Kubernetes Lab Virtual Machines (FixMe)
+image::Lab3-virt-manager.png[Lab3-virt-manager, 640, 480]
++
+Which yields the following environment you have been exercising in this session
++
+[[img-Lab3-k8s-lab-env]]
+.Kubernetes Lab Environment Instance (FixMe)
+image::Lab3-k8s-lab-env.png[Lab3-k8s-lab-env, 640, 480]
++
+* *_Optional / Advanced Exercises_* - If you have some spare time, or are curious about the commands used or what was deployed, try:
+** FixMe
+*** using Helm
+*** using Stratos to view multi-cluster
+*** reviewing how to deploy a K8s cluster
+
+Knowledge Check::
+Initial introduction to the Kubernetes Deployment object
++
+* FixMe
 

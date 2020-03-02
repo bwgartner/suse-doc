@@ -3,17 +3,15 @@
 include::./varsLab2.adoc[]
 
 == Turn Signal On, Ready to Merge
-Understand the basics of how to efficiently, manually interact with Kubernetes and an application deployment over the lifecycle of an application.
+Understand the basics of how to manually interact with Kubernetes and adjustement to an application deployment over its lifecycle.
 
-// TIP: For a brief overview of the architectural components being leveraged in these lab exercises, refer to the provided presentation and the FixMe document.
-
-Goals / Objectives ( Estimate time 35 - 45 minutes )::
+Goals / Objectives ( Estimated time 25 - 35 minutes )::
 Learn how to manually inspect, launch, scale and update a Kubernetes Deployment object. See https://kubernetes.io/docs/tutorials/kubernetes-basics/[Kubernetes Basics] for more examples/details.
 +
 WARNING: To reduce confusion, the assumption is that the respective Kubernetes cluster being used does not have any extraneous, non-core microservices running. So please cleanup previous or other lab exercise attempts before proceeding.
 
 Assumptions::
-The example commands provided in this exercise use the full syntax and option names. Alternative ways with abbreviated syntax options are listed below the main command line entries.
+The example commands provided in this exercise still use the full syntax and option names. However, alternative ways with abbreviated syntax options are listed below the main command line entries, if you'd like to try those.
 
 Environment::
 The following diagram shows the infrastructure components of the lab environment
@@ -38,7 +36,7 @@ using the *<password>* _{clusterPW}_
 +
 NOTE: All of the following process steps should be completed while logged into this lab environment's "Access Node" as mentioned above!
 +
-* Exercise - Preview and launch the {AuthorGHURL}/{Lab2-dir}/{Lab2Launch-manifest}[application deployment manifest]
+* Exercise - Preview and launch the {AuthorGHURL}/{Lab2-dir}/{Lab2Launch-manifest}[application deployment manifest] 
 . From the shell prompt, view manifest for the application that is going to be deployed
 +
 [subs="attributes"]
@@ -58,43 +56,40 @@ cat {Lab2-dir}/{Lab2Launch-manifest}
 kubectl create --filename={Lab2-dir}/{Lab2Launch-manifest}
 ----
 +
-TIP: An abbreviated version of this command would be `kubectl create -f <manifestFilename>`
+TIP: An abbreviated, general version of this command would be `kubectl create -f <manifestFilename>`
 +
 . Check your answers to the *QUIZ* above, for your active deployment
 +
 [subs="attributes,verbatim"]
 ----
-kubectl get deployments <1>
+kubectl get deployments nginx-deployment <1>
 kubectl get replicasets <2>
 kubectl get pods <3>
 ----
 <1> https://kubernetes.io/docs/concepts/workloads/controllers/deployment/[Kubernetes Deployments]
-<2> https://kubernetes.io/docs/concepts/workloads/controllers/replicaset/[Kubernetes ReplicaSet]
-<3> https://kubernetes.io/docs/concepts/workloads/pods/pod/[Kubernetes Pods]
+<2> https://kubernetes.io/docs/concepts/workloads/controllers/replicaset/[Kubernetes ReplicaSet]. For now you can ignore the "nfs-client-provisioner" one.
+<3> https://kubernetes.io/docs/concepts/workloads/pods/pod/[Kubernetes Pods]. For now you can ignore the "nfs-client-provisioner" one.
 +
 TIP: An abbreviated version of the 'replicasets' commands would be `kubectl get rs`
 +
-At this point, you should be able to mentally map the previous command outputs to a graphical representation, shown below, of the specific deployment.
+At this point, you can beging to mentally map the previous command outputs to a graphical representation, shown below, of the specific deployment.
 +
 [[img-L2-nginx-deployment]]
 .Application Deployment
 image::NGINX-Deployment.png[NGNIX-MySQL-Deployment, 640, 480]
 +
-* Exercise - Explore further details of your application deployment components
 . Continuing with the previous application deployment, obtain a more detailed view of each of the components
 +
 [subs="attributes"]
 ----
-kubectl describe deployments
-kubectl describe replicasets
-kubectl describe pods
+kubectl describe deployments nginx-deployment
 ----
 +
  **QUIZ**
- a) Have any replicaset pods failed?
- b) What container port and IP address are associated with one of the pods?
+ a) Are all the desired "Replicas" created and running?
+ b) What events have happened during the deployment?
 +
-* Exercise - Show how Kubernetes maintains the specified number of replica set pods
+* Exercise - Show how Kubernetes maintains the specified number of replica set pods to provide the desired resiliency functionality
 . Get a view of the currently running pods that are part of the replica set
 +
 [subs="attributes"]
@@ -102,7 +97,7 @@ kubectl describe pods
 kubectl get pods
 ----
 +
-. Let's target the last one on the previous commands output. Cut and past the fifirst column, and substitute that string for *<nginx-deployment-ID>* in the command below
+. Let's target the last "nginx" one on the previous commands output. Cut and past the entry from the "NAME" first column, and substituting that string for *<nginx-deployment-ID>* in the command below
 +
 [subs="attributes,verbatim"]
 ----
@@ -116,11 +111,12 @@ The resulting output should convey that the pod was deleted.
 ----
 kubectl get pods
 kubectl get replicasets
+kubectl describe replicasets
 ----
 +
-As you might see, a new pod *<ID>* has been created to keep the desired count running (and one of the original pair that you did not delete is still running as well).
+As you should see, a new pod *<ID>* has been created, and recorded as an event in the replicaset, to keep the desired count always running (and note that the one of the original pair that you did not delete is still running).
 +
-* Exercise - Manually scale your application deployment
+* Exercise - Manually scale your application deployment to perhaps respond to an increased amount of usage
 . View changes in proposed {AuthorGHURL}/{Lab2-dir}/{Lab2Scale-manifest}[deployment] manifest, compared to the original one
 +
 [subs="attributes"]
@@ -157,7 +153,7 @@ kubectl get pods
  **Bonus QUIZ**
  a) How might you scale down the deployment back to the original configuration?
 +
-* Exercise - Update your application using a new container image version
+* Exercise - Update your application using a new container image version, as if you need to take advantage of security updates or improved functionality
 . View changes in proposed {AuthorGHURL}/{Lab2-dir}/{Lab2Update-manifest}[deployment] manifest, compared to the previous, scaling one
 +
 [subs="attributes"]
@@ -166,18 +162,17 @@ diff {Lab2-dir}/{Lab2Scale-manifest} {Lab2-dir}/{Lab2Update-manifest}
 ----
 +
  **QUIZ**
- a) Which attributes are being modified?
+ a) Which attributes are different from the original deployment?
+ b) Given the previous exercise, which single change do you expect to see?
 +
 . Check the current state
 +
 [subs="attributes"]
 ----
-kubectl describe deployments
-kubectl describe replicasets
-kubectl describe pods
+kubectl describe deployments nginx-deployment
 ----
 +
-NOTE: In `kubectl get deployments` output, you will notice that the scaling events has been recorded and logged.
+NOTE: In `kubectl get deployments` output, you will notice that the previous scaling events has been recorded and logged.
 +
 . Update the application container image with a newer version
 +
@@ -195,7 +190,7 @@ kubectl describe replicasets
 kubectl describe pods
 ----
 +
- **QUIZ**
+ **Bonus QUIZ**
  a) How could you downgrade the container image version back down to the original configuration?
 +
 NOTE: One can also accomplish such updates with `kubectl set` or with `kubectl edit`. For those approaches, refer to https://kubernetes.io/docs/concepts/workloads/controllers/deployment/#updating-a-deployment[Kubernetes-Workloads-Controllers-Deployments] documentation.

@@ -25,7 +25,13 @@ include::./Lab1.adoc[]
 include::./Lab2.adoc[]
 include::./Lab3.adoc[]
 
-== Summary (wrap-up with slides, 5 minutes)
+== Summary
+
+As you have likely noticed, this hands-on lab provided exercises
+
+* from a top-down perspective, starting with a complete microservice-based application deployment
+* then drilling down through managing and adjusting the deployment through lifecycle attributes
+* and digging even deeper to take operational advantage of more functional components, including uncovering the underlying resources involved
 
 At this point you should now feel like you have enough experience with Kubernetes to share with your peers, begin using it on-premise, in managed services or in public cloud providers.
 

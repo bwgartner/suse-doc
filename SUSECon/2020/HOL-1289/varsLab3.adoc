@@ -1,6 +1,12 @@
-:L3-Dir: ./Lab3
+:Lab3-dir: ./Lab3
 
-:L3E1-Manifest: sample.yml
-:L3E1-NameSpace: vroom
-:L3E1-URL: http://FixMe
+:Lab3Launch-manifest: deployment.yaml
+:Lab3Launch-namespace: hol1289
+
+:Lab3Volume-kustomize: volume
+:Lab3Volume-scSubdir: /public
+:Lab3Volume-pvcFile: /index.html
+
+:Lab3K8s-master: caasp-master-0
+:Lab3K8s-worker: caasp-worker-0
 

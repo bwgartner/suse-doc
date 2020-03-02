@@ -6,13 +6,13 @@ include::./varsLab1.adoc[]
 Deploy a complete, microservices-based application providing an end-to-end service to show the value of Kubernetes orchestration.
 
 Goals / Objectives ( Estimated time 10-15 minutes )::
-Easily launch, query, use and shutdown a complete set of containerized services implementing a full Wordpress instantiation.
+Easily launch, query, use and shutdown a complete set of containerized services -- implementing a full Wordpress instantiation.
 
 Assumptions::
-The example commands provided in this exercise use the full syntax and option names. In later exercises we will begin to show the alternatives and other ways to launch, interact with and view what is running.
+The example commands provided in this exercise use the full syntax and option names. In later exercises we will begin to show alternatives and other ways to launch, interact with and view what is running.
 
 Environment::
-The following diagram shows the infrastructure components of the lab environment which you will interact with.
+The following diagram shows the basic infrastructure components of the lab environment which you will interact with.
 +
 [[img-Lab1-launch-app]]
 .Application Launch Environment
@@ -74,7 +74,7 @@ kubectl get pods <5>
  a) How many "services" are running (besides kubernetes)? 
  b) How many "pods" are running ? 
 +
-** At this point you should begin to realize that have deployed several components, with a single command, across most of the traditional IT pillars:
+** At this point you should begin to realize that you have deployed several components, with a single command, across most of the traditional IT pillars:
 *** Network - a front-end loadbalancer
 *** Compute - a web application (https://wordpress.org/[WordPress]) and a backing database (https://dev.mysql.com/[MySQL])
 *** Storage - a backing volume store for each of your compute components
@@ -92,7 +92,7 @@ image::WordPress-MySQL-Deployment.png[WordPress-MySQL-Deployment, 640, 480]
 FixMe
 ----
 +
-Then you can configure access to the deployment from the "Access Node" outside the Kubernetes environment with a simple port forward command ( and leave it running in the background )
+Then you can configure access to the deployment from the "Access Node" with a simple networking port forward command ( and leave it running in the background )
 +
 [subs="attributes"]
 ----
@@ -110,7 +110,7 @@ w3m {Lab1-URL}:{Lab1-portLocal}/
 +
 Which should land you on the WordPress setup page. Feel free to walk through any number of steps.
 +
-. Now you can now quit "q" the text-based `w3m` browser, shutdown the port forward, and stop all of these deployed components
+. Now you can now quit "q" the text-based `w3m` browser, shutdown the port forward, and delete/stop all of these deployed components
 +
 [subs="attributes"]
 ----
@@ -119,18 +119,18 @@ Ctrl-c
 kubectl delete -k {Lab1-dir}
 ----
 +
-Then validate that the main components are gone (beyond the core Kubernetes service)
+Then validate that the main application deployment components are gone (beyond the core Kubernetes service)
 +
 [subs="attributes"]
 ----
 kubectl get services
 ----
 +
-IMPORTANT: *_Congratulations !_* Now you can see the initial appeal of what Kubernetes offers, by simply leveraging the predominant command-line interface (CLI) tool, `kubectl` ( which interfaces with the Kubernetes cluster manager ).
+IMPORTANT: *_Congratulations !_* Now you can see the initial appeal of what Kubernetes offers, by simply leveraging the predominant command-line interface (CLI) tool, `kubectl` ( which interfaces with the Kubernetes cluster manager ) to do what you want to do in a very easy fashion.
 +
 * *_Optional / Advanced Exercises_* - If you have some spare time, or are curious about the commands used or what was deployed, try:
 +
-** Explore the `kubectl` command used for almost all the relevant interactions with Kubernetes
+** Explore the available functionality of the `kubectl` command, many of which you will be using in later exercises, for almost all the relevant interactions with Kubernetes
 +
 [subs="attributes"]
 ----
@@ -144,7 +144,7 @@ kubectl help | more
 more {Lab1-dir}/*.yaml
 ----
 +
-** Learn more about the `-k` option leveraging Kubernetes https://kustomize.io/[kustomize]
+** Learn more about the `-k` argument to leveraging Kubernetes https://kustomize.io/[kustomize]
 
 Knowledge Check::
 Initial introduction to `kubectl` and leveraging it to

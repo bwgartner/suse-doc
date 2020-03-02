@@ -1,0 +1,3 @@
+resources:
+- nfs-pvc.yaml
+- nfs-busybox.yaml

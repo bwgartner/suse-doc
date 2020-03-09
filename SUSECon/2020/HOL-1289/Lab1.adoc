@@ -96,7 +96,7 @@ Then you can configure access to the deployment from the "Access Node" with a si
 +
 [subs="attributes"]
 ----
-kubectl port-forward service/{Lab1-service} {Lab1-portLocal}:{Lab1-portPod}
+kubectl port-forward --address 0.0.0.0 service/{Lab1-service} {Lab1-portLocal}:{Lab1-portPod}
 Ctrl-z
 bg
 ----
@@ -109,6 +109,8 @@ w3m {Lab1-URL}:{Lab1-portLocal}/
 ----
 +
 Which should land you on the WordPress setup page. Feel free to walk through any number of steps.
++
+NOTE: You should also be able to access the deployed service, from a web-browser on your "Student Workstation" with the URL http://{clusterAdmIP}:{Lab1-portLocal}
 +
 . Now you can now quit "q" the text-based `w3m` browser, shutdown the port forward, and delete/stop all of these deployed components
 +

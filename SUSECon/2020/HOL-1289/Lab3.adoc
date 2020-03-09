@@ -194,10 +194,12 @@ kubectl delete -k {Lab3-dir}/{Lab3Volume-kustomize}
 ----
 +
 * Exercise - Explore the underlying Kubernetes infrastructure that you have been utilizing throughout this hands-on lab session
-. Start with a simple listing of the nodes and roles in this Kubernetes instance
+. Start with simple listings of the APIs, the access configuration and then nodes plus roles in this Kubernetes instance
 +
 [subs="attributes"]
 ----
+kubectl cluster-info
+kubectl config view
 kubectl get nodes
 ----
 +

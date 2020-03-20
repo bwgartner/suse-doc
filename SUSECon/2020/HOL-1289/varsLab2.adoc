@@ -2,8 +2,6 @@
 
 :Lab2Launch-manifest: deployment.yaml
 
-:Lab2Expose-URL: http://FixMe
-
 :Lab2Scale-manifest: deployment-scale.yaml
 
 :Lab2Update-manifest: deployment-update.yaml

@@ -85,6 +85,7 @@ NOTE: These components are summarized in the figure below:
 .Application Deployment
 image::WordPress-MySQL-Deployment.png[WordPress-MySQL-Deployment, 640, 480]
 +
+////
 . Next, let's ensure that the necessary components are available and running
 +
 [subs="attributes"]
@@ -92,6 +93,7 @@ image::WordPress-MySQL-Deployment.png[WordPress-MySQL-Deployment, 640, 480]
 FixMe
 ----
 +
+////
 Then you can configure access to the deployment from the "Access Node" with a simple networking port forward command ( and leave it running in the background )
 +
 [subs="attributes"]
@@ -128,7 +130,7 @@ Then validate that the main application deployment components are gone (beyond t
 kubectl get services
 ----
 +
-IMPORTANT: *_Congratulations !_* Now you can see the initial appeal of what Kubernetes offers, by simply leveraging the predominant command-line interface (CLI) tool, `kubectl` ( which interfaces with the Kubernetes cluster manager ) to do what you want to do in a very easy fashion.
+IMPORTANT: *_Congratulations !_* Now you can see the initial appeal of what Kubernetes offers, by simply leveraging the predominant command-line interface (CLI) tool, `kubectl` ( which interfaces with the Kubernetes cluster manager ) to do what you want to do in an easy manner.
 +
 * *_Optional / Advanced Exercises_* - If you have some spare time, or are curious about the commands used or what was deployed, try:
 +

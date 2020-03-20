@@ -86,7 +86,7 @@ NOTE: Expecting a return from the command below of "Error from server (NotFound)
 kubectl get deployment nginx-deployment
 ----
 +
-TIP: In case you weren't aware, for all of the exercises in this hands-on lab, you have been given the "admin" privileges for the Kubernetes cluster. Kubernetes provides a very granular set of https://kubernetes.io/docs/reference/access-authn-authz/rbac/[role-based access control] (RBAC) methods to permit who can do what and with how much (quota extent). A namespace is just one of typical attribute resources given to individuals or groups to confine their view of the world and potential impact to other users and workloads.
+TIP: In case you weren't aware, for all of the exercises in this hands-on lab, you have been given the "admin" privileges for the Kubernetes cluster. Kubernetes provides a granular set of https://kubernetes.io/docs/reference/access-authn-authz/rbac/[role-based access control] (RBAC) methods to permit who can do what and with how much (quota extent). A namespace is just one of typical attribute resources given to individuals or groups to confine their view of the world and potential impact to other users and workloads.
 +
 Next, cleanup this deployment and namespace, then validate they are gone
 +
@@ -112,7 +112,7 @@ kubectl get storageclasses
  **QUIZ**
  a) Based on the naming, what provisioner protocol do you expect provides this backing store?
 +
-TIP: This "Storage Class" was pre-deployed for you, via a https://helm.sh/[Helm] https://github.com/helm/charts/tree/master/stable/nfs-client-provisioner[chart] (which can be explored in some of the "Optional / Advanced" exercises later. In this very self-contained Kubernetes instance, you can actaully find the directory on the "Access Node" at '{Lab3Volume-scSubdir}' where the storage location is offered from and any resulting data resides.
+TIP: This "Storage Class" was pre-deployed for you, via a https://helm.sh/[Helm] https://github.com/helm/charts/tree/master/stable/nfs-client-provisioner[chart] (which can be explored in some of the "Optional / Advanced" exercises later. In this self-contained Kubernetes instance, you can actaully find the directory on the "Access Node" at '{Lab3Volume-scSubdir}' where the storage location is offered from and any resulting data resides.
 +
 . Launch a set of components and workloads that leverage this backing store and each other's actions
 +
@@ -265,13 +265,15 @@ Which yields the following environment you have been exercising in this session
 image::Lab3-k8s-lab-env.png[Lab3-k8s-lab-env, 640, 480]
 +
 * *_Optional / Advanced Exercises_* - If you have some spare time, or are curious about the commands used or what was deployed, try:
-** FixMe
+// ** FixMe
 *** using Helm
 *** using Stratos to view multi-cluster
 *** reviewing how to deploy a K8s cluster
 
 Knowledge Check::
 Initial introduction to the Kubernetes Deployment object
+////
 +
 * FixMe
+////
 

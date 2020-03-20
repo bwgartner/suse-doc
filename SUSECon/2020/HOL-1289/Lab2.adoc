@@ -104,8 +104,7 @@ kubectl get pods
 kubectl delete pod <nginx-deployment-ID>
 ----
 +
-The resulting output should convey that the pod was deleted.
-. Now verify that Kubernetes dealt with that issue, ensure that two pods are always running for your specified replica set
+The resulting output should convey that the pod was deleted. Now verify that Kubernetes dealt with that issue, ensuring that two pods are always running for your specified replica set
 +
 [subs="attributes"]
 ----

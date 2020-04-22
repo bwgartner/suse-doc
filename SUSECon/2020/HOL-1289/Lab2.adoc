@@ -104,16 +104,18 @@ kubectl get pods
 kubectl delete pod <nginx-deployment-ID>
 ----
 +
+TIP: You can also use a shell command-line completion approach with `kubectl`. As an example, `kubectl delete pod n<TAB><TAB>` will return a list of pods that begin with the letter "n", then you only need to type the next character (if unique) followed by another `<TAB>` to finish the command before hitting `<ENTER>` to execute it.
++
 The resulting output should convey that the pod was deleted. Now verify that Kubernetes dealt with that issue, ensuring that two pods are always running for your specified replica set
 +
 [subs="attributes"]
 ----
 kubectl get pods
 kubectl get replicasets
-kubectl describe replicasets
+kubectl describe replicasets | more
 ----
 +
-As you should see, a new pod *<ID>* has been created, and recorded as an event in the replicaset, to keep the desired count always running (and note that the one of the original pair that you did not delete is still running).
+As you should see, a new pod *<ID>* has been created for the nginx-deployment, and recorded as an event in the replicaset, to keep the desired count always running (and note that the one of the original pair that you did not delete is still running).
 +
 * Exercise - Manually scale your application deployment to perhaps respond to an increased amount of usage
 . View changes in proposed {AuthorGHURL}/{Lab2-dir}/{Lab2Scale-manifest}[deployment] manifest, compared to the original one
@@ -184,8 +186,8 @@ kubectl apply --filename={Lab2-dir}/{Lab2Update-manifest}
 +
 [subs="attributes"]
 ----
-kubectl describe deployments
-kubectl describe replicasets
+kubectl describe deployments nginx-deployment
+kubectl describe replicasets | more
 kubectl describe pods
 ----
 +
@@ -196,24 +198,20 @@ NOTE: One can also accomplish such updates with `kubectl set` or with `kubectl e
 +
 * *_Optional / Advanced Exercises_* - If you have some spare time, or are curious about the commands used or what was deployed, try:
 ** While `kubectl` is a comprehensive command-line interface to interact with Kubernetes, a recent terminal-based user interface, https://github.com/derailed/k9s[K9s] has also become available. Its goal is to make it easier to navigate, observe and manage your applications. If you'd like to take this for a test drive, use the following steps, in the terminal, while logged into the "Access Node":
-. Install this package
+. Install this utility
 +
 [subs="attributes"]
 ----
-sudo zypper install {Lab2-dir}/{Lab2k9s-package}
+tar -zxvf {Lab2-dir}/{Lab2k9s-package}
 ----
-+
-using the *<password>* _{clusterPW}_
-+
-NOTE: You will need to answer "y" to the _Continue_ question and "i" to the _Signature verification_ question.
 +
 . Then beginning learning about the K9s command and launch it
 +
 [subs="attributes"]
 ----
-k9s help
-k9s info
-k9s
+./k9s help
+./k9s info
+./k9s
 ----
 +
 You should see an interface like that shown in the following figure

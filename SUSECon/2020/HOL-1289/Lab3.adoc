@@ -4,7 +4,7 @@ include::./varsLab3.adoc[]
 
 == Cruising Down the Highway
 
-* Become aware of more Kubernetes aspects
+// * Become aware of more Kubernetes aspects
 // * Leveraging - https://courses.edx.org/courses/course-v1:LinuxFoundationX+LFS158x+2T2019/course/[LFS158x Introduction to Kubernetes]
 
 Goals / Objectives ( Estimated time 40 - 50 minutes )::
@@ -155,7 +155,7 @@ or by querying the running pod directly (pick either of the launched pod "NAME" 
 +
 [subs="attributes,verbatim"]
 ----
-kubectl describe <nfs-busybox-ID>
+kubectl describe <nfs-busybox-ID> | more
 ----
 +
  **QUIZ**
@@ -178,12 +178,12 @@ kubectl exec -it <nfs-busybox-ID> /bin/df
 +
 TIP: In general, for applications running in a Kubernetes pod that support some userspace utilities (including this particular pod), you may be able to enter and interact from the internal shell by calling `kubectl exec -it <podID> /bin/sh` (or "/bin/bash")
 +
-. From an operational standpoint, often it is valuable to view the logs from a given pod (beyond the "Events:" returned by `kubectl describe`). Upon review of the `kubectl get pods` command below, substitute the respective name of the NFS storage class pod for *<nfs-client-ID>* in the `kubectl logs <nfs-client>` command
+. From an operational standpoint, often it is valuable to view the logs from a given pod (beyond the "Events:" returned by `kubectl describe`). Upon review of the `kubectl get pods` command below, substitute the respective name of the NFS storage class pod "{Lab3Volume-sc}" and append the *<ID>* in the `kubectl logs` command
 +
 [subs="attributes,verbatim"]
 ----
 kubectl get pods
-kubectl logs <nfs-client-ID> | more
+kubectl logs <{Lab3Volume-sc}-ID> | more
 ----
 +
 . Finally, cleanup these components from this exercise
@@ -214,7 +214,7 @@ TIP: A more comprehensive listing can be obtained via `kubectl get nodes -o wide
 +
 [subs="attributes"]
 ----
-kubectl describe node {Lab3K8s-master}
+kubectl describe node {Lab3K8s-master} | more
 ----
 +
  **QUIZ**
@@ -226,7 +226,7 @@ kubectl describe node {Lab3K8s-master}
 +
 [subs="attributes"]
 ----
-kubectl describe node {Lab3K8s-worker}
+kubectl describe node {Lab3K8s-worker} | more
 ----
 +
  **QUIZ**
@@ -236,44 +236,56 @@ kubectl describe node {Lab3K8s-worker}
  - how much "memory:"?
  b) From an "Allocated resources:" standpoint,  the current "Requests" for
  - "cpu" and what are the units of measure
- - "memory"
- - "ephemeral storage"?
+ - "ephemeral storage"
+ - "memory"?
  c) Are the same number/type of "Non-terminated Pods:" running on this "worker" role as on the "master"?
 +
 . The following diagram shows a general overview of Kubernetes infrastructure components (refer to https://kubernetes.io/docs/concepts/overview/components/[Kubernetes Components])
 +
 [[img-Lab3-k8s-components]]
-.Kubernetes Components (FixMe)
+.Kubernetes Components
 image::Lab3-k8s-components.png[Lab3-k8s-components, 640, 480]
 +
 Throughout this hand-on lab session, you have interacted with many of these components, as denoted in the following diagram
 +
 [[img-Lab3-k8s-architecture]]
-.Kubernetes Architecture (FixMe)
+.Kubernetes Architecture
 image::Lab3-k8s-architecture.png[Lab3-k8s-architecture, 640, 480]
 +
-And from your "Student Workstation" graphical user interface dock, if you launch"Virtual Machine Manager" you will see that all of the needed Kubernetes "nodes" providing the "ROLES" are running as virtual machines
+And from your "Student Workstation" (an https://www.opensuse.org/#Leap[openSUSE Leap] system providing a KVM hypervisor),  you can see that all of the needed Kubernetes "nodes" providing the "ROLES" are running as https://www.suse.com/products/server/[SUSE Linux Enterprise Server] virtual machines running https://www.suse.com/products/caas-platform/[SUSE CaaS Platform]
++
+via the command line
++
+[subs="attributes"]
+----
+sudo virsh list --all 
+----
++
+via the graphical user interface dock, if you launch "Virtual Machine Manager"
 +
 [[img-Lab3-virt-manager]]
-.Kubernetes Lab Virtual Machines (FixMe)
+.Kubernetes Lab Virtual Machines
 image::Lab3-virt-manager.png[Lab3-virt-manager, 640, 480]
 +
-Which yields the following environment you have been exercising in this session
+Which matches the following environment you have been exercising and interacting with during this session
 +
 [[img-Lab3-k8s-lab-env]]
-.Kubernetes Lab Environment Instance (FixMe)
+.Kubernetes Lab Environment Instance 
 image::Lab3-k8s-lab-env.png[Lab3-k8s-lab-env, 640, 480]
 +
-* *_Optional / Advanced Exercises_* - If you have some spare time, or are curious about the commands used or what was deployed, try:
-// ** FixMe
-*** using Helm
-*** using Stratos to view multi-cluster
-*** reviewing how to deploy a K8s cluster
+* *_Optional / Advanced Exercises_* - As you might guess, we have just scratched the surface of Kubernetes with this introductory lab exercise. Feel free to explore the following web sites:
+** https://kubernetes.io/[Kubernetes],
+** https://www.cncf.io/[Cloud Native Computing Foundation],
+** https://helm.sh/[Helm] packager manager and leverageable Helm Charts, and
+** https://coreos.com/operators/[Operators] and examples on https://operatorhub.io/[OperatorHub]
++
+to give you other items to pursue and learn about.
 
 Knowledge Check::
-Initial introduction to the Kubernetes Deployment object
-////
+Initial coverage of more Kubernetes layers, components and infrastructure
 +
-* FixMe
-////
+* namespaces as a way to allocate and assign cluster resources
+* storage components for stateful microservices
+* accessing logs and interactive command line for a given pod's container
+* understanding the underlying compute resources that comprise the cluster members
 

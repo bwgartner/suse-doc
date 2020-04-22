@@ -6,6 +6,7 @@
 :Lab3Volume-kustomize: volume
 :Lab3Volume-scSubdir: /public
 :Lab3Volume-pvcFile: /index.html
+:Lab3Volume-sc: susecon-nfs-nfs-client-provisioner
 
 :Lab3K8s-master: caasp-master-0
 :Lab3K8s-worker: caasp-worker-0

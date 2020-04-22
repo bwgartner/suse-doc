@@ -86,14 +86,15 @@ NOTE: These components are summarized in the figure below:
 image::WordPress-MySQL-Deployment.png[WordPress-MySQL-Deployment, 640, 480]
 +
 ////
++
 . Next, let's ensure that the necessary components are available and running
 +
 [subs="attributes"]
 ----
 FixMe
 ----
-+
 ////
++
 Then you can configure access to the deployment from the "Access Node" with a simple networking port forward command ( and leave it running in the background )
 +
 [subs="attributes"]

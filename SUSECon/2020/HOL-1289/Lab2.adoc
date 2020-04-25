@@ -72,7 +72,7 @@ kubectl get pods <3>
 +
 TIP: An abbreviated version of the 'replicasets' commands would be `kubectl get rs`
 +
-At this point, you can beging to mentally map the previous command outputs to a graphical representation, shown below, of the specific deployment.
+At this point, you can begin to mentally map the previous command outputs to a graphical representation, shown below, of the specific deployment.
 +
 [[img-L2-nginx-deployment]]
 .Application Deployment
@@ -82,7 +82,7 @@ image::NGINX-Deployment.png[NGNIX-MySQL-Deployment, 640, 480]
 +
 [subs="attributes"]
 ----
-kubectl describe deployments nginx-deployment
+kubectl describe deployments nginx-deployment | more
 ----
 +
  **QUIZ**
@@ -170,7 +170,7 @@ diff {Lab2-dir}/{Lab2Scale-manifest} {Lab2-dir}/{Lab2Update-manifest}
 +
 [subs="attributes"]
 ----
-kubectl describe deployments nginx-deployment
+kubectl describe deployments nginx-deployment | more
 ----
 +
 NOTE: In `kubectl get deployments` output, you will notice that the previous scaling events has been recorded and logged.
@@ -186,9 +186,9 @@ kubectl apply --filename={Lab2-dir}/{Lab2Update-manifest}
 +
 [subs="attributes"]
 ----
-kubectl describe deployments nginx-deployment
+kubectl describe deployments nginx-deployment | more
 kubectl describe replicasets | more
-kubectl describe pods
+kubectl describe pods | more
 ----
 +
  **Bonus QUIZ**

@@ -19,7 +19,7 @@ Environment::
 Coverage of the respective environment you are interacting with will be provided towards the end of this lab section.
 
 Process::
-Login to your student workstation ( *<user>* : _{hostUID}_ , *<password>* : _{hostPW}_ )
+Login to your student workstation ( *<user>* : _{hostUID}_ , *<password>* : _{hostPW}_ ) footnote:Lstart[link:{videosdir}/L-start.mp4[Lab-start video]]
 +
 * From the graphical user interface application dock at the bottom of your screen, launch a Terminal.
 * In the terminal window, login to the lab environment's "Access Node" using secure shell (`ssh`) by typing
@@ -34,7 +34,7 @@ using the *<password>* _{clusterPW}_
 NOTE: Most all of the following process steps should be completed while logged into this lab environment's "Access Node" as mentioned above! Exceptions will be noted and called out.
 +
 * Exercise - A simplistic way to provide "virtual cluster spaces" to divide cluster resources via https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/[Kubernetes Namespaces]
-. From the shell prompt, view the current state of namespaces on your target cluster
+. From the shell prompt, view the current state of namespaces on your target cluster footnote:L3-E1-1[link:{videosdir}/L3-E1-1.mp4[Lab3-Exercise1-1 video]]
 +
 [subs="attributes"]
 ----
@@ -45,7 +45,7 @@ kubectl get namespace
  a) In all the previous exercises, what namespace did your workloads land in?
  b) Any guesses on what might exist in the "kube-system" namespace?
 +
-. View the manifest for the application that is going to be deployed
+. View the manifest for the application that is going to be deployed footnote:L3-E1-2[link:{videosdir}/L3-E1-2.mp4[Lab3-Exercise1-2 video]]
 +
 [subs="attributes"]
 ----
@@ -55,7 +55,7 @@ cat {Lab3-dir}/{Lab3Launch-manifest}
  **QUIZ**
  a) What namespace is being targeted for this deployment?
 +
-. Create a new namespace and launch the application deployment to specifically reside there
+. Create a new namespace and launch the application deployment to specifically reside there footnote:L3-E1-3[link:{videosdir}/L3-E1-3.mp4[Lab3-Exercise1-3 video]]
 +
 [subs="attributes"]
 ----
@@ -77,7 +77,7 @@ kubectl get pods --namespace={Lab3Launch-namespace} <4>
 <3> https://kubernetes.io/docs/concepts/workloads/controllers/replicaset/[Kubernetes ReplicaSet].
 <4> https://kubernetes.io/docs/concepts/workloads/pods/pod/[Kubernetes Pods]
 +
-. And just to validate your new deployment is only part of this new, parallel world (aka namespace you just created), "{Lab3Launch-namespace}", try to look for the same deployments without the namespace designation (which implies just looking in the "default" namespace"
+. And just to validate your new deployment is only part of this new, parallel world (aka namespace you just created), "{Lab3Launch-namespace}", try to look for the same deployments without the namespace designation (which implies just looking in the "default" namespace" footnote:L3-E1-4[link:{videosdir}/L3-E1-4.mp4[Lab3-Exercise1-4 video]]
 +
 NOTE: Expecting a return from the command below of "Error from server (NotFound): deployments.apps "nginx-deployment" not found", assuming you had cleaned up your previous deployments from the last lab.
 +
@@ -102,7 +102,7 @@ kubectl get namespaces
 +
 NOTE: While some of the initial attraction and focus for containerized workloads was their stateless, ephemeral approach, many applications want to start from a known state and rely upon existing data or even populate more content for other workloads. Kubernetes https://kubernetes-csi.github.io/docs/drivers.html[Container Storage Interface] (CSI) provides many options to provide such https://kubernetes.io/docs/concepts/storage/persistent-volumes/[Volumes].
 +
-. View the https://kubernetes.io/docs/concepts/storage/storage-classes/[Kubernetes Storage Class] configured on this implementation
+. View the https://kubernetes.io/docs/concepts/storage/storage-classes/[Kubernetes Storage Class] configured on this implementation footnote:L3-E2-1[link:{videosdir}/L3-E2-1.mp4[Lab3-Exercise2-1 video]]
 +
 [subs="attributes"]
 ----
@@ -114,14 +114,14 @@ kubectl get storageclasses
 +
 TIP: This "Storage Class" was pre-deployed for you, via a https://helm.sh/[Helm] https://github.com/helm/charts/tree/master/stable/nfs-client-provisioner[chart] (which can be explored in some of the "Optional / Advanced" exercises later. In this self-contained Kubernetes instance, you can actaully find the directory on the "Access Node" at '{Lab3Volume-scSubdir}' where the storage location is offered from and any resulting data resides.
 +
-. Launch a set of components and workloads that leverage this backing store and each other's actions
+. Launch a set of components and workloads that leverage this backing store and each other's actions footnote:L3-E2-2[link:{videosdir}/L3-E2-2.mp4[Lab3-Exercise2-2 video]]
 +
 [subs="attributes"]
 ----
 kubectl apply -k {Lab3-dir}/{Lab3Volume-kustomize}
 ----
 +
-. Verify each of the component types, starting with https://kubernetes.io/docs/concepts/storage/persistent-volumes/[Kubernetes Persistent Volumes]
+. Verify each of the component types, starting with https://kubernetes.io/docs/concepts/storage/persistent-volumes/[Kubernetes Persistent Volumes] footnote:L3-E2-3[link:{videosdir}/L3-E2-3.mp4[Lab3-Exercise2-3 video]]
 +
 [subs="attributes"]
 ----
@@ -137,7 +137,7 @@ Plus check to see that a new directory "default-*" has appeared in the underlyin
 ls {Lab3Volume-scSubdir}
 ----
 +
-. Now find the pods "nfs-busybox-*" which are utilizing the volumes and responsible for writing data entries there
+. Now find the pods "nfs-busybox-*" which are utilizing the volumes and responsible for writing data entries there footnote:L3-E2-4[link:{videosdir}/L3-E2-4.mp4[Lab3-Exercise2-4 video]]
 +
 [subs="attributes"]
 ----
@@ -178,7 +178,7 @@ kubectl exec -it <nfs-busybox-ID> /bin/df
 +
 TIP: In general, for applications running in a Kubernetes pod that support some userspace utilities (including this particular pod), you may be able to enter and interact from the internal shell by calling `kubectl exec -it <podID> /bin/sh` (or "/bin/bash")
 +
-. From an operational standpoint, often it is valuable to view the logs from a given pod (beyond the "Events:" returned by `kubectl describe`). Upon review of the `kubectl get pods` command below, substitute the respective name of the NFS storage class pod "{Lab3Volume-sc}" and append the *<ID>* in the `kubectl logs` command
+. From an operational standpoint, often it is valuable to view the logs from a given pod (beyond the "Events:" returned by `kubectl describe`). Upon review of the `kubectl get pods` command below, substitute the respective name of the NFS storage class pod "{Lab3Volume-sc}" and append the *<ID>* in the `kubectl logs` command footnote:L3-E2-5[link:{videosdir}/L3-E2-5.mp4[Lab3-Exercise2-5 video]]
 +
 [subs="attributes,verbatim"]
 ----
@@ -186,7 +186,7 @@ kubectl get pods
 kubectl logs <{Lab3Volume-sc}-ID> | more
 ----
 +
-. Finally, cleanup these components from this exercise
+. Finally, cleanup these components from this exercise footnote:L3-E2-6[link:{videosdir}/L3-E2-6.mp4[Lab3-Exercise2-6 video]]
 +
 [subs="attributes"]
 ----
@@ -194,7 +194,7 @@ kubectl delete -k {Lab3-dir}/{Lab3Volume-kustomize}
 ----
 +
 * Exercise - Explore the underlying Kubernetes infrastructure that you have been utilizing throughout this hands-on lab session
-. Start with simple listings of the APIs, the access configuration and then nodes plus roles in this Kubernetes instance
+. Start with simple listings of the APIs, the access configuration and then nodes plus roles in this Kubernetes instance footnote:L3-E3-1[link:{videosdir}/L3-E3-1.mp4[Lab3-Exercise3-1 video]]
 +
 [subs="attributes"]
 ----
@@ -210,7 +210,7 @@ kubectl get nodes
 +
 TIP: A more comprehensive listing can be obtained via `kubectl get nodes -o wide`
 +
-. Let's find more details about the node providing the Kubernetes "ROLE" of "master"
+. Let's find more details about the node providing the Kubernetes "ROLE" of "master" footnote:L3-E3-2[link:{videosdir}/L3-E3-2.mp4[Lab3-Exercise3-2 video]]
 +
 [subs="attributes"]
 ----
@@ -222,7 +222,7 @@ kubectl describe node {Lab3K8s-master} | more
  b) What "Container Runtime Version:" does this node utilize?
  c) How many "Non-terminated Pods:" are running on this node? And in what namespace?
 +
-. And review the details for one of the nodes providing the Kubernetes "ROLE" of "worker"
+. And review the details for one of the nodes providing the Kubernetes "ROLE" of "worker" footnote:L3-E3-3[link:{videosdir}/L3-E3-3.mp4[Lab3-Exercise3-3 video]]
 +
 [subs="attributes"]
 ----
@@ -240,7 +240,7 @@ kubectl describe node {Lab3K8s-worker} | more
  - "memory"?
  c) Are the same number/type of "Non-terminated Pods:" running on this "worker" role as on the "master"?
 +
-. The following diagram shows a general overview of Kubernetes infrastructure components (refer to https://kubernetes.io/docs/concepts/overview/components/[Kubernetes Components])
+. The following diagram shows a general overview of Kubernetes infrastructure components (refer to https://kubernetes.io/docs/concepts/overview/components/[Kubernetes Components]) footnote:L3-E3-4[link:{videosdir}/L3-E3-4.mp4[Lab3-Exercise3-4 video]]
 +
 [[img-Lab3-k8s-components]]
 .Kubernetes Components
@@ -273,7 +273,7 @@ Which matches the following environment you have been exercising and interacting
 .Kubernetes Lab Environment Instance 
 image::Lab3-k8s-lab-env.png[Lab3-k8s-lab-env, 640, 480]
 +
-* *_Optional / Advanced Exercises_* - As you might guess, we have just scratched the surface of Kubernetes with this introductory lab exercise. Feel free to explore the following web sites:
+* *_Optional / Advanced Exercises_* - As you might guess, we have just scratched the surface of Kubernetes with this introductory lab exercise. Feel free to explore the following web sites: footnote:L3-OA[link:{videosdir}/L3-OA.mp4[Lab3-Optional-Advanced video]]
 ** https://kubernetes.io/[Kubernetes],
 ** https://www.cncf.io/[Cloud Native Computing Foundation],
 ** https://helm.sh/[Helm] packager manager and leverageable Helm Charts, and

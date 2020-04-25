@@ -19,7 +19,7 @@ The following diagram shows the basic infrastructure components of the lab envir
 image::Lab1-launch-app.png[Lab1-launch-app, 640, 480]
 
 Process::
-Login to your student workstation ( *<user>* : _{hostUID}_ , *<password>* : _{hostPW}_ )
+Login to your student workstation ( *<user>* : _{hostUID}_ , *<password>* : _{hostPW}_ ) footnote:Lstart[link:{videosdir}/L-start.mp4[Lab-start video]]
 +
 * From the graphical user interface application dock at the bottom of your screen, launch a Terminal
 +
@@ -40,7 +40,7 @@ NOTE: All of the following process steps should be completed while logged into t
 +
 * Exercise - Launch a complete application set
 +
-. From the "Access Node" command prompt, launch the application deployment by entering the following command
+. From the "Access Node" command prompt, launch the application deployment by entering the following command footnote:L1-E1-1[link:{videosdir}/L1-E1-1.mp4[Lab1-Exercise1-1 video]]
 +
 [subs="attributes,verbatim"]
 ----
@@ -51,7 +51,7 @@ kubectl apply -k {Lab1-dir} <1>
  **QUIZ**
  How many lines of output resulted from this command?
 +
-. Let's do a quick discovery of each of the component types within your application deployment that you just launched
+. Let's do a quick discovery of each of the component types within your application deployment that you just launched footnote:L1-E1-2[link:{videosdir}/L1-E1-2.mp4[Lab1-Exercise1-2 video]]
 +
 TIP: As a reference for what you just deployed, refer to https://kubernetes.io/docs/tutorials/stateful-application/mysql-wordpress-persistent-volume/[Deploying WordPress and MySQL with Persistent Volumes].
 +
@@ -85,16 +85,6 @@ NOTE: These components are summarized in the figure below:
 .Application Deployment
 image::WordPress-MySQL-Deployment.png[WordPress-MySQL-Deployment, 640, 480]
 +
-////
-+
-. Next, let's ensure that the necessary components are available and running
-+
-[subs="attributes"]
-----
-FixMe
-----
-////
-+
 Then you can configure access to the deployment from the "Access Node" with a simple networking port forward command ( and leave it running in the background )
 +
 [subs="attributes"]
@@ -115,7 +105,7 @@ Which should land you on the WordPress setup page. Feel free to walk through any
 +
 NOTE: You should also be able to access the deployed service, from a web-browser on your "Student Workstation" with the URL http://{clusterAdmIP}:{Lab1-portLocal}
 +
-. Now you can now quit "q" the text-based `w3m` browser, shutdown the port forward, and delete/stop all of these deployed components
+. Now you can now quit "q" the text-based `w3m` browser, shutdown the port forward, and delete/stop all of these deployed components footnote:L1-E1-3[link:{videosdir}/L1-E1-3.mp4[Lab1-Exercise1-3 video]]
 +
 [subs="attributes"]
 ----
@@ -133,7 +123,7 @@ kubectl get services
 +
 IMPORTANT: *_Congratulations !_* Now you can see the initial appeal of what Kubernetes offers, by simply leveraging the predominant command-line interface (CLI) tool, `kubectl` ( which interfaces with the Kubernetes cluster manager ) to do what you want to do in an easy manner.
 +
-* *_Optional / Advanced Exercises_* - If you have some spare time, or are curious about the commands used or what was deployed, try:
+* *_Optional / Advanced Exercises_* - If you have some spare time, or are curious about the commands used or what was deployed, try:  footnote:L1-OA[link:{videosdir}/L1-OA.mp4[Lab1-Optional-Advanced video]]
 +
 ** Explore the available functionality of the `kubectl` command, many of which you will be using in later exercises, for almost all the relevant interactions with Kubernetes
 +

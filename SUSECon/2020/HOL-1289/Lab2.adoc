@@ -22,7 +22,7 @@ The following diagram shows the infrastructure components of the lab environment
 image::Lab2-app-lifecycle.png[Lab2-app-lifecycle, 640, 480]
 
 Process::
-Login to your student workstation ( *<user>* : _{hostUID}_ , *<password>* : _{hostPW}_ )
+Login to your student workstation ( *<user>* : _{hostUID}_ , *<password>* : _{hostPW}_ ) footnote:Lstart[link:{videosdir}/L-start.mp4[Lab-start video]]
 +
 * From the graphical user interface application dock at the bottom of your screen, launch a Terminal.
 * In the terminal window, login to the lab environment's "Access Node" using secure shell (`ssh`) by typing
@@ -37,7 +37,7 @@ using the *<password>* _{clusterPW}_
 NOTE: All of the following process steps should be completed while logged into this lab environment's "Access Node" as mentioned above!
 +
 * Exercise - Preview and launch the {AuthorGHURL}/{Lab2-dir}/{Lab2Launch-manifest}[application deployment manifest] 
-. From the shell prompt, view manifest for the application that is going to be deployed
+. From the shell prompt, view manifest for the application that is going to be deployed footnote:L2-E1-1[link:{videosdir}/L2-E1-1.mp4[Lab2-Exercise1-1 video]]
 +
 [subs="attributes"]
 ----
@@ -49,7 +49,7 @@ cat {Lab2-dir}/{Lab2Launch-manifest}
  b) How many replica sets will be running?
  c) Which container image:version will be used for the pods?
 +
-. Create the application deployment from the designated manifest
+. Create the application deployment from the designated manifest footnote:L2-E1-2[link:{videosdir}/L2-E1-2.mp4[Lab2-Exercise1-2 video]]
 +
 [subs="attributes"]
 ----
@@ -58,7 +58,7 @@ kubectl create --filename={Lab2-dir}/{Lab2Launch-manifest}
 +
 TIP: An abbreviated, general version of this command would be `kubectl create -f <manifestFilename>`
 +
-. Check your answers to the *QUIZ* above, for your active deployment
+. Check your answers to the *QUIZ* above, for your active deployment footnote:L2-E1-3[link:{videosdir}/L2-E1-3.mp4[Lab2-Exercise1-3 video]]
 +
 [subs="attributes,verbatim"]
 ----
@@ -78,7 +78,7 @@ At this point, you can beging to mentally map the previous command outputs to a 
 .Application Deployment
 image::NGINX-Deployment.png[NGNIX-MySQL-Deployment, 640, 480]
 +
-. Continuing with the previous application deployment, obtain a more detailed view of each of the components
+. Continuing with the previous application deployment, obtain a more detailed view of each of the components footnote:L2-E1-4[link:{videosdir}/L2-E1-4.mp4[Lab2-Exercise1-4 video]]
 +
 [subs="attributes"]
 ----
@@ -90,14 +90,14 @@ kubectl describe deployments nginx-deployment
  b) What events have happened during the deployment?
 +
 * Exercise - Show how Kubernetes maintains the specified number of replica set pods to provide the desired resiliency functionality
-. Get a view of the currently running pods that are part of the replica set
+. Get a view of the currently running pods that are part of the replica set footnote:L2-E2-1[link:{videosdir}/L2-E2-1.mp4[Lab2-Exercise2-1 video]]
 +
 [subs="attributes"]
 ----
 kubectl get pods
 ----
 +
-. Let's target the last "nginx" one on the previous commands output. Cut and past the entry from the "NAME" first column, and substituting that string for *<nginx-deployment-ID>* in the command below
+. Let's target the last "nginx" one on the previous commands output. Cut and past the entry from the "NAME" first column, and substituting that string for *<nginx-deployment-ID>* in the command below footnote:L2-E2-2[link:{videosdir}/L2-E2-2.mp4[Lab2-Exercise2-2 video]]
 +
 [subs="attributes,verbatim"]
 ----
@@ -118,7 +118,7 @@ kubectl describe replicasets | more
 As you should see, a new pod *<ID>* has been created for the nginx-deployment, and recorded as an event in the replicaset, to keep the desired count always running (and note that the one of the original pair that you did not delete is still running).
 +
 * Exercise - Manually scale your application deployment to perhaps respond to an increased amount of usage
-. View changes in proposed {AuthorGHURL}/{Lab2-dir}/{Lab2Scale-manifest}[deployment] manifest, compared to the original one
+. View changes in proposed {AuthorGHURL}/{Lab2-dir}/{Lab2Scale-manifest}[deployment] manifest, compared to the original one footnote:L2-E3-1[link:{videosdir}/L2-E3-1.mp4[Lab2-Exercise3-1 video]]
 +
 [subs="attributes"]
 ----
@@ -128,7 +128,7 @@ diff {Lab2-dir}/{Lab2Launch-manifest} {Lab2-dir}/{Lab2Scale-manifest}
  **QUIZ**
  a) Which attribute is being modified?
 +
-. Check the current state
+. Check the current state footnote:L2-E3-2[link:{videosdir}/L2-E3-2.mp4[Lab2-Exercise3-2 video]]
 +
 [subs="attributes"]
 ----
@@ -136,14 +136,14 @@ kubectl get replicasets
 kubectl get pods
 ----
 +
-. Scale the application deployment's replicasets by applying the updated manifest
+. Scale the application deployment's replicasets by applying the updated manifest footnote:L2-E3-3[link:{videosdir}/L2-E3-3.mp4[Lab2-Exercise3-3 video]]
 +
 [subs="attributes"]
 ----
 kubectl apply --filename={Lab2-dir}/{Lab2Scale-manifest}
 ----
 +
-. Confirm the expected results
+. Confirm the expected results footnote:L2-E3-4[link:{videosdir}/L2-E3-4.mp4[Lab2-Exercise3-4 video]]
 +
 [subs="attributes"]
 ----
@@ -155,7 +155,7 @@ kubectl get pods
  a) How might you scale down the deployment back to the original configuration?
 +
 * Exercise - Update your application using a new container image version, as if you need to take advantage of security updates or improved functionality
-. View changes in proposed {AuthorGHURL}/{Lab2-dir}/{Lab2Update-manifest}[deployment] manifest, compared to the previous, scaling one
+. View changes in proposed {AuthorGHURL}/{Lab2-dir}/{Lab2Update-manifest}[deployment] manifest, compared to the previous, scaling one footnote:L2-E4-1[link:{videosdir}/L2-E4-1.mp4[Lab2-Exercise4-1 video]]
 +
 [subs="attributes"]
 ----
@@ -166,7 +166,7 @@ diff {Lab2-dir}/{Lab2Scale-manifest} {Lab2-dir}/{Lab2Update-manifest}
  a) Which attributes are different from the original deployment?
  b) Given the previous exercise, which single change do you expect to see?
 +
-. Check the current state
+. Check the current state footnote:L2-E4-2[link:{videosdir}/L2-E4-2.mp4[Lab2-Exercise4-2 video]]
 +
 [subs="attributes"]
 ----
@@ -175,14 +175,14 @@ kubectl describe deployments nginx-deployment
 +
 NOTE: In `kubectl get deployments` output, you will notice that the previous scaling events has been recorded and logged.
 +
-. Update the application container image with a newer version
+. Update the application container image with a newer version footnote:L2-E4-3[link:{videosdir}/L2-E4-3.mp4[Lab2-Exercise4-3 video]]
 +
 [subs="attributes"]
 ----
 kubectl apply --filename={Lab2-dir}/{Lab2Update-manifest}
 ----
 +
-. Confirm the expected results
+. Confirm the expected results footnote:L2-E4-4[link:{videosdir}/L2-E4-4.mp4[Lab2-Exercise4-4 video]]
 +
 [subs="attributes"]
 ----
@@ -196,7 +196,7 @@ kubectl describe pods
 +
 NOTE: One can also accomplish such updates with `kubectl set` or with `kubectl edit`. For those approaches, refer to https://kubernetes.io/docs/concepts/workloads/controllers/deployment/#updating-a-deployment[Kubernetes-Workloads-Controllers-Deployments] documentation.
 +
-* *_Optional / Advanced Exercises_* - If you have some spare time, or are curious about the commands used or what was deployed, try:
+* *_Optional / Advanced Exercises_* - If you have some spare time, or are curious about the commands used or what was deployed, try: footnote:L2-OA[link:{videosdir}/L2-OA.mp4[Lab2-Optional-Advanced video]]
 ** While `kubectl` is a comprehensive command-line interface to interact with Kubernetes, a recent terminal-based user interface, https://github.com/derailed/k9s[K9s] has also become available. Its goal is to make it easier to navigate, observe and manage your applications. If you'd like to take this for a test drive, use the following steps, in the terminal, while logged into the "Access Node":
 . Install this utility
 +

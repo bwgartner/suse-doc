@@ -10,7 +10,7 @@ The following notices and typographical conventions are used in this documentati
 * '_package name_' : name of a package
 // * kbd:[Alt], kbd:[Alt+F1] : a key to press or a key combination; keys are shown in uppercase as on a keyboard
 * *_File › Save As_* : menu items, buttons
-* https://www.google.com/[FollowMe] : link to an external resource
+* https://www.suse.com/[FollowMe] : link to an external resource
 * <<_preface>> : link to an internal resource in this document
 * Commands that can be run by non-privileged users.
 +

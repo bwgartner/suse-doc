@@ -2,12 +2,16 @@
 
 include::./varsGlobal.adoc[]
 
+
 ifdef::env-github[]
 :imagesdir: {AuthorGHURL}/images/src/png/
 endif::[]
+:iconsdir: {AuthorGHURL}/images/src/png/
+:videosdir: {AuthorGHURL}/videos
 
 = HOL-1289 : Introduction to Kubernetes
 {Author}, {CompanyName} < {AuthorEMail} >
+:favicon:
 
 [preface]
 == Preface

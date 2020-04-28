@@ -46,4 +46,4 @@ IMPORTANT: help us cleanup the lab environment before you leave
 If this enticed you to further investigate this technology, feel free to:
 * take this lab guide (and even grab the https://github.com/bwgartner/suse-doc/tree/master/SUSECon/2020/HOL-1289[source]) including all of the referenced file content
 * https://www.suse.com/download-linux/[download] the https://www.suse.com/products/server/[SUSE Linux Enterprise Server] operating system and https://www.suse.com/products/caas-platform/[SUSE CaaS Platform] and the associated https://documentation.suse.com/[product documentation]
-* the technology to https://github.com/alexarnoldy/new_SUSECon[deploy] such a Kubernetes cluster on your own Linux KVM host
+* the technology to https://github.com/alexarnoldy/new_SUSECon[deploy] footnote:TF-Iaas[link:{videosdir}/TF-IaaS.mp4[example Terraform deployment]] such a Kubernetes cluster on your own Linux KVM host

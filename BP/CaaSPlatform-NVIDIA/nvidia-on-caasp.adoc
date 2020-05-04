@@ -1,0 +1,152 @@
+= Title
+
+== Section
+
+=== Enable GPU/Prepare availability for CaaS Platform
+
+.Validate the nodes that are equipped with Nvidia GPUs
+----
+for EACH in `cat ~/autoyast_templates/.all_nodes`; do echo -n $EACH": "; ssh $EACH sudo lspci | grep -i nvidia; echo ""; done
+----
+
+.Ensure the GPU equipped Worker Nodes are cordoned (marked with Ready,SchedulingDisabled): `kubectl get nodes`
+* If any nodes need to be cordoned, use th command: `kubectl cordon <node name>`
+
+NOTE: Complete the following steps for *each Nvidia GPU equipped node* before continuing to the next section (Process to install nvidia-container-toolkit on Nvidia GPU equipped nodes)
+
+* Verify the model of Nvidia GPU: `sudo lspci | grep -i nvidia`
+** Check against: https://developer.nvidia.com/cuda-gpus to ensure the GPU is CUDA compatible
+
+* Install the appropriate kernel header files for the kernel version and variant
+** `uname -r`
+*** Output is in the form of <version>-<variant>, i.e. for "4.12.14-197.26-default" the version would be "4.12.14-197.26" and the version would be "default"
+** Set these variables:
+----
+export VERSION=
+export VARIANT=
+----
+** Install the  packages: `sudo zypper --non-interactive install kernel-${VARIANT}-devel=${VERSION}`
+
+
+* Install the Cuda toolkit (currently specific to SLES 15 SP1):
+** Update the needed repositories:
+----
+sudo zypper addrepo http://developer.download.nvidia.com/compute/cuda/repos/sles15/x86_64/cuda-sles15.repo
+sudo SUSEConnect --product PackageHub/15.1/x86_64
+sudo SUSEConnect --product sle-module-desktop-applications/15.1/x86_64
+----
+** Refresh the repositories and install cuda:
+----
+sudo zypper refresh     
+sleep 5
+sudo zypper --non-interactive install cuda
+----
+
+* Verify which packages and versions of the Cuda toolkit were installed `sudo zypper search --installed cuda`
+
+* When the driver is correctly loaded it will show version information in: `cat /proc/driver/nvidia/version`
+** If the driver hasn't loaded, reboot the node and check again
+
+* Check that you can access the GPU:
+----
+sudo usermod -G video -a geeko
+sudo usermod -G video -a root
+sudo su - geeko
+nvidia-smi
+----
+** Should get an output that contains:
+----
+NVIDIA-SMI XXX.YY Driver Version: XXX.YY CUDA Version: XX.Y
+. . . .
+No running processes found
+----
+
+* Install the Nvidia libnvidia-container:
+----
+sudo zypper addrepo https://download.opensuse.org/repositories/home:jordimassaguerpla:nvidia_container/SLE_15_SP1/home:jordimassaguerpla:nvidia_container.repo
+sudo zypper ref
+sudo zypper install libnvidia-container1
+----
+* Install the Nvidia container cli
+----
+sudo zypper install libnvidia-container-tools nvidia-container-toolkit
+----
+* Verify functionality of the nvidia-container-cli utility: `nvidia-container-cli info`
+** Should get an output that contains:
+----
+NVRM version:   XXX.YY                                                          
+CUDA version:   XX.Y  
+Model:          X
+Brand:          Y
+----
+
+* (Optional) Install Podman on the Worker Node and test that a container can access the GPU: 
+
+----
+sudo zypper install podman podman-cni-config
+sudo podman run nvidia/cuda nvidia-smi
+exit
+----
+
+** Should get an output that contains:
+----
+NVIDIA-SMI XXX.YY Driver Version: XXX.YY CUDA Version: XX.Y
+. . . .
+No running processes found
+----
+
+*** Potentially repeat for all remaining GPU equipped Worker Nodes
+
+=== Finish the process from the Administrative Workstation
+* Install the Nvidia Kubernetes device plugin 
+* `kubectl create -f https://github.com/NVIDIA/k8s-device-plugin/blob/master/nvi
+dia-device-plugin.yml`
+
+* Set this variable to the CaaSP node name (not the FQDN) for the next several c
+ommands, then repeat for each GPU equipped worker node: `export WORKER=`
+
+* Ensure the correct number of GPUs are recognized on the worker node: `kubectl 
+describe node $WORKER | egrep "gpu|Unschedulable"`
+** Output should include three lines beginning with `nvidia.com/gpu`. The first 
+two should match the number of GPUs on the node. The last line should show quant
+ies zero
+
+NOTE: If the previous command also showed `Unschedulable` as `true`, uncordon th
+e node before continuing: `kubectl uncordon $WORKER`
+
+.Ensure that CaaS Platform can run a GPU enabled pod on the node:
+
+* Set this variable to the number of GPUs on this node: `export GPUS=`
+* Create the cuda-vector-add.yaml file:
+----
+cat <<EOF> cuda-vector-add.yaml
+apiVersion: v1                                                                  
+kind: Pod                                                                       
+metadata:                                                                       
+  name: cuda-vector-add                                                         
+spec:                                                                           
+  restartPolicy: OnFailure                                                      
+  nodeSelector:
+    kubernetes.io/hostname: $WORKER
+  containers:                                                                   
+    - name: cuda-vector-add                                                     
+      # https://github.com/kubernetes/kubernetes/blob/v1.7.11/test/images/nvidia
+-cuda/Dockerfile
+      image: "k8s.gcr.io/cuda-vector-add:v0.1"                                  
+      resources:                                                                
+        limits:                                                                 
+          nvidia.com/gpu: $GPUS
+EOF
+----
+
+* Apply the pod creation file and review the pod's logs and node assignment: `ku
+bectl apply -f cuda-vector-add.yaml` 
+* Check the pod until the pod shows a status of "Completed": `kubectl get pods -
+o wide | grep cuda-vector-add`
+* Review the log output of the container: `kubectl logs cuda-vector-add` 
+** Output should include phrases such as `CUDA kernel launch` and `Test PASSED`,
+ as well as show that the pod ran on the correct node
+* Remove the pod: `kubectl delete -f cuda-vector-add.yaml`
+
+NOTE: The deployment and integration are complete!
+

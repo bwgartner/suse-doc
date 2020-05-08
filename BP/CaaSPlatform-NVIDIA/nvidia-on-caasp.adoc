@@ -99,20 +99,16 @@ No running processes found
 
 === Finish the process from the Administrative Workstation
 * Install the Nvidia Kubernetes device plugin 
-* `kubectl create -f https://github.com/NVIDIA/k8s-device-plugin/blob/master/nvi
-dia-device-plugin.yml`
+----
+kubectl create -f https://github.com/NVIDIA/k8s-device-plugin/blob/master/nvidia-device-plugin.yml
+----
 
-* Set this variable to the CaaSP node name (not the FQDN) for the next several c
-ommands, then repeat for each GPU equipped worker node: `export WORKER=`
+* Set this variable to the CaaSP node name (not the FQDN) for the next several commands, then repeat for each GPU equipped worker node: `export WORKER=`
 
-* Ensure the correct number of GPUs are recognized on the worker node: `kubectl 
-describe node $WORKER | egrep "gpu|Unschedulable"`
-** Output should include three lines beginning with `nvidia.com/gpu`. The first 
-two should match the number of GPUs on the node. The last line should show quant
-ies zero
+* Ensure the correct number of GPUs are recognized on the worker node: `kubectl describe node $WORKER | egrep "gpu|Unschedulable"`
+** Output should include three lines beginning with `nvidia.com/gpu`. The first two should match the number of GPUs on the node. The last line should show quanties zero
 
-NOTE: If the previous command also showed `Unschedulable` as `true`, uncordon th
-e node before continuing: `kubectl uncordon $WORKER`
+NOTE: If the previous command also showed `Unschedulable` as `true`, uncordon the node before continuing: `kubectl uncordon $WORKER`
 
 .Ensure that CaaS Platform can run a GPU enabled pod on the node:
 
@@ -130,8 +126,7 @@ spec:
     kubernetes.io/hostname: $WORKER
   containers:                                                                   
     - name: cuda-vector-add                                                     
-      # https://github.com/kubernetes/kubernetes/blob/v1.7.11/test/images/nvidia
--cuda/Dockerfile
+      # https://github.com/kubernetes/kubernetes/blob/v1.7.11/test/images/nvidia-cuda/Dockerfile
       image: "k8s.gcr.io/cuda-vector-add:v0.1"                                  
       resources:                                                                
         limits:                                                                 
@@ -139,13 +134,10 @@ spec:
 EOF
 ----
 
-* Apply the pod creation file and review the pod's logs and node assignment: `ku
-bectl apply -f cuda-vector-add.yaml` 
-* Check the pod until the pod shows a status of "Completed": `kubectl get pods -
-o wide | grep cuda-vector-add`
+* Apply the pod creation file and review the pod's logs and node assignment: `kubectl apply -f cuda-vector-add.yaml` 
+* Check the pod until the pod shows a status of "Completed": `kubectl get pods -o wide | grep cuda-vector-add`
 * Review the log output of the container: `kubectl logs cuda-vector-add` 
-** Output should include phrases such as `CUDA kernel launch` and `Test PASSED`,
- as well as show that the pod ran on the correct node
+** Output should include phrases such as `CUDA kernel launch` and `Test PASSED`, as well as show that the pod ran on the correct node
 * Remove the pod: `kubectl delete -f cuda-vector-add.yaml`
 
 NOTE: The deployment and integration are complete!

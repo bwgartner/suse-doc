@@ -35,4 +35,6 @@
 :IHVPartnerEnvVMCluster: SUSE
 :IHVPartnerEnvDS: P20800-HIT-SUSE1064-D
 :IHVPartnerEnvNW: DPortGroup_PR_1064_HIT
+:IHVPartnerDemoPortal: Demonstration Portal
+:IHVPartnerDemoPortalURL: http://www.hpe.com/demos/hpedemos
 

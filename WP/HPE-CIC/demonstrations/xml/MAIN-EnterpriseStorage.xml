@@ -166,6 +166,39 @@ rowsep="1" colsep="1"
 </tgroup>
 </table>
 </listitem>
+<listitem>
+<simpara>
+The following additional command line interfaces, accessible from the JumpHost, may be relevant to interact with a Kubernete infrastructure, like SUSE CaaS Platform:
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+<literal>kubectl</literal>
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+An example invocation via <emphasis>Start</emphasis> &#8594; <emphasis>Command Prompt</emphasis> &#8594; <literal>Downloads\kubectl.exe version</literal>
+</simpara>
+<tip><simpara>If this is not available, refer to <ulink url="https://kubernetes.io/docs/tasks/tools/install-kubectl/#install-kubectl-on-windows">Install kubectl on Windows</ulink>.</simpara></tip>
+</listitem>
+</itemizedlist>
+</listitem>
+<listitem>
+<simpara>
+<literal>helm</literal> FixME
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+An example invocation via <emphasis>Start</emphasis> &#8594; <emphasis>Command Prompt</emphasis> &#8594; <literal>Downloads\helm.exe version</literal>
+</simpara>
+<tip><simpara>If this is not available, refer to <ulink url="https://helm.sh/docs/intro/install/">Installing Helm</ulink>.</simpara></tip>
+</listitem>
+</itemizedlist>
+</listitem>
+</itemizedlist>
+</listitem>
 </itemizedlist>
 <simpara>Via the Remote Desktop Protocol (RDP), login to the provided JumpHost to utilize as desktop environment.</simpara>
 <figure id="img-env-access-JumpHost"><title>Environment JumpHost Access</title>
@@ -226,6 +259,10 @@ This section outlines required background services for this document&#8217;s SUS
 </listitem>
 </varlistentry>
 </variablelist>
+<section id="_internet_access">
+<title>Internet Access</title>
+<simpara>In order to access components and downloads from ouside the Hewlett Packard Enterprise Customer Innovation Center environment, it is assumed that outbound Internet access is available, likely through the Demo Subnet Router.</simpara>
+</section>
 <section id="_repository_mirroring_tool_rmt_service">
 <title>Repository Mirroring Tool [RMT] Service</title>
 <simpara>In order to have a local, synchronized repository of the required <ulink url="https://scc.suse.com/">SUSE Customer Center</ulink> [SCC] content (for quick/easy access), the best practice is to have a local RMT server running in the demo environment.</simpara>
@@ -245,7 +282,69 @@ Once connected to the Hewlett Packard Enterprise Customer Innovation Center envi
 Launch a web browser and visit the RMT URL:
 </simpara>
 <screen>http://10.6.64.15/repo/SUSE</screen>
+<simpara>or</simpara>
+<screen>http://rmt.suse.cic/repo/SUSE</screen>
 <simpara>Browsing the underlying <emphasis>Products</emphasis> and <emphasis>Updates</emphasis> links will show what content is available.</simpara>
+<note><simpara>The IP-based URL is based upon the designated, reserved IP address of the respective RMT server. By default the JumpHost does not utilize the local demo environment&#8217;s DNS service but can have this hostname entry added to it&#8217;s local host file.</simpara></note>
+<table
+frame="all"
+rowsep="1" colsep="1"
+>
+<title>Demonstration Environment Suggested Repository Content</title>
+<tgroup cols="5">
+<colspec colname="col_1" colwidth="20*"/>
+<colspec colname="col_2" colwidth="20*"/>
+<colspec colname="col_3" colwidth="20*"/>
+<colspec colname="col_4" colwidth="20*"/>
+<colspec colname="col_5" colwidth="20*"/>
+<thead>
+<row>
+<entry align="left" valign="top">Function        </entry>
+<entry align="left" valign="top">Product                      </entry>
+<entry align="left" valign="top"> Version </entry>
+<entry align="left" valign="top"> Architecture </entry>
+<entry align="left" valign="top">Notes</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara>Infrastructure</simpara></entry>
+<entry align="left" valign="top"><simpara>Basesystem Module</simpara></entry>
+<entry align="left" valign="top"><simpara>15 SP1</simpara></entry>
+<entry align="left" valign="top"><simpara>x86_64</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>Desktop Applications Module</simpara></entry>
+<entry align="left" valign="top"><simpara>15 SP1</simpara></entry>
+<entry align="left" valign="top"><simpara>x86_64</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>Server Applications Module</simpara></entry>
+<entry align="left" valign="top"><simpara>15 SP1</simpara></entry>
+<entry align="left" valign="top"><simpara>x86_64</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>SLES</simpara></entry>
+<entry align="left" valign="top"><simpara>15 SP1</simpara></entry>
+<entry align="left" valign="top"><simpara>x86_64</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>SUSE Enterprise Storage</simpara></entry>
+<entry align="left" valign="top"><simpara>Storage</simpara></entry>
+<entry align="left" valign="top"><simpara>6</simpara></entry>
+<entry align="left" valign="top"><simpara>x86_64</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</table>
 <figure id="img-demo-infra-RMT"><title>Verifying RMT functionality</title>
 <mediaobject>
   <imageobject>
@@ -254,7 +353,6 @@ Launch a web browser and visit the RMT URL:
   <textobject><phrase>demo-infra-RMT</phrase></textobject>
 </mediaobject>
 </figure>
-<note><simpara>This URL is based upon the designated,reserved IP address of the respective RMT server. By default the JumpHost does not utilize the local demo environment&#8217;s DNS service to resolve to the hostname.</simpara></note>
 <simpara>If this appears to be functioning, skip to the next section.</simpara>
 </listitem>
 </orderedlist>
@@ -295,7 +393,7 @@ Using the Google Chrome web browser, connect to the vSphere HTML5 client interfa
 </section>
 <section id="_domain_name_service_dns">
 <title>Domain Name Service [DNS]</title>
-<simpara>To have a coherent, self-contained name service for elements of the SUSE solution in the local environment, mapping IP addresses to hostnames, this service is co-located on the RMT server.</simpara>
+<simpara>To have a coherent, self-contained name service for elements of the SUSE solution in the local environment, mapping IP addresses to hostnames, this service is co-located on the RMT server virtual machine.</simpara>
 <important><simpara>This service should be left running at all times, to provide the name to IP resolution installs, updates, and runtime operation of all the other nodes.</simpara></important>
 <variablelist>
 <varlistentry>
@@ -309,7 +407,7 @@ Once connected to the Hewlett Packard Enterprise Customer Innovation Center envi
 <orderedlist numeration="arabic">
 <listitem>
 <simpara>
-Launch a command prompt from the JumpHost <emphasis>Start</emphasis> menu and type
+Launch a Command Prompt from the JumpHost <emphasis>Start</emphasis> menu and type
 </simpara>
 <screen>nslookup rmt.suse.cic 10.6.64.15</screen>
 <figure id="img-demo-infra-DNS"><title>Verifying DNS functionality</title>
@@ -347,14 +445,14 @@ rowsep="1" colsep="1"
 <entry align="left" valign="top"><simpara>RMT</simpara></entry>
 <entry align="left" valign="top"><simpara>rmt.suse.cic</simpara></entry>
 <entry align="left" valign="top"><simpara>10.6.64.15</simpara></entry>
-<entry align="left" valign="top"><simpara>hosts local DNS</simpara></entry>
+<entry align="left" valign="top"><simpara>local solution DNS, also referenced in JumpHost <emphasis>hosts</emphasis> file</simpara></entry>
 </row>
 <row>
 <entry align="left" valign="top"><simpara>SUSE Enterprise Storage</simpara></entry>
 <entry align="left" valign="top"><simpara>Admin</simpara></entry>
 <entry align="left" valign="top"><simpara>adm.ceph.suse.cic</simpara></entry>
 <entry align="left" valign="top"><simpara>10.6.64.32</simpara></entry>
-<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>also referenced in JumpHost <emphasis>hosts</emphasis> file</simpara></entry>
 </row>
 <row>
 <entry align="left" valign="top"><simpara></simpara></entry>
@@ -376,6 +474,13 @@ rowsep="1" colsep="1"
 <entry align="left" valign="top"><simpara>osd3.ceph.suse.cic</simpara></entry>
 <entry align="left" valign="top"><simpara>10.6.64.38</simpara></entry>
 <entry align="left" valign="top"><simpara>co-located MON functionality</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>SUSE CaaS Platform</simpara></entry>
+<entry align="left" valign="top"><simpara>Admin/Mgmt</simpara></entry>
+<entry align="left" valign="top"><simpara>adm.k8s.suse.cic</simpara></entry>
+<entry align="left" valign="top"><simpara>10.6.64.64</simpara></entry>
+<entry align="left" valign="top"><simpara>also referenced in JumpHost <emphasis>hosts</emphasis> file</simpara></entry>
 </row>
 <row>
 <entry align="left" valign="top"><simpara>spares</simpara></entry>
@@ -436,7 +541,7 @@ rowsep="1" colsep="1"
 </tbody>
 </tgroup>
 </table>
-<note><simpara>The entries denotes as spare do not have specific hostname mappings and are just intended as available addresses for initial operating system installations on the virtual machines.</simpara></note>
+<note><simpara>The entries denoted as "spares" do not have specific hostname mappings and are just intended as available addresses for initial operating system installations on the virtual machines.</simpara></note>
 </listitem>
 </orderedlist>
 </listitem>
@@ -452,7 +557,7 @@ If the previous access does not work, try the following additional checks:
 <itemizedlist>
 <listitem>
 <simpara>
-Launch a command prompt from the JumpHost <emphasis>Start</emphasis> menu and type
+Launch a Command Prompt from the JumpHost <emphasis>Start</emphasis> menu and type
 </simpara>
 <screen>ping 10.6.64.15</screen>
 </listitem>
@@ -665,6 +770,15 @@ rowsep="1" colsep="1"
 </row>
 </thead>
 <tbody>
+<row>
+<entry align="left" valign="top"><simpara>Infra</simpara></entry>
+<entry align="left" valign="top"><simpara>1</simpara></entry>
+<entry align="left" valign="top"><simpara>JumpHost</simpara></entry>
+<entry align="left" valign="top"><simpara>8</simpara></entry>
+<entry align="left" valign="top"><simpara>16</simpara></entry>
+<entry align="left" valign="top"><simpara>128</simpara></entry>
+<entry align="left" valign="top"><simpara>1</simpara></entry>
+</row>
 <row>
 <entry align="left" valign="top"><simpara>SUSE Enterprise Storage</simpara></entry>
 <entry align="left" valign="top"><simpara>1</simpara></entry>

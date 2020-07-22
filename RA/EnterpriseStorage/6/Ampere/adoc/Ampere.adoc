@@ -8,30 +8,34 @@ endif::[]
 :SESversion: (6)
 :SLESversion: 15 SP1
 :vendor: Ampere
-:vplatform: FixMe
+:vplatform: eMAG
 :servermodelcount: two
 :OSDmodel: Lenovo HR350A
 :OSDYESlink: FixMe
 :OSDRAM: 128GB
 :OSDCPUcount: 1
-:OSDCPUmodel: Ampere Emag 8180 32Core 3.3GHz
-:OSDOSDrivedesc: Micron 240GB M.2
-:OSDDrivedesc: Micron 7300 NVMe, M.2 3.84TB
-:OSDNic: Mellanox ConnectX-4 Dual Port 100GbE
+:OSDCPUmodel: 8180 32Core 3.3GHz
+:drivevendor: Micron
+:OSDOSDrivedesc: 240GB NVMe M.2
+:hbavendor: Broadcom
+:OSDDriveCntrl: BRCM 9500-16i HBA
+:OSDDrivedesc: 3.84TB 7300 PRO NVMe U.2
+:OSDNic: MCX516A-CCAT Dual Port 100GbE
 :node2roles: Admin, monitor, and protocol gateways
 :node2model: Lenovo HR330A
 :node2CPUcount: 1
 :node2RAM: 32GB
-:node2OSDrivedesc: Micron 480GB
+:node2OSDrivedesc: 7300 PRO NVMe M.2 480GB
 :node2YESlink: FixMe
 :switchSpeed: 100Gb
-:switchmodel: MSN3700C
+:switchmodel: Spectrum-2 MSN3700C
 :switchvendor: Mellanox
 //Set to 1 to include the information on configuring ConnectX-4 as Ethernet
 :MellanoxCX4Present: 0
 :BondingType: FixMe (LAG)
+:Benchmaster: 0
 
-= SUSE(R) Enterprise Storage on {vendor} {vplatform}
+= SUSE(R) Enterprise Storage on {vendor}(R) {vplatform}
 
 ''''
 
@@ -50,26 +54,51 @@ This reference guide is targeted at administrators who deploy software defined s
 
 {SESProduct} delivers a highly scalable, resilient, self-healing storage system designed for large scale environments ranging from hundreds of Terabytes to Petabytes. This software defined storage product can reduce IT costs by leveraging industry standard servers to present unified storage servicing block, file, and object protocols. Having storage that can meet the current needs and requirements of the data center while supporting topologies and protocols demanded by new web-scale applications, enables administrators to support the ever-increasing storage requirements of the enterprise with ease.
 
-*{vendor} {vplatform}* (Revise)
+*{vendor} {vplatform}*
 
-{vendor} {vplatform} provide a cost effective and scaleable platform for the deployment of {SESProduct}.  
+The {vendor} {vplatform} server is an high performance, power efficient data center class platform featuring 32 Ampere-designed 64-bit Armv8 cores running up to 3.3 GHz.  Designed for cloud data center workloads, the {vplatform} server is ideal scalable performance applications like the {SESProduct} stack.  The server processor has the following features:
+* 32 Ampere Armv8 64-bit CPU cores at 3.3 GHz Sustained - SBSA Level 3
+* 32 KB L1 I-cache, 32KB L1 D-cache per core
+* Shared 256 KB L2 cache per 2 cores
+* 32MB globally shared L3 cache
+* 8x 72-bit DDR4-2667 channels
+* ECC, ChipKill, and DDR4 RAS features
+* Up to 16 DIMMs and 1TB/socket
+* 42 lanes of PCIE Gen 3, with 8 controllers
+* TDP: 75-125W
++
+Also included in this configuration are the following key peripherals and infrastructure components that can be used to build a very high performance Ceph based storage cluster:
 
-FixMe - Ampere 
+*{drivevendor}*
 
-FixMe - Broadcom
+Enterprise IT and cloud managers want the fast, low latency and consistent performance of NVMe storage that won't break the budget.
+* 7300 NVMe SSDs leverage the low power consumption and price-performance efficiencies of 3D NAND technology and deliver fast NVMe IOPS and GB/s for a wide array of workloads.
+* Built with the innovative 96-layer 3D TLC NAND, the 5300 series combines the latest in NAND technology and a proven architecture to provide performance upgrades now and a path forward for moving to an all-flash future. The 5300’s high capacity, added security, and enhanced endurance enable strong performance.
 
-FixMe - Micron
+*{switchvendor}*
 
-FixMe - Mellanox
+System Network Interface Card::
+{switchvendor} {OSDNic} supports 100Gb Ethernet connectivity, while delivering extremely high message rates, and PCIe switch and NVMe over Fabric offloads. ConnectX-5 providing the highest performance and most flexible solution for the most demanding applications and markets: Machine Learning, Data Analytics, and more.  ConnectX-5 EN utilizes RoCE (RDMA over Converged Ethernet) technology, delivering low-latency and high performance. ConnectX-5 enhances RDMA network capabilities by completing the Switch AdaptiveRouting capabilities and supporting data delivered out-of-order, while maintaining ordered completion semantics, providing multipath reliability and efficient support for all network topologies including DragonFly and DragonFly.  ConnectX-5 also supports Burst Buffer offload for background checkpointing without interfering in the main CPU operations, and the innovative transport service Dynamic Connected Transport (DCT) to ensure extreme scalability for compute and storage systems. 
++
+Network Switch::
+{switchvendor} {switchmodel} is a 1U 32-port 100GbE spine that can also be used as a high density 10/25GbE leaf when used with splitter cables. SN3700C allows for maximum flexibility, with ports spanning from 1GbE to 100GbE and port density that enables full rack connectivity to any server at any speed, and a variety of blocking ratios. SN3700C ports are fully splittable to up to 128 x 10/25GbE ports.
+
+*{hbavendor}*
+
+The high-port 9500-16i Tri-Mode, PCIe Gen 4.0 HBA is ideal for increased connectivity and maximum performance for enterprise data center flexibility.  With increased bandwidth and IOPS performance compared to previous generations, the 9500-16i adapter delivers the performance and scalability needed by critical applications.
+* Connects up to 1024 SAS/SATA devices or 32 NVMe devices
+* Provides maximum connectivity and performance for high-end servers and applications
+* Support critical applications with the bandwidth of PCIe(R) 4.0 connectivity
+* Universal Bay Management (UBM) Ready
 
 == Hardware & Software
 The recommended architecture for {SESProduct} on {vendor} {vplatform} leverages {servermodelcount} models of {vendor} servers.  The role and functionality of each type of system within the {SESProduct} environment will be explained in more detail in the architectural overview section.
 
 .Storage Nodes:
-* {vendor} {OSDmodel}  {OSDYESlink}
+* {vendor} {vplatform} Core 2U Servers ( {OSDmodel} )
 
 .{node2roles}:
-* {vendor} {node2model}  {node2YESlink}
+* {vendor} {vplatform} 32 Core 1U Servers ( {node2model} )
 
 .Switches:
 * {switchvendor} {switchmodel} {switchspeed}
@@ -77,7 +106,7 @@ The recommended architecture for {SESProduct} on {vendor} {vplatform} leverages 
 .Software:
 * {SESProduct} {SESversion}
 * SUSE Linux Enterprise Server {SLESversion}
-TIP:: Please note that limited use subscriptions are provided with {SESProduct} as part of the subscription entitlement
+TIP:: Please note that limited use SUSE Linux Enterprise Server operating system subscriptions are provided with {SESProduct} as part of the subscription entitlement
 
 == Requirements
 
@@ -104,7 +133,7 @@ The preceding sections provided information on the both the overall {vendor} har
 * SUSE Linux Enterprise Server - A world class secure, open source server operating system, equally adept at powering physical, virtual, or cloud-based mission-critical workloads. Service Pack 3 further raises the bar in helping organizations to accelerate innovation, enhance system reliability, meet tough security requirements and adapt to new technologies.
 
 
-* Repository Mirroing Tool (RMT) for SLES - allows enterprise customers to optimize the management of SUSE Linux Enterprise (and extensions such as {SESProduct}) software updates and subscription entitlements. It establishes a proxy system for SUSE Customer Center with repository and registration targets.
+* Repository Mirroring Tool (RMT) for SLES - allows enterprise customers to optimize the management of SUSE Linux Enterprise (and extensions such as {SESProduct}) software updates and subscription entitlements. It establishes a proxy system for SUSE Customer Center (SCC) with repository and registration targets.
 
 * {SESProduct} - Provided as an extension on top of SUSE Linux Enterprise Server, this intelligent software-defined storage solution, powered by Ceph technology with enterprise engineering and support from SUSE enables customers to transform enterprise infrastructure to reduce costs while providing unlimited scalability.
 
@@ -130,10 +159,12 @@ endif::[]
 |===
 |Function |Hostname |Primary Network (VLAN) |Cluster Network (VLAN)
 
-|Admin |amp-admin.suse.lab |172.16.227.60 |N/A
-|Monitor |amp-mon1.suse.lab |172.16.227.61 |N/A
-|Monitor |amp-mon2.suse.lab |172.16.227.62 |N/A
-|Monitor |amp-mod3.suse.lab |172.16.227.63 |N/A
+|Admin   |amp-admin.suse.lab |172.16.227.60 |N/A
+|Monitor |amp-mon1.suse.lab  |172.16.227.61 |N/A
+|Monitor |amp-mon2.suse.lab  |172.16.227.62 |N/A
+|Monitor |amp-mon3.suse.lab  |172.16.227.63 |N/A
+|Gateway |amp-gw1.suse.lab   |172.16.227.64 |N/A
+|Gateway |amp-gw2.suse.lab   |172.16.227.65 |N/A
 
 |OSD |amp-osd1.suse.lab |172.16.227.59 |172.16.220.59
 |OSD |amp-osd2.suse.lab |172.16.227.58 |172.16.220.58
@@ -146,7 +177,9 @@ endif::[]
 |OSD |amp-osd9.suse.lab |172.16.227.51 |172.16.220.51
 |OSD |amp-osd10.suse.lab |172.16.227.50 |172.16.220.50
 |===
-=== Hardware Recommended Actions
+
+////
+=== Hardware Recommended Actions (FixMe)
 The following considerations for the hardware platforms should be attended to:
 
 * Ensure Boot Mode is set to UEFI for all the physical nodes that comprise the {SESProduct} Cluster.
@@ -154,12 +187,12 @@ The following considerations for the hardware platforms should be attended to:
 * Configure the boot media as RAID-1 (FixMe)
 * Configure all data and journal devices as individual RAID-0
 
-
 ==== Specific Hardware Configuration (FixMe)
 To ensure maximum performance of the cluster, enter the bios system configuration and click UEFI Setup.  Next click System Settings.  Under Choose Operating Mode, change the setting to Maximum Performance
-// [[img-PerformanceMode]]
-// .Setting Performance Mode
-// image::{imgpath}PerformanceMode.png[Performance Mode, scaledwidth=100%]
+[[img-PerformanceMode]]
+.Setting Performance Mode
+image::{imgpath}PerformanceMode.png[Performance Mode, scaledwidth=100%]
+////
 
 ifeval::[{MellanoxCX4Present} == 1]
 
@@ -180,6 +213,7 @@ The steps required are:
 [[img-NICmode]]
 .Change Mellanox ConnectX-4 VPI NIC Mode
 image::{imgpath}ConnectX-4_NIC_mode.png[NIC Mode Change, scaledwidth=100%]
+
 endif::[]
 
 
@@ -207,10 +241,10 @@ There are three key Salt imperatives that need to be followed:
 
 *	Salt minions are nodes controlled by Salt master. OSD, monitor, and gateway nodes are all Salt minions in this installation.
 
-*	Salt minions need to correctly resolve the Salt master’s host name over the network. This can be achieved through configuring unique host names per interface (eg osd1-cluster.suse.lab and osd1-public.suse.lab) in DNS and/or local /etc/hosts files.
+*	Salt minions need to correctly resolve the Salt master’s host name over the network. This can be achieved through configuring unique host names per interface (e.g. osd1-cluster.suse.lab and osd1-public.suse.lab) in DNS and/or local /etc/hosts files.
 
 
-Deepsea consists of a series of Salt files to automate the deployment and management of a Ceph cluster. It consolidates the administrator’s decision making in a single location around cluster assignment, role assignment and profile assignment. Deepsea collects each set of tasks into a goal or stage.
+Deepsea consists of a series of Salt files to automate the deployment and management of a Ceph cluster. It consolidates the administrator's decision making in a single location around cluster assignment, role assignment and profile assignment. Deepsea collects each set of tasks into a goal or stage.
 
 The following steps, performed in order, will be used for this reference implementation:
 
@@ -252,7 +286,7 @@ systemctl enable salt-minion.service
 +
 ----
 salt-key --list-all
-salt-key –-accept-all
+salt-key --accept-all
 ----
 +
 .   Select the nodes to participate in the cluster:
@@ -308,7 +342,7 @@ Note:: The command can take some time to complete, depending on the size of the 
 ..	Check for successful completion via:
 +
 ----
-ceph –s
+ceph -s
 ----
 +
 ..	Finally, deploy the services-gateways (iSCSI, RADOS, and openATTIC to name a few):
@@ -323,8 +357,8 @@ The steps below can be used (regardless of the deployment method) to validate th
 ----
 ceph status
 ceph osd pool create test 1024
-rados bench –p test 300 write --no-cleanup
-rados bench –p test 300 seq
+rados bench -p test 300 write --no-cleanup
+rados bench -p test 300 seq
 ----
 
 Once the tests are complete, you can remove the test pool via:
@@ -343,7 +377,7 @@ Some final considerations before deploying your own version of a {SESProduct} cl
 * As described in this implementation guide and the {SESProduct} documentation, a minimum of four OSD nodes is recommended, with the default replication setting of 3. This will ensure cluster operation, even with the loss of a complete OSD node. Generally speaking, performance of the overall cluster increases as more properly configured OSD nodes are added.
 
 == Conclusion
-The {vendor} {vplatform} series represents a strong capacity-oriented platform.  When combined with the access flexibility and reliability of {SESProduct} and the industry leading support from {vendor}, any business can feel confident in the ability to address the exponential growth in storage they are currently faced with.
+The {vendor} {vplatform} servers provides a strong capacity-oriented platform for enterprise, HPC or Cloud Ceph-based storage cluster.  In addition to the strong raw performance demonstrated by this configuration as characterized in industry standard benchmarks like the IO500 workload, the {vendor} systems provide a very compelling value proposition when combining its high performance the with the ultra-efficient power profile and the lighter than expected acquisition cost of the cluster!  These features combined with the access flexibility and reliability of {SESProduct} and industry leading support from {vendor} allows any business to proceed confidently with a solution that addresses many storage use cases driven by the exponential growth in storage capacity and performance currently facing the industry.
 
 ++++
 <?pdfpagebreak?>
@@ -355,26 +389,28 @@ The {vendor} {vplatform} series represents a strong capacity-oriented platform. 
 |===
 |Role |Qty |Component |Notes
 
-|Admin, Monitor, Gateway, MDS Nodes
+|{node2roles}
 |6
-|{vendor} {node2model}
+|{vendor} 1U Servers ( {node2model} )
 a| Configuration:
 
-* 1x {OSDCPUmodel}
-* {node2RAM}
-* 4x8 DIMM 2667 {node2RAM} 
-* 2x {node2OSDrivedesc}
-* 1x {OSDNIC}
+* 1x {vendor} {vplatform} {OSDCPUmodel}
+* {node2RAM} DRAM ( 4x8 DIMM 2667 )
+* 2x {drivevendor} {node2OSDrivedesc}
+* 1x {switchvendor} {OSDNIC}
 
 |OSD Nodes
 |10
-|{vendor} {OSDmodel}
+|{vendor} 2U Servers ( {OSDmodel} )
 a| Configuration:
 
-* 1x {OSDCPUmodel}
-* 8x16 DIMM 2667 {OSDRAM} 
-* 4x {node2OSDrivedesc}
-* 1x {OSDNIC}
+* 1x {vendor} {vplatform} {OSDCPUmodel}
+* {OSDRAM} DRAM ( 8x16 DIMM 2667 )
+* 2x {drivevendor} {OSDOSDrivedesc}
+* 4x {drivevendor} {node2OSDrivedesc}
+* 1x {hbavendor} {OSDDriveCntrl}
+* 1x {switchvendor} {OSDNIC}
+
 |Network Switch
 |2
 |{switchvendor} {switchmodel} Switch
@@ -511,7 +547,9 @@ VLAN_ID='220'
 <?pdfpagebreak?>
 ++++
 
-== Appendix E: Performance Data (FixMe - massive updates)
+ifeval::[{Benchmaster} == 1]
+
+== Appendix E: Performance Data (FixMe)
 Comprehensive performance baselines are run as part of a reference build activity.  This activity yields a vast amount of information that may be used to approximate the size and performance of the solution.  The only tuning applied is documented in the implementation portion of this document.
 
 The tests are comprised of a number of Flexible I/O (fio) job files run against multiple worker nodes.  The job files and testing scripts may be found for review at: https://github.com/dmbyte/benchmaster.  This is a personal repository and no warranties are made in regard to the fitness and safety of the scripts found there.
@@ -608,6 +646,7 @@ The OLTP Datafile simulation is set for an 80/20 mix of random reads and writes.
 ++++
 <?pdfpagebreak?>
 ++++
+endif::[]
 
 == Resources
 {SESProduct} Technical Overview
@@ -621,3 +660,24 @@ https://documentation.suse.com/sles/15-SP1/single-html/SLES-admin/#book-sle-admi
 
 Repository Mirroring Tool
 https://documentation.suse.com/sles/15-SP1/single-html/SLES-rmt/#book-rmt
+
+Armv8
+https://developer.arm.com/architectures/cpu-architecture/a-profile
+
+{vendor}
+https://amperecomputing.com/emag/
+
+{drivevendor}
+Operating system and storage drives
+https://www.micron.com/products/ssd/product-lines/5300
+https://www.micron.com/products/ssd/product-lines/7300
+
+{hbavendor} HBA {OSDDriveCntrl}
+https://www.broadcom.com/products/storage/host-bus-adapters/sas-nvme-9500-16i
+
+{switchvendor}
+System Network Interface Card {OSDNic}
+https://store.mellanox.com/products/mellanox-mcx516a-ccat-connectx-5-en-network-interface-card-100gbe-dual-port-qsfp28-pcie3-0-x16-tall-bracket-rohs-r6.html
+and Network Switch {switchmodel}
+https://www.mellanox.com/products/ethernet-switches/sn3000
+

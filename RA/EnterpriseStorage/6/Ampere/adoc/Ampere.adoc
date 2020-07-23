@@ -20,7 +20,7 @@ endif::[]
 :hbavendor: Broadcom
 :OSDDriveCntrl: BRCM 9500-16i HBA
 :OSDDrivedesc: 3.84TB 7300 PRO NVMe U.2
-:OSDNic: MCX516A-CCAT Dual Port 100GbE
+:OSDNic: MCX653105A-HDAT ConnectX-6 VPI Adapter
 :node2roles: Admin, monitor, and protocol gateways
 :node2model: Lenovo HR330A
 :node2CPUcount: 1
@@ -78,7 +78,7 @@ Enterprise IT and cloud managers want the fast, low latency and consistent perfo
 *{switchvendor}*
 
 System Network Interface Card::
-{switchvendor} {OSDNic} supports 100Gb Ethernet connectivity, while delivering extremely high message rates, and PCIe switch and NVMe over Fabric offloads. ConnectX-5 providing the highest performance and most flexible solution for the most demanding applications and markets: Machine Learning, Data Analytics, and more.  ConnectX-5 EN utilizes RoCE (RDMA over Converged Ethernet) technology, delivering low-latency and high performance. ConnectX-5 enhances RDMA network capabilities by completing the Switch AdaptiveRouting capabilities and supporting data delivered out-of-order, while maintaining ordered completion semantics, providing multipath reliability and efficient support for all network topologies including DragonFly and DragonFly.  ConnectX-5 also supports Burst Buffer offload for background checkpointing without interfering in the main CPU operations, and the innovative transport service Dynamic Connected Transport (DCT) to ensure extreme scalability for compute and storage systems. 
+{switchvendor} {OSDNic} is the world's first 200Gb/s capable HDR InfiniBand and Ethernet network adapter card, offering industry-leading performance, smart offloads and in-network computing, leading to the highest return on investment for high-performance computing, cloud, web 2.0, storage and machine learning applications. 
 +
 Network Switch::
 {switchvendor} {switchmodel} is a 1U 32-port 100GbE spine that can also be used as a high density 10/25GbE leaf when used with splitter cables. SN3700C allows for maximum flexibility, with ports spanning from 1GbE to 100GbE and port density that enables full rack connectivity to any server at any speed, and a variety of blocking ratios. SN3700C ports are fully splittable to up to 128 x 10/25GbE ports.
@@ -677,7 +677,7 @@ https://www.broadcom.com/products/storage/host-bus-adapters/sas-nvme-9500-16i
 
 {switchvendor}
 System Network Interface Card {OSDNic}
-https://store.mellanox.com/products/mellanox-mcx516a-ccat-connectx-5-en-network-interface-card-100gbe-dual-port-qsfp28-pcie3-0-x16-tall-bracket-rohs-r6.html
+https://store.mellanox.com/products/mellanox-mcx653105a-hdat-sp-single-pack-connectx-6-vpi-adapter-card-hdr-ib-and-200gbe-single-port-qsfp56-pcie4-0-x16-tall-bracket.html
 and Network Switch {switchmodel}
 https://www.mellanox.com/products/ethernet-switches/sn3000
 

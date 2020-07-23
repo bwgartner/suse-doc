@@ -72,7 +72,7 @@ Also included in this configuration are the following key peripherals and infras
 *{drivevendor}*
 
 Enterprise IT and cloud managers want the fast, low latency and consistent performance of NVMe storage that won't break the budget.
-* 7300 NVMe SSDs leverage the low power consumption and price-performance efficiencies of 3D NAND technology and deliver fast NVMe IOPS and GB/s for a wide array of workloads.
+* The 7300 NVMe SSDs leverage the low power consumption and price-performance efficiencies of 3D NAND technology and deliver fast NVMe IOPS and GB/s for a wide array of workloads.
 * Built with the innovative 96-layer 3D TLC NAND, the 5300 series combines the latest in NAND technology and a proven architecture to provide performance upgrades now and a path forward for moving to an all-flash future. The 5300’s high capacity, added security, and enhanced endurance enable strong performance.
 
 *{switchvendor}*

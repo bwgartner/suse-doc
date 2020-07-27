@@ -29,7 +29,7 @@ endif::[]
 :node2YESlink: FixMe
 :switchSpeed: 100Gb
 :switchmodel: Spectrum-2 MSN3700C
-:switchvendor: Mellanox
+:switchvendor: NVIDIA
 //Set to 1 to include the information on configuring ConnectX-4 as Ethernet
 :MellanoxCX4Present: 0
 :BondingType: FixMe (LAG)
@@ -78,10 +78,10 @@ Enterprise IT and cloud managers want the fast, low latency and consistent perfo
 *{switchvendor}*
 
 System Network Interface Card::
-{switchvendor} {OSDNic} is the world's first 200Gb/s capable HDR InfiniBand and Ethernet network adapter card, offering industry-leading performance, smart offloads and in-network computing, leading to the highest return on investment for high-performance computing, cloud, web 2.0, storage and machine learning applications. 
+{OSDNic} is the world's first 200Gb/s capable HDR InfiniBand and Ethernet network adapter card, offering industry-leading performance, smart offloads and in-network computing, leading to the highest return on investment for high-performance computing, cloud, web 2.0, storage and machine learning applications. 
 +
 Network Switch::
-{switchvendor} {switchmodel} is a 1U 32-port 100GbE spine that can also be used as a high density 10/25GbE leaf when used with splitter cables. SN3700C allows for maximum flexibility, with ports spanning from 1GbE to 100GbE and port density that enables full rack connectivity to any server at any speed, and a variety of blocking ratios. SN3700C ports are fully splittable to up to 128 x 10/25GbE ports.
+{switchmodel} is a 1U 32-port 100GbE spine that can also be used as a high density 10/25GbE leaf when used with splitter cables. SN3700C allows for maximum flexibility, with ports spanning from 1GbE to 100GbE and port density that enables full rack connectivity to any server at any speed, and a variety of blocking ratios. SN3700C ports are fully splittable to up to 128 x 10/25GbE ports.
 
 *{hbavendor}*
 

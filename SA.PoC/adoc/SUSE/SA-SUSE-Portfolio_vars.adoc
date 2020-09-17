@@ -1,0 +1,13 @@
+
+// our portfolio
+
+:Company: SUSE
+:ProductOS: {Company} Linux Enterprise Server
+:ProductContainer: {Company} CaaS Platform
+:ProductHA: {Company} High Availability Extension
+:ProductHPC: {Company} Linux Enterprise High Performance Computing
+:ProductLP: {Company} Linux Enterprise Live Patching
+:ProductPaaS: {Company} Cloud Application Platform
+:ProductSAP: {ProductOS} for SAP Applications
+:ProductStorage: {Company} Enterprise Storage
+:ProductSUMa: {Company} Manager

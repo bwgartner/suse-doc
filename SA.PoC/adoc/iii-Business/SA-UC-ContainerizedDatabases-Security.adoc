@@ -1,0 +1,14 @@
+
+Security::
+Defense in depth footnote:LayeredTop[link: https://www.linkedin.com/pulse/20141024010629-13333030-explaining-the-layers-of-it-to-non-technical-people[Explaining the layers of IT to non-technical people]]
+
+* Business
+** Functions
+** Processes
+* Services
+* Applications
+* Infrastructure
+** Application
+** Container, Virtual, Host/Hardware
+** Operating System
+** Fixed

@@ -1,0 +1,4 @@
+
+Microsoft (R) SQL Server footnote:MSSQL[link:https://www.microsoft.com/en-us/sql-server[Microsoft SQL Server]]::
+As a proprietary, SQL-based product, Microsoft SQL Server started with the 2017 release as a containerized, Linux version. More recent releases, like 2019, have become feature-rich, in some ways as a superset to the traditional variant. You can deploy in many ways, having multiple options of functionality and catering to many modes of migration.
+

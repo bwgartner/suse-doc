@@ -1,0 +1,32 @@
+include::./SA-UC-{useCase}_vars.adoc[]
+
+== Strategy
+
+The strategy elements are typically used to capture the direction and the choices of an enterprise, as related to the respective solution architecture. These are used to express how the enterprise wants to create value for its stakeholders, the capabilities it needs for that, the resources needed to support these capabilities, and how it plans to configure and use these capabilities and resources to achieve its aims.
+
+=== Context
+
+In the context of digital transformation towards containerized databases, you should assess the advantages of Dev(Sec)Ops disciplines to move forward from current state of database deployments towards a more agile, portable containerized approach. Focusing on satisfying current requirements and then taking advantage of updated, expanded features to increase efficiency and economics of database infrastructure, providing solution for both current and future implementations.
+
+To address why you should consider such a digital transformation towards containerized databases, here are some advantages:
+
+* Like the previous move from physical deployment to virtual machines (VMs), containerization is essentially a next-step, being a lightweight alternative to VMs. As such, these are more portable in terms of the number of alternatives infrastructes they can be deployed on and the quantity in each space.
+* With the gain in popularity, database server containers provide fast, simple-to-use and compatibility with more automation tools. This helps address delivery of production data environments for development and quality assurance, with a potenitally, significant reduction in the number of database server hosts being used. Likewise, larger monolithic, multi-table hosted databases can be segmented into multiple containers.
+* Using the extremely consistent nature of database containers, the increased importance occurs in creating and maintaining an agile environment. Furthermore, these containers are proving to be very effective with approaches like Continuous Integration and Continuous Delivery (CI/CD).
+
+Beyond the previously noted advantages though, certain issues need to have consideration.
+
+* Continue to exercise all the traditional realms and aspects of security to address the potential less isolation of multi-tenancy and access control methods.
+* Operating system compatibility between the database application and the underlying host need to be more aligned in the container space.
+* Given the potential aggregation of more containerized database instances, various monitoring aspects need to be addressed.
+
+The following figure provides an overview of the respective strategy elements:
+
+image::SA-UC-{useCase}-Strategy.png[title="FixMe-SA-UC-{useCase}-Strategy", scaledwidth=80%]
+
+=== Database Categories and Variants
+
+For your organization, there are likely multiple categories of databases to consider for the migration attempt. Depending upon your data structure needs, the querying requirements and your data scaling, two common categories are SQL footnote:SQL[link:https://en.wikipedia.org/wiki/SQL[Structured Query Language]] and noSQL. footnote:noSQL[link:https://en.wikipedia.org/wiki/NoSQL[non Relational]] Furthermore, there may be variants in each of the categories, such as community-based open source, enterprise supported open source, and proprietary, closed source. These factors may cause additional, differing considerations during the migration project.
+
+In the following sections of this document, category and variant combinations along with the respective considerations will be described.
+

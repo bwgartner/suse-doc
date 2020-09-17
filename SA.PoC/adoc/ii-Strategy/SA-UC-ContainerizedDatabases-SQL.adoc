@@ -1,0 +1,7 @@
+
+==== Structured Query Language (SQL)
+
+SQL was one of the first commercial languages which is particularly useful in handling structured data, i.e. data incorporating relations among entities and variables. 
+
+Some examples of respective SQL databases are:
+

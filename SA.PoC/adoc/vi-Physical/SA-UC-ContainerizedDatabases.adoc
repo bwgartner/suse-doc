@@ -1,0 +1,6 @@
+
+== Physical
+
+FixMe - Quam vulputate dignissim suspendisse in est ante in nibh. Nunc sed velit dignissim sodales ut eu. Ullamcorper morbi tincidunt ornare massa eget egestas purus. Etiam dignissim diam quis enim lobortis scelerisque fermentum dui. Fringilla est ullamcorper eget nulla. Nulla facilisi etiam dignissim diam quis enim lobortis scelerisque. Fermentum et sollicitudin ac orci phasellus. Sed tempus urna et pharetra pharetra massa massa ultricies. Diam quam nulla porttitor massa id neque aliquam vestibulum morbi. Parturient montes nascetur ridiculus mus mauris vitae ultricies leo integer. Commodo sed egestas egestas fringilla phasellus faucibus. Pretium viverra suspendisse potenti nullam ac. Scelerisque viverra mauris in aliquam sem fringilla. Senectus et netus et malesuada. A pellentesque sit amet porttitor eget dolor morbi non. Egestas sed sed risus pretium quam vulputate dignissim suspendisse in. Felis bibendum ut tristique et egestas quis. Lectus nulla at volutpat diam ut venenatis tellus in.
+
+image::SA-UC-{useCase}-Physical.png[title="FixME-SA-UC-{useCase}-Physical", scaledwidth=80%]

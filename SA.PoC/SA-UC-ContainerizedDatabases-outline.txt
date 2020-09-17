@@ -1,0 +1,47 @@
+
+Solution Architecture
+=====================
+
+Preface
+
+I. Introduction
+
+II. Strategy
+	* Categories : SQL noSQL
+		Why - reason to adopt this solution approach
+
+III. Business Case
+	* Factors - Availability, Performance, Security, Integrity
+		Who - to engage with, the targeted audience for this document
+		What - areas of project focus
+		When - target ETA and potential iterative phases
+
+IV. Application
+	* MSSQLServer, EnterpriseDB, MariaDB
+	* Redis, InfluxDB
+	* Flavors - PoC, Production, Scale
+		With - often likely ISV related completion of stack
+			e.g. backend storage, backup/recovery options
+				ISV partners
+
+V. Technology
+		How - core infrastructure layers to provide necessary APIs
+			e.g. container runtime, K8s, CNI,
+				volumes, CSI (SC, PVC, PV)
+VI. Physical
+		Where - options for underlying infrastructure
+			e.g. virtualization, physical/baremetal
+				IHV/CSP partner
+
+VII. Migration
+		Steps to move from
+			- existing -> new, retire old versions
+			- version -> newer version, patch/updates across stack
+			- locale -> another
+
+References
+	reference implementation for each layer
+	product documentation
+	certs - YES, Ready, security, compliance
+	audio, videos, presentations, whitepapers, benchmarks
+	

@@ -1,0 +1,6 @@
+
+== Technology
+
+FixMe - Dui accumsan sit amet nulla facilisi morbi tempus iaculis. Diam quam nulla porttitor massa id neque aliquam vestibulum morbi. Sit amet purus gravida quis blandit turpis cursus in hac. Donec enim diam vulputate ut pharetra sit amet aliquam id. Et malesuada fames ac turpis egestas sed. Sodales ut etiam sit amet nisl. Nullam ac tortor vitae purus faucibus. Viverra accumsan in nisl nisi scelerisque eu. Et malesuada fames ac turpis egestas integer eget aliquet. Non pulvinar neque laoreet suspendisse. Leo duis ut diam quam nulla porttitor massa id. Accumsan tortor posuere ac ut. Suscipit tellus mauris a diam maecenas sed enim. A cras semper auctor neque vitae tempus quam. Vel pretium lectus quam id leo in. Risus in hendrerit gravida rutrum quisque non. Hac habitasse platea dictumst quisque sagittis purus sit amet.
+
+image::SA-UC-{useCase}-Technology.png[title="FixME-SA-UC-{useCase}-Technology", scaledwidth=80%]

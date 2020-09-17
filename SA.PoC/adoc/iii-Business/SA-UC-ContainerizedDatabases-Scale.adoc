@@ -1,0 +1,7 @@
+
+Scale::
+Beyond the production attempt, it is also recommended to address scalability issues. In the context of containerized databases, this might entail the:
+* ability to deploy across multiple infrastructures, like hybrid, multi-cloud and on premise
+* features to adjust the deployment based upon load, performance, usage in a more agile format versus always having the performant deployment based on the highest utilization in place
+* capability to spread deployment instances across the more CI/CD lifecycle and to cater to DevOps users so that functionality can be incrementally developed, tested and moved seamlessly into production
+

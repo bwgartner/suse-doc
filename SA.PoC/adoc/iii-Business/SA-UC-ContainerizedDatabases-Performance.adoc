@@ -1,0 +1,12 @@
+
+Performance::
+Another factor for any service offering is to address the desired performance. 
+
+* efficiency
+
+* resource utilization
+
+* throughput
+
+* response time
+

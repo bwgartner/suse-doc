@@ -1,0 +1,29 @@
+
+// HPE portfolio
+
+:IHVPartner: Hewlett Packard Enterprise
+
+:IHVPartnerDemoEnv: {IHVPartner} Customer Innovation Center
+:IHVPartnerDemoPortal: {IHVPartner} Demonstration Portal
+:IHVPartnerDemoPortalURL: http://www.hpe.com/demos/hpedemos
+
+
+////
+:IHVPlatform: Synergy 
+:IHVPlatformComposer: Composer
+:IHVPlatformComposerTech: OneView
+:IHVPlatformImager: ImageStreamer
+:IHVPlatformModel: 480 Gen10
+
+:IHVPlatform: ProLiant
+:IHVPlatformModel: DL360 Gen10
+:IHVPlatformModel: DL380 Gen10
+
+:IHVPlatform: Apollo
+:IHVPlatformModel: 4200 Gen10
+:IHVPlatformModel: 4510 Gen10
+
+:IHVNetwork: NotApplicable
+
+:IHVPlatformBMC: iLO
+////

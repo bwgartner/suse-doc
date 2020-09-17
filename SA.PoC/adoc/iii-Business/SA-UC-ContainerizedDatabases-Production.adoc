@@ -1,0 +1,4 @@
+
+Production::
+Based on current ecosystem requirements, plus addressing those issues that need updates or resolution, a production deployment is often the target. This could be done in a staged fashion, like a pilot to ensure that requirements are being met. Incorporating the ability to rollback to the previous deployment method is a valid risk mitigation until all of the processes are tuned appropriately.
+

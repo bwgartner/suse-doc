@@ -1,0 +1,9 @@
+
+Availability::
+One of the first factors to address is the core availablity of the targeted containerized database service. The two major sub-elements are functionality and service levels:
++
+* By examining the available feature set for the database itself in your respective use case, you shoule prioritize the list into "must", "want" or "defer". Once that is complete, you need to validate this across your stakeholders plus also within the expectations of reliability from your customer or user base.
+* Next, the desired service level of the running implementation, in the context of the targeted users, is a key criteria. This can often be addressed using several alternative approaches to prepare for any potential disruption, planned or unplanned, with mitigation to reduce or eliminate downtime:
+** Resiliency - a rapid means to deal with disruptions to get back to a known working state as quickly as possible. Often this can be accomplished by a mobility aspect of deployment can happen quickly in a number of places with minimal downtime. Inherently containers take advantage of this approach if the persistent aspect of the data is effectively managed.
+** Continuous, high availability - a layered set of infrastructre components that can ensure active failover to a ready environment, taking into account many potential failure modes. Many production-grade database deployments rely upon thisapproach and even some container-based deployments can also leverage these aspects.
+

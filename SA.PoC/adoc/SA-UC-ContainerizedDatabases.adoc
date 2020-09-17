@@ -1,0 +1,114 @@
+
+include::./SA-UC-ContainerizedDatabases_vars.adoc[]
+
+= {title}
+////
+{author}, {companyName} < {authorEMail} >
+////
+:favicon:
+:doctype: book
+
+[preface]
+= Preface
+
+Whether you are just starting or continuing on a digital transformation journey, you should consider moving from your previous deployment of database technology towards a containerized approach.  Using this solution architecture, you will learn how to effectively accomplish this transition to simplify, modernize and accelerate the process for you to successfully accomplish it.
+
+The following, layered footnote:Archimate[link: https://pubs.opengroup.org/architecture/archimate3-doc[Archimate Enterprise Architecture]] aspects will be covered:
+
+* *_Why_* one should consider this strategy
+* *_Who_* to engage with, inform and collaborate with
+* *_What_* key factors are important and *_When_* to consider them
+* *_What_* software and applications this is relevant to accomplish
+* *_How_* various technology components can facilitate this
+* *_Where_* the resulting solution may physically or virtually reside
+
+Further characteristics, like decision factors such as availability, performance, security and integrity, are also described in the respective layers.  In addition, deployment flavors of proof-of-concept, production, scaling plus migration considerations will also be included.
+
+// Introduction
+include::./i-Introduction/SA-UC-{useCase}.adoc[]
+
+// Strategy
+include::./ii-Strategy/SA-UC-{useCase}.adoc[]
+
+ifdef::SQL[]
+include::./ii-Strategy/SA-UC-{useCase}-SQL.adoc[]
+endif::SQL[]
+ifdef::SQL+MSSQLServer[]
+include::./ii-Strategy/SA-UC-{useCase}-SQL-MSSQLServer.adoc[]
+endif::SQL+MSSQLServer[]
+
+ifdef::noSQL[]
+include::./ii-Strategy/SA-UC-{useCase}-noSQL.adoc[]
+endif::noSQL[]
+ifdef::noSQL+Redis[]
+include::./ii-Strategy/SA-UC-{useCase}-noSQL-Redis.adoc[]
+endif::noSQL+Redis[]
+
+// Business
+include::./iii-Business/SA-UC-{useCase}.adoc[]
+
+ifdef::Availability[]
+include::./iii-Business/SA-UC-{useCase}-Availability.adoc[]
+endif::Availability[]
+
+ifdef::performance[]
+include::./iii-Business/SA-UC-{useCase}-Performance.adoc[]
+endif::performance[]
+
+ifdef::Security[]
+include::./iii-Business/SA-UC-{useCase}-Security.adoc[]
+endif::Security[]
+
+ifdef::Integrity[]
+include::./iii-Business/SA-UC-{useCase}-Integrity.adoc[]
+endif::Integrity[]
+
+ifdef::PoC[]
+include::./iii-Business/SA-UC-{useCase}-PoC.adoc[]
+endif::PoC[]
+
+ifdef::Production[]
+include::./iii-Business/SA-UC-{useCase}-Production.adoc[]
+endif::Production[]
+
+ifdef::Scale[]
+include::./iii-Business/SA-UC-{useCase}-Scale.adoc[]
+endif::Scale[]
+
+// Application
+include::./iv-Application/SA-UC-{useCase}.adoc[]
+
+include::./iv-Application/SA-UC-{useCase}-SQL-MSSQLServer.adoc[]
+
+include::./iv-Application/SA-UC-{useCase}-noSQL-Redis.adoc[]
+
+// Technology
+include::./v-Technology/SA-UC-{useCase}.adoc[]
+
+include::./v-Technology/SA-UC-{useCase}-SQL-MSSQLServer.adoc[]
+
+include::./v-Technology/SA-UC-{useCase}-noSQL-Redis.adoc[]
+
+// Physical
+include::./vi-Physical/SA-UC-{useCase}.adoc[]
+
+include::./vi-Physical/SA-UC-{useCase}-SQL-MSSQLServer.adoc[]
+
+include::./vi-Physical/SA-UC-{useCase}-noSQL-Redis.adoc[]
+
+// Migration
+include::./vii-Migration/SA-UC-{useCase}.adoc[]
+
+include::./vii-Migration/SA-UC-{useCase}-SQL-MSSQLServer.adoc[]
+
+include::./vii-Migration/SA-UC-{useCase}-noSQL-Redis.adoc[]
+
+== Summary
+
+Tincidunt vitae semper quis lectus nulla. Quis risus sed vulputate odio ut enim blandit volutpat maecenas. Pretium viverra suspendisse potenti nullam ac. Sit amet purus gravida quis blandit. Interdum velit laoreet id donec ultrices tincidunt arcu. Vel pharetra vel turpis nunc eget. Ultrices eros in cursus turpis. Id donec ultrices tincidunt arcu non sodales neque. Fermentum posuere urna nec tincidunt praesent semper feugiat nibh sed. Enim nulla aliquet porttitor lacus luctus accumsan tortor. Morbi quis commodo odio aenean sed adipiscing diam. Montes nascetur ridiculus mus mauris vitae ultricies leo integer. Et sollicitudin ac orci phasellus egestas tellus rutrum tellus pellentesque. Eu volutpat odio facilisis mauris sit amet massa.
+
+[glossary]
+= Glossary
+
+[appendix]
+= Appendix

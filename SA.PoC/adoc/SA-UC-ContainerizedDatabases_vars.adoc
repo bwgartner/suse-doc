@@ -1,0 +1,23 @@
+:useCase: ContainerizedDatabases
+
+:title: Digital Tranformation - Containerized Databases
+
+////
+:author: TBD
+:authorEmail: TBD
+////
+
+:authorGHURL: https://github.com/bwgartner/suse-doc/
+
+:imagesdir: ../media/
+:includedir: ../_includes/
+ifdef::env-github[]
+:imagesdir: {authorGHURL}/blob/master/SA/media/
+:includedir: {authorGHURL}/blob/master/SA/_includes
+endif::[]
+
+:StrategyAvailabilityTarget: Production
+:StrategyPerformanceTarget: PoC
+:StrategySecurityTarget: Scale
+:StrategyIntegrityTarget: Production
+

@@ -1,0 +1,7 @@
+
+== Application
+
+FixMe - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sed augue lacus viverra vitae congue eu consequat ac felis. Erat imperdiet sed euismod nisi. Ut pharetra sit amet aliquam id. Etiam sit amet nisl purus. Lacus laoreet non curabitur gravida arcu ac tortor. Lorem donec massa sapien faucibus. Sed elementum tempus egestas sed sed risus pretium quam. Neque aliquam vestibulum morbi blandit cursus risus at ultrices mi. Congue nisi vitae suscipit tellus mauris a diam maecenas sed. Nisl tincidunt eget nullam non nisi est sit. Bibendum ut tristique et egestas quis ipsum.
+
+image::SA-UC-{useCase}-Application.png[title="FixME-SA-UC-{useCase}-Application", scaledwidth=80%]
+

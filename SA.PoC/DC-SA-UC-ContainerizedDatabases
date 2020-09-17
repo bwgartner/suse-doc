@@ -1,0 +1,66 @@
+DRAFT=yes
+
+## ----------------------------
+## Doc Config File for SUSE
+## Solution Architecture
+## ----------------------------
+##
+## Basics
+
+MAIN="SA-UC-ContainerizedDatabases.adoc"
+
+STYLEROOT="/usr/share/xml/docbook/stylesheet/suse2013-ns/"
+
+
+## Type
+ADOC_TYPE="book"
+## Turn on postprocessing
+ADOC_POST="yes"
+
+## Variable Parameters
+
+# Global
+ADOC_ATTRIBUTES=" --attribute env-daps=1"
+
+# Strategy (Categories)
+ADOC_ATTRIBUTES+=" --attribute SQL=1"
+ADOC_ATTRIBUTES+=" --attribute noSQL=1"
+
+# Business (Factors)
+ADOC_ATTRIBUTES+=" --attribute Availability=1"
+#ADOC_ATTRIBUTES+=" --attribute Performance=1"
+#ADOC_ATTRIBUTES+=" --attribute Security=1"
+#ADOC_ATTRIBUTES+=" --attribute Integrity=1"
+# Business (Flavors)
+ADOC_ATTRIBUTES+=" --attribute PoC=1"
+ADOC_ATTRIBUTES+=" --attribute Production=1"
+ADOC_ATTRIBUTES+=" --attribute Scale=1"
+
+# Application (Workloads)
+ADOC_ATTRIBUTES+=" --attribute MSSQLServer=1"
+#ADOC_ATTRIBUTES+=" --attribute EDB=1"
+#ADOC_ATTRIBUTES+=" --attribute MariaDB=1"
+#ADOC_ATTRIBUTES+=" --attribute PostgeSQL=1"
+ADOC_ATTRIBUTES+=" --attribute Redis=1"
+#ADOC_ATTRIBUTES+=" --attribute InfluxDB=1"
+
+# Technology
+#ADOC_ATTRIBUTES+=" --attribute DockerCE=1"
+#ADOC_ATTRIBUTES+=" --attribute Podman=1"
+#ADOC_ATTRIBUTES+=" --attribute CRI-O=1"
+#ADOC_ATTRIBUTES+=" --attribute K8s=1"
+#ADOC_ATTRIBUTES+=" --attribute K8s-CNI-Cillium=1"
+#ADOC_ATTRIBUTES+=" --attribute K8s-CSI-Ceph=1"
+#ADOC_ATTRIBUTES+=" --attribute K8s-CSI-NFS=1"
+
+# Physical
+#ADOC_ATTRIBUTES+=" --attribute Dell=1"
+#ADOC_ATTRIBUTES+=" --attribute HPE=1"
+#ADOC_ATTRIBUTES+=" --attribute Lenovo=1"
+#ADOC_ATTRIBUTES+=" --attribute IBM=1"
+ADOC_ATTRIBUTES+=" --attribute SUSE=1"
+#ADOC_ATTRIBUTES+=" --attribute AWS=1"
+#ADOC_ATTRIBUTES+=" --attribute Azure=1"
+#ADOC_ATTRIBUTES+=" --attribute Google=1"
+
+# Migration

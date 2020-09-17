@@ -1,0 +1,12 @@
+
+Integrity::
+Ensure what you do is what is recorded and stored for the needed duration
+
+* Component
+
+* Data
+
+* Response
+
+* Backup / Recovery
+

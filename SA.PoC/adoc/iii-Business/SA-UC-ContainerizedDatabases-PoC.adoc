@@ -1,0 +1,8 @@
+
+Proof-of-Concept::
+Quite often, one of the first attempts for a project is the setup of proof-of-concept, to:
+* research various alternatives
+* learn about the targeted, project components
+* evaulate the factors (availability, performance, security, integrity) in the context of the current ecosystem or the next generation one
+* get feedback from potential stakeholders to address feasibility for next iteration of evaulation or production
+

@@ -1,0 +1,55 @@
+include::./SA-UC-{useCase}_vars.adoc[]
+
+== Business
+
+The business elements address the operational aspect of an enterprise in a technology-independent manner. For the respective solution architecture, the focus is around the roles, collaboration, processes, functions which are often agregated into a product perspective.
+
+In addition to the previous business elements, it is also relevant to prioritize several decision factors and deployment flavors. With these properly considered and scoped, the overall project can be successfuly measured and managed appropriately while the depth of details in subsequent layers are planned and addressed. 
+
+Furthermore, you should assess the advantages of Dev(Sec)Ops disciplines to move forward from current state of database deployments towards a more agile, portable containerized approach. Focusing on satisfying current requirements and then take advantage of updated, expanded features to increase efficiency and economics of database infrastructure, providing solution for both current and future implementations.
+
+image::SA-UC-{useCase}-Business.png[title="FixME-SA-UC-{useCase}-Business", scaledwidth=80%]
+
+=== Roles and Collaboration
+
+To be efficient and successful during such a digital transformation, in the context of migrating towards containerized databases, you should engage with the following representative stakeholders:
+
+Executive Board Members::
+While the actual directive may be driven from this level, it is also possible for the tranformation to have been cultivated from any of the other layers of stakeholders.  So, keeping these folks engaged and informed is vital to the project to address the impact and the necessary resources being utilized.  Also an individual, like a CIO, may ultimately be held responsible for such changes from such a project, being the focal point for the peers at this level and ensuring that the reasoning behind the project is aligned strategically, that a return on investment will be achieved and the required changes help to answer the needs and overall improve the organization.
+
+Business Line Managers::
+Folks in this realm are key to provide what targets should be addressed first and when it makes most sense to do it.  Furthermore, they can use their business perspective to assess possible risk, impact, and measures for successful implementations.  In addition, these individuals are instrumental in formulating a migration plan, aligned with other business constraints and objectives to help target the project's features, quality, cost, schedule and staff. footnote:ProjectDimensions[link:https://medium.com/swlh/rethinking-the-triple-constraint-five-project-dimensions-b3593c364b11[Five Project Dimensions]]
+
+Solution Architects::
+These individuals are key to understand the existing state of usage for database deployments, to take into account what is currently required and what features may also be leveraged going forward.  These folks, who are the primary target audience for this document, can then formulate a set of options to encompass past issues, the current requirements and any future aspects, by understanding the inherent tradeoffs for each possible path to utilize.
+
+Database Administrators::
+For this digital transformation, initially this set of individuals are potentially most impacted.  Having to deal with such changes of their core infrastructure is potentially overwhelming at first glance, yet learning a few simple alternative approaches often enables them to work more efficiently and leverage the advances that this technology provides.  By engaging these folks, one can get a rather complete picture of the current requirements and predicted usage growth.  Depending upon the organization structure, application developers may also need to be included in the requirements gathering aspect, to also be made aware of and test the upcoming changes, even if the application APIs they rely upon will not change too much.
+
+IT Administrators::
+Engaging with these staff members is critical, since they are ultimately responsible for the service levels of the overall solution, the underlying infrastructure, and the on-going maintenance aspect.  In addition, these folks understand the bits and bytes of the platforms, the actual usage metrics and the existing expertise for these workloads.  Getting them trained on the next iteration of the technologies is inherently important.
+
+So, having representatives of each of these stakeholders engaged up front will help to formulate a more effective plan that can be collective steps forward in the digital transformation.  During the various project phases, more individuals from each of the stakeholder segments may be brought in for awareness, training, testing, and evaluation to ensure continued, iterative success.
+
+=== Processes and Functions
+
+You should assess the advantages of Dev(Sec)Ops disciplines, namely accountability for implementing security decisions and actions at the same scale and speed as development and operations decisions and actions.  This helps move forward from current state of database deployments towards a more agile, portable containerized approach. Focusing on satisfying current requirements and then take advantage of updated, expanded features to increase efficiency and economics of database infrastructure, providing solution for both current and future implementations.
+
+=== Factors and Flavors
+
+To get to a desired state in the digital transformation of using containerized databases, there is a matrix of considerations for the respective project. Such factors as availability, performance, security and integrity are groupings of potential up-front prioritization and key to planning for the end state. Within each of these factors, the project plan and later evaluation should also take into account the target deployment flavors, proof-of-concept, production, and scaling aspects to help prepare for the desired end state, even if done in multiple iterations.
+
+////
+=== Deployment Types
+
+Three typical types of deployments, which are often successive:
+
+Proof-of-Concept::
+starter
+
+Production::
+Could be pilot or full production
+
+Scale::
+How to accommodate more usage or distribute across multiple targets
+////

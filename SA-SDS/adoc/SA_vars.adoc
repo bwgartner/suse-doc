@@ -1,0 +1,17 @@
+:useCase: SDS
+
+:title: Digital Transformation - Software Defined Storage
+
+////
+:author: Bryan Gartner
+:authorEmail: bryan.gartner@suse.com
+////
+
+# :authorGHURL: https://github.com/bwgartner/suse-doc/SA-SDS
+
+:imagesdir: ../media/
+
+ifdef::env-github[]
+:imagesdir: {authorGHURL}/blob/master/SA-{useCase}/media/
+endif::[]
+

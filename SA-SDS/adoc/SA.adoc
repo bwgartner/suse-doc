@@ -109,3 +109,15 @@ ifdef::Appendix[]
 include::./SA-Appendix.adoc[]
 endif::Appendix[]
 
+// Standard SUSE includes
+== Legal Notice
+include::./SUSE/common_sbp_legal_notice.adoc[]
+
+++++
+<?pdfpagebreak?>
+++++
+
+// Standard SUSE Best Practices includes
+// :leveloffset: 1
+include::./SUSE/common_gfdl1.2_i.adoc[]
+

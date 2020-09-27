@@ -2,16 +2,15 @@
 include::./SA_vars.adoc[]
 
 = {title}
-////
 {author}, {companyName} < {authorEMail} >
-////
+
 :favicon:
 :doctype: book
 
 [preface]
 = Preface
 
-FixMe - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+Whether you are just starting or continuing to progress on a digital transformation journey, you should consider addressing one of the core infrastructure elements -- storage. Using this solution architecture, you will learn how to successfully and effectively accomplish this transition with simplify, modernize and accelerate process steps for your software-defined storage.
 
 The following, layered footnote:Archimate[link: https://pubs.opengroup.org/architecture/archimate3-doc[Archimate Enterprise Architecture]] aspects will be covered:
 
@@ -80,6 +79,7 @@ endif::Business[]
 // Application
 ifdef::Application[]
 include::./iv-Application/SA.adoc[]
+endif::Application[]
 
 // Technology
 ifdef::Technology[]

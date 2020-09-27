@@ -2,10 +2,9 @@
 
 :title: Digital Transformation - Software Defined Storage
 
-////
 :author: Bryan Gartner
 :authorEmail: bryan.gartner@suse.com
-////
+:companyName: SUSE
 
 # :authorGHURL: https://github.com/bwgartner/suse-doc/SA-SDS
 

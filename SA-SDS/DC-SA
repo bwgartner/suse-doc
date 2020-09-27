@@ -26,50 +26,50 @@ ADOC_ATTRIBUTES=" --attribute env-daps=1"
 ADOC_ATTRIBUTES+=" --attribute Strategy=1"
 
 ## Business
-ADOC_ATTRIBUTES+=" --attribute Business=1"
+#ADOC_ATTRIBUTES+=" --attribute Business=1"
 
 ## Application (Workloads)
-ADOC_ATTRIBUTES+=" --attribute Application=1"
+#ADOC_ATTRIBUTES+=" --attribute Application=1"
 #	then add respective ISV attributes/parameters
 
 ## Technology
-ADOC_ATTRIBUTES+=" --attribute Technology=1"
+#ADOC_ATTRIBUTES+=" --attribute Technology=1"
 #	then add respective SUSE product portolio attributes/parameters
 
 ## Physical
-ADOC_ATTRIBUTES+=" --attribute Physical=1"
+#ADOC_ATTRIBUTES+=" --attribute Physical=1"
 #	then add respective IHV/CSP attributes/parameters
 
 ## Migration
-ADOC_ATTRIBUTES+=" --attribute Migration=1"
+#ADOC_ATTRIBUTES+=" --attribute Migration=1"
 
 ## Glossary
 ADOC_ATTRIBUTES+=" --attribute Glossary=1"
 
 ## Appendix
-ADOC_ATTRIBUTES+=" --attribute Appendix=1"
+#ADOC_ATTRIBUTES+=" --attribute Appendix=1"
 
 ## Factors
 # Availability
-ADOC_ATTRIBUTES+=" --attribute Availability=1"
+#ADOC_ATTRIBUTES+=" --attribute Availability=1"
 # Performance
-ADOC_ATTRIBUTES+=" --attribute Performance=1"
+#ADOC_ATTRIBUTES+=" --attribute Performance=1"
 # Security
-ADOC_ATTRIBUTES+=" --attribute Security=1"
+#ADOC_ATTRIBUTES+=" --attribute Security=1"
 # Integrity
-ADOC_ATTRIBUTES+=" --attribute Integrity=1"
+#ADOC_ATTRIBUTES+=" --attribute Integrity=1"
 
 ## Flavors
 # Proof-of-Concept
-ADOC_ATTRIBUTES+=" --attribute PoC=1"
+#ADOC_ATTRIBUTES+=" --attribute PoC=1"
 # Production
-ADOC_ATTRIBUTES+=" --attribute Production=1"
+#ADOC_ATTRIBUTES+=" --attribute Production=1"
 # Scaling
-ADOC_ATTRIBUTES+=" --attribute Scaling=1"
+#ADOC_ATTRIBUTES+=" --attribute Scaling=1"
 
 ## Deployment Types
 # 	then add respective deployment types, named more specifically
-ADOC_ATTRIBUTES+=" --attribute Balance=1"
-ADOC_ATTRIBUTES+=" --attribute HighPerf=1"
-ADOC_ATTRIBUTES+=" --attribute StoreDense=1"
+#ADOC_ATTRIBUTES+=" --attribute Balance=1"
+#ADOC_ATTRIBUTES+=" --attribute HighPerf=1"
+#ADOC_ATTRIBUTES+=" --attribute StoreDense=1"
 

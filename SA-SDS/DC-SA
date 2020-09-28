@@ -31,14 +31,24 @@ ADOC_ATTRIBUTES+=" --attribute Strategy=1"
 ## Application (Workloads)
 #ADOC_ATTRIBUTES+=" --attribute Application=1"
 #	then add respective ISV attributes/parameters
+#ADOC_ATTRIBUTES+=" --attribute Weka=1"
+#ADOC_ATTRIBUTES+=" --attribute DMF=1"
+#ADOC_ATTRIBUTES+=" --attribute Veeam=1"
+#ADOC_ATTRIBUTES+=" --attribute Commvault=1"
 
 ## Technology
 #ADOC_ATTRIBUTES+=" --attribute Technology=1"
 #	then add respective SUSE product portolio attributes/parameters
+#ADOC_ATTRIBUTES+=" --attribute SUSE=1"
+#ADOC_ATTRIBUTES+=" --attribute EnterpriseStorage=1"
+#ADOC_ATTRIBUTES+=" --attribute CaaSPlatform=1"
 
 ## Physical
 #ADOC_ATTRIBUTES+=" --attribute Physical=1"
 #	then add respective IHV/CSP attributes/parameters
+#ADOC_ATTRIBUTES+=" --attribute Dell=1"
+#ADOC_ATTRIBUTES+=" --attribute HPE=1"
+#ADOC_ATTRIBUTES+=" --attribute Seagate=1"
 
 ## Migration
 #ADOC_ATTRIBUTES+=" --attribute Migration=1"

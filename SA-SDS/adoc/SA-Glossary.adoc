@@ -9,15 +9,15 @@ ifdef::Balance[]
 FixMe - Ut morbi tincidunt augue interdum. Donec enim diam vulputate ut pharetra sit amet. Mauris vitae ultricies leo integer. Egestas egestas fringilla phasellus faucibus scelerisque eleifend donec pretium vulputate. Et pharetra pharetra massa massa. Sagittis id consectetur purus ut. Et sollicitudin ac orci phasellus egestas tellus. Eu nisl nunc mi ipsum. Nibh cras pulvinar mattis nunc sed blandit libero volutpat sed. Cras adipiscing enim eu turpis egestas pretium aenean. Nulla pellentesque dignissim enim sit. Morbi non arcu risus quis.
 endif::Balance[]
 +
-ifdef::HighPerf[]
-[[G_HighPerf]]HighPerf::
+ifdef::PerfOpt[]
+[[G_PerfOpt]]PerfOpt::
 FixMe - Sed arcu non odio euismod lacinia at quis. Sodales ut eu sem integer vitae justo. Neque laoreet suspendisse interdum consectetur libero id faucibus nisl. Et tortor consequat id porta nibh venenatis cras sed felis. Ut aliquam purus sit amet luctus venenatis lectus. Lacus viverra vitae congue eu consequat. At lectus urna duis convallis convallis. Risus nullam eget felis eget. Euismod nisi porta lorem mollis aliquam ut porttitor. Mollis aliquam ut porttitor leo a diam. Cursus in hac habitasse platea dictumst quisque sagittis purus sit. Platea dictumst vestibulum rhoncus est.
-endif::HighPerf[]
+endif::PerfOpt[]
 +
-ifdef::StoreDense[]
-[[G_StoreDense]]StoreDense::
+ifdef::CapOpt[]
+[[G_CapOpt]]CapOpt::
 FixMe - Sed arcu non odio euismod lacinia at quis. Sodales ut eu sem integer vitae justo. Neque laoreet suspendisse interdum consectetur libero id faucibus nisl. Et tortor consequat id porta nibh venenatis cras sed felis. Ut aliquam purus sit amet luctus venenatis lectus. Lacus viverra vitae congue eu consequat. At lectus urna duis convallis convallis. Risus nullam eget felis eget. Euismod nisi porta lorem mollis aliquam ut porttitor. Mollis aliquam ut porttitor leo a diam. Cursus in hac habitasse platea dictumst quisque sagittis purus sit. Platea dictumst vestibulum rhoncus est.
-endif::StoreDense[]
+endif::CapOpt[]
 
 
 * Factor(s)

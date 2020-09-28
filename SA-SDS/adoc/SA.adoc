@@ -98,7 +98,16 @@ endif::Migration[]
 
 == Summary
 
-FixMe - incidunt vitae semper quis lectus nulla. Quis risus sed vulputate odio ut enim blandit volutpat maecenas. Pretium viverra suspendisse potenti nullam ac. Sit amet purus gravida quis blandit. Interdum velit laoreet id donec ultrices tincidunt arcu. Vel pharetra vel turpis nunc eget. Ultrices eros in cursus turpis. Id donec ultrices tincidunt arcu non sodales neque. Fermentum posuere urna nec tincidunt praesent semper feugiat nibh sed. Enim nulla aliquet porttitor lacus luctus accumsan tortor. Morbi quis commodo odio aenean sed adipiscing diam. Montes nascetur ridiculus mus mauris vitae ultricies leo integer. Et sollicitudin ac orci phasellus egestas tellus rutrum tellus pellentesque. Eu volutpat odio facilisis mauris sit amet massa.
+The right software-defined storage soultion transforms your infrastructure into a durable, reliable enterprise-grade environment. It enables you to simplify management and make significant IT savings as you scale storage in an agile and innovative way.
+
+Simplify::
+This software-defined storage solution delivers data management and integration with a diverse set of applications and use cases so you can migrate and optimize your data storage with a cohesive set of tools.
+
+Modernize::
+With the ever increasing amount of enterprise data, your requirement for storage capacity may soon be greater than your budget to handle it all. Using software-defined storage, as described in this solution architecture, helps you keep expenses down without sacrificing performance by using off-the-shelf commodity servers and disk drives no matter whether they are in your data center or in the cloud, saving up to 70% in costs right away. These solutions also keep operating costs low by delivering a single unified software-defined storage cluster that handles all your storage needs, reducing the time you dedicate to storage management.
+
+Accelerate::
+In addition, overall storage needs are changing quickly. Many enterprises are moving from terabyte to petabyte levels of data. In addition, the applications that need to access this information are running in a diverse and rapidly evolving IT environment. Leveraging this layered solution architecture helps you innovate with higher speed and simplicity by delivering access to the latest technology. A software-defined open source storage management solution, is cost-efficient and able to adapt to changing business and data demands seamlessly. As a result, you can be confident your data will be available for any current and future workloads throughout your digital transition.
 
 
 ifdef::Glossary[]

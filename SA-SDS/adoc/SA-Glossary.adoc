@@ -10,12 +10,12 @@ FixMe - Ut morbi tincidunt augue interdum. Donec enim diam vulputate ut pharetra
 endif::Balance[]
 +
 ifdef::PerfOpt[]
-[[G_PerfOpt]]PerfOpt::
+[[G_PerfOpt]]Performance Optimized::
 FixMe - Sed arcu non odio euismod lacinia at quis. Sodales ut eu sem integer vitae justo. Neque laoreet suspendisse interdum consectetur libero id faucibus nisl. Et tortor consequat id porta nibh venenatis cras sed felis. Ut aliquam purus sit amet luctus venenatis lectus. Lacus viverra vitae congue eu consequat. At lectus urna duis convallis convallis. Risus nullam eget felis eget. Euismod nisi porta lorem mollis aliquam ut porttitor. Mollis aliquam ut porttitor leo a diam. Cursus in hac habitasse platea dictumst quisque sagittis purus sit. Platea dictumst vestibulum rhoncus est.
 endif::PerfOpt[]
 +
 ifdef::CapOpt[]
-[[G_CapOpt]]CapOpt::
+[[G_CapOpt]]Capacity Optimized::
 FixMe - Sed arcu non odio euismod lacinia at quis. Sodales ut eu sem integer vitae justo. Neque laoreet suspendisse interdum consectetur libero id faucibus nisl. Et tortor consequat id porta nibh venenatis cras sed felis. Ut aliquam purus sit amet luctus venenatis lectus. Lacus viverra vitae congue eu consequat. At lectus urna duis convallis convallis. Risus nullam eget felis eget. Euismod nisi porta lorem mollis aliquam ut porttitor. Mollis aliquam ut porttitor leo a diam. Cursus in hac habitasse platea dictumst quisque sagittis purus sit. Platea dictumst vestibulum rhoncus est.
 endif::CapOpt[]
 

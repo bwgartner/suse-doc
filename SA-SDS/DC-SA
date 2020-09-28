@@ -80,7 +80,7 @@ ADOC_ATTRIBUTES+=" --attribute Glossary=1"
 
 ## Deployment Types
 # 	then add respective deployment types, named more specifically
-#ADOC_ATTRIBUTES+=" --attribute Balance=1"
-#ADOC_ATTRIBUTES+=" --attribute PerfOpt=1"
-#ADOC_ATTRIBUTES+=" --attribute CapOpt=1"
+ADOC_ATTRIBUTES+=" --attribute Balance=1"
+ADOC_ATTRIBUTES+=" --attribute CapOpt=1"
+ADOC_ATTRIBUTES+=" --attribute PerfOpt=1"
 

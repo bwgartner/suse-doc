@@ -31,10 +31,11 @@ ADOC_ATTRIBUTES+=" --attribute Strategy=1"
 ## Application (Workloads)
 #ADOC_ATTRIBUTES+=" --attribute Application=1"
 #	then add respective ISV attributes/parameters
-#ADOC_ATTRIBUTES+=" --attribute Weka=1"
-#ADOC_ATTRIBUTES+=" --attribute DMF=1"
-#ADOC_ATTRIBUTES+=" --attribute Veeam=1"
-#ADOC_ATTRIBUTES+=" --attribute Commvault=1"
+#ADOC_ATTRIBUTES+=" --attribute ISV-Weka=1"
+#ADOC_ATTRIBUTES+=" --attribute ISV-HPE-DMF=1"
+#ADOC_ATTRIBUTES+=" --attribute ISV-Veeam=1"
+#ADOC_ATTRIBUTES+=" --attribute ISV-Commvault=1"
+#ADOC_ATTRIBUTES+=" --attribute ISV-Microfocus=1"
 
 ## Technology
 #ADOC_ATTRIBUTES+=" --attribute Technology=1"
@@ -46,10 +47,15 @@ ADOC_ATTRIBUTES+=" --attribute Strategy=1"
 ## Physical
 #ADOC_ATTRIBUTES+=" --attribute Physical=1"
 #	then add respective IHV/CSP attributes/parameters
-#ADOC_ATTRIBUTES+=" --attribute Dell=1"
-#ADOC_ATTRIBUTES+=" --attribute HPE=1"
-#ADOC_ATTRIBUTES+=" --attribute Lenovo=1"
-#ADOC_ATTRIBUTES+=" --attribute Seagate=1"
+#ADOC_ATTRIBUTES+=" --attribute IHV-Dell=1"
+#ADOC_ATTRIBUTES+=" --attribute IHV-Dell-PowerEdge=1"
+#ADOC_ATTRIBUTES+=" --attribute IHV-HPE=1"
+#ADOC_ATTRIBUTES+=" --attribute IHV-HPE-Apollo=1"
+#ADOC_ATTRIBUTES+=" --attribute IHV-HPE-Edgeline=1"
+#ADOC_ATTRIBUTES+=" --attribute IHV-HPE-ProLiant=1"
+#ADOC_ATTRIBUTES+=" --attribute IHV-HPE-Synergy=1"
+#ADOC_ATTRIBUTES+=" --attribute IHV-Lenovo=1"
+#ADOC_ATTRIBUTES+=" --attribute IHV-Seagate=1"
 
 ## Migration
 #ADOC_ATTRIBUTES+=" --attribute Migration=1"
@@ -62,27 +68,27 @@ ADOC_ATTRIBUTES+=" --attribute Glossary=1"
 
 ## Factors
 # Availability
-#ADOC_ATTRIBUTES+=" --attribute Availability=1"
+ADOC_ATTRIBUTES+=" --attribute Availability=1"
 # Performance
-#ADOC_ATTRIBUTES+=" --attribute Performance=1"
+ADOC_ATTRIBUTES+=" --attribute Performance=1"
 # Security
-#ADOC_ATTRIBUTES+=" --attribute Security=1"
+ADOC_ATTRIBUTES+=" --attribute Security=1"
 # Integrity
-#ADOC_ATTRIBUTES+=" --attribute Integrity=1"
+ADOC_ATTRIBUTES+=" --attribute Integrity=1"
 
 ## Flavors
 # Proof-of-Concept
-#ADOC_ATTRIBUTES+=" --attribute PoC=1"
+ADOC_ATTRIBUTES+=" --attribute PoC=1"
 # Production
-#ADOC_ATTRIBUTES+=" --attribute Production=1"
+ADOC_ATTRIBUTES+=" --attribute Production=1"
 # Scaling
-#ADOC_ATTRIBUTES+=" --attribute Scaling=1"
+ADOC_ATTRIBUTES+=" --attribute Scaling=1"
 
 ## Deployment Types
 # 	then add respective deployment types, named more specifically
 #ADOC_ATTRIBUTES+=" --attribute cephadm=1"
-#ADOC_ATTRIBUTES+=" --attribute rook=1"
-#ADOC_ATTRIBUTES+=" --attribute Balance=1"
-#ADOC_ATTRIBUTES+=" --attribute CapOpt=1"
-#ADOC_ATTRIBUTES+=" --attribute PerfOpt=1"
+#ADOC_ATTRIBUTES+=" --attribute Rook=1"
+ADOC_ATTRIBUTES+=" --attribute Balance=1"
+ADOC_ATTRIBUTES+=" --attribute CapOpt=1"
+ADOC_ATTRIBUTES+=" --attribute PerfOpt=1"
 

@@ -24,16 +24,20 @@ ifdef::PerfOpt[]
 FixMe - Sed arcu non odio euismod lacinia at quis. Sodales ut eu sem integer vitae justo. Neque laoreet suspendisse interdum consectetur libero id faucibus nisl. Et tortor consequat id porta nibh venenatis cras sed felis. Ut aliquam purus sit amet luctus venenatis lectus. Lacus viverra vitae congue eu consequat. At lectus urna duis convallis convallis. Risus nullam eget felis eget. Euismod nisi porta lorem mollis aliquam ut porttitor. Mollis aliquam ut porttitor leo a diam. Cursus in hac habitasse platea dictumst quisque sagittis purus sit. Platea dictumst vestibulum rhoncus est.
 endif::PerfOpt[]
 +
-ifdef::rook[]
-[[G_rook]]rook::
+ifdef::Rook[]
+[[G_Rook]]Rook::
 FixMe - Lectus sit amet est placerat in egestas. Elit ullamcorper dignissim cras tincidunt lobortis feugiat vivamus. Congue quisque egestas diam in arcu cursus euismod quis. Varius quam quisque id diam vel quam elementum pulvinar. Blandit volutpat maecenas volutpat blandit aliquam etiam erat velit scelerisque. Sed egestas egestas fringilla phasellus faucibus scelerisque. Diam vel quam elementum pulvinar. Ut porttitor leo a diam sollicitudin tempor id eu. Egestas quis ipsum suspendisse ultrices gravida dictum fusce. Nulla pellentesque dignissim enim sit amet venenatis urna cursus.
-endif::rook[]
+endif::Rook[]
 
 * Factor(s)
 +
 ifdef::Availability[]
-[[G_Availability]]Availability::
-FixMe - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Egestas purus viverra accumsan in nisl nisi scelerisque. Aliquam ultrices sagittis orci a scelerisque purus semper eget. Magna sit amet purus gravida quis blandit turpis. Gravida quis blandit turpis cursus in hac habitasse platea dictumst. Id volutpat lacus laoreet non curabitur. Tellus at urna condimentum mattis. Aenean pharetra magna ac placerat. Donec massa sapien faucibus et. Ligula ullamcorper malesuada proin libero nunc consequat interdum. Tempor id eu nisl nunc mi ipsum faucibus. Sed nisi lacus sed viverra. Vitae proin sagittis nisl rhoncus mattis. At auctor urna nunc id cursus metus. Nisl suscipit adipiscing bibendum est ultricies integer quis auctor elit. Tellus pellentesque eu tincidunt tortor aliquam. Auctor augue mauris augue neque gravida. Rhoncus aenean vel elit scelerisque. Scelerisque varius morbi enim nunc faucibus a pellentesque.
+[[G_Availability]]Availability footnote:Availability[link: https://en.wikipedia.org/wiki/Minimum_viable_product[Availability]]::
+The probability that an item operates satisfactorily, without failures or downtimes, under stated conditions as a function of its reliability, redundancy and maintainability attributes. Some major objectives to achieve a desired service level objectives are:
++
+** Preventing or reducing the likelihood and frequency of failures via design decisions within the allowed cost of ownership
+** Correcting or coping with possible component failures via resiliency, automated failover and disaster-recovery processes
+** Estimating and analyzing current conditions to prevent unexpected failures via predictive maintenance
 endif::Availability[]
 +
 ifdef::Integrity[]
@@ -54,13 +58,14 @@ endif::Security[]
 * Flavor(s)
 +
 ifdef::PoC[]
-[[G_PoC]]Proof-of-Concept::
-FixMe - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Arcu non sodales neque sodales ut etiam sit amet nisl. Lorem mollis aliquam ut porttitor leo a diam. Eget nunc lobortis mattis aliquam. Leo duis ut diam quam nulla porttitor massa. Nec dui nunc mattis enim ut tellus elementum sagittis vitae. Sagittis nisl rhoncus mattis rhoncus urna neque viverra. Erat imperdiet sed euismod nisi porta. Convallis aenean et tortor at risus. Sodales neque sodales ut etiam sit amet nisl.
+// [[G_PoC]]Proof-of-Concept::
+[[G_PoC]]Proof-of-Concept footnote:Proof-of-Concept[link: https://en.wikipedia.org/wiki/Proof_of_concept[Proof of Concept]]::
+A partial or nearly complete prototype constructed to demonstrate functionality and feasibility for verifying specific aspects or concepts under consideration. This is often a starting point when evaluating a new, transitional technology. Sometimes it starts as a Minimum-Viable-Product footnote:Minimum-Viable-Product[link: https://en.wikipedia.org/wiki/Minimum_viable_product[Minimum Viable Product]] (MVP) that has just enough features to satisfy an initial set of requests. After such insights and feedback are obtained and potentially addressed, redeployments may be utilized to branch into other realms or to incorporate other known working functionality.
 endif::PoC[]
 +
 ifdef::Production[]
 [[G_Production]]Production::
-FixMe - Nec ultrices dui sapien eget. Blandit turpis cursus in hac habitasse platea dictumst quisque. Sagittis vitae et leo duis ut diam quam. Et pharetra pharetra massa massa ultricies. Orci eu lobortis elementum nibh tellus molestie nunc. Et malesuada fames ac turpis egestas sed tempus. Dolor magna eget est lorem ipsum dolor sit amet. Posuere lorem ipsum dolor sit amet consectetur adipiscing elit. Egestas purus viverra accumsan in nisl nisi. Consequat ac felis donec et odio pellentesque. Lorem mollis aliquam ut porttitor leo a. Amet aliquam id diam maecenas ultricies mi eget mauris pharetra. Bibendum at varius vel pharetra vel turpis nunc.
+FixMe - An environment that target customers or users can interact with and rely upon to meet their needs, plus be operational sustainable in terms of resource and economic constraints.
 endif::Production[]
 +
 ifdef::Scaling[]

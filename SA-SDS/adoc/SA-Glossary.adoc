@@ -2,23 +2,32 @@
 [glossary]
 == Glossary
 
-* FixMe - Deployment Type(s)::
+* Deployment Type(s)::
 +
 ifdef::Balance[]
 [[G_Balance]]Balance::
 FixMe - Ut morbi tincidunt augue interdum. Donec enim diam vulputate ut pharetra sit amet. Mauris vitae ultricies leo integer. Egestas egestas fringilla phasellus faucibus scelerisque eleifend donec pretium vulputate. Et pharetra pharetra massa massa. Sagittis id consectetur purus ut. Et sollicitudin ac orci phasellus egestas tellus. Eu nisl nunc mi ipsum. Nibh cras pulvinar mattis nunc sed blandit libero volutpat sed. Cras adipiscing enim eu turpis egestas pretium aenean. Nulla pellentesque dignissim enim sit. Morbi non arcu risus quis.
 endif::Balance[]
 +
+ifdef::CapOpt[]
+[[G_CapOpt]]Capacity Optimized::
+FixMe - Sed arcu non odio euismod lacinia at quis. Sodales ut eu sem integer vitae justo. Neque laoreet suspendisse interdum consectetur libero id faucibus nisl. Et tortor consequat id porta nibh venenatis cras sed felis. Ut aliquam purus sit amet luctus venenatis lectus. Lacus viverra vitae congue eu consequat. At lectus urna duis convallis convallis. Risus nullam eget felis eget. Euismod nisi porta lorem mollis aliquam ut porttitor. Mollis aliquam ut porttitor leo a diam. Cursus in hac habitasse platea dictumst quisque sagittis purus sit. Platea dictumst vestibulum rhoncus est.
+endif::CapOpt[]
++
+ifdef::cephadm[]
+[[G_cephadm]]cephadm::
+FixMe - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Enim nunc faucibus a pellentesque sit amet porttitor eget dolor. Sagittis purus sit amet volutpat consequat mauris nunc. A erat nam at lectus urna duis. Mauris pharetra et ultrices neque. Semper auctor neque vitae tempus. Lectus urna duis convallis convallis tellus id interdum velit. Morbi non arcu risus quis varius quam quisque id diam. Duis ut diam quam nulla porttitor massa id neque. Dictum non consectetur a erat nam at lectus urna. Mauris pharetra et ultrices neque ornare aenean. Amet cursus sit amet dictum. Nam aliquam sem et tortor consequat. Lectus mauris ultrices eros in cursus turpis massa tincidunt dui. Posuere urna nec tincidunt praesent semper feugiat nibh sed pulvinar. Sit amet est placerat in egestas erat imperdiet sed euismod.
+endif::cephadm[]
++
 ifdef::PerfOpt[]
 [[G_PerfOpt]]Performance Optimized::
 FixMe - Sed arcu non odio euismod lacinia at quis. Sodales ut eu sem integer vitae justo. Neque laoreet suspendisse interdum consectetur libero id faucibus nisl. Et tortor consequat id porta nibh venenatis cras sed felis. Ut aliquam purus sit amet luctus venenatis lectus. Lacus viverra vitae congue eu consequat. At lectus urna duis convallis convallis. Risus nullam eget felis eget. Euismod nisi porta lorem mollis aliquam ut porttitor. Mollis aliquam ut porttitor leo a diam. Cursus in hac habitasse platea dictumst quisque sagittis purus sit. Platea dictumst vestibulum rhoncus est.
 endif::PerfOpt[]
 +
-ifdef::CapOpt[]
-[[G_CapOpt]]Capacity Optimized::
-FixMe - Sed arcu non odio euismod lacinia at quis. Sodales ut eu sem integer vitae justo. Neque laoreet suspendisse interdum consectetur libero id faucibus nisl. Et tortor consequat id porta nibh venenatis cras sed felis. Ut aliquam purus sit amet luctus venenatis lectus. Lacus viverra vitae congue eu consequat. At lectus urna duis convallis convallis. Risus nullam eget felis eget. Euismod nisi porta lorem mollis aliquam ut porttitor. Mollis aliquam ut porttitor leo a diam. Cursus in hac habitasse platea dictumst quisque sagittis purus sit. Platea dictumst vestibulum rhoncus est.
-endif::CapOpt[]
-
+ifdef::rook[]
+[[G_rook]]rook::
+FixMe - Lectus sit amet est placerat in egestas. Elit ullamcorper dignissim cras tincidunt lobortis feugiat vivamus. Congue quisque egestas diam in arcu cursus euismod quis. Varius quam quisque id diam vel quam elementum pulvinar. Blandit volutpat maecenas volutpat blandit aliquam etiam erat velit scelerisque. Sed egestas egestas fringilla phasellus faucibus scelerisque. Diam vel quam elementum pulvinar. Ut porttitor leo a diam sollicitudin tempor id eu. Egestas quis ipsum suspendisse ultrices gravida dictum fusce. Nulla pellentesque dignissim enim sit amet venenatis urna cursus.
+endif::rook[]
 
 * Factor(s)
 +

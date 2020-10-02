@@ -86,8 +86,8 @@ ADOC_ATTRIBUTES+=" --attribute Scaling=1"
 
 ## Deployment Types
 # 	then add respective deployment types, named more specifically
-#ADOC_ATTRIBUTES+=" --attribute cephadm=1"
-#ADOC_ATTRIBUTES+=" --attribute Rook=1"
+ADOC_ATTRIBUTES+=" --attribute cephadm=1"
+ADOC_ATTRIBUTES+=" --attribute Rook=1"
 ADOC_ATTRIBUTES+=" --attribute Balance=1"
 ADOC_ATTRIBUTES+=" --attribute CapOpt=1"
 ADOC_ATTRIBUTES+=" --attribute PerfOpt=1"

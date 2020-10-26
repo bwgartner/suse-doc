@@ -1,9 +1,33 @@
 
 == Application
 
+////
+The Application Layer elements are typically used to model the Application Architecture that describes the structure, behavior, and interaction of the applications of the enterprise.
+////
+
 FixMe - Varius sit amet mattis vulputate. Nisi scelerisque eu ultrices vitae auctor eu augue ut. Integer vitae justo eget magna fermentum iaculis eu non diam. Rhoncus urna neque viverra justo. Elementum tempus egestas sed sed risus. Porta nibh venenatis cras sed felis eget velit aliquet sagittis. Venenatis a condimentum vitae sapien pellentesque. Magna ac placerat vestibulum lectus mauris ultrices eros in cursus. Nibh cras pulvinar mattis nunc. Tempor orci dapibus ultrices in iaculis nunc. Sapien nec sagittis aliquam malesuada bibendum arcu vitae elementum. Nisi porta lorem mollis aliquam. Laoreet id donec ultrices tincidunt arcu non sodales.
 
 image::SA-Application.png[title="Solution Architecture - {useCase} Application", scaledwidth=80%]
+
+Provided by this layer to users
+* aaS deliverables
+
+Example Functions needed by underlying layers
+* abstraction of logical/physical storage services/capabilities
+* pooling
+* persistent/transient content
+* atomic transactions
+* resizable
+* mount or API accessible
+* import/export/mirroring
+
+Example APIs needed by underlying layers
+* object
+** partial/complete read/write
+** snapshots
+* block
+** thinly provisioned
+* file
 
 ifdef::Availability[]
 include::./Availability/SA.adoc[]

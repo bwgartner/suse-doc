@@ -1,0 +1,15 @@
+
+:sesProductName: SUSE Enterprise Storage
+:sesProductPage: https://www.suse.com/products/suse-enterprise-storage/
+
+:sesVersion: 7
+
+:sesDocumentURL: https://susedoc.github.io/#ses
+:sesAdminGuideURL: https://susedoc.github.io/doc-ses/master/single-html/ses-admin/
+:sesRookDeployGuideURL: https://susedoc.github.io/doc-ses/master/single-html/ses-rook/
+:sesDeployGuideURL: https://susedoc.github.io/doc-ses/master/single-html/ses-deployment/
+:sesWinGuideURL: https://susedoc.github.io/doc-ses/master/single-html/ses-windows/
+:sesSecGuideURL: https://susedoc.github.io/doc-ses/master/single-html/ses-security/
+:sesTSGuideURL: https://susedoc.github.io/doc-ses/master/single-html/ses-troubleshooting/
+// :sesTuningGuideURL: https://susedoc.github.io/doc-ses/ses6/single-html/ses-tuning/
+

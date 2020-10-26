@@ -31,6 +31,7 @@ ifdef::Physical[]
 * *_Where_* the resulting solution may physically or virtually reside
 endif::Physical[]
 
+////
 Additional characteristics, like decision factors such as:
 
 ifdef::Availability[]
@@ -62,6 +63,7 @@ ifdef::Migration[]
 endif::Migration[]
 
 implementations and considerations may also be covered.
+////
 
 // Introduction
 include::./i-Introduction/SA.adoc[]

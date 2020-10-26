@@ -1,0 +1,70 @@
+
+include::./Ceph_vars.adoc[]
+
+=== Ceph footnote:Ceph[link: {cephWikipediaURL}[Ceph]]
+
+The Ceph technology is a open-source footnote:open-source[link: {cephProjectURL}[Ceph.io]] , distributed, software-defined storage [ {useCase} ] solution designed for scalability, reliability and performance. A fundamental component of Ceph is the **__R__**eliable **__A__**utonomic **__D__**istributed **__O__**bject **__S__**torage [ RADOS ]. RADOS enables a number of storage nodes and resources to function together to store and retrieve data from the cluster using object storage techniques. The result is a storage solution that is abstracted from the hardware and is able to span multiple variants of hardware resources.
+
+Through its software libraries, librados, and layered APIs and interfaces, Ceph implements object-, block- and file-level storage. For native, traditional application and client access, like block and file APIs, the clients are aware of the storage topology and communicate directly with the storage daemons over the public network, resulting in horizontally scaling performance. Access can extend to other, non-native protocols, such as iSCSI, S3, SMB and NFS utilize gateway implementations.
+
+The overall set of components and layered structure is depicted in the following figure:
+
+image::Ceph_Graphics-services.jpg[title="Ceph Technology", scaledwidth=80%]
+
+- Descriptions of Ceph core node roles and services are noted below:
+Ceph Monitor::
+Ceph monitor [ MON ] nodes maintain information about the cluster health state, a map of all nodes and data distribution rules in the CRUSH map.
+// Ceph Monitor (often abbreviated as MON) nodes maintain information about the cluster health state, a map of all nodes and data distribution rules. If failures or conflicts occur, the Ceph Monitor nodes in the cluster decide by majority which information is correct. To form a qualified majority, it is recommended to have an odd number of Ceph Monitor nodes, starting with at least three of them.
++
+Ceph Manager::
+The Ceph manager [ MGR ] collects the state information from the whole cluster. The Ceph manager daemon runs alongside the monitor daemons. It provides additional monitoring, and interfaces the external monitoring services and management interface. The Ceph manager requires no additional configuration, beyond ensuring it is running.
++
+Ceph Object Storage Device::
+A Ceph object storage device [ OSD ] is a daemon handling storage resources such as physical disks, partitions or logical volumes. The daemon additionally takes care of data replication and rebalancing, in case of added or removed nodes. Ceph OSD daemons communicate with monitor daemons and provide them with the state of the other OSD daemons.
++
+Optional Gateway Roles::
+* Metadata Server
+** The metadata servers [ MDS ] store metadata for the CephFS. By using an MDS, you can execute basic file system commands such as ls without overloading the cluster
+* Object Gateway
+** The Ceph Object Gateway is an HTTP REST gateway for the RADOS object store. It is compatible with OpenStack Swift and Amazon S3 and has its own user management
+* NFS Ganesha
+** NFS Ganesha provides an NFS access to either the Object Gateway or the CephFS. It runs in the user instead of the kernel space and directly interacts with the Object Gateway or CephFS
+* iSCSI Gateway
+** iSCSI is a storage network protocol that allows clients to send SCSI commands to SCSI storage devices (targets) on remote servers
+
+////
+Additional Network Infrastructure Components / Services::
+* Domain Name Service (DNS) : An external network-accessible service to map IP Addresses to hostnames for all cluster resource nodes.
+* Network Time Protocol (NTP) : An external network-accessible service to obtain and synchronize system times to aid in timestamp consistency. It is recommended to point all resource nodes to a physical system/device that provides this service.
+* Software Update Service : Access to a network-based repository for software update packages. This can be accessed directly from each node via registration to the http://scc.suse.com[{CompanyName} Customer Center] (SCC) or from local servers running a SUSE https://www.suse.com/documentation/sles-12/singlehtml/book_smt/book_smt.htm[Subscription Management Tool] (SMT) instance. As each node is deployed, it can be pointed to the respective update service; then update notification and applications will be managed by the configuration management web interface.
+////
+
+- The network environment where you intend to run Ceph should ideally be a bonded set of at least two network interfaces that is logically split into a public part and a trusted internal part, using VLANs. The bonding mode is recommended to be 802.3ad if possible to provide maximum bandwidth and resiliency.  The public VLAN serves to provide the service to the client nodes, while the internal part provides for the authenticated Ceph network communication. The main reason for this is that although Ceph provides authentication and protection against attacks once secret keys are in place, the messages used to configure these keys may be transferred openly and are vulnerable.
+
+ifdef::Availability,Performance,Security,Integrity[]
+- By design, Ceph addresses formidable architecture factor(s):
+ifdef::Availability[]
++
+Availability::
+Ceph provides a completely distributed operation without a single point of failure, scalable to and beyond the exabyte level. Ceph replicates data, with multiple configurable variants, and makes it fault-tolerant using commodity, industry-standard hardware, leveraging whatever resources are present. As a result of its design, the system is both self-healing and self-managing, aiming to minimize administration time and other costs.
+endif::Availability[]
+ifdef::Performance[]
++
+Performance::
+The CRUSH algorithm, residing on and maintained across the Ceph MON nodes, determines how to store and retrieve data by computing storage locations. This empowers the clients to directly communicate with the respective OSD with the data, eliminating performance bottlenecks. Further, due to the replicated, clustered approach of Ceph, the collective access performance is a muliple of of the drive types. 
++
+NOTE: While protocal gateways may be thought of as a potentially limiting factor, these gateways can scale horizontally using load balancing techniques.
+endif::Performance[]
+ifdef::Security[]
++
+Security::
+Ceph addresses security in multiple ways. Access Control Lists [ ACLs] can be implemented both in the management dashboard and for specific pool, placement group via access keys. It also supports data encryption, both in-flight and at-rest.
+endif::Security[]
+ifdef::Integrity[]
++
+Integrity::
+Both data consistency and cleanliness is maintained by Ceph OSDs. Comparing object metadata in one placement group against it's replicas in other OSD placement groups can initiate scrubbing. Deeper bit-by-bit comparisons are also regularly done to find faulty storage element sectors.
+endif::Integrity[]
+
+ifdef::Availability,Performance,Security,Integrity[]
+

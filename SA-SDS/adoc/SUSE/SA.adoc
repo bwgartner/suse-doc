@@ -1,0 +1,2 @@
+
+include:: ../SUSE/SA_vars.adoc

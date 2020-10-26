@@ -1,0 +1,84 @@
+
+ifdef::IHV-HPE[]
+
+include::./HPE_vars.adoc[]
+include::./Apollo_vars.adoc[]
+include::./Edgeline_vars.adoc[]
+include::./ProLiant_vars.adoc[]
+include::./Synergy_vars.adoc[]
+
+=== {companyHPE}
+
+Utilizing the above software application and technology solutions with the server platforms offered by {companyHPE} [ {acronymHPE} ] provides many alternative for scale, cost-effectiveness and performance options that could align with local IT staff platform preferences:
+
+* density-optimized - high performance and efficiency for big data and the most demanding workloads
+* mission-critical - systems of intelligence to fuel your digital transformation in a world where time and data are the new currency and business continuity is expected
+* composable - fully adaptable and ready for Hybrid-IT to future-proof your data center for today's workloads and tomorrow's disruptors
+* IoT - realize the potential of the Internet of Things to provide compute at the network edge
+* cloud - high-capacity, mass-compute open infrastructure with security and software to match
+* and virtualized use cases.
+
+ifdef::IHV-HPE-Apollo,IHV-HPE-Edgeline,IHV-HPE-ProLiant,IHV-HPE-Synergy[]
+
+Server product-line and model options abound in the https://www.hpe.com/uk/en/servers.html[{acronymHPE} portfolio], including:
+
+ifdef::IHV-HPE-Apollo[]
+include::./Apollo.adoc[]
+endif::IHV-HPE-Apollo[]
+
+ifdef::IHV-HPE-Edgeline[]
+include::./Edgeline.adoc[]
+endif::IHV-HPE-Edgeline[]
+
+ifdef::IHV-HPE-ProLiant[]
+include::./ProLiant.adoc[]
+endif::IHV-HPE-ProLiant[]
+
+ifdef::IHV-HPE-Synergy[]
+include::./Synergy.adoc[]
+endif::IHV-HPE-Synergy[]
+
+
+
+.Hewlett-Packard Enterprise Platform Matrix for Deployment Types
+[width="80%",valign="middle",halign="center",options="header"]
+|===
+
+| System Platform |
+ifdef::CapOpt[ *_<<G_CapOpt,Capacity Optimized>>_* |] 
+ifdef::Balance[ *_<<G_Balance,Balance>>_* |] 
+ifdef::PerfOpt[ *_<<G_PerfOpt,Performance Optimized>>_* ] 
+
+ifdef::IHV-HPE-Apollo[]
+| Apollo
+ifdef::CapOpt[|4500, 4510]
+ifdef::Balance[|4200, 4500, 4510]
+ifdef::PerfOpt[|4200]
+endif::IHV-HPE-Apollo[]
+
+ifdef::IHV-HPE-Edgeline[]
+| Edgeline 
+ifdef::CapOpt[|]
+ifdef::Balance[|EL8000, e910]
+ifdef::PerfOpt[|]
+endif::IHV-HPE-Edgeline[]
+
+ifdef::IHV-HPE-ProLiant[]
+| ProLiant 
+ifdef::CapOpt[|DL38x]
+ifdef::Balance[|DL36x, DL38x]
+ifdef::PerfOpt[|DL38x]
+endif::IHV-HPE-ProLiant[]
+
+ifdef::IHV-HPE-Synergy[]
+| Synergy
+ifdef::CapOpt[|]
+ifdef::Balance[|SY460, D3940]
+ifdef::PerfOpt[|]
+endif::IHV-HPE-Synergy[]
+
+|===
+
+endif::IHV-HPE-Apollo,IHV-HPE-Edgeline,IHV-HPE-ProLiant,IHV-HPE-Synergy[]
+
+endif::IHV-HPE[]

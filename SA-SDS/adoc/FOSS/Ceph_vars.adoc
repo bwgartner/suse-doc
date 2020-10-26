@@ -1,0 +1,8 @@
+
+
+:cephWikipediaURL: https://en.wikipedia.org/wiki/Ceph\_\(software\)
+:cephProjectURL: https://ceph.io/
+// :cephFoundation: https://docs.ceph.com/docs/master/foundation/
+
+:cephVersion: Octopus
+

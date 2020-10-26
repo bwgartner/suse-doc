@@ -1,0 +1,3 @@
+
+:acronymHPE: HPE
+:companyHPE: Hewlett-Packard Enterprise

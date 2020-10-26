@@ -1,23 +1,52 @@
 
 == Business
 
+////
+Business Layer elements are used to model the operational organization of an enterprise in a technology-independent manner, whereas strategy elements are used to model the strategic direction and choices of the enterprise.
+////
+
+
 FixMe - Nascetur ridiculus mus mauris vitae ultricies leo integer malesuada. Ornare lectus sit amet est placerat. Luctus venenatis lectus magna fringilla urna porttitor rhoncus dolor purus. At imperdiet dui accumsan sit amet nulla facilisi morbi. Ornare lectus sit amet est placerat in egestas erat imperdiet. Egestas egestas fringilla phasellus faucibus scelerisque eleifend. In hac habitasse platea dictumst quisque sagittis purus. Ut sem nulla pharetra diam sit amet nisl suscipit adipiscing. Auctor elit sed vulputate mi sit amet mauris commodo. Ullamcorper eget nulla facilisi etiam dignissim diam. Laoreet non curabitur gravida arcu ac. Id eu nisl nunc mi ipsum faucibus vitae aliquet nec. Neque convallis a cras semper. Maecenas accumsan lacus vel facilisis. Lectus proin nibh nisl condimentum id venenatis a condimentum vitae. Massa massa ultricies mi quis. Adipiscing enim eu turpis egestas pretium aenean pharetra magna.
 
 image::SA-Business.png[title="Solution Architecture - {useCase} Business", scaledwidth=80%]
 
 === Roles and Collaboration
 
-FixMe - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Massa tincidunt nunc pulvinar sapien. Hendrerit dolor magna eget est lorem. Bibendum enim facilisis gravida neque convallis a cras semper auctor. Sit amet mattis vulputate enim nulla aliquet porttitor. Semper feugiat nibh sed pulvinar proin gravida. Tincidunt lobortis feugiat vivamus at augue eget arcu dictum varius. Tincidunt nunc pulvinar sapien et ligula ullamcorper malesuada proin. Pretium quam vulputate dignissim suspendisse in. Lectus proin nibh nisl condimentum id venenatis a. Neque aliquam vestibulum morbi blandit cursus risus at ultrices mi.
+To be efficient and successful during such a digital transformation, in the context of migrating towards software-defined storage ( {useCase} ), you should engage with the following representative stakeholders:
+
+Executive Board Members::
+While the actual directive may be driven from this level, it is also possible for the tranformation to have been cultivated from any of the other layers of stakeholders.  So, keeping these folks engaged and informed is vital to the project to address the impact and the necessary resources being utilized.  Also an individual, like a CIO, may ultimately be held responsible for such changes from such a project, being the focal point for the peers at this level and ensuring that the reasoning behind the project is aligned strategically, that a return on investment will be achieved and the required changes help to answer the needs and overall improve the organization.
+
+Business Line Managers::
+Folks in this realm are key to provide what targets should be addressed first and when it makes most sense to do it.  Furthermore, they can use their business perspective to assess possible risk, impact, and measures for successful implementations.  In addition, these individuals are instrumental in formulating a migration plan, aligned with other business constraints and objectives to help target the project's features, quality, cost, schedule and staff. footnote:ProjectDimensions[link:https://medium.com/swlh/rethinking-the-triple-constraint-five-project-dimensions-b3593c364b11[Five Project Dimensions]]
+
+Solution Architects::
+These individuals are key resources to understand the existing state of storage usage, to take into account what is currently required to propose replacing existing solutions and potentially what layered features may also be considered going forward.
++
+NOTE: These folks, are one of the primary target audiences for this document, adressing all of the layers described from the top down. They can then formulate a set of options to encompass past issues, the current requirements for the next phase and any future, upcoming aspects, by understanding the inherent tradeoffs for each possible path to utilize.
+
+Storage / IT Administrators::
+For this digital transformation, initially this set of individuals are potentially most impacted.  Having to deal with such changes of their core infrastructure is potentially overwhelming at first glance, yet learning a few simple alternative approaches often enables them to work more efficiently and leverage the advances that this technology provides.  By engaging these folks, one can get a rather complete picture of the current requirements and predicted usage growth.
++
+NOTE: These folks are another target audience, who will likely resonate with the layers of this document from the physical layer and up, using the knowledge of their existing storage solutions within their data centers and how users and applications rely upon them.
+
+Application Developers::
+Depending upon the organization structure, application developers may also need to be included in the requirements gathering aspect, to also be made aware of and test the upcoming changes, even if the application APIs they rely upon will not change too much.
+
+IT Administrators::
+Engaging with these staff members is critical, since they are ultimately responsible for the service levels of the overall solution, the underlying infrastructure, and the on-going maintenance aspect.  In addition, these folks understand the bits and bytes of the platforms, the actual usage metrics and the existing expertise for these workloads.  Getting them trained on the next iteration of the technologies is inherently important.
+
+So, having representatives of each of these stakeholders engaged up front will help to formulate a more effective plan that can be collective steps forward in the digital transformation.  During the various project phases, more individuals from each of the stakeholder segments may be brought in for awareness, training, testing, and evaluation to ensure continued, iterative success.
 
 === Processes and Functions
 
 FixMe - Egestas egestas fringilla phasellus faucibus scelerisque. Aliquet porttitor lacus luctus accumsan. Ornare arcu odio ut sem nulla pharetra diam. Interdum velit euismod in pellentesque massa. Nulla at volutpat diam ut. Volutpat sed cras ornare arcu dui vivamus arcu felis bibendum. Ut faucibus pulvinar elementum integer. Urna cursus eget nunc scelerisque. Quisque sagittis purus sit amet volutpat consequat mauris nunc. Quis varius quam quisque id diam. Pretium aenean pharetra magna ac placerat vestibulum lectus mauris ultrices. Purus faucibus ornare suspendisse sed. Placerat orci nulla pellentesque dignissim enim sit amet venenatis. Gravida neque convallis a cras semper auctor neque vitae tempus. Vel pharetra vel turpis nunc eget. Facilisis volutpat est velit egestas dui id ornare arcu odio. Aliquam vestibulum morbi blandit cursus risus at ultrices mi.
 
-=== Factors, Flavors and Deployment Types
+=== Factors, Flavors and Deployment Scenarios
 
 FixMe - Id diam maecenas ultricies mi eget mauris. Cras fermentum odio eu feugiat pretium nibh ipsum consequat. Mi sit amet mauris commodo. Quam nulla porttitor massa id neque aliquam vestibulum morbi blandit. Pretium viverra suspendisse potenti nullam ac tortor vitae purus faucibus. Diam donec adipiscing tristique risus nec feugiat in fermentum. Dui id ornare arcu odio ut sem nulla. Eu sem integer vitae justo. Elementum eu facilisis sed odio. Ut morbi tincidunt augue interdum velit euismod in pellentesque massa. Gravida neque convallis a cras semper. Tellus at urna condimentum mattis. Faucibus purus in massa tempor nec feugiat nisl pretium fusce. Ut lectus arcu bibendum at varius vel pharetra vel turpis. Velit egestas dui id ornare arcu odio ut sem. Faucibus interdum posuere lorem ipsum. In ante metus dictum at tempor commodo. Sed id semper risus in hendrerit gravida rutrum. Mauris pharetra et ultrices neque ornare aenean euismod. Sit amet tellus cras adipiscing enim eu turpis egestas pretium.
 
-.Scope of Covered Factors, Flavors, and Deployment Types
+.Scope of Covered Factors, Flavors, and Deployment Scenarios
 [width="80%",valign="middle",halign="center",options="header"]
 |===
 
@@ -31,27 +60,27 @@ ifdef::PoC[]
 | *_<<G_PoC,Proof-of-Concept>>_*
 ifdef::Availability[]
 ^|
-ifdef::Balance[ <<G_Balance,Balance>> ] 
-ifdef::PerfOpt[ <<G_PerfOpt,PerfOpt>> ] 
-ifdef::CapOpt[ <<G_CapOpt,CapOpt>> ] 
+ifdef::CapOpt[ <<G_CapOpt,Capacity Optimized >> ] 
+ifdef::Balance[ <<G_Balance,Balance >> ] 
+ifdef::PerfOpt[ <<G_PerfOpt,Performance Optimized >> ] 
 endif::Availability[]
 ifdef::Performance[]
 ^|
-ifdef::Balance[ <<G_Balance,Balance>> ] 
-ifdef::PerfOpt[ <<G_PerfOpt,PerfOpt>> ] 
-ifdef::CapOpt[ <<G_CapOpt,CapOpt>> ] 
+ifdef::CapOpt[ <<G_CapOpt,Capacity Optimized >> ] 
+ifdef::Balance[ <<G_Balance,Balance >> ] 
+ifdef::PerfOpt[ <<G_PerfOpt,Performance Optimized >> ] 
 endif::Performance[]
 ifdef::Security[]
 ^|
-ifdef::Balance[ <<G_Balance,Balance>> ] 
-ifdef::PerfOpt[ <<G_PerfOpt,PerfOpt>> ] 
-ifdef::CapOpt[ <<G_CapOpt,CapOpt>> ] 
+ifdef::CapOpt[ <<G_CapOpt,Capacity Optimized >> ] 
+ifdef::Balance[ <<G_Balance,Balance >> ] 
+ifdef::PerfOpt[ <<G_PerfOpt,Performance Optimized >> ] 
 endif::Security[]
 ifdef::Integrity[]
 ^|
-ifdef::Balance[ <<G_Balance,Balance>> ] 
-ifdef::PerfOpt[ <<G_PerfOpt,PerfOpt>> ] 
-ifdef::CapOpt[ <<G_CapOpt,CapOpt>> ] 
+ifdef::CapOpt[ <<G_CapOpt,Capacity Optimized >> ] 
+ifdef::Balance[ <<G_Balance,Balance >> ] 
+ifdef::PerfOpt[ <<G_PerfOpt,Performance Optimized >> ] 
 endif::Integrity[]
 endif::PoC[]
 
@@ -59,27 +88,27 @@ ifdef::Production[]
 |*_<<G_Production,Production>>_*
 ifdef::Availability[]
 ^|
-ifdef::Balance[ <<G_Balance,Balance>> ] 
-ifdef::PerfOpt[ <<G_PerfOpt,PerfOpt>> ] 
-ifdef::CapOpt[ <<G_CapOpt,CapOpt>> ] 
+ifdef::CapOpt[ <<G_CapOpt,Capacity Optimized >> ] 
+ifdef::Balance[ <<G_Balance,Balance >> ] 
+ifdef::PerfOpt[ <<G_PerfOpt,Performance Optimized >> ] 
 endif::Availability[]
 ifdef::Performance[]
 ^|
-ifdef::Balance[ <<G_Balance,Balance>> ] 
-ifdef::PerfOpt[ <<G_PerfOpt,PerfOpt>> ] 
-ifdef::CapOpt[ <<G_CapOpt,CapOpt>> ] 
+ifdef::CapOpt[ <<G_CapOpt,Capacity Optimized >> ] 
+ifdef::Balance[ <<G_Balance,Balance >> ] 
+ifdef::PerfOpt[ <<G_PerfOpt,Performance Optimized >> ] 
 endif::Performance[]
 ifdef::Security[]
 ^|
-ifdef::Balance[ <<G_Balance,Balance>> ] 
-ifdef::PerfOpt[ <<G_PerfOpt,PerfOpt>> ] 
-ifdef::CapOpt[ <<G_CapOpt,CapOpt>> ] 
+ifdef::CapOpt[ <<G_CapOpt,Capacity Optimized >> ] 
+ifdef::Balance[ <<G_Balance,Balance >> ] 
+ifdef::PerfOpt[ <<G_PerfOpt,Performance Optimized >> ] 
 endif::Security[]
 ifdef::Integrity[]
 ^|
-ifdef::Balance[ <<G_Balance,Balance>> ] 
-ifdef::PerfOpt[ <<G_PerfOpt,PerfOpt>> ] 
-ifdef::CapOpt[ <<G_CapOpt,CapOpt>> ] 
+ifdef::CapOpt[ <<G_CapOpt,Capacity Optimized >> ] 
+ifdef::Balance[ <<G_Balance,Balance >> ] 
+ifdef::PerfOpt[ <<G_PerfOpt,Performance Optimized >> ] 
 endif::Integrity[]
 endif::Production[]
 
@@ -87,27 +116,27 @@ ifdef::Scaling[]
 |*_<<G_Scaling,Scaling>>_*
 ifdef::Availability[]
 ^|
-ifdef::Balance[ <<G_Balance,Balance>> ] 
-ifdef::PerfOpt[ <<G_PerfOpt,PerfOpt>> ] 
-ifdef::CapOpt[ <<G_CapOpt,CapOpt>> ] 
+ifdef::CapOpt[ <<G_CapOpt,Capacity Optimized >> ] 
+ifdef::Balance[ <<G_Balance,Balance >> ] 
+ifdef::PerfOpt[ <<G_PerfOpt,Performance Optimized >> ] 
 endif::Availability[]
 ifdef::Performance[]
 ^|
-ifdef::Balance[ <<G_Balance,Balance>> ] 
-ifdef::PerfOpt[ <<G_PerfOpt,PerfOpt>> ] 
-ifdef::CapOpt[ <<G_CapOpt,CapOpt>> ] 
+ifdef::CapOpt[ <<G_CapOpt,Capacity Optimized >> ] 
+ifdef::Balance[ <<G_Balance,Balance >> ] 
+ifdef::PerfOpt[ <<G_PerfOpt,Performance Optimized >> ] 
 endif::Performance[]
 ifdef::Security[]
 ^|
-ifdef::Balance[ <<G_Balance,Balance>> ] 
-ifdef::PerfOpt[ <<G_PerfOpt,PerfOpt>> ] 
-ifdef::CapOpt[ <<G_CapOpt,CapOpt>> ] 
+ifdef::CapOpt[ <<G_CapOpt,Capacity Optimized >> ] 
+ifdef::Balance[ <<G_Balance,Balance >> ] 
+ifdef::PerfOpt[ <<G_PerfOpt,Performance Optimized >> ] 
 endif::Security[]
 ifdef::Integrity[]
 ^|
-ifdef::Balance[ <<G_Balance,Balance>> ] 
-ifdef::PerfOpt[ <<G_PerfOpt,PerfOpt>> ] 
-ifdef::CapOpt[ <<G_CapOpt,CapOpt>> ] 
+ifdef::CapOpt[ <<G_CapOpt,Capacity Optimized >> ] 
+ifdef::Balance[ <<G_Balance,Balance >> ] 
+ifdef::PerfOpt[ <<G_PerfOpt,Performance Optimized >> ] 
 endif::Integrity[]
 endif::Scaling[]
 

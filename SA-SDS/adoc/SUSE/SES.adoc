@@ -1,0 +1,20 @@
+include::./SES_vars.adoc[]
+
+==== {sesProductName}
+
+A product offering of the {suseHomePage}[SUSE](R) portolio is {sesProductPage}[{sesProductName}], an intelligent software-defined storage solution, powered by Ceph technology, which enables you to transform your enterprise storage infrastructure:
+
+* Providing IT organizations with a simple to manage, agile infrastructure with increased speed of delivery, durability and reliability.
+* Accelerating innovation, reduce costs and alleviate proprietary hardware lock-in by transforming your enterprise storage infrastructure with a truly open, and unified intelligent software-defined storage solution. 
+
+While a software-defined approach may seem new, the logic within enterprise storage devices has always been written in software. It’s only been in the last few years that hardware has progressed enough so that enterprise storage software and dedicated hardware can now be separated. This provides IT organizations with a a simple-to-manage, agile infrastructure approach -- yielding increased speed of delivery, durability and reliability. This helps to accelerate innovation, reduce costs and alleviate proprietary hardware lock-in by transforming your enterprise storage infrastructure with a truly open and unified, intelligent software-defined storage solution.
+
+Our single, truly unified, software-defined storage cluster provides applications with object, block and file system storage. It offers ubiquitous and universal access to your legacy and modern applications and automated durability for your data with high availability and disaster recovery options. Some key features are:
+
+* Unlimited scalability with a distributed storage cluster designed to scale to thousands of nodes and multi-hundred petabyte environments (and beyond) to meet your growing data requirements.
+* A highly redundant storage infrastructure design maximizes application availability with no single points of failure.
+* Self-healing capabilities minimize storage administration involvement and optimize data placement, enabling rapid reconstruction of redundancy, maximizing system resiliency and availability.
+* Utilize commodity, off-the-shelf hardware that is at minimum 30 percent less expensive than average capacity optimized solutions to drive significant CAPEX savings.
+* Automated re-balancing and optimized data placement with an easy to manage intelligent solution that continuously monitors data utilization and infrastructure -- without any manual intervention and without growing IT staff.
+
+

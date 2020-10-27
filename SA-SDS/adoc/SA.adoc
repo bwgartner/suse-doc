@@ -10,7 +10,7 @@ include::./SA_vars.adoc[]
 [preface]
 = Preface
 
-Whether you are just starting or continuing to progress on a digital transformation journey, you should consider addressing one of the core infrastructure elements -- storage. Using this solution architecture, you will learn how to successfully and effectively accomplish this transition with simplify, modernize and accelerate process steps for your software-defined storage.
+Whether you are just starting or continuing to progress on a digital transformation journey, you should consider addressing one of the core infrastructure elements -- storage. Using this solution architecture, you will learn how to successfully and effectively accomplish this software-defined storage itransition with simplify, modernize and accelerate process steps.
 
 The following, layered footnote:Archimate[link: https://pubs.opengroup.org/architecture/archimate3-doc[Archimate Enterprise Architecture]] aspects will be covered:
 
@@ -122,7 +122,7 @@ endif::Appendix[]
 
 // Standard SUSE includes
 == Legal Notice
-include::./SUSE/common_sbp_legal_notice.adoc[]
+include::./{companyName}/common_sbp_legal_notice.adoc[]
 
 ++++
 <?pdfpagebreak?>
@@ -130,5 +130,5 @@ include::./SUSE/common_sbp_legal_notice.adoc[]
 
 // Standard SUSE Best Practices includes
 // :leveloffset: 1
-include::./SUSE/common_gfdl1.2_i.adoc[]
+include::./{companyName}/common_gfdl1.2_i.adoc[]
 

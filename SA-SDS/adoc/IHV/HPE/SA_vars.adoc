@@ -1,3 +1,5 @@
 
 :acronymHPE: HPE
 :companyHPE: Hewlett-Packard Enterprise
+:companyURL: https://www.hpe.com/us/en/home.html
+

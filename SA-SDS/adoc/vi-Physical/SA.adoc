@@ -17,6 +17,7 @@ ifdef::IHV-HPE[]
 include::../IHV/HPE/SA.adoc[]
 endif::IHV-HPE[]
 
+////
 ifdef::Availability[]
 include::./Availability/SA.adoc[]
 endif::Availability[]
@@ -32,4 +33,5 @@ endif::Security[]
 ifdef::Integrity[]
 include::./Integrity/SA.adoc[]
 endif::Integrity[]
+////
 

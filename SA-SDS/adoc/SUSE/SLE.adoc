@@ -1,0 +1,8 @@
+
+include::./SLE_vars.adoc[]
+
+==== {sleProductName}
+
+A product offering of the {suseHomePage}[{companyName}](R) portolio is {sleProductPage}[{sleProductName}], a modern and modular OS helps simplify your IT environment, modernize your IT infrastructure and accelerate innovation with an engaging platform for developers. As a result, you can easily deploy and transition business-critical workloads across on-premise and public cloud environments.
+
+

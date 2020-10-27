@@ -1,8 +1,9 @@
 
-:sesProductName: SUSE Enterprise Storage
+:sesProductName: {companyName} Enterprise Storage
 :sesProductPage: https://www.suse.com/products/suse-enterprise-storage/
 
 :sesVersion: 7
+:sesReleaseNotes: https://www.suse.com/releasenotes/x86_64/SUSE-Enterprise-Storage/7/?_ga=2.14991861.2124137211.1603637276-1851177927.1591191732
 
 :sesDocumentURL: https://susedoc.github.io/#ses
 :sesAdminGuideURL: https://susedoc.github.io/doc-ses/master/single-html/ses-admin/

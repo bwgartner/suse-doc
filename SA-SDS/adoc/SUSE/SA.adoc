@@ -1,2 +1,2 @@
 
-include:: ../SUSE/SA_vars.adoc
+include:: ../{companyName}/SA_vars.adoc

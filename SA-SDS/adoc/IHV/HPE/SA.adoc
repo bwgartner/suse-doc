@@ -1,7 +1,7 @@
 
 ifdef::IHV-HPE[]
 
-include::./HPE_vars.adoc[]
+include::./SA_vars.adoc[]
 include::./Apollo_vars.adoc[]
 include::./Edgeline_vars.adoc[]
 include::./ProLiant_vars.adoc[]
@@ -19,6 +19,10 @@ Utilizing the above software application and technology solutions with the serve
 * and virtualized use cases.
 
 ifdef::IHV-HPE-Apollo,IHV-HPE-Edgeline,IHV-HPE-ProLiant,IHV-HPE-Synergy[]
+
+NOTE: {acronymHPE} https://techlibrary.hpe.com/us/en/enterprise/servers/supportmatrix/suse_linux.aspx[Servers Support & OS Certification Matrices] outlines the minimum version of SLE required for installation, yet later service pack releases may also be used.
+
+include::../../{companyName}/YES.adoc[]
 
 Server product-line and model options abound in the https://www.hpe.com/uk/en/servers.html[{acronymHPE} portfolio], including:
 
@@ -38,9 +42,11 @@ ifdef::IHV-HPE-Synergy[]
 include::./Synergy.adoc[]
 endif::IHV-HPE-Synergy[]
 
+==== Suggested Platform Models
 
+Even with the broad certification and support model across the range of available {acronymHPE} platform models, the following table summarizes which might be a best-practice selection for the various deployment types and sizes (**__S__**mall, **__M__**edium, **__L__**arge, **__XL__**arge).
 
-.Hewlett-Packard Enterprise Platform Matrix for Deployment Types
+.{companyHPE} Platform Matrix for Deployment Types
 [width="80%",valign="middle",halign="center",options="header"]
 |===
 
@@ -51,9 +57,9 @@ ifdef::PerfOpt[ *_<<G_PerfOpt,Performance Optimized>>_* ]
 
 ifdef::IHV-HPE-Apollo[]
 | Apollo
-ifdef::CapOpt[|4500, 4510]
-ifdef::Balance[|4200, 4500, 4510]
-ifdef::PerfOpt[|4200]
+ifdef::CapOpt[|*_(XL) =_* {modelHPE-A4510}]
+ifdef::Balance[|*_(XL) =_* {modelHPE-A4510} *_(L) =_* {modelHPE-A4200}]
+ifdef::PerfOpt[|*_(L) =_* {modelHPE-A4200}]
 endif::IHV-HPE-Apollo[]
 
 ifdef::IHV-HPE-Edgeline[]
@@ -65,9 +71,9 @@ endif::IHV-HPE-Edgeline[]
 
 ifdef::IHV-HPE-ProLiant[]
 | ProLiant 
-ifdef::CapOpt[|DL38x]
-ifdef::Balance[|DL36x, DL38x]
-ifdef::PerfOpt[|DL38x]
+ifdef::CapOpt[|*_(M) =_* {modelHPE-DL380},{modelHPE-DL385}]
+ifdef::Balance[|*_(S) =_*  {modelHPE-DL360},{modelHPE-DL325} *_(M) =_* {modelHPE-DL380},{modelHPE-DL385}]
+ifdef::PerfOpt[|*_(M) =_* {modelHPE-DL380},{modelHPE-DL385}]
 endif::IHV-HPE-ProLiant[]
 
 ifdef::IHV-HPE-Synergy[]

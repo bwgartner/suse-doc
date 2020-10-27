@@ -3,7 +3,7 @@ include::./Ceph_vars.adoc[]
 
 === Ceph footnote:Ceph[link: {cephWikipediaURL}[Ceph]]
 
-The Ceph technology is a open-source footnote:open-source[link: {cephProjectURL}[Ceph.io]] , distributed, software-defined storage [ {useCase} ] solution designed for scalability, reliability and performance. A fundamental component of Ceph is the **__R__**eliable **__A__**utonomic **__D__**istributed **__O__**bject **__S__**torage [ RADOS ]. RADOS enables a number of storage nodes and resources to function together to store and retrieve data from the cluster using object storage techniques. The result is a storage solution that is abstracted from the hardware and is able to span multiple variants of hardware resources.
+The Ceph technology is a open-source footnote:open-source[link: {cephProjectURL}[Ceph.io]] , distributed, software-defined storage [ {useCase} ] solution designed for scalability, reliability and performance. A fundamental component of the many stable Ceph releases is the **__R__**eliable **__A__**utonomic **__D__**istributed **__O__**bject **__S__**torage [ RADOS ] which enables a number of storage nodes and resources to function together to store and retrieve data from the cluster using object storage techniques. The result is a storage solution that is abstracted from the hardware and is able to span multiple variants of hardware resources.
 
 Through its software libraries, librados, and layered APIs and interfaces, Ceph implements object-, block- and file-level storage. For native, traditional application and client access, like block and file APIs, the clients are aware of the storage topology and communicate directly with the storage daemons over the public network, resulting in horizontally scaling performance. Access can extend to other, non-native protocols, such as iSCSI, S3, SMB and NFS utilize gateway implementations.
 
@@ -46,12 +46,12 @@ ifdef::Availability,Performance,Security,Integrity[]
 ifdef::Availability[]
 +
 Availability::
-Ceph provides a completely distributed operation without a single point of failure, scalable to and beyond the exabyte level. Ceph replicates data, with multiple configurable variants, and makes it fault-tolerant using commodity, industry-standard hardware, leveraging whatever resources are present. As a result of its design, the system is both self-healing and self-managing, aiming to minimize administration time and other costs.
+Ceph provides a completely distributed, redundant operation without a single point of failure. Unlimited scalability with a distributed storage cluster can accomodate thousands of nodes and multi-hundred petabyte environments (and beyond) to meet your growing data requirements. Ceph replicates data, with multiple configurable variants, making it resilient, fault-tolerant using commodity, industry-standard hardware, leveraging whatever resources is provided. As a result of its design, the system automates re-balancing and optimized data placement and is both self-healing and self-managing, aiming to minimize administration time and other costs. 
 endif::Availability[]
 ifdef::Performance[]
 +
 Performance::
-The CRUSH algorithm, residing on and maintained across the Ceph MON nodes, determines how to store and retrieve data by computing storage locations. This empowers the clients to directly communicate with the respective OSD with the data, eliminating performance bottlenecks. Further, due to the replicated, clustered approach of Ceph, the collective access performance is a muliple of of the drive types. 
+The CRUSH algorithm, residing on and maintained across the Ceph MON nodes, determines how to store and retrieve data by computing storage locations. This empowers the clients to directly communicate with the respective OSD with the data, eliminating performance bottlenecks. Further, due to the replicated, clustered approach of Ceph, the collective access performance is a muliple of each of the drive types and tends to continually increase as cluster node counts grow.
 +
 NOTE: While protocal gateways may be thought of as a potentially limiting factor, these gateways can scale horizontally using load balancing techniques.
 endif::Performance[]
@@ -66,5 +66,5 @@ Integrity::
 Both data consistency and cleanliness is maintained by Ceph OSDs. Comparing object metadata in one placement group against it's replicas in other OSD placement groups can initiate scrubbing. Deeper bit-by-bit comparisons are also regularly done to find faulty storage element sectors.
 endif::Integrity[]
 
-ifdef::Availability,Performance,Security,Integrity[]
+endif::Availability,Performance,Security,Integrity[]
 

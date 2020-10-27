@@ -22,9 +22,9 @@ ifdef::Ceph[]
 include::../FOSS/Ceph.adoc[]
 
 ifdef::SUSE[]
-include::../SUSE/SA_vars.adoc[]
+include::../{companyName}/SA_vars.adoc[]
 ifdef::EnterpriseStorage[]
-include::../SUSE/SES.adoc[]
+include::../{companyName}/SES.adoc[]
 endif::EnterpriseStorage[]
 endif::SUSE[]
 

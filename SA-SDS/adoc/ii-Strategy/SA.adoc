@@ -5,28 +5,58 @@
 The strategy elements are typically used to model the strategic direction and choices of an enterprise, as far as the impact on its architecture is concerned. They can be used to express how the enterprise wants to create value for its stakeholders, the capabilities it needs for that, the resources needed to support these capabilities, and how it plans to configure and use these capabilities and resources to achieve its aims. Strategy elements are used to model the strategic direction and choices of the enterprise, whereas Business Layer elements are used to model the operational organization of an enterprise.
 ////
 
-FixMe - Libero nunc consequat interdum varius sit amet mattis. Praesent elementum facilisis leo vel fringilla est ullamcorper eget. Quam lacus suspendisse faucibus interdum posuere lorem ipsum dolor sit. Mi sit amet mauris commodo quis imperdiet massa tincidunt. Ac placerat vestibulum lectus mauris ultrices eros in. Viverra vitae congue eu consequat ac felis donec et odio. Vestibulum lectus mauris ultrices eros in cursus turpis. Aliquet bibendum enim facilisis gravida neque convallis a. Vel fringilla est ullamcorper eget nulla facilisi etiam dignissim. Habitasse platea dictumst vestibulum rhoncus. Diam sollicitudin tempor id eu nisl nunc mi ipsum faucibus. Quam quisque id diam vel quam elementum pulvinar etiam. Ut sem viverra aliquet eget sit amet tellus. Blandit libero volutpat sed cras ornare arcu.
-
-image::SA-Strategy.png[title="Solution Architecture - {useCase} Strategy", scaledwidth=80%]
+For almost any digital transformation, the strategic approach is to evaluate the current state and take into account possible, expanding future requirements. Then determine the advantages and effectiveness of augmenting or replace existing solutions. Such a change in direction should be evaluated in the overall creation of value for the respective stakeholders.
 
 === Context
 
-FixMe - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Libero nunc consequat interdum varius. Et magnis dis parturient montes nascetur ridiculus mus mauris. Morbi tincidunt ornare massa eget egestas purus viverra. Ac feugiat sed lectus vestibulum mattis. Arcu cursus euismod quis viverra nibh cras pulvinar mattis. Mauris nunc congue nisi vitae suscipit tellus mauris a. Amet consectetur adipiscing elit pellentesque habitant morbi tristique. Tellus mauris a diam maecenas sed. Tincidunt vitae semper quis lectus nulla at volutpat diam ut. Felis eget velit aliquet sagittis id consectetur. Urna et pharetra pharetra massa. Interdum varius sit amet mattis vulputate enim. Leo in vitae turpis massa sed elementum tempus. Sed arcu non odio euismod. Ut sem viverra aliquet eget sit amet tellus. Purus in mollis nunc sed id semper. Dictum sit amet justo donec enim diam vulputate ut.
+For a software-defined storage [ {useCase} ] transformation, the following figure grapically summarizes these elements to address *_Why_* to attempt this:
 
-=== Categories and Variants
-
-FixMe - Libero id faucibus nisl tincidunt eget nullam non nisi est. Vulputate enim nulla aliquet porttitor lacus luctus accumsan tortor posuere. Consequat nisl vel pretium lectus quam id leo in. Vel fringilla est ullamcorper eget nulla. Pellentesque sit amet porttitor eget dolor. Vulputate ut pharetra sit amet aliquam id diam. In hac habitasse platea dictumst vestibulum rhoncus est pellentesque elit. Posuere morbi leo urna molestie at elementum eu facilisis. Eget nunc scelerisque viverra mauris. Mattis ullamcorper velit sed ullamcorper morbi tincidunt. Sit amet commodo nulla facilisi nullam. Aliquet bibendum enim facilisis gravida neque. Orci a scelerisque purus semper eget duis at tellus at. Eget mauris pharetra et ultrices neque ornare aenean euismod. Vel quam elementum pulvinar etiam non quam. Arcu dictum varius duis at consectetur. Enim nunc faucibus a pellentesque.
-
-=== Capability
-
-FixMe - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Eu scelerisque felis imperdiet proin fermentum leo vel orci. Massa vitae tortor condimentum lacinia. Cras semper auctor neque vitae. Cras tincidunt lobortis feugiat vivamus. Elementum sagittis vitae et leo duis ut. Pellentesque dignissim enim sit amet venenatis urna cursus. Mauris rhoncus aenean vel elit scelerisque mauris pellentesque. In metus vulputate eu scelerisque felis imperdiet proin fermentum leo. Vel facilisis volutpat est velit egestas dui. Libero volutpat sed cras ornare arcu. Semper auctor neque vitae tempus quam. Eget nunc scelerisque viverra mauris in aliquam sem. Molestie at elementum eu facilisis sed odio morbi quis commodo.
+image::SA-Strategy.png[title="Solution Architecture - {useCase} Strategy", scaledwidth=80%]
 
 === Value Stream
 
-FixMe - Pellentesque pulvinar pellentesque habitant morbi tristique senectus et. Congue mauris rhoncus aenean vel elit scelerisque mauris pellentesque. Aenean et tortor at risus viverra. Tellus molestie nunc non blandit massa enim nec dui. Ullamcorper eget nulla facilisi etiam dignissim diam quis enim. Neque volutpat ac tincidunt vitae semper quis lectus. Leo urna molestie at elementum eu facilisis sed odio morbi. Amet aliquam id diam maecenas ultricies mi eget mauris pharetra. Ut porttitor leo a diam sollicitudin tempor id eu. Massa massa ultricies mi quis hendrerit. Justo eget magna fermentum iaculis eu non diam phasellus. Sagittis orci a scelerisque purus semper eget duis. Sed vulputate mi sit amet. Eu tincidunt tortor aliquam nulla facilisi cras fermentum odio eu. Turpis tincidunt id aliquet risus feugiat in ante metus.
+Denoted in the arrow context, the value stream includes the assessment of the current state followed by selection of the implementation targets. This leads to a course of action with the decisive inputs. As you might guess, this stream be done in a looping, iterative fashion to address the respective considerations in an effecient, timely and cost effective manner.
+
+=== Capability
+
+A dominant capability concern for enterprise storage is the current and future capacity. Once the usable capacity is measured and determined, additional characteristics, listed below, may further impact the raw capacity needed to implement the future storage solution, plus contribute key attributes for the digital transformation decisions:
+
+ifdef::Availability[]
+* <<G_Availability,Availability>>
+endif::Availability[]
+ifdef::Performance[]
+* <<G_Performance,Performance>>
+endif::Performance[]
+ifdef::Security[]
+* <<G_Security,Security>>
+endif::Security[]
+ifdef::Integrity[]
+* <<G_Integrity,Integrity>>
+endif::Integrity[]
+
+TIP: Further definition and explanation for some of the above factors are accessible in the glossary links.
 
 === Resources
 
-FixMe - Etiam dignissim diam quis enim lobortis scelerisque. Fermentum posuere urna nec tincidunt praesent semper. Risus commodo viverra maecenas accumsan lacus vel facilisis. Tempor orci eu lobortis elementum nibh tellus molestie nunc. Est ante in nibh mauris. Et odio pellentesque diam volutpat commodo sed. Magna ac placerat vestibulum lectus mauris ultrices eros in cursus. Id consectetur purus ut faucibus pulvinar elementum integer enim neque. Cursus risus at ultrices mi tempus. Cursus vitae congue mauris rhoncus aenean vel. Rhoncus aenean vel elit scelerisque mauris pellentesque pulvinar pellentesque. Fusce ut placerat orci nulla pellentesque dignissim enim sit amet. Lacus sed viverra tellus in hac habitasse. Condimentum mattis pellentesque id nibh tortor id.
+Initially, one should evaluate a set of current storage resources being utilized and also assess possible future transitions:
+
+Use Case(s)::
+It is imperative to collect every relevant use case that relies on the data storage elements under consideration. This needs to include both front-end and back-end software applications plus also the accessibility range from end-users to just machine-centric interfaces.
+
+Locale::
+Often dictated by the actual use case and it's proximity requirements, the location of where the data and storage solution resides is paramount. Options of on-premise, multi-site or hybrid-cloud have all become very viable, yet other factors may be the guiding considerations for deployment transformations.
+
+Governance::
+In a global and industry vertical sense, data governance footnote:governance[link: https://en.wikipedia.org/wiki/Data_governance[Data governance] is a core consideration. Beyond the previous locality requirements, this includes quality throughout the data's lifecycle. Also, controls, processes, and accountability of the assest that data provides, is necessary within any specific regulations and enterprise policies. 
+
+As part of the strategic planning decision making process, another set of resource attributes is imperative to consider for each possible digital tranformational approach in the {useCase} context:
+
+Total Cost of Ownership::
+A very relevant attribute, which is partially a function of the inherent value that data provides over time, is the total cost of ownership to maintain such a storage solution. Given the ever increasing quantity of data, optimizing the total cost of ownership is a high priority. During the digital transformation project(s), it is necessary to also evaluate other attributes to streamline the modernization:
++
+* Risk Assessment - especially in the context of an upgrade or migration, considering the resources needed to mitigate possible risks and have viable fallbacks is important
+* Scope - as with most projects, iteratively managing the target scope is a method to increase expertise, limit impacts, and successively improve value-add
+* Timeframe - understanding that even simple projects may require longer first attempts, to increase the knowledge base, that may help speed up later, even more complex solution deployments
+* Resources - both organizationally internal resources and external partner, supplier or provider should be considered
 
 

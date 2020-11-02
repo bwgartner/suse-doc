@@ -10,7 +10,7 @@ include::./SA_vars.adoc[]
 [preface]
 = Preface
 
-Whether you are just starting or continuing to progress on a digital transformation journey, you should consider addressing one of the core infrastructure elements -- storage. Using this solution architecture, you will learn how to successfully and effectively accomplish this software-defined storage itransition with simplify, modernize and accelerate process steps.
+Whether you are just starting or continuing to progress on a digital transformation journey, you should consider addressing one of the core infrastructure elements -- storage. Using this solution architecture, you will learn how to successfully and effectively accomplish a software-defined storage itransition with simplify, modernize and accelerate process steps.
 
 The following, layered footnote:Archimate[link: https://pubs.opengroup.org/architecture/archimate3-doc[Archimate Enterprise Architecture]] aspects will be covered:
 
@@ -22,7 +22,7 @@ ifdef::Business[]
 * *_What_* key factors are important and *_When_* to consider them
 endif::Business[]
 ifdef::Application[]
-* *_What_* software and applications this is relevant to accomplish
+* *_Which_* software components and applications are relevant to accomplish this
 endif::Application[]
 ifdef::Technology[]
 * *_How_* various technology components can facilitate this
@@ -64,6 +64,8 @@ endif::Migration[]
 
 implementations and considerations may also be covered.
 ////
+
+TIP: This document's content, while quite comprehensive in an end-to-end fashion, is also constructed with the philosophy not to replicate all relevant content from another, authoritive source. Instead, it provide reasoning, the actual references and cites any exceptions or important considerations.
 
 // Introduction
 include::./i-Introduction/SA.adoc[]

@@ -9,7 +9,7 @@ For almost any digital transformation, the strategic approach is to evaluate the
 
 === Context
 
-For a software-defined storage [ {useCase} ] transformation, the following figure grapically summarizes these elements to address *_Why_* to attempt this:
+To address *_Why_* to embark upon a software-defined storage [ {useCase} ] transformation, a core reason for the explosive growth of data is the reliance on data-based decisions. Across all resource layers -- data, information, and intelligence -- the fundamental requirement is quality to ultimately lead to effective business decisions and outcomes.  The following figure grapically summarizes these elements:
 
 image::SA-Strategy.png[title="Solution Architecture - {useCase} Strategy", scaledwidth=80%]
 
@@ -55,8 +55,7 @@ Total Cost of Ownership::
 A very relevant attribute, which is partially a function of the inherent value that data provides over time, is the total cost of ownership to maintain such a storage solution. Given the ever increasing quantity of data, optimizing the total cost of ownership is a high priority. During the digital transformation project(s), it is necessary to also evaluate other attributes to streamline the modernization:
 +
 * Risk Assessment - especially in the context of an upgrade or migration, considering the resources needed to mitigate possible risks and have viable fallbacks is important
-* Scope - as with most projects, iteratively managing the target scope is a method to increase expertise, limit impacts, and successively improve value-add
+* Scope - as with most projects, iteratively managing the target scope is a method to increase expertise, limit impacts, and successively improve value-add.
 * Timeframe - understanding that even simple projects may require longer first attempts, to increase the knowledge base, that may help speed up later, even more complex solution deployments
 * Resources - both organizationally internal resources and external partner, supplier or provider should be considered
-
 

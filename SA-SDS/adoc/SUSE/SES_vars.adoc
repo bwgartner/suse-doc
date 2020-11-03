@@ -5,12 +5,13 @@
 :sesVersion: 7
 :sesReleaseNotes: https://www.suse.com/releasenotes/x86_64/SUSE-Enterprise-Storage/7/?_ga=2.14991861.2124137211.1603637276-1851177927.1591191732
 
-:sesDocumentURL: https://susedoc.github.io/#ses
-:sesAdminGuideURL: https://susedoc.github.io/doc-ses/master/single-html/ses-admin/
-:sesRookDeployGuideURL: https://susedoc.github.io/doc-ses/master/single-html/ses-rook/
-:sesDeployGuideURL: https://susedoc.github.io/doc-ses/master/single-html/ses-deployment/
-:sesWinGuideURL: https://susedoc.github.io/doc-ses/master/single-html/ses-windows/
-:sesSecGuideURL: https://susedoc.github.io/doc-ses/master/single-html/ses-security/
-:sesTSGuideURL: https://susedoc.github.io/doc-ses/master/single-html/ses-troubleshooting/
+:sesDocumentURL: https://documentation.suse.com/ses/7/
+:sesAdminGuideURL: {sesDocumentURL}/single-html/ses-admin
+:sesRookDeployGuideURL: {sesDocumentURL}/single-html/ses-rook
+:sesRookBPGuideURL: https://documentation.suse.com/sbp/all/single-html/SBP-rook-ceph-kubernetes/
+:sesDeployGuideURL: {sesDocumentURL}/single-html/ses-deployment
+:sesWinGuideURL: {sesDocumentURL}/single-html/ses-windows
+:sesSecGuideURL: {sesDocumentURL}/single-html/ses-security
+:sesTSGuideURL: {sesDocumentURL}/single-html/ses-troubleshooting
 // :sesTuningGuideURL: https://susedoc.github.io/doc-ses/ses6/single-html/ses-tuning/
 

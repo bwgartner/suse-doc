@@ -1,0 +1,10 @@
+:caaspProductName: {companyName} CaaS Platform
+:caaspProductPage: https://www.suse.com/products/caas-platform/
+
+:caaspVersion: 4.5
+:caaspReleaseNotes: https://www.suse.com/releasenotes/x86_64/SUSE-CAASP/4.5/
+
+:caaspDocumentURL: https://documentation.suse.com/suse-caasp/4.5/
+:caaspAdminGuideURL: {caaspDocumentURL}/single-html/caasp-admin
+:caaspDeployGuideURL: {caaspDocumentURL}/single-html/caasp-deployment
+

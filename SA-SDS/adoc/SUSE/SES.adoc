@@ -1,20 +1,122 @@
 include::./SES_vars.adoc[]
+include::./SLE_vars.adoc[]
+include::./CaaSPlatform_vars.adoc[]
 
 ==== {sesProductName}
 
 A product offering of the {suseHomePage}[{companyName}](R) portolio is {sesProductPage}[{sesProductName}], an intelligent software-defined storage solution, powered by Ceph technology, which enables you to transform your enterprise storage infrastructure:
 
-* Providing IT organizations with a simple to manage, agile infrastructure with increased speed of delivery, durability and reliability.
-* Accelerating innovation, reduce costs and alleviate proprietary hardware lock-in by transforming your enterprise storage infrastructure with a truly open, and unified intelligent software-defined storage solution. 
-* Offering ubiquitous and universal access to your legacy and modern applications and automated durability for your data with high availability, performant, secure and disaster recovery options.
-* FixMe - Support, Updates/Upgrades Enterprise
+* Deliver a highly scalable and resilient enterprise-grade storage environment with a single unified software-defined storage cluster
+* Reduce IT operational expenses using off-the-shelf servers and disk drives no matter where they are, in your data center or the cloud
+* Seamlessly adapt to changing business and data demands when needed and without disruption
 
-FixMe - While a software-defined storage approach may seem new, the logic within enterprise storage devices has always been written in software. It’s only been in the last few years that hardware has progressed enough so that enterprise storage software and dedicated hardware can now be distinctly layered components. Given the enablement and support of the underlying OS, 
+While a software-defined storage approach may seem new, the logic within enterprise storage devices has always been written in software. It’s only been in the last few years that hardware has progressed enough so that enterprise storage software and dedicated hardware can now be distinctly layered components.
 
-FixMe - SES7 Release claims/updates
+The recent release of {sesProductName} {sesVersion} has these key features:
 
-FixMe - Deployment options
+* limitless scalability
+* reliability
+* support for block, file and object storage
+* cost efficiency
+* self-healing and data recovery
+* ease of management with an advanced dashboard graphical interface
+* x86_64 and aarch64 hardware platforms
+* Windows(R) native client block access driver
+* containerized role and service delivery
+ifdef::cephadm[]
+** for traditional cluster deployments
+endif::cephadm[]
+ifdef::Rook[]
+** for hyperconverged Kubernetes deployments
+endif::Rook[]
 
-FixMe - Commmunity contributions
+that provides:
 
+* automated, optimizations of clusters
+* a single, platform-agnostic solution, utilizing off-the-shelf hardware
+* unifies and supports the right type of storage for most every type of data use case
+* intelligently automates storage utilization
+* guided updates and upgrades
+* cost effective SKU pricing
+ifdef::cephadm[]
+** per node (not per storage capacity setup) for traditional setup
+endif::cephadm[]
+ifdef::Rook[]
+** per number of disks running on Kubernetes
+endif::Rook[]
+
+===== Deployment process
+{sesProductName} {sesVersion} offers Ceph services, deployed as containers instead of packages.
+
+ifdef::cephadm[]
+Deploying traditional cluster with cephadm
+
+Process - {sesDeployGuideURL}#deploy-cephadm[Deploying with cephadm]::
+test
++
+* Install and configure the underlying {sesDeployGuideURL}#deploy-os[operating system] -- {sleDeployGuideURL}[{sleProductName} {sleVersion}] -- on all cluster nodes
++
+NOTE: Ensure the quantity and system resources meet the designated role requirements for the respective deployment flavor. Refer to the <<_physical>> layer section for these details.
++
+** Automating the installations across cluster nodes can be accomplished with {sleAYDocumentURL}[{sleAYProductName}]. A manual install on a given node, can provide a sample {sleAYProductName} file via yast clone_system, and then a tweaked version with changes to hostname and network config can be used for another node via boot command line "autoyast=<URLtoFile>"
+** Ensuring the installation can access the required products, packages and updates can be facilitated by setting up a local {sleRMTDocumentURL}[{sleRMTProductName}] [ {sleRMTAcronym} ] instance. It mirrors content from the {sccURL}[{sccName}] [ {sccAcronym} ] and the cluster node can be registered to the {sleRMTAcronym} during the installation. This can also be included in the {sleAYProductName} file.
++
+* {sesDeployGuideURL}#deploy-salt[Deploy Salt] infrastructure on all cluster nodes, via ceph-salt to:
+** setup initial configuration parameters
+** perform the initial deployment validation and preparations
+** create a minimally boostrapped cluster, with single Ceph Monitor and Ceph Manager services
++
+* {sesDeployGuideURL}#deploy-cephadm-day1[Deploying the Ceph Cluster] using ceph orch, which is an interface to the cephadm command
++
+* {sesDeployGuideURL}#deploy-cephadm-day2[Deploying Services and Gateways] to further scale out the cluster to the desired end state and provide the necessary services described in the <<_application>> layer.
++
+* Post-deployment quick test
+** The steps below can be used to validate the overall cluster health and functionality:
++
+[subs="attributes,verbatim"]
+----
+ceph status
+ceph osd pool create test 1024
+rados bench -p test 300 write --no-cleanup
+rados bench -p test 300 seq
+rados bench -p test 300 rand
+----
++
+** Once the tests are complete, you can cleanup and remove the test pool via:
++
+[subs="attributes,verbatim"]
+----
+ceph tell mon.* injectargs --mon-allow-pool-delete=true
+ceph osd pool delete test test --yes-i-really-really-mean-it
+ceph tell mon.* injectargs --mon-allow-pool-delete=false
+----
++
+* Further {sesProductName} reference material:
+** {sesAdminGuideURL}[Operations and Administration Guide]
+** {sesSecGuideURL}[Security Hardening Guide]
+** {sesTSGuideURL}[Troubleshooting Guide]
+** {sesWinGuideURL}[{sesProductName} for Windows Guide}]
+
+endif::cephadm[]
+
+ifdef::Rook[]
+Deploying hyperconverged Kubernetes cluster with Rook
+
+Process - {sesRookDeployGuideURL}#rook-deploy-ceph[Deploying Ceph with Rook]::
+FixMe
++
+* Install and configure the underlying {caaspDeployGuideURL}#_deployment_instructions[{caaspProductName} {caaspVersion}] Kubernetes cluster.
++
+NOTE: Ensure the quantity and system resources meet the designated role requirements for the respective deployment flavor. Refer to the <<_physical>> layer section for these details.
++
+* {sesRookDeployGuideURL}#getting-started-rook[Getting Started with Rook] to setup helm
++
+* {sesRookDeployGuideURL}#rook-deploy-ceph[Deploying Ceph with Rook] to label the respective Kubernetes nodes and apply the core roles and services
++
+* {sesRookDeployGuideURL}#rook-config-ceph[Configuring the Ceph Cluster] to integrate CephFS or RADOS Block Device [ RBD ] with Kubernetes for access by the scheduled pods as a storage class.
++
+* Further {sesProductName} reference material:
+** {sesRookBPGuideURL}[Rook Best Practices for Running Ceph on Kubernetes]
+
+endif::Rook[]
 

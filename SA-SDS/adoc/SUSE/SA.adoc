@@ -1,2 +1,7 @@
 
-include:: ../{companyName}/SA_vars.adoc
+include::./SA_vars.adoc[]
+
+=== {companyName}
+
+{suseHomePage}[{companyName}](R), the Open Open Source Company, works with an ecosystem of partners and communities to deliver enterprise-grade, open source software-defined infrastructure and application delivery solutions backed by superior service and support.
+

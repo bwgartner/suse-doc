@@ -68,3 +68,10 @@ endif::Integrity[]
 
 endif::Availability,Performance,Security,Integrity[]
 
+The latest Ceph {cephVersion} release has these new attributes to increase efficiency:
+* health alerting improved
+* spareness preservation
+* improved bucket listing and object recovery
+* S2 public access blocking
+* improved user account security
+ 

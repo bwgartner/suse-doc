@@ -22,7 +22,7 @@ ifdef::Ceph[]
 include::../FOSS/Ceph.adoc[]
 
 ifdef::SUSE[]
-include::../{companyName}/SA_vars.adoc[]
+include::../{companyName}/SA.adoc[]
 ifdef::EnterpriseStorage[]
 include::../{companyName}/SES.adoc[]
 endif::EnterpriseStorage[]
@@ -31,6 +31,7 @@ endif::SUSE[]
 endif::Ceph[]
 
 ////
+
 ifdef::Availability[]
 include::./Availability/SA.adoc[]
 endif::Availability[]
@@ -46,5 +47,6 @@ endif::Security[]
 ifdef::Integrity[]
 include::./Integrity/SA.adoc[]
 endif::Integrity[]
+
 ////
 

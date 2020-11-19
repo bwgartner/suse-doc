@@ -5,10 +5,17 @@
 Business Layer elements are used to model the operational organization of an enterprise in a technology-independent manner, whereas strategy elements are used to model the strategic direction and choices of the enterprise.
 ////
 
+In the digital transformation of {useCase}, the business layer elements focus on the operational aspects of the organization. This includes:
 
-FixMe - Nascetur ridiculus mus mauris vitae ultricies leo integer malesuada. Ornare lectus sit amet est placerat. Luctus venenatis lectus magna fringilla urna porttitor rhoncus dolor purus. At imperdiet dui accumsan sit amet nulla facilisi morbi. Ornare lectus sit amet est placerat in egestas erat imperdiet. Egestas egestas fringilla phasellus faucibus scelerisque eleifend. In hac habitasse platea dictumst quisque sagittis purus. Ut sem nulla pharetra diam sit amet nisl suscipit adipiscing. Auctor elit sed vulputate mi sit amet mauris commodo. Ullamcorper eget nulla facilisi etiam dignissim diam. Laoreet non curabitur gravida arcu ac. Id eu nisl nunc mi ipsum faucibus vitae aliquet nec. Neque convallis a cras semper. Maecenas accumsan lacus vel facilisis. Lectus proin nibh nisl condimentum id venenatis a condimentum vitae. Massa massa ultricies mi quis. Adipiscing enim eu turpis egestas pretium aenean pharetra magna.
+* *_Who_* are the respective stakeholders,
+* *_What_* specific business processes are necessary to address the transition process, along with expectational categories to prioritize
+* *_When_* to consider and proceed with each possible iteration of the transformation
+
+These are graphically represented in the following figure:
 
 image::SA-Business.png[title="Solution Architecture - {useCase} Business", scaledwidth=80%]
+
+FixMe - When and align with Business Line Manager footnote
 
 === Roles and Collaboration
 
@@ -38,13 +45,70 @@ Engaging with these staff members is critical, since they are ultimately respons
 
 So, having representatives of each of these stakeholders engaged up front will help to formulate a more effective plan that can be collective steps forward in the digital transformation.  During the various project phases, more individuals from each of the stakeholder segments may be brought in for awareness, training, testing, and evaluation to ensure continued, iterative success.
 
+IMPORTANT: Depending upon the elements utilized in the following layers, it would also make sense to engage with the respective providers of those components. This could include their technical pre-sales, consulting, services and support teams to more thoroughly plan, configure, deploy and maintain the {useCase} solution.
+
 === Processes and Functions
 
 FixMe - Egestas egestas fringilla phasellus faucibus scelerisque. Aliquet porttitor lacus luctus accumsan. Ornare arcu odio ut sem nulla pharetra diam. Interdum velit euismod in pellentesque massa. Nulla at volutpat diam ut. Volutpat sed cras ornare arcu dui vivamus arcu felis bibendum. Ut faucibus pulvinar elementum integer. Urna cursus eget nunc scelerisque. Quisque sagittis purus sit amet volutpat consequat mauris nunc. Quis varius quam quisque id diam. Pretium aenean pharetra magna ac placerat vestibulum lectus mauris ultrices. Purus faucibus ornare suspendisse sed. Placerat orci nulla pellentesque dignissim enim sit amet venenatis. Gravida neque convallis a cras semper auctor neque vitae tempus. Vel pharetra vel turpis nunc eget. Facilisis volutpat est velit egestas dui id ornare arcu odio. Aliquam vestibulum morbi blandit cursus risus at ultrices mi.
 
 === Factors, Flavors and Deployment Scenarios
 
-FixMe - Id diam maecenas ultricies mi eget mauris. Cras fermentum odio eu feugiat pretium nibh ipsum consequat. Mi sit amet mauris commodo. Quam nulla porttitor massa id neque aliquam vestibulum morbi blandit. Pretium viverra suspendisse potenti nullam ac tortor vitae purus faucibus. Diam donec adipiscing tristique risus nec feugiat in fermentum. Dui id ornare arcu odio ut sem nulla. Eu sem integer vitae justo. Elementum eu facilisis sed odio. Ut morbi tincidunt augue interdum velit euismod in pellentesque massa. Gravida neque convallis a cras semper. Tellus at urna condimentum mattis. Faucibus purus in massa tempor nec feugiat nisl pretium fusce. Ut lectus arcu bibendum at varius vel pharetra vel turpis. Velit egestas dui id ornare arcu odio ut sem. Faucibus interdum posuere lorem ipsum. In ante metus dictum at tempor commodo. Sed id semper risus in hendrerit gravida rutrum. Mauris pharetra et ultrices neque ornare aenean euismod. Sit amet tellus cras adipiscing enim eu turpis egestas pretium.
+In both the current state of provisioned storage and possible replacement or augmented {useCase} scenarios, it is imperative to prioritize, address and plan for key factors, the targeted flavors and deployment scenarios.
+
+==== Factors
+
+ifdef::Availability[]
+Availability
+[[B_Availability]]include::./SA-Availability.adoc[]
+endif::Availability[]
+
+ifdef::Performance[]
+Performance
+[[B_Performance]]include::./SA-Performance.adoc[]
+endif::Performance[]
+
+ifdef::Security[]
+Security
+[[B_Security]]include::./SA-Security.adoc[]
+endif::Security[]
+
+ifdef::Integrity[]
+Integrity
+[[B_Integrity]]include::./SA-Integrity.adoc[]
+endif::Integrity[]
+
+==== Flavors 
+
+ifdef::PoC[]
+Proof-of-Concept
+[[B_PoC]]include::./SA-PoC.adoc[]
+endif::PoC[]
+
+ifdef::Production[]
+Production
+[[B_Production]]include::./SA-Production.adoc[]
+endif::Production[]
+
+ifdef::Scaling[]
+Scaling
+[[B_Scaling]]include::./SA-Scaling.adoc[]
+endif::Scaling[]
+
+==== Deployment Types
+
+ifdef::Balance[]
+[[B_Balance]]include::./SA-Balance.adoc[]
+endif::Balance[]
+
+ifdef::PerfOpt[]
+[[B_PerfOpt]]include::./SA-PerfOpt.adoc[]
+endif::PerfOpt[]
+
+ifdef::CapOpt[]
+[[B_CapOpt]]include::./SA-CapOpt.adoc[]
+endif::CapOpt[]
+
+In summary, the following table denotes those which factors, flavors and scenarios can be addressed with the following layers of the solution architecture:
 
 .Scope of Covered Factors, Flavors, and Deployment Scenarios
 [width="80%",valign="middle",halign="center",options="header"]
@@ -143,48 +207,3 @@ endif::Scaling[]
 |===
 
 
-==== Factors
-
-ifdef::Availability[]
-[[B_Availability]]include::./SA-Availability.adoc[]
-endif::Availability[]
-
-ifdef::Performance[]
-[[B_Performance]]include::./SA-Performance.adoc[]
-endif::Performance[]
-
-ifdef::Security[]
-[[B_Security]]include::./SA-Security.adoc[]
-endif::Security[]
-
-ifdef::Integrity[]
-[[B_Integrity]]include::./SA-Integrity.adoc[]
-endif::Integrity[]
-
-==== Flavors 
-
-ifdef::PoC[]
-[[B_PoC]]include::./SA-PoC.adoc[]
-endif::PoC[]
-
-ifdef::Production[]
-[[B_Production]]include::./SA-Production.adoc[]
-endif::Production[]
-
-ifdef::Scaling[]
-[[B_Scaling]]include::./SA-Scaling.adoc[]
-endif::Scaling[]
-
-==== Deployment Types
-
-ifdef::Balance[]
-[[B_Balance]]include::./SA-Balance.adoc[]
-endif::Balance[]
-
-ifdef::PerfOpt[]
-[[B_PerfOpt]]include::./SA-PerfOpt.adoc[]
-endif::PerfOpt[]
-
-ifdef::CapOpt[]
-[[B_CapOpt]]include::./SA-CapOpt.adoc[]
-endif::CapOpt[]

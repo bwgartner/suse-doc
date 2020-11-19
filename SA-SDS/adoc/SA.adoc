@@ -67,6 +67,8 @@ implementations and considerations may also be covered.
 
 TIP: This document's content, while quite comprehensive in an end-to-end fashion, is also constructed with the philosophy not to replicate all relevant content from another, authoritive source. Instead, it provide reasoning, the actual references and cites any exceptions or important considerations.
 
+
+
 // Introduction
 include::./i-Introduction/SA.adoc[]
 

@@ -1,3 +1,4 @@
+
 DRAFT=yes
 
 ## -----------------------------
@@ -16,7 +17,7 @@ ADOC_POST="yes"
 
 ##
 # Variable Parameters
-#	Layers based upon Archmate
+#	Layers based upon Archimate
 ##
 
 ## Global
@@ -26,36 +27,42 @@ ADOC_ATTRIBUTES=" --attribute env-daps=1"
 ADOC_ATTRIBUTES+=" --attribute Strategy=1"
 
 ## Business
-#ADOC_ATTRIBUTES+=" --attribute Business=1"
+ADOC_ATTRIBUTES+=" --attribute Business=1"
 
 ## Application (Workloads)
-#ADOC_ATTRIBUTES+=" --attribute Application=1"
+ADOC_ATTRIBUTES+=" --attribute Application=1"
 #	then add respective ISV attributes/parameters
-#ADOC_ATTRIBUTES+=" --attribute ISV-Weka=1"
-#ADOC_ATTRIBUTES+=" --attribute ISV-HPE-DMF=1"
-#ADOC_ATTRIBUTES+=" --attribute ISV-Veeam=1"
-#ADOC_ATTRIBUTES+=" --attribute ISV-Commvault=1"
-#ADOC_ATTRIBUTES+=" --attribute ISV-Microfocus=1"
+ADOC_ATTRIBUTES+=" --attribute ISV-Weka=1"
+ADOC_ATTRIBUTES+=" --attribute ISV-HPE-DMF=1"
+ADOC_ATTRIBUTES+=" --attribute ISV-Veeam=1"
+ADOC_ATTRIBUTES+=" --attribute ISV-Commvault=1"
+ADOC_ATTRIBUTES+=" --attribute ISV-Microfocus=1"
+ADOC_ATTRIBUTES+=" --attribute ISV-Iternity=1"
+ADOC_ATTRIBUTES+=" --attribute ISV-VMware=1"
+#ADOC_ATTRIBUTES+=" --attribute ISV-Confluence=1"
 
 ## Technology
-#ADOC_ATTRIBUTES+=" --attribute Technology=1"
+ADOC_ATTRIBUTES+=" --attribute Technology=1"
 #	then add respective SUSE product portolio attributes/parameters
-#ADOC_ATTRIBUTES+=" --attribute SUSE=1"
-#ADOC_ATTRIBUTES+=" --attribute EnterpriseStorage=1"
-#ADOC_ATTRIBUTES+=" --attribute CaaSPlatform=1"
+ADOC_ATTRIBUTES+=" --attribute Ceph=1"
+ADOC_ATTRIBUTES+=" --attribute SUSE=1"
+ADOC_ATTRIBUTES+=" --attribute EnterpriseStorage=1"
+ADOC_ATTRIBUTES+=" --attribute CaaSPlatform=1"
 
 ## Physical
-#ADOC_ATTRIBUTES+=" --attribute Physical=1"
+ADOC_ATTRIBUTES+=" --attribute Physical=1"
 #	then add respective IHV/CSP attributes/parameters
+ADOC_ATTRIBUTES+=" --attribute IHV-Ampere=1"
 #ADOC_ATTRIBUTES+=" --attribute IHV-Dell=1"
 #ADOC_ATTRIBUTES+=" --attribute IHV-Dell-PowerEdge=1"
-#ADOC_ATTRIBUTES+=" --attribute IHV-HPE=1"
-#ADOC_ATTRIBUTES+=" --attribute IHV-HPE-Apollo=1"
+ADOC_ATTRIBUTES+=" --attribute IHV-HPE=1"
+ADOC_ATTRIBUTES+=" --attribute IHV-HPE-Apollo=1"
 #ADOC_ATTRIBUTES+=" --attribute IHV-HPE-Edgeline=1"
-#ADOC_ATTRIBUTES+=" --attribute IHV-HPE-ProLiant=1"
+ADOC_ATTRIBUTES+=" --attribute IHV-HPE-ProLiant=1"
 #ADOC_ATTRIBUTES+=" --attribute IHV-HPE-Synergy=1"
 #ADOC_ATTRIBUTES+=" --attribute IHV-Lenovo=1"
-#ADOC_ATTRIBUTES+=" --attribute IHV-Seagate=1"
+ADOC_ATTRIBUTES+=" --attribute IHV-Seagate=1"
+#ADOC_ATTRIBUTES+=" --attribute CSP-AWS"
 
 ## Migration
 #ADOC_ATTRIBUTES+=" --attribute Migration=1"

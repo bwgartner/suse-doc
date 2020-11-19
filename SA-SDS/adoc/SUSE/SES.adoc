@@ -42,7 +42,7 @@ ifdef::cephadm[]
 ** per node (not per storage capacity setup) for traditional setup
 endif::cephadm[]
 ifdef::Rook[]
-** per number of disks running on Kubernetes
+** per group set of 12 disks running on Kubernetes
 endif::Rook[]
 
 ===== Deployment process

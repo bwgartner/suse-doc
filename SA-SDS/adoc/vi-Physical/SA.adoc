@@ -18,6 +18,10 @@ include::../IHV/HPE/SA.adoc[]
 endif::IHV-HPE[]
 
 ////
+ifdef::IHV-Seagate[]
+include::../IHV/Seagate/SA.adoc[]
+endif::IHV-Seagate[]
+
 ifdef::Availability[]
 include::./Availability/SA.adoc[]
 endif::Availability[]

@@ -9,25 +9,51 @@ FixMe - Varius sit amet mattis vulputate. Nisi scelerisque eu ultrices vitae auc
 
 image::SA-Application.png[title="Solution Architecture - {useCase} Application", scaledwidth=80%]
 
-Provided by this layer to users
-* aaS deliverables
+Application service groupings
 
-Example Functions needed by underlying layers
-* abstraction of logical/physical storage services/capabilities
-* pooling
-* persistent/transient content
-* atomic transactions
-* resizable
-* mount or API accessible
-* import/export/mirroring
+* Retention
+** Archive / Bulk
+** Backup
+ifdef::ISV-Commvault[*** Commvault]
+ifdef::ISV-Microfocus[*** Data Protector]
+ifdef::ISV-Veeam[*** Veeam]
+** Protection
+ifdef::ISV-Iternity[*** Iternity]
+** Mirroring
+* Tiered-storage resource
+** Hot
+** Cached
+** Warm
+ifdef::ISV-HPE-DMF[*** HPE DMF]
+ifdef::ISV-Weka[*** Weka]
+* Workload specific resource
+** Containers
+ifdef::CaaSPlatform[*** {companyName} CaaS Platform]
+** VMs
+*** {companyName} Linux Enterprise - KVM, Zen
+ifdef::ISV-VMware[*** VMware]
+*** 
+** Analytics
+*** Structured
+**** SQL
+**** SAP HANA
+*** Unstructured
+**** Apache Hadoop Filesystem [ HDFS ]
+** Streaming
+* Foundational data protocols
+** object
+** block
+** file
+* Example Functions needed by underlying layers
+** abstraction of logical/physical storage services/capabilities
+** pooling
+** persistent/transient content
+** atomic transactions
+** resizable
+** mount or API accessible
+** import/export/mirroring
 
-Example APIs needed by underlying layers
-* object
-** partial/complete read/write
-** snapshots
-* block
-** thinly provisioned
-* file
+Deployment scenarios to prioritize
 
 ifdef::Availability[]
 include::./Availability/SA.adoc[]

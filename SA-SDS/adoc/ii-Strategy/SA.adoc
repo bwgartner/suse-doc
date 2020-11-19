@@ -5,21 +5,25 @@
 The strategy elements are typically used to model the strategic direction and choices of an enterprise, as far as the impact on its architecture is concerned. They can be used to express how the enterprise wants to create value for its stakeholders, the capabilities it needs for that, the resources needed to support these capabilities, and how it plans to configure and use these capabilities and resources to achieve its aims. Strategy elements are used to model the strategic direction and choices of the enterprise, whereas Business Layer elements are used to model the operational organization of an enterprise.
 ////
 
-For almost any digital transformation, the strategic approach is to evaluate the current state and take into account possible, expanding future requirements. Then determine the advantages and effectiveness of augmenting or replace existing solutions. Such a change in direction should be evaluated in the overall creation of value for the respective stakeholders.
+For almost any digital transformation, the strategic directions and choices include estimates to assess the impact on the enterprise and its culture. Taking into account the necessary resources to implement and support the relative, new capabilities is required to avoid potential pitfalls. In an almost iterative way, technology changes can be piloted, with feedback assessed and the adjusted for the next rollout phase.
 
-=== Context
+To address *_Why_* to embark upon a software-defined storage [ {useCase} ] transformation, a core value is the increasing reliance on data-based decisions, compounded by the the ever-increasing, explosive growth of data.
 
-To address *_Why_* to embark upon a software-defined storage [ {useCase} ] transformation, a core reason for the explosive growth of data is the reliance on data-based decisions. Across all resource layers -- data, information, and intelligence -- the fundamental requirement is quality to ultimately lead to effective business decisions and outcomes.  The following figure grapically summarizes these elements:
+The following figure grapically summarizes these strategic elements:
 
 image::SA-Strategy.png[title="Solution Architecture - {useCase} Strategy", scaledwidth=80%]
 
+=== Context
+
+Across all resource layers -- data, information, and intelligence -- the fundamental requirement is quality. Ultimately this can lead to more effective business decisions. Given that most organizations already have one to many storage solutions, the {useCase} transformation includes both assessments and courses of action to reach the next goal or stage.
+
 === Value Stream
 
-Denoted in the arrow context, the value stream includes the assessment of the current state followed by selection of the implementation targets. This leads to a course of action with the decisive inputs. As you might guess, this stream be done in a looping, iterative fashion to address the respective considerations in an effecient, timely and cost effective manner.
+Denoted in the arrow context, the value stream includes the assessment of the current solution followed by selection of the implementation targets. This leads to a course of action with the decisive inputs. As you might guess, this stream can be done in a looping, iterative fashion to address the respective considerations in an effecient, timely and cost effective manner.
 
 === Capability
 
-A dominant capability concern for enterprise storage is the current and future capacity. Once the usable capacity is measured and determined, additional characteristics, listed below, may further impact the raw capacity needed to implement the future storage solution, plus contribute key attributes for the digital transformation decisions:
+A dominant capability concern for enterprise storage is the current and future capacity. Once the usable capacity is measured and determined, additional characteristic factors, listed below, may further impact the raw capacity needed to implement the future storage solution, plus contribute key attributes for the digital transformation decisions:
 
 ifdef::Availability[]
 * <<G_Availability,Availability>>
@@ -34,7 +38,7 @@ ifdef::Integrity[]
 * <<G_Integrity,Integrity>>
 endif::Integrity[]
 
-TIP: Further definition and explanation for some of the above factors are accessible in the glossary links.
+TIP: Basic definitions and explanations for some of the above factors are accessible in the glossary links. Each will also be described in more detail in successive layers.
 
 === Resources
 
@@ -58,4 +62,8 @@ A very relevant attribute, which is partially a function of the inherent value t
 * Scope - as with most projects, iteratively managing the target scope is a method to increase expertise, limit impacts, and successively improve value-add.
 * Timeframe - understanding that even simple projects may require longer first attempts, to increase the knowledge base, that may help speed up later, even more complex solution deployments
 * Resources - both organizationally internal resources and external partner, supplier or provider should be considered
+
+=== Layered Dependencies
+
+To achieve the desired quality and decision content, the goal is optimized business outcomes as a course of action. With the assessment of currrent states and plans to address the next {useCase} iteration and scope, the underlying business layer model must provide the processes and functions, in the context of the affected stakeholders, to efficiently and completely implement such a transformation project.
 

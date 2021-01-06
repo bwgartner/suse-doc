@@ -1,0 +1,139 @@
+
+include::./SA_vars.adoc[]
+
+= {title}
+{author}, {companyName} < {authorEMail} >
+
+:favicon:
+:doctype: book
+
+[preface]
+= Preface
+
+Whether you are just starting or continuing to progress on a digital transformation journey, you should consider addressing one of the core infrastructure elements -- storage. Using this solution architecture, you will learn how to successfully and effectively accomplish a software-defined storage itransition with simplify, modernize and accelerate process steps.
+
+The following, layered footnote:Archimate[link: https://pubs.opengroup.org/architecture/archimate3-doc[Archimate Enterprise Architecture]] aspects will be covered:
+
+ifdef::Strategy[]
+* *_Why_* one should consider this strategy
+endif::Strategy[]
+ifdef::Business[]
+* *_Who_* to engage with, inform and collaborate with
+* *_What_* key factors are important and *_When_* to consider them
+endif::Business[]
+ifdef::Application[]
+* *_Which_* software components and applications are relevant to accomplish this
+endif::Application[]
+ifdef::Technology[]
+* *_How_* various technology components can facilitate this
+endif::Technology[]
+ifdef::Physical[]
+* *_Where_* the resulting solution may physically or virtually reside
+endif::Physical[]
+
+////
+Additional characteristics, like decision factors such as:
+
+ifdef::Availability[]
+* availability
+endif::Availability[]
+ifdef::Performance[]
+* performance
+endif::Performance[]
+ifdef::Security[]
+* security
+endif::Security[]
+ifdef::Integrity[]
+* integrity
+endif::Integrity[]
+
+are also described and incorporated in the respective layers.  Deployment aspect flavors along the lines of
+
+ifdef::PoC[]
+* proof-of-concept
+endif::PoC[]
+ifdef::Production[]
+* production
+endif::Production[]
+ifdef::Scaling[]
+* scaling
+endif::Scaling[]
+ifdef::Migration[]
+* migration
+endif::Migration[]
+
+implementations and considerations may also be covered.
+////
+
+TIP: This document's content, while quite comprehensive in an end-to-end fashion, is also constructed with the philosophy not to replicate all relevant content from another, authoritive source. Instead, it provide reasoning, the actual references and cites any exceptions or important considerations.
+
+
+
+// Introduction
+include::./i-Introduction/SA.adoc[]
+
+// Strategy
+ifdef::Strategy[]
+include::./ii-Strategy/SA.adoc[]
+endif::Strategy[]
+
+// Business
+ifdef::Business[]
+include::./iii-Business/SA.adoc[]
+endif::Business[]
+
+// Application
+ifdef::Application[]
+include::./iv-Application/SA.adoc[]
+endif::Application[]
+
+// Technology
+ifdef::Technology[]
+include::./v-Technology/SA.adoc[]
+endif::Technology[]
+
+// Physical
+ifdef::Physical[]
+include::./vi-Physical/SA.adoc[]
+endif::Physical[]
+
+// Migration
+ifdef::Migration[]
+include::./vii-Migration/SA.adoc[]
+endif::Migration[]
+
+== Summary
+
+Advantages of using containers on the Edge vs. existing bare metal and virtual machine installations.   Analsyt quote highlighting adoption of containers in the edge.
+
+Simplify::
+Advantages of managing all IoT/Edge nodes with Kubernetes/Rancher (1000's of nodes) vs. virtualization.   Highlight Rancher's ability to span multi-cloud, virtualized, and on-prem containers (vs. lack of this ability with VMware or HyperCloud based K8s).  Completely open solution stack, no vendor lock-in.
+
+Modernize::
+Moving from Operational Technology to IT techniques for scalability.  No longer need to "roll a truck" to update IoT systems.  Most major technologies are moving to containers.  AI/ML, Analytics, etc.  Ability to use these technologies to perform predictive maintenance, improve quality, feed into supply chain systems.  Easier endpoint monitoring.
+
+
+Accelerate::
+No long need to wait for yearly maintenance cycles to upgrade equipment software.  Highlight ability to move to a cloud native CI/CD environment for rapid changes.  Update firmware on endpoints with rollback.   No need to take systems down.  Take advantage of latest versions of technologies (e.g. AI/ML, vision, robotics evolving rapidly)
+
+
+ifdef::Glossary[]
+include::./SA-Glossary.adoc[]
+endif::Glossary[]
+
+ifdef::Appendix[]
+include::./SA-Appendix.adoc[]
+endif::Appendix[]
+
+// Standard SUSE includes
+== Legal Notice
+include::./{companyName}/common_sbp_legal_notice.adoc[]
+
+++++
+<?pdfpagebreak?>
+++++
+
+// Standard SUSE Best Practices includes
+// :leveloffset: 1
+include::./{companyName}/common_gfdl1.2_i.adoc[]
+

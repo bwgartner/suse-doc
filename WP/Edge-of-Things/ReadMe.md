@@ -62,11 +62,13 @@ NOTE: John vV - The outline below is "stream of conciousness" and may be more th
 - How do I decide what belongs in the near Edge Node vs. HQ on prem/hypercloud? 
     - Databases, filtering, vision, analytics, etc.?
     - Network latency, ingress/egress costs?, network bandwidth.
+- How do I interface with existing sensors?
 - How do I interface with different protocol/communication stacks (MQTT, RS-232, Zigbee, BlueTooth, 5G, etc.)
     - What tools can I use?
     - CI/CD Pipeline: should we talk about Fleet?
 
 <b>Call to Action</b>
+- Setup a lab environment
 - Install K3s
 - Do this edge tutorial (hopefully existing).  Could be Pi or Jetson Nano-based.
 

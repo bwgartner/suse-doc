@@ -102,7 +102,17 @@ ifdef::Migration[]
 include::./vii-Migration/SA.adoc[]
 endif::Migration[]
 
+ifdef::env-github[]
+:imagesdir: https://github.com/bwgartner/suse-doc/blob/master/WP/Edge-of-Things/media/src/png/
+endif::[]
+
 == Summary
+The number of IoT and Edge devices connecting to the Internet is increasing at exponential rates.  Older "Operational Technlogy" platform management methods can no longer keep pace with the innovation and security requirements of these new classes of end-points at scale.  Additionaly, many of these new applications have restrictions on acceptable latency and require compute capabilities closer where the data is generated.
+
+[[img-OT_IT_Convergence]]
+.Convergence of OT and IT for Edge Computing
+image::OT_IT_Convergence.png[OT/IT_Convergence, 723, 426]
+
 
 Advantages of using containers on the Edge vs. existing bare metal and virtual machine installations.   Analsyt quote highlighting adoption of containers in the edge.
 

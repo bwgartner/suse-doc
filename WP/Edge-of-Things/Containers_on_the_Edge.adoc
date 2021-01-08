@@ -1,6 +1,9 @@
 
 include::./SA_vars.adoc[]
 
+:title: Edge Computing with Kubernetes and Containers
+
+
 = {title}
 {author}, {companyName} < {authorEMail} >
 
@@ -10,7 +13,7 @@ include::./SA_vars.adoc[]
 [preface]
 = Preface
 
-Whether you are just starting or continuing to progress on a digital transformation journey, you should consider addressing one of the core infrastructure elements -- storage. Using this solution architecture, you will learn how to successfully and effectively accomplish a software-defined storage itransition with simplify, modernize and accelerate process steps.
+Opening statement about K8s and Edge
 
 The following, layered footnote:Archimate[link: https://pubs.opengroup.org/architecture/archimate3-doc[Archimate Enterprise Architecture]] aspects will be covered:
 
@@ -107,14 +110,11 @@ ifdef::env-github[]
 endif::[]
 
 == Summary
-The number of IoT and Edge devices connecting to the Internet is increasing at exponential rates.  Older "Operational Technlogy" platform management methods can no longer keep pace with the innovation and security requirements of these new classes of end-points at scale.  Additionaly, many of these new applications have restrictions on acceptable latency and require compute capabilities closer where the data is generated.
+The number of IoT and Edge devices connecting to the Internet is increasing at exponential rates.  Older "Operational Technlogy" platform management methods can no longer keep pace with the innovation and security requirements of these new end-points at scale.  Additionaly, many of these new applications have restrictions on acceptable latency and require compute capabilities closer to where the data is generated.  All of these factors are leading IoT/Edge developers towards container technologies that have been pioneered in more traditional IT environments.
 
 [[img-OT_IT_Convergence]]
 .Convergence of OT and IT for Edge Computing
-image::OT_IT_Convergence.png[OT/IT_Convergence, 723, 426]
-
-
-Advantages of using containers on the Edge vs. existing bare metal and virtual machine installations.   Analsyt quote highlighting adoption of containers in the edge.
+image::OT_IT_Convergence.png[OT/IT_Convergence, 450 x 265, align="center"]
 
 Simplify::
 Advantages of managing all IoT/Edge nodes with Kubernetes/Rancher (1000's of nodes) vs. virtualization.   Highlight Rancher's ability to span multi-cloud, virtualized, and on-prem containers (vs. lack of this ability with VMware or HyperCloud based K8s).  Completely open solution stack, no vendor lock-in.
@@ -122,11 +122,18 @@ Advantages of managing all IoT/Edge nodes with Kubernetes/Rancher (1000's of nod
 Modernize::
 Moving from Operational Technology to IT techniques for scalability.  No longer need to "roll a truck" to update IoT systems.  Most major technologies are moving to containers.  AI/ML, Analytics, etc.  Ability to use these technologies to perform predictive maintenance, improve quality, feed into supply chain systems.  Easier endpoint monitoring.
 
-
 Accelerate::
 No long need to wait for yearly maintenance cycles to upgrade equipment software.  Highlight ability to move to a cloud native CI/CD environment for rapid changes.  Update firmware on endpoints with rollback.   No need to take systems down.  Take advantage of latest versions of technologies (e.g. AI/ML, vision, robotics evolving rapidly)
 
+Containers on the Edge::
+Today's IoT environments typically use either bare metal or virtualization for deploying edge workloads.  While each of these approaches has advantages in niche applications, they tend to be less efficient and harder to manage than  containerized workloads.   Bare metal deployments are usually done at the time of manufacture or installation and are updated infrequently due to the usual need to dispatch a technician to manually update the platform.
 
+[[img-OT_IT_Convergence]]
+.Edge Workload Deployment Options
+image::Edge_Workload_Deployment.png[Edge Workload Deplyment, 986x444, align="center"]
+
+
+Advantages of using containers on the Edge vs. existing bare metal and virtual machine installations.   Analsyt quote highlighting adoption of containers in the edge.
 ifdef::Glossary[]
 include::./SA-Glossary.adoc[]
 endif::Glossary[]

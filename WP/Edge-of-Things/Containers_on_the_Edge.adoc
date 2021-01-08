@@ -130,7 +130,7 @@ Today's IoT environments typically use either bare metal or virtualization for d
 
 [[img-OT_IT_Convergence]]
 .Edge Workload Deployment Options
-image::Edge_Workload_Deployment.png[Edge Workload Deplyment, 986x444, align="center"]
+image::Edge_Workload_Deployment.png[Edge Workload Deployment, 986 x 444, align="center"]
 
 
 Advantages of using containers on the Edge vs. existing bare metal and virtual machine installations.   Analsyt quote highlighting adoption of containers in the edge.

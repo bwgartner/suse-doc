@@ -126,9 +126,9 @@ Accelerate::
 No long need to wait for yearly maintenance cycles to upgrade equipment software.  Highlight ability to move to a cloud native CI/CD environment for rapid changes.  Update firmware on endpoints with rollback.   No need to take systems down.  Take advantage of latest versions of technologies (e.g. AI/ML, vision, robotics evolving rapidly)
 
 Containers on the Edge::
-Today's IoT environments typically use either bare metal or virtualization for deploying edge workloads.  While each of these approaches has advantages in niche applications, they tend to be less efficient and harder to manage than  containerized workloads.   Bare metal deployments are usually done at the time of manufacture or installation and are updated infrequently due to the usual need to dispatch a technician to manually update the platform.
+Today's IoT environments typically use either bare metal or virtualization for deploying edge workloads.  While each of these approaches has advantages in niche applications, they tend to be less efficient and harder to manage than  containerized workloads.   Bare metal deployments are usually done at the time of manufacture or installation and are updated infrequently due to the usual need to dispatch a technician to manually update the platform.  While relatively straight-forward, this method is not suitable for any device connected to the Internet due to the security risks.  There is no isolation between applications, and the network IP stack is difficult to update with new security patches.
 
-[[img-OT_IT_Convergence]]
+[[img-Edge_Workload_Deployment]]
 .Edge Workload Deployment Options
 image::Edge_Workload_Deployment.png[Edge Workload Deployment, 986 x 444, align="center"]
 

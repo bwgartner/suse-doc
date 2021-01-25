@@ -1,0 +1,72 @@
+
+ifdef::IHV-Ampere[]
+
+include::./SA_vars.adoc[]
+include::./eMag_vars.adoc[]
+include::./Altra_vars.adoc[]
+
+=== {companyAmpere}
+
+Growth in the server market has increased significantly as many workloads supporting data storage, artificial intelligence and rich content are moving to the cloud at unprecedented speed with growth projected to escalate. Yet, the majority of today’s cloud infrastructure is still using 30-year-old processor technology. To address the requirements of the modern cloud, Ampere has designed the industry’s first server microprocessor architecture from the ground up. Its 64-bit Arm processors deliver performance, scalability, security, and power efficiency that is uniquely focused on today’s hyperscale cloud and edge computing workloads and applications.
+ 
+
+Renee James, a semiconductor industry veteran, founded Ampere in 2018 and is the company’s Chairman and CEO. Since the founding she has assembled a world-class technology and engineering team. Together they have invented the forward-looking solution that cloud providers need for what comes next in cloud-based processor technology.
+
+With an experienced technical team and a superior design methodology, Ampere is laser focused on innovating cloud technology. Along with the thriving and diverse Arm software ecosystem and strong partnerships, Ampere is bringing a new standard to the hyperscale market — a market where highly-scalable processing capability and reduced power consumption can translate into hundreds of millions of dollars in profits and savings to customers. By providing a new level of predictable performance and efficiency, Ampere enables hyperscalers to focus on growing their cloud services with underlying server infrastructure that can handle today’s compute demands.
+
+
+* density-optimized - high performance and efficiency for big data and the most demanding workloads
+* mission-critical - systems of intelligence to fuel your digital transformation in a world where time and data are the new currency and business continuity is expected
+* composable - fully adaptable and ready for Hybrid-IT to future-proof your data center for today's workloads and tomorrow's disruptors
+* IoT - realize the potential of the Internet of Things to provide compute at the network edge
+* cloud - high-capacity, mass-compute open infrastructure with security and software to match
+* and virtualized use cases.
+
+ifdef::IHV-Ampere-eMag,IHV-Ampere-Altra[]
+
+NOTE: {acronymAmpere} https://techlibrary.hpe.com/us/en/enterprise/servers/supportmatrix/suse_linux.aspx[Servers Support & OS Certification Matrices] outlines the minimum version of SLE required for installation, yet later service pack releases may also be used.
+
+include::../../{companyName}/YES.adoc[]
+
+Server product-line and model options abound in the https://www.hpe.com/uk/en/servers.html[{acronymAmpere} portfolio], including:
+
+ifdef::IHV-Ampere-eMag[]
+include::./eMag.adoc[]
+endif::IHV-Ampere-eMag[]
+
+ifdef::IHV-Ampere-Altra[]
+include::./Altra.adoc[]
+endif::IHV-Ampere-Altra[]
+
+==== Suggested Platform Models
+
+Even with the broad certification and support model across the range of available {acronymAmpere} platform models, the following table summarizes which might be a best-practice selection for the various deployment types and sizes (**__S__**mall, **__M__**edium, **__L__**arge, **__XL__**arge).
+
+.{companyAmpere} Platform Matrix for Deployment Types
+[width="80%",valign="middle",halign="center",options="header"]
+|===
+
+| System Platform |
+ifdef::CapOpt[ *_<<G_CapOpt,Capacity Optimized>>_* |] 
+ifdef::Balance[ *_<<G_Balance,Balance>>_* |] 
+ifdef::PerfOpt[ *_<<G_PerfOpt,Performance Optimized>>_* ] 
+
+ifdef::IHV-Ampere-eMag[]
+| FixMe - eMag
+ifdef::CapOpt[|*_(XL) =_* {modelAmpere-A4510}]
+ifdef::Balance[|*_(XL) =_* {modelAmpere-A4510} *_(L) =_* {modelAmpere-A4200}]
+ifdef::PerfOpt[|*_(L) =_* {modelAmpere-A4200}]
+endif::IHV-Ampere-eMag[]
+
+ifdef::IHV-Ampere-Altra[]
+| FixMe - Altra
+ifdef::CapOpt[|]
+ifdef::Balance[|EL8000, e910]
+ifdef::PerfOpt[|]
+endif::IHV-Ampere-Altra[]
+
+|===
+
+endif::IHV-Ampere-eMag,IHV-Ampere-Altra[]
+
+endif::IHV-Ampere[]

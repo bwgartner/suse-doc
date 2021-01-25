@@ -13,11 +13,54 @@ APIs/resources provided to above Technology layers
 
 image::SA-Physical.png[title="Solution Architecture - {useCase} Physical", scaledwidth=80%]
 
+=== FixMe - Networking
+
+Switches
+
+* Cluster / ToR / Failure Domains
+
+Interface Cards
+
+Connection Speed
+
+* 10 / 25 / 40 / 50 / 100 + Gbe
+* MTU
+
+Count
+
+* Public (bonding)
+* Private (bonding)
+
+PoC / Production / Scaling
+
+
+=== FixMe - Storage Devices
+
+Capacity 
+
+* HDD
+* SSD
+* NVMe
+
+Availability - more w/in a drive group = better
+Performance - individual speed w/ multiplier and low to high and mixed suggestions
+Security - other than physical access, handled by s/w (encryption)
+Integrity - other than 
+
+PoC / Production / Scaling
+
+=== FixMe - System Platforms
+
+ifdef::IHV-Ampere[]
+include::../IHV/Ampere/SA.adoc[]
+endif::IHV-Ampere[]
+
 ifdef::IHV-HPE[]
 include::../IHV/HPE/SA.adoc[]
 endif::IHV-HPE[]
 
 ////
+
 ifdef::IHV-Seagate[]
 include::../IHV/Seagate/SA.adoc[]
 endif::IHV-Seagate[]
@@ -37,5 +80,6 @@ endif::Security[]
 ifdef::Integrity[]
 include::./Integrity/SA.adoc[]
 endif::Integrity[]
+
 ////
 

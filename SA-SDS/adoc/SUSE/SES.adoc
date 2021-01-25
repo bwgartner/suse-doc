@@ -45,6 +45,13 @@ ifdef::Rook[]
 ** per group set of 12 disks running on Kubernetes
 endif::Rook[]
 
+==== FixMe - Callouts
+
+* Availability
+* Performance
+* Security
+* Integrity
+
 ===== Deployment process
 {sesProductName} {sesVersion} offers Ceph services, deployed as containers instead of packages.
 

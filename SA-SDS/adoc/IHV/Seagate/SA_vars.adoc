@@ -1,0 +1,5 @@
+
+:acronymSeagate: Seagate
+:companySeagate: Seagate
+:companySeagateURL: https://www.seagate.com/
+

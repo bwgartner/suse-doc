@@ -53,6 +53,8 @@ ADOC_ATTRIBUTES+=" --attribute CaaSPlatform=1"
 ADOC_ATTRIBUTES+=" --attribute Physical=1"
 #	then add respective IHV/CSP attributes/parameters
 ADOC_ATTRIBUTES+=" --attribute IHV-Ampere=1"
+ADOC_ATTRIBUTES+=" --attribute IHV-Ampere-eMag=1"
+ADOC_ATTRIBUTES+=" --attribute IHV-Ampere-Altra=1"
 #ADOC_ATTRIBUTES+=" --attribute IHV-Dell=1"
 #ADOC_ATTRIBUTES+=" --attribute IHV-Dell-PowerEdge=1"
 ADOC_ATTRIBUTES+=" --attribute IHV-HPE=1"

@@ -1,0 +1,5 @@
+
+:acronymAmpere: Ampere
+:companyAmpere: Ampere
+:companyAmpereURL: https://amperecomputing.com/
+

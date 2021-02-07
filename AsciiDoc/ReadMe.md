@@ -1,11 +1,3 @@
+# move along
 
-# Simple, elegant way to create SUSE formatted documentation
-
-Walking the path from:
-- from simple text markup, AsciiDoc ( https://github.com/asciidoc/asciidoc )
-- converting to XML,
-- leveraging DAPS ( https://github.com/openSUSE/daps )
-- then rendering your choice of multiple output formats
-
-- [quickstart](./quickstart.adoc)
-
+obsoleted this directory as part of a bigger repository, moving the content to https://github.com/bwgartner/AsciiDoc-to-DAPS

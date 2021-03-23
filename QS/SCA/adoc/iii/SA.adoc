@@ -1,16 +1,57 @@
 ifndef::EA,RA[]
-== FixMe - Chapter 3
 
-FixMe - Libero nunc consequat interdum varius sit amet mattis. Praesent elementum facilisis leo vel fringilla est ullamcorper eget. Quam lacus suspendisse faucibus interdum posuere lorem ipsum dolor sit. Mi sit amet mauris commodo quis imperdiet massa tincidunt. Ac placerat vestibulum lectus mauris ultrices eros in. Viverra vitae congue eu consequat ac felis donec et odio. Vestibulum lectus mauris ultrices eros in cursus turpis. Aliquet bibendum enim facilisis gravida neque convallis a. Vel fringilla est ullamcorper eget nulla facilisi etiam dignissim. Habitasse platea dictumst vestibulum rhoncus. Diam sollicitudin tempor id eu nisl nunc mi ipsum faucibus. Quam quisque id diam vel quam elementum pulvinar etiam. Ut sem viverra aliquet eget sit amet tellus. Blandit libero volutpat sed cras ornare arcu.
+ifdef::DP+pond[]
+== Data Pond Analytics
 
-=== FixMe - Section 3.1
+This section summarizes how to obtain and run the support config analytics on incoming support config files.
 
-FixMe - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Libero nunc consequat interdum varius. Et magnis dis parturient montes nascetur ridiculus mus mauris. Morbi tincidunt ornare massa eget egestas purus viverra. Ac feugiat sed lectus vestibulum mattis. Arcu cursus euismod quis viverra nibh cras pulvinar mattis. Mauris nunc congue nisi vitae suscipit tellus mauris a. Amet consectetur adipiscing elit pellentesque habitant morbi tristique. Tellus mauris a diam maecenas sed. Tincidunt vitae semper quis lectus nulla at volutpat diam ut. Felis eget velit aliquet sagittis id consectetur. Urna et pharetra pharetra massa. Interdum varius sit amet mattis vulputate enim. Leo in vitae turpis massa sed elementum tempus. Sed arcu non odio euismod. Ut sem viverra aliquet eget sit amet tellus. Purus in mollis nunc sed id semper. Dictum sit amet justo donec enim diam vulputate ut.
+=== Support Config Analytics Package
 
-==== FixMe - Sub-Section 3.1.1
+Packages (sca-L0) are built in {companyName} Internal Build Service (IBS) and provide runtime scripts, susedata, datasets, and extra internal-only dataset. Current sca-L0 dependencies require that sca-datasets and sca-susedata packages be the same version as the sca-L0 package.
 
-FixMe - Libero id faucibus nisl tincidunt eget nullam non nisi est. Vulputate enim nulla aliquet porttitor lacus luctus accumsan tortor posuere. Consequat nisl vel pretium lectus quam id leo in. Vel fringilla est ullamcorper eget nulla. Pellentesque sit amet porttitor eget dolor. Vulputate ut pharetra sit amet aliquam id diam. In hac habitasse platea dictumst vestibulum rhoncus est pellentesque elit. Posuere morbi leo urna molestie at elementum eu facilisis. Eget nunc scelerisque viverra mauris. Mattis ullamcorper velit sed ullamcorper morbi tincidunt. Sit amet commodo nulla facilisi nullam. Aliquet bibendum enim facilisis gravida neque. Orci a scelerisque purus semper eget duis at tellus at. Eget mauris pharetra et ultrices neque ornare aenean euismod. Vel quam elementum pulvinar etiam non quam. Arcu dictum varius duis at consectetur. Enim nunc faucibus a pellentesque.
+* sca-L0 package::
+** main runtime package, contains sca-L0 scripts
+*** depends on sca-susedata and sca-datasets
 
+* sca-susedata package
+** all the SUSE data files (lifecycle info, rpm info, etc.)
+
+* sca-datasets package
+** all the datasets
+
+* sca-datasets-suse package
+** extra (internal) package containing dataset that maps md5sums to supportconfig names
+
+All of this is based upon a private GitHub project which contains everything needed to get rawdata, get susedata, build datasets, and do actual supportconfig analysis.  Also contains DVC info to manage rawdata and dataset versions.  All scripts have "-h" and "-d" options for help and debug.
+
+* bin directory
+** rawdata-* scripts: bash scripts to pull raw bug/SR/cert supportconfigs
+** susedata-* scripts: bash scripts to pull package info from SMT/RMT repos
+** dataset* scripts: bash and python scripts to build datasets from rawdata
+** sca-L0*, knn* scripts: bash and python scripts to analyze supportconfigs  
+** other common scripts: bash scripts to extract info from supportconfig files (used at runtime and during dataset build)
+
+* rawdata.dvc
+** dvc info to track rawdata versions
+
+* datasets.dvc
+** dvc info to track dataset versions
+
+=== Analyzing a supportconfig
+
+To analyze a supportconfig: (add video link)
+
+* Run "sca-L0.sh <supportconfig-tarball>"
+** Will uncompress the supportconfig, extract data from it, then report on various features.
+** Some features (OS version, support status, etc.) are reported directly.
+** Other features are vectorized for nearest-neighbor comparison against datasets.
+** Hardware certs are found by doing nearest-neighbor "matching" comparison to the cert datasets.
+** SRs/bugs are found by doing nearest-neighbor "jaccard" comparison with multiple warning and error message datasets.
+** Comparison handles situation where supportconfig has a new feature that doesn't exist in the datasets.
+** Code structure allows for adding other datasets to the comparison and for assigning different weights to different datasets.
+** Nearest-neighbor results from all datasets are combined and processed then output is list of "likely" SRs and bugs along with "scores" indicating closeness.
+
+endif::DP+pond[]
 endif::EA,RA[]
 
 ifdef::EA+Business[]

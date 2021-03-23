@@ -22,8 +22,8 @@ include::./ii/SA.adoc[]
 include::./iii/SA.adoc[]
 include::./iv/SA.adoc[]
 include::./v/SA.adoc[]
-include::./vi/SA.adoc[]
-include::./vii/SA.adoc[]
+#include::./vi/SA.adoc[]
+#include::./vii/SA.adoc[]
 
 // Summary
 include::./SA-Summary.adoc[]

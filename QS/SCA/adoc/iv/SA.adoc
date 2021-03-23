@@ -1,16 +1,40 @@
 ifndef::EA,RA[]
-== FixMe - Chapter 4
 
-FixMe - Libero nunc consequat interdum varius sit amet mattis. Praesent elementum facilisis leo vel fringilla est ullamcorper eget. Quam lacus suspendisse faucibus interdum posuere lorem ipsum dolor sit. Mi sit amet mauris commodo quis imperdiet massa tincidunt. Ac placerat vestibulum lectus mauris ultrices eros in. Viverra vitae congue eu consequat ac felis donec et odio. Vestibulum lectus mauris ultrices eros in cursus turpis. Aliquet bibendum enim facilisis gravida neque convallis a. Vel fringilla est ullamcorper eget nulla facilisi etiam dignissim. Habitasse platea dictumst vestibulum rhoncus. Diam sollicitudin tempor id eu nisl nunc mi ipsum faucibus. Quam quisque id diam vel quam elementum pulvinar etiam. Ut sem viverra aliquet eget sit amet tellus. Blandit libero volutpat sed cras ornare arcu.
+ifdef::DP+droplet[]
+== Droplet - Automation of Collecting Support Configuration
 
-=== FixMe - Section 4.1
+This summarizes how to setup automation for collecting support configuration files, based upon noticing hints or clues of potential changes since the last check.
 
-FixMe - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Libero nunc consequat interdum varius. Et magnis dis parturient montes nascetur ridiculus mus mauris. Morbi tincidunt ornare massa eget egestas purus viverra. Ac feugiat sed lectus vestibulum mattis. Arcu cursus euismod quis viverra nibh cras pulvinar mattis. Mauris nunc congue nisi vitae suscipit tellus mauris a. Amet consectetur adipiscing elit pellentesque habitant morbi tristique. Tellus mauris a diam maecenas sed. Tincidunt vitae semper quis lectus nulla at volutpat diam ut. Felis eget velit aliquet sagittis id consectetur. Urna et pharetra pharetra massa. Interdum varius sit amet mattis vulputate enim. Leo in vitae turpis massa sed elementum tempus. Sed arcu non odio euismod. Ut sem viverra aliquet eget sit amet tellus. Purus in mollis nunc sed id semper. Dictum sit amet justo donec enim diam vulputate ut.
+NOTE:: Of course, a simple run on a given system of supportconfig can generate the basic file collection, which can then be sent to the data puddle.
 
-==== FixMe - Sub-Section 4.1.1
+ifdef::aludo,indico[]
+=== Aludo (hint) / Indico (clue)
 
-FixMe - Libero id faucibus nisl tincidunt eget nullam non nisi est. Vulputate enim nulla aliquet porttitor lacus luctus accumsan tortor posuere. Consequat nisl vel pretium lectus quam id leo in. Vel fringilla est ullamcorper eget nulla. Pellentesque sit amet porttitor eget dolor. Vulputate ut pharetra sit amet aliquam id diam. In hac habitasse platea dictumst vestibulum rhoncus est pellentesque elit. Posuere morbi leo urna molestie at elementum eu facilisis. Eget nunc scelerisque viverra mauris. Mattis ullamcorper velit sed ullamcorper morbi tincidunt. Sit amet commodo nulla facilisi nullam. Aliquet bibendum enim facilisis gravida neque. Orci a scelerisque purus semper eget duis at tellus at. Eget mauris pharetra et ultrices neque ornare aenean euismod. Vel quam elementum pulvinar etiam non quam. Arcu dictum varius duis at consectetur. Enim nunc faucibus a pellentesque.
+Simple process: (and video links)
 
+* GitHub (source code)
+** git clone https://github.com/bwgartner/aludo
+** cd aludo
+** review the configuration file (aludo.conf) and adjust as needed
+*** to change output/transfer locations
+** execute sudo ./bin/aludo and review cited outputs
+
+* Package Repository - https://build.opensuse.org/package/show/home:bwgartner/aludo
+** install package (via zypper)
+** review the configuration file (aludo.conf) and adjust as needed
+*** to change output/transfer locations
+** if desired, review the aludo.timer file, adjust the runtime frequency and enable, via systemctl enable --now aludo.timer
+** for a manual run, execute sudo /usr/sbin/aludo and review the cited outputs
+
+In essence, this tool looks for various potential hints:clues of system changes since the last run, currently:
+
+* btrfs : snapper status/diff
+* systemctl : journalctl
+
+and if found, creates a bundle of a supportconfig plus this hint/clue metadata and transfers it to the designated data puddle.
+
+endif::aludo,indico[]
+endif::DP+droplet[]
 endif::EA,RA[]
 
 ifdef::EA+Application[]

@@ -1,7 +1,22 @@
 
 == Introduction
 
-FixMe - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nec sagittis aliquam malesuada bibendum arcu vitae elementum. Congue eu consequat ac felis donec. Urna nec tincidunt praesent semper feugiat nibh sed pulvinar. Felis eget nunc lobortis mattis aliquam faucibus. Egestas integer eget aliquet nibh praesent tristique magna sit amet. Enim nulla aliquet porttitor lacus luctus. Dapibus ultrices in iaculis nunc sed augue lacus viverra. Donec massa sapien faucibus et molestie ac feugiat sed. Bibendum ut tristique et egestas quis ipsum.
+Leveraging the entire supported {companyName} customer base and resulting fixes and knowledge can improve support experience beyond simply a reactive approach of only dealing with submitted issues. Also, segmented data collection in an opt-in fashion for customers to locally retain the majority of their content, yet have automated triggering collection and overwatch processes to help them scale and manage their environments. This is similar to an footnote:AIOps[link: [https://en.wikipedia.org/wiki/Artificial_Intelligence_for_IT_Operations[Artificial Intelligence for IT Operations]]. An overview of the ecosystem in shown in the following figure:
+
+image::SupportConfigAnalytics.png[title="Support Config Analytics Ecosystem", scaledwidth=80%]
+
+So, based upon historical data sources (in the data lake) from the {companyName} customer base, like:
+
+* service requests
+* issues, feature requests, bugzilla
+* source code changes
+* knowledge briefs
+* operating system certifications, etc.
+
+a machine learning model can be generated to assess any newly submitted, to the data pond support config bundle.
+
+To aid customer system administrators, such tools could also be leveraged to regularly run such analytics for any of their collected support bundles (in their data puddle). Further, some potential hint/clue tools can trigger the generation of the support bundles (droplet) for local processing, including looking at trending or time-series kinds of aspects as well, all in the privacy of their environment. And the resulting analytics output can provide suggested next steps, including to submit an issue or support request.
+
 
 ////
 

@@ -11,7 +11,7 @@ ifdef::RA[]
 endif::RA[]
 
 ifndef::EA,RA[]
-:title: FixMe - Digital Transformation - {useCase}
+:title: Quick Start - Automated Support Config Analytics
 endif::EA,RA[]
 
 ////

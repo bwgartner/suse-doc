@@ -10,7 +10,8 @@ DRAFT=yes
 ## Basics
 
 MAIN="SA.adoc"
-STYLEROOT="/usr/share/xml/docbook/stylesheet/suse2013-ns/"
+#STYLEROOT="/usr/share/xml/docbook/stylesheet/suse2013-ns/"
+STYLEROOT="/usr/share/xml/docbook/stylesheet/suse2013-sbp-ns"
 # Type
 ADOC_TYPE="book"
 # Turn on postprocessing
@@ -22,22 +23,22 @@ ADOC_POST="yes"
 ADOC_ATTRIBUTES=" --attribute env-daps=1"
 
 ## References
-ADOC_ATTRIBUTES+=" --attribute References=1"
+#ADOC_ATTRIBUTES+=" --attribute References=1"
 
 ## Glossary
-ADOC_ATTRIBUTES+=" --attribute Glossary=1"
+#ADOC_ATTRIBUTES+=" --attribute Glossary=1"
 
 ## Colophon (TBD)
 #ADOC_ATTRIBUTES+=" --attribute Colophon=1"
 
 ## Appendix
-ADOC_ATTRIBUTES+=" --attribute Appendix=1"
+#ADOC_ATTRIBUTES+=" --attribute Appendix=1"
 
 ## Legal Notice (suggested)
-ADOC_ATTRIBUTES+=" --attribute LN=1"
+#ADOC_ATTRIBUTES+=" --attribute LN=1"
 
 ## License (Gnu Free Document License) (suggested)
-ADOC_ATTRIBUTES+=" --attribute GFDL=1"
+#ADOC_ATTRIBUTES+=" --attribute GFDL=1"
 
 ##
 # Modular/Variable Content Parameters for Template Focus
@@ -45,6 +46,23 @@ ADOC_ATTRIBUTES+=" --attribute GFDL=1"
 #	if you add other such attributes, ensure you specify (for appending)
 # ADOC_ATTRIBUTES+=" --attribute <Name>=1"
 ##
+
+# Data Pipeline Coverage
+ADOC_ATTRIBUTES+=" --attribute DP=1"
+ADOC_ATTRIBUTES+=" --attribute droplet=1"
+ADOC_ATTRIBUTES+=" --attribute puddle=1"
+ADOC_ATTRIBUTES+=" --attribute pond=1"
+ADOC_ATTRIBUTES+=" --attribute lake=1"
+
+# SupportConfigAnaltics
+ADOC_ATTRIBUTES+=" --attribute SCA=1"
+ADOC_ATTRIBUTES+=" --attribute L0=1"
+#ADOC_ATTRIBUTES+=" --attribute L1=1"
+#ADOC_ATTRIBUTES+=" --attribute L2=1"
+ADOC_ATTRIBUTES+=" --attribute aludo=1"
+ADOC_ATTRIBUTES+=" --attribute indico=1"
+ADOC_ATTRIBUTES+=" --attribute taksi=1"
+ADOC_ATTRIBUTES+=" --attribute tendenco=1"
 
 ###############################################################################
 ###############################################################################

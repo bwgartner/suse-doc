@@ -1,0 +1,57 @@
+
+== Architectural overview
+
+FixMe - Varius sit amet mattis vulputate. Nisi scelerisque eu ultrices vitae auctor eu augue ut. Integer vitae justo eget magna fermentum iaculis eu non diam. Rhoncus urna neque viverra justo. Elementum tempus egestas sed sed risus. Porta nibh venenatis cras sed felis eget velit aliquet sagittis. Venenatis a condimentum vitae sapien pellentesque. Magna ac placerat vestibulum lectus mauris ultrices eros in cursus. Nibh cras pulvinar mattis nunc. Tempor orci dapibus ultrices in iaculis nunc. Sapien nec sagittis aliquam malesuada bibendum arcu vitae elementum. Nisi porta lorem mollis aliquam. Laoreet id donec ultrices tincidunt arcu non sodales.
+
+=== Solution architecture
+
+FixMe - Varius sit amet mattis vulputate. Nisi scelerisque eu ultrices vitae auctor eu augue ut ...
+
+////
+An outline should be provided of the solution and the components required to successfully architect the solution
+	e.g., A SUSE Enterprise Stroage solution outline should outline a block level diagram of Admin, OSD, MON and Gateway nodes.
+	e.g., A SUSE OpenStack Cloud solution show a block diagram of OpenStack components or elements for the Control, compute and storage pools
+////
+
+FixMe - Include high-level diagram
+
+image::RA-overview.png[title="FixMe - Architecture Overview", scaledwidth=80%]
+
+FixMe - As needed, include high-level table
+.FixMe - Architecture Overview 
+[width="80%",valign="middle",halign="center",options="header"]
+|===
+
+|Column|Column|Column|Column
+|Row   | | |
+|Row   | | |
+|Row   | | |
+
+|===
+
+ifdef::ArchOvNetworkArch[]
+=== Networking architecture
+
+FixMe - Varius sit amet mattis vulputate. Nisi scelerisque eu ultrices vitae auctor eu augue ut ...
+
+////
+Any special network segmentation, vlan, or performance requirements should be outlined and justified here.
+////
+
+FixMe - Include high-level network diagram
+
+image::RA-overview-network.png[title="FixMe - Architecture Network", scaledwidth=80%]
+
+FixMe - As needed, include high-level table
+.FixMe - Architecture Network
+[width="80%",valign="middle",halign="center",options="header"]
+|===
+
+|Column|Column|Column|Column
+|Row   | | |
+|Row   | | |
+|Row   | | |
+
+|===
+
+endif::ArchOvNetworkArch[]

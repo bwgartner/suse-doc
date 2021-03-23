@@ -1,0 +1,67 @@
+
+include::./SA_vars.adoc[]
+
+= {title}
+////
+{author}, {companyName} < {authorEMail} >
+////
+:favicon:
+:doctype: book
+
+// About
+// include::./SA-About.adoc[]
+
+// Preface
+include::./SA-Preface.adoc[]
+
+// Introduction
+include::./i/SA.adoc[]
+
+// include other chapters or EA layers (as needed)
+include::./ii/SA.adoc[]
+include::./iii/SA.adoc[]
+include::./iv/SA.adoc[]
+include::./v/SA.adoc[]
+include::./vi/SA.adoc[]
+include::./vii/SA.adoc[]
+
+// Summary
+include::./SA-Summary.adoc[]
+
+// References
+ifdef::References[]
+include::./SA-References.adoc[]
+endif::References[]
+
+// Glossary
+ifdef::Glossary[]
+include::./SA-Glossary.adoc[]
+endif::Glossary[]
+
+// ifdef::Colophon[]
+// include::./SA-Colophon.adoc[]
+// endif::Colophon[]
+
+// Appendices
+ifdef::Appendix[]
+include::./SA-Appendix.adoc[]
+endif::Appendix[]
+
+// legal and license are optional, yet recommended
+
+// Standard SUSE includes
+ifdef::LN[]
+== Legal Notice
+include::./{companyName}/common_sbp_legal_notice.adoc[]
+
+++++
+<?pdfpagebreak?>
+++++
+endif::LN[]
+
+ifdef::GFDL[]
+// Standard SUSE includes
+// :leveloffset: 1
+include::./{companyName}/common_gfdl1.2_i.adoc[]
+endif::GFDL[]
+

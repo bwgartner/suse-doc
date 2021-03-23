@@ -1,0 +1,29 @@
+:useCase: FixMe
+
+:companyName: SUSE
+
+ifdef::EA[]
+:title: FixMe - Solution Architecture - {useCase}
+endif::EA[]
+
+ifdef::RA[]
+:title: FixMe - Reference Architecture - {useCase}
+endif::RA[]
+
+ifndef::EA,RA[]
+:title: FixMe - Digital Transformation - {useCase}
+endif::EA,RA[]
+
+////
+:author: TBD
+:authorEmail: TBD
+////
+
+# :authorGHURL: <FixMe>
+
+:imagesdir: ../media/
+
+ifdef::env-github[]
+:imagesdir: {authorGHURL}/blob/master/SA-{useCase}/media/
+endif::env-github[]
+

@@ -1,0 +1,174 @@
+# toggle draft off when completed
+DRAFT=yes
+
+## -------------------------------
+## Doc Config File for SUSE DAPS
+## Solution Architecture
+## Solution Architecture How-To
+## -------------------------------
+
+## Basics
+
+MAIN="SA.adoc"
+STYLEROOT="/usr/share/xml/docbook/stylesheet/suse2013-ns/"
+# Type
+ADOC_TYPE="book"
+# Turn on postprocessing
+ADOC_POST="yes"
+
+##
+# Global Attributes
+##
+ADOC_ATTRIBUTES=" --attribute env-daps=1"
+
+## References
+ADOC_ATTRIBUTES+=" --attribute References=1"
+
+## Glossary
+ADOC_ATTRIBUTES+=" --attribute Glossary=1"
+
+## Colophon (TBD)
+#ADOC_ATTRIBUTES+=" --attribute Colophon=1"
+
+## Appendix
+ADOC_ATTRIBUTES+=" --attribute Appendix=1"
+
+## Legal Notice (suggested)
+ADOC_ATTRIBUTES+=" --attribute LN=1"
+
+## License (Gnu Free Document License) (suggested)
+ADOC_ATTRIBUTES+=" --attribute GFDL=1"
+
+##
+# Modular/Variable Content Parameters for Template Focus
+#	(to override default chapter/section/sub-section default structure)
+#	if you add other such attributes, ensure you specify (for appending)
+# ADOC_ATTRIBUTES+=" --attribute <Name>=1"
+##
+
+###############################################################################
+###############################################################################
+
+## --------------------------- (RA)
+#	Reference Architecture
+#
+# RA = Reference Architecture
+#	uncomment the following to switch to this format/structure
+#ADOC_ATTRIBUTES+=" --attribute RA=1"
+#
+# these layers are only referenced in combination with EA setting
+#
+## ii-Business problem and business value (RA+BPBV)
+ADOC_ATTRIBUTES+=" --attribute BPBV=1"
+
+## iii-Requirements (RA+Requirements)
+ADOC_ATTRIBUTES+=" --attribute Requirements=1"
+
+## iv-Architectural overview (RA+ArchOv)
+ADOC_ATTRIBUTES+=" --attribute ArchOv=1"
+#	then add/enable respective attributes/parameters, like
+#	Network Architecture
+ADOC_ATTRIBUTES+=" --attribute ArchOvNetworkArch=1"
+
+## v-Component model (RA+CompMod)
+ADOC_ATTRIBUTES+=" --attribute CompMod=1"
+#	then add/enable respective attributes/parameters, like
+#	Software component description
+ADOC_ATTRIBUTES+=" --attribute SWComp=1"
+#	Hardware component description
+ADOC_ATTRIBUTES+=" --attribute HWComp=1"
+
+## vi-Deployment (RA+Deployment)
+ADOC_ATTRIBUTES+=" --attribute Deployment=1"
+#	then add/enable respective attributes/parameters, like
+#	Hardware deployment configuration
+ADOC_ATTRIBUTES+=" --attribute HWDepCfg=1"
+#	Software deployment configuration
+ADOC_ATTRIBUTES+=" --attribute SWDepCfg=1"
+
+## vii-Deployment considerations (RA+DepConsiderations)
+ADOC_ATTRIBUTES+=" --attribute DepConsiderations=1"
+
+## ------------------------------------- (RA)
+
+###############################################################################
+###############################################################################
+
+## ------------------------------------- (EA)
+#	Enterprise Architecture Grouping
+
+# EA = Enterprise Architecture, i.e. Archimate, layer based
+#	uncomment the following to switch to this format/structure
+#ADOC_ATTRIBUTES+=" --attribute EA=1"
+
+# these layers are only referenced in combination with EA setting
+
+## ii-Strategy (EA+Strategy)
+ADOC_ATTRIBUTES+=" --attribute Strategy=1"
+
+## iii-Business (EA+Business)
+ADOC_ATTRIBUTES+=" --attribute Business=1"
+
+## iv-Application (Workloads) (EA+Applications)
+ADOC_ATTRIBUTES+=" --attribute Application=1"
+#	then add respective ISV attributes/parameters, like
+#	ADOC_ATTRIBUTES+=" --attribute ISVPartner=1"
+
+## v-Technology (EA+Technology)
+ADOC_ATTRIBUTES+=" --attribute Technology=1"
+#	then add respective SUSE portolio attributes/parameters, like
+#	ADOC_ATTRIBUTES+=" --attribute SUSEManager=1"
+
+## vi-Physical (EA+Physical)
+ADOC_ATTRIBUTES+=" --attribute Physical=1"
+#	then add respective IHV/CSP attributes/parameters, like
+#	ADOC_ATTRIBUTES+=" --attribute IHVHPE=1"
+#	ADOC_ATTRIBUTES+=" --attribute CSPAWS=1"
+
+## vii-Migration (EA+Migration)
+ADOC_ATTRIBUTES+=" --attribute Migration=1"
+
+## --------------------------------------------------------- (FCTR)
+## Factors (FCTR) - core priority deployment factors sub-set
+#	uncomment the following to switch/enable to this format/structure
+#ADOC_ATTRIBUTES+=" --attribute FCTR=1"
+
+# 	then add respective factors, named specifically
+# Availability (FCTR>
+ADOC_ATTRIBUTES+=" --attribute Availability=1"
+# Performance (FCTR>
+ADOC_ATTRIBUTES+=" --attribute Performance=1"
+# Security (FCTR>
+ADOC_ATTRIBUTES+=" --attribute Security=1"
+# Integrity (FCTR>
+ADOC_ATTRIBUTES+=" --attribute Integrity=1"
+## --------------------------------------------------------- (FCTR)
+
+## ------------------------------------------------------------ (FLVR)
+## Flavors (FLVR) - extent/phases of deployment flavors sub-set
+#	uncomment the following to switch/enable to this format/structure
+#ADOC_ATTRIBUTES+=" --attribute FLVR=1"
+# 	then add respective flavors, named specifically, like
+
+# Proof-of-Concept (FLVR)
+ADOC_ATTRIBUTES+=" --attribute PoC=1"
+# Production (FLVR)
+ADOC_ATTRIBUTES+=" --attribute Production=1"
+# Scaling (FLVR)
+ADOC_ATTRIBUTES+=" --attribute Scaling=1"
+## ------------------------------------------------------------ (FLVR)
+
+## ------------------------------------------------------------ (DT)
+## Deployment Types (DT) - variant approaches to deployment
+#	uncomment the following to switch/enable to this format/structure
+#ADOC_ATTRIBUTES+=" --attribute DT=1"
+
+# 	then add respective deployment types, specifically named
+ADOC_ATTRIBUTES+=" --attribute DT1=1" 
+ADOC_ATTRIBUTES+=" --attribute DT2=1"
+## ------------------------------------------------------------ (DT)
+
+## ------------------------------------- (EA)
+
+###############################################################################
+###############################################################################

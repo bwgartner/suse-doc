@@ -1,0 +1,50 @@
+
+== Component model
+
+FixMe - Varius sit amet mattis vulputate. Nisi scelerisque eu ultrices vitae auctor eu augue ut. Integer vitae justo eget magna fermentum iaculis eu non diam. Rhoncus urna neque viverra justo. Elementum tempus egestas sed sed risus. Porta nibh venenatis cras sed felis eget velit aliquet sagittis. Venenatis a condimentum vitae sapien pellentesque. Magna ac placerat vestibulum lectus mauris ultrices eros in cursus. Nibh cras pulvinar mattis nunc. Tempor orci dapibus ultrices in iaculis nunc. Sapien nec sagittis aliquam malesuada bibendum arcu vitae elementum. Nisi porta lorem mollis aliquam. Laoreet id donec ultrices tincidunt arcu non sodales.
+
+=== Component overview
+
+FixMe - Varius sit amet mattis vulputate. Nisi scelerisque eu ultrices vitae auctor eu augue ut ...
+
+////
+
+Provide brief descriptions of the components that make up a solution and this could include the individual components of a solution such as a product breakdown
+	SUSE Linux Enterprise Server
+	Docker
+	Kubernetes
+Or functional components that make up the solution such as Nova, Keystone, Swift, etc in an OpenStack solution 
+
+////
+
+ifdef::SWComp[]
+
+==== Software component description
+
+FixMe - Varius sit amet mattis vulputate. Nisi scelerisque eu ultrices vitae auctor eu augue ut ...
+
+////
+Depending on the number and complexity of the components this proceeding section might better be represented as a table with brief descriptions.   Fewer components can be expressed in short paragraph form.
+////
+
+===== FixMe - Component relationship (if necessary)
+
+FixMe - Varius sit amet mattis vulputate. Nisi scelerisque eu ultrices vitae auctor eu augue ut ...
+
+endif::SWComp[]
+
+ifdef::HWComp[]
+
+==== Hardware component description
+
+FixMe - Varius sit amet mattis vulputate. Nisi scelerisque eu ultrices vitae auctor eu augue ut ...
+
+////
+Provide a description of the Systems used and their position in the solution.  Each system should explain why the characteristics of that system is a good fit for the SW Component or architecture.
+////
+
+===== FixMe - Component relationship (if necessary)
+
+FixMe - Varius sit amet mattis vulputate. Nisi scelerisque eu ultrices vitae auctor eu augue ut ...
+
+endif::HWComp[]

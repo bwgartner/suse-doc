@@ -1,0 +1,67 @@
+
+[glossary]
+== Glossary
+
+FixMe
+
+ifdef::DT[]
+* FixMe - Deployment Type(s)::
++
+ifdef::DT+DT1[]
+[[G_DT1]]DT1::
+FixMe - Ut morbi tincidunt augue interdum. Donec enim diam vulputate ut pharetra sit amet. Mauris vitae ultricies leo integer. Egestas egestas fringilla phasellus faucibus scelerisque eleifend donec pretium vulputate. Et pharetra pharetra massa massa. Sagittis id consectetur purus ut. Et sollicitudin ac orci phasellus egestas tellus. Eu nisl nunc mi ipsum. Nibh cras pulvinar mattis nunc sed blandit libero volutpat sed. Cras adipiscing enim eu turpis egestas pretium aenean. Nulla pellentesque dignissim enim sit. Morbi non arcu risus quis.
+endif::DT+DT1[]
++
+ifdef::DT+DT2[]
+[[G_DT2]]DT2::
+FixMe - Sed arcu non odio euismod lacinia at quis. Sodales ut eu sem integer vitae justo. Neque laoreet suspendisse interdum consectetur libero id faucibus nisl. Et tortor consequat id porta nibh venenatis cras sed felis. Ut aliquam purus sit amet luctus venenatis lectus. Lacus viverra vitae congue eu consequat. At lectus urna duis convallis convallis. Risus nullam eget felis eget. Euismod nisi porta lorem mollis aliquam ut porttitor. Mollis aliquam ut porttitor leo a diam. Cursus in hac habitasse platea dictumst quisque sagittis purus sit. Platea dictumst vestibulum rhoncus est.
+endif::DT+DT2[]
+
+endif::DT[]
+
+
+ifdef::FCTR[]
+* FixMe - Factor(s)
++
+ifdef::FCTR+Availability[]
+[[G_Availability]]Availability::
+FixMe - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Egestas purus viverra accumsan in nisl nisi scelerisque. Aliquam ultrices sagittis orci a scelerisque purus semper eget. Magna sit amet purus gravida quis blandit turpis. Gravida quis blandit turpis cursus in hac habitasse platea dictumst. Id volutpat lacus laoreet non curabitur. Tellus at urna condimentum mattis. Aenean pharetra magna ac placerat. Donec massa sapien faucibus et. Ligula ullamcorper malesuada proin libero nunc consequat interdum. Tempor id eu nisl nunc mi ipsum faucibus. Sed nisi lacus sed viverra. Vitae proin sagittis nisl rhoncus mattis. At auctor urna nunc id cursus metus. Nisl suscipit adipiscing bibendum est ultricies integer quis auctor elit. Tellus pellentesque eu tincidunt tortor aliquam. Auctor augue mauris augue neque gravida. Rhoncus aenean vel elit scelerisque. Scelerisque varius morbi enim nunc faucibus a pellentesque.
+endif::FCTR+Availability[]
++
+ifdef::FCTR+Integrity[]
+[[G_Integrity]]Integrity::
+FixMe - Et netus et malesuada fames. In ante metus dictum at tempor commodo ullamcorper a lacus. Sapien et ligula ullamcorper malesuada proin libero nunc. Nascetur ridiculus mus mauris vitae ultricies leo integer. Varius duis at consectetur lorem donec massa sapien. Quis blandit turpis cursus in. Semper feugiat nibh sed pulvinar proin gravida hendrerit. Risus pretium quam vulputate dignissim suspendisse in est. Posuere sollicitudin aliquam ultrices sagittis. Volutpat consequat mauris nunc congue nisi vitae suscipit. Mi sit amet mauris commodo quis. Sapien pellentesque habitant morbi tristique senectus et netus et malesuada. Ornare lectus sit amet est placerat in egestas. Feugiat vivamus at augue eget arcu dictum varius duis at. Consectetur adipiscing elit pellentesque habitant morbi tristique senectus et. Habitasse platea dictumst vestibulum rhoncus est pellentesque elit ullamcorper.
+endif::FCTR+Integrity[]
++
+ifdef::FCTR+Performance[]
+[[G_Performance]]Performance::
+FixMe - Ipsum a arcu cursus vitae congue. Velit sed ullamcorper morbi tincidunt ornare massa eget. Congue quisque egestas diam in arcu cursus euismod quis. Cras tincidunt lobortis feugiat vivamus at augue. Sit amet nisl suscipit adipiscing. Et ultrices neque ornare aenean euismod elementum nisi. Mi sit amet mauris commodo. Eget dolor morbi non arcu risus quis. In massa tempor nec feugiat nisl pretium fusce. Tortor at auctor urna nunc id cursus metus. Enim tortor at auctor urna. Erat velit scelerisque in dictum non consectetur a. Arcu non sodales neque sodales ut etiam sit. Proin libero nunc consequat interdum varius sit amet. Vulputate dignissim suspendisse in est ante in. Pharetra pharetra massa massa ultricies mi quis. Sodales ut eu sem integer vitae justo. Mus mauris vitae ultricies leo integer malesuada nunc. Venenatis tellus in metus vulputate eu. In hac habitasse platea dictumst quisque sagittis purus sit amet.
+endif::FCTR+Performance[]
++
+ifdef::FCTR+Security[]
+[[G_Security]]Security::
+FixMe - Malesuada fames ac turpis egestas maecenas pharetra convallis posuere. Tincidunt ornare massa eget egestas. Tincidunt nunc pulvinar sapien et ligula ullamcorper malesuada. Vulputate eu scelerisque felis imperdiet. Ipsum dolor sit amet consectetur adipiscing elit duis tristique. Condimentum mattis pellentesque id nibh tortor id aliquet lectus. Id volutpat lacus laoreet non. Tellus at urna condimentum mattis pellentesque id nibh tortor. Nisl rhoncus mattis rhoncus urna. Felis eget velit aliquet sagittis. Sit amet massa vitae tortor condimentum lacinia. Semper viverra nam libero justo laoreet sit. Massa vitae tortor condimentum lacinia. Amet porttitor eget dolor morbi non arcu risus quis varius. Lorem sed risus ultricies tristique nulla aliquet enim.
+endif::FCTR+Security[]
+
+endif::FCTR[]
+
+ifdef::FLVR[]
+* FixMe - Flavor(s)
++
+ifdef::FLVR+PoC[]
+[[G_PoC]]Proof-of-Concept::
+FixMe - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Arcu non sodales neque sodales ut etiam sit amet nisl. Lorem mollis aliquam ut porttitor leo a diam. Eget nunc lobortis mattis aliquam. Leo duis ut diam quam nulla porttitor massa. Nec dui nunc mattis enim ut tellus elementum sagittis vitae. Sagittis nisl rhoncus mattis rhoncus urna neque viverra. Erat imperdiet sed euismod nisi porta. Convallis aenean et tortor at risus. Sodales neque sodales ut etiam sit amet nisl.
+endif::FLVR+PoC[]
++
+ifdef::FLVR+Production[]
+[[G_Production]]Production::
+FixMe - Nec ultrices dui sapien eget. Blandit turpis cursus in hac habitasse platea dictumst quisque. Sagittis vitae et leo duis ut diam quam. Et pharetra pharetra massa massa ultricies. Orci eu lobortis elementum nibh tellus molestie nunc. Et malesuada fames ac turpis egestas sed tempus. Dolor magna eget est lorem ipsum dolor sit amet. Posuere lorem ipsum dolor sit amet consectetur adipiscing elit. Egestas purus viverra accumsan in nisl nisi. Consequat ac felis donec et odio pellentesque. Lorem mollis aliquam ut porttitor leo a. Amet aliquam id diam maecenas ultricies mi eget mauris pharetra. Bibendum at varius vel pharetra vel turpis nunc.
+endif::FLVR+Production[]
++
+ifdef::FLVR+Scaling[]
+[[G_Scaling]]Scaling::
+FixMe - Gravida cum sociis natoque penatibus et magnis. Amet cursus sit amet dictum sit amet justo donec enim. Tristique senectus et netus et malesuada. Ullamcorper dignissim cras tincidunt lobortis feugiat vivamus at augue eget. Enim lobortis scelerisque fermentum dui faucibus. Est ullamcorper eget nulla facilisi etiam dignissim diam quis enim. Mauris a diam maecenas sed enim. Sed viverra tellus in hac. Id eu nisl nunc mi ipsum faucibus vitae aliquet nec. Vitae tempus quam pellentesque nec nam aliquam. At augue eget arcu dictum varius duis at consectetur lorem. Sed lectus vestibulum mattis ullamcorper velit sed. At auctor urna nunc id cursus metus. Adipiscing elit ut aliquam purus sit. Sed tempus urna et pharetra pharetra massa massa ultricies mi. Quis lectus nulla at volutpat diam ut venenatis tellus in.
+endif::FLVR+Scaling[]
+
+endif::FLVR[]
+
